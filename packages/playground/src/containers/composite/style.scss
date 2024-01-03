@@ -1,0 +1,72 @@
+.content-wrapper {
+  .dragArea {
+    display: grid;
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    background-color: #d9d9d9;
+    grid-template-columns: repeat(3, 33.3333%);
+    grid-gap: 1px;
+  }
+}
+
+.composite-panel {
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  .composite-panel-tabs-content {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid #d9d9d9;
+    background: #fff;
+    box-sizing: content-box;
+    transition: width 0.3s;
+  }
+}
+
+.composite-panel-tabs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 48px;
+  border-right: 1px solid #d9d9d9;
+  background-color: #fff;
+  flex-direction: column;
+
+  &-pane {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    min-width: 48px;
+    min-height: 48px;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    flex-direction: column;
+
+    &--active {
+      color: #1890ff;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        content: '';
+        width: 3px;
+        height: 100%;
+        background-color: #1890ff;
+      }
+    }
+  }
+}
+
+.el-collapse-item__content {
+  padding-bottom: 0;
+}

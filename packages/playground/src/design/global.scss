@@ -1,0 +1,32 @@
+.view-port {
+  input,
+  textarea,
+  .el-input__wrapper,
+  .el-select__icon,
+  .el-input__suffix-inner,
+  .el-switch,
+  .el-select,
+  .el-radio,
+  .el-checkbox,
+  .el-slider,
+  .el-date-editor,
+  .el-button,
+  .c-toggle__container,
+  .el-pagination--small,
+  .el-input-number__decrease,
+  .el-input-number__increase {
+    pointer-events: none !important;
+  }
+}
+
+.el-input-number {
+  width: 100%;
+}
+
+.form-item-options__container {
+  flex-direction: column;
+
+  > label {
+    margin-bottom: 8px;
+  }
+}

@@ -1,24 +1,14 @@
-# 配置项文档：https://editorconfig.org/
-
-# 告知 EditorConfig 插件，当前即是根文件
+# 表示是最顶层的 EditorConfig 配置文件
 root = true
 
-# 适用全部文件
-[*]
-## 设置字符集
-charset = utf-8
-## 缩进风格 space | tab，建议 space
-indent_style = space
-## 缩进的空格数（修改这里的话需要将 prettier.config.js 和 .vscode -> settings.json 也同步修改）
-indent_size = 2
-## 换行符类型 lf | cr | crlf，一般都是设置为 lf
-end_of_line = lf
-## 是否在文件末尾插入空白行
-insert_final_newline = true
-## 是否删除一行中的前后空格
-trim_trailing_whitespace = true
+[*] # 表示所有文件适用
+charset = utf-8 # 设置文件字符集为 utf-8
+indent_style = space # 缩进风格（tab | space）
+indent_size = 2 # 缩进大小
+end_of_line = lf # 控制换行类型(lf | cr | crlf)
+trim_trailing_whitespace = true # 去除行首的任意空白字符
+insert_final_newline = true # 始终在文件末尾插入一个新行
 
-# 适用 .md 文件
-[*.md]
-insert_final_newline = false
+[*.md] # 表示仅 md 文件适用以下规则
+max_line_length = off
 trim_trailing_whitespace = false

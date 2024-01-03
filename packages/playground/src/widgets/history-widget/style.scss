@@ -1,0 +1,24 @@
+.history {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    min-height: 32px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &--active {
+      background-color: #eee;
+    }
+
+    &--timestamp {
+      font-size: 10px;
+    }
+  }
+}

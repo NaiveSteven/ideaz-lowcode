@@ -1,0 +1,65 @@
+.board {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  .pc-simulator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+
+  .mobile-simulator {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    background-color: #eee;
+
+    &-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: overlay;
+      width: 100%;
+      height: 100%;
+
+      .mobile-simulator-body {
+        display: flex;
+        justify-content: center;
+        min-width: 0;
+        height: 100%;
+
+        &-wrapper {
+          position: relative;
+          min-height: 1000px;
+
+          > img {
+            display: block;
+            margin: 20px 0;
+            width: 460px;
+            height: 946.667px;
+            border-radius: 60px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px;
+            backface-visibility: hidden;
+          }
+
+          .mobile-simulator-body-content {
+            position: absolute;
+            top: 126.667px;
+            left: 23.3333px;
+            overflow: hidden;
+            width: 414px;
+            height: 736px;
+            border: 3px solid #222;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

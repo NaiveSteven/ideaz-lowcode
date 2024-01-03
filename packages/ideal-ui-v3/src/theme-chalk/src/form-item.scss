@@ -1,0 +1,23 @@
+.c-form-item {
+  .el-form-item__content {
+    .el-input,
+    .el-cascader,
+    .el-select,
+    .el-date-editor {
+      width: 100%;
+    }
+  }
+
+  .c-form-item-label__icon {
+    // color: black;
+    transform: translate(0, 2px);
+  }
+
+  .c-form-item__extra {
+    clear: both;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.45);
+    transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    line-height: 1.5715;
+  }
+}

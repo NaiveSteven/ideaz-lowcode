@@ -1,0 +1,16 @@
+{
+  "name": "@ideal-schema/shared",
+  "private":"true",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "NaiveSteven",
+  "main": "lib/shared.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "module": "esm",
+  "scripts": {
+    "build": "tsup"
+  }
+}

@@ -1,0 +1,56 @@
+.aux-button {
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  height: 20px;
+  font-size: 12px !important;
+  border-color: #1890ff; //#1890ff
+  color: #fff; //#fff
+  background: #1890ff; //#1890ff
+
+  &:hover,
+  &:focus {
+    border-color: #40a9ff; //#40a9ff
+    color: #fff; //#fff
+    background: #40a9ff; //#40a9ff
+  }
+
+  &:active {
+    border-color: #096dd9; //#096dd9
+    color: #fff; //#fff
+    background: #096dd9; //#096dd9
+  }
+
+  .el-icon {
+    font-size: 12px;
+  }
+}
+
+.el-button {
+  border-radius: 0%;
+}
+
+.el-button--small {
+  min-height: 20px;
+}
+
+.el-button + .el-button {
+  margin-left: 0;
+}
+
+@keyframes animate-slide-to-top {
+  from {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+
+.selector-menu {
+  animation: animate-slide-to-top 0.2s;
+  opacity: 0.8;
+}

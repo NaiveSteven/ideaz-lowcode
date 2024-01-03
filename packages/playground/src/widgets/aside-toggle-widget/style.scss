@@ -1,0 +1,25 @@
+.aside-toggle {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  overflow: hidden;
+  width: 22px;
+  height: 80px;
+  border-radius: 11px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f7f4f4;
+  }
+
+  > i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    color: #a8a6a6;
+  }
+}

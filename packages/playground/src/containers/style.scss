@@ -1,0 +1,98 @@
+.drawer {
+  display: flex;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #d9d9d9;
+  background: #fff;
+  flex-direction: column;
+  box-sizing: content-box;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 7px;
+    font-size: 16px;
+    border-bottom: 1px solid #d9d9d9;
+    color: #666;
+    line-height: 18px;
+
+    &--title {
+      font-size: 20px;
+    }
+
+    &--action {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__body {
+    flex-grow: 2;
+    flex-shrink: 2;
+    overflow: overlay;
+    overflow-x: hidden;
+    height: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  height: 42px;
+  border-bottom: 1px solid #d9d9d9;
+  background: #fff;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  &--actions {
+    display: flex;
+    // justify-self: end;
+    margin-right: 10px;
+  }
+}
+
+.settings-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 300px;
+  height: 100%;
+  border-left: 1px solid #d9d9d9;
+  background: #fff;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-direction: column;
+  box-sizing: content-box;
+  transition: width 0.3s;
+
+  .panel {
+    position: relative;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    height: 100%;
+
+    .body {
+      flex-grow: 2;
+      flex-shrink: 2;
+      overflow: overlay;
+      height: 100%;
+
+      .wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        height: 100%;
+
+        .form-content {
+          flex-grow: 1;
+          overflow: overlay;
+        }
+      }
+    }
+  }
+}

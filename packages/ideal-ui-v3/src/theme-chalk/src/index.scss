@@ -1,0 +1,33 @@
+@import './select.scss';
+@import './input.scss';
+@import './col.scss';
+@import './container.scss';
+@import './form-item.scss';
+@import './datepicker.scss';
+@import './table.scss';
+@import './table-pro.scss';
+
+.ghost {
+  overflow: hidden;
+  padding: 0;
+  height: 3px;
+  font-size: 0;
+  border: 2px solid #409eff;
+  background: #409eff;
+  content: '';
+  box-sizing: border-box;
+  outline-width: 0;
+}
+
+.table-col__ghost {
+  z-index: 100;
+  overflow: hidden;
+  padding: 0;
+  height: 3px;
+  font-size: 0;
+  border-top: 3px solid #409eff;
+  background: #409eff;
+  content: '';
+  box-sizing: border-box;
+  outline-width: 0;
+}
