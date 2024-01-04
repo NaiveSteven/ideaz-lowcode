@@ -1,4 +1,4 @@
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 // import draggable from 'vuedraggable';
 import { useToolBarTableCols } from '../hooks';
 import type { TableCol } from '@ideal-schema/ideal-ui-v3';
