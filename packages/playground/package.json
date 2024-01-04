@@ -18,15 +18,13 @@
     "build:cli": "vue-cli-service build",
     "build": "vite build",
     "serve": "vite preview",
-    "prepare": "husky install",
     "commit": "git add . && git-cz"
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
-    "@ideal-schema/ideal-ui-v3": "^0.0.1",
-    "@ideal-schema/shared": "^0.0.1",
     "@vueuse/core": "^8.3.1",
     "axios": "^0.26.1",
+    "codemirror": ">=5.64.0 <6",
     "codemirror-editor-vue3": "^2.0.6",
     "core-js": "^3.21.1",
     "element-plus": "^2.4.2",
@@ -35,6 +33,7 @@
     "mitt": "^3.0.0",
     "pinia": "^2.0.9",
     "vue": "^3.3.8",
+    "vue-draggable-plus": "^0.2.6",
     "vue-router": "4"
   },
   "devDependencies": {

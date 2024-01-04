@@ -14,7 +14,9 @@
   "scripts": {
     "build": "vite build"
   },
+
   "dependencies": {
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "vue-draggable-plus": "^0.2.6"
   }
 }
