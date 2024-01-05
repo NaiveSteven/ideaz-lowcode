@@ -1,4 +1,4 @@
-git filter-branch --env-filter '
+git filter-branch --env-filter -f '
 if [ "$GIT_AUTHOR_NAME" = "mjqin" ]
 then
 export GIT_AUTHOR_NAME="NaiveSteven"
@@ -6,7 +6,7 @@ export GIT_AUTHOR_EMAIL="1004537433@qq.com"
 fi
 ' ref..HEAD
 
-git filter-branch --env-filter '
+git filter-branch --env-filter -f '
 if [ "$GIT_COMMITTER_NAME" = "mjqin" ]
 then
 export GIT_COMMITTER_NAME="NaiveSteven"
