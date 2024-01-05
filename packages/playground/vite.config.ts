@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import { resolve } from 'node:path'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import UnoCSS from 'unocss/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [vue(), vueJsx(), UnoCSS()],
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
@@ -30,13 +31,5 @@ export default defineConfig({
   server: {
     open: false,
     cors: true,
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://xxx.xxx.xxx.xxx:8000',
-    //     changeOrigin: true,
-    //     secure: false,
-    //     rewrite: (path) => path.replace('/api/', '/')
-    //   }
-    // }
   },
-});
+})

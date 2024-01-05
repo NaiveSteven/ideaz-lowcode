@@ -1,27 +1,47 @@
 {
   "compilerOptions": {
+    "incremental": false,
     "target": "esnext",
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "useDefineForClassFields": true,
+    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "allowJs": true,
-    "checkJs": true,
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "types": ["node"],
     "paths": {
       "@ideal-schema/*": ["./packages/*/src"]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "vitest",
+      "vite/client",
+      "vue/ref-macros",
+      "unplugin-vue-macros/macros-global"
+    ],
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "exclude": ["dist"]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "include": [
+    "auto-imports.d.ts",
+    "packages/**/*.ts",
+    "packages/**/*.d.ts",
+    "packages/**/*.tsx"
+  ],
+  "vueCompilerOptions": {
+    "experimentalCompatMode": 2
+  }
 }

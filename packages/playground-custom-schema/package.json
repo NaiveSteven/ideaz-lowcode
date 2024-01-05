@@ -15,12 +15,11 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@element-plus/icons": "^0.0.11",
+    "@element-plus/icons-vue": "2.3.1",
     "@vueuse/core": "^8.3.1",
-    "core-js": "^3.21.1",
     "codemirror-editor-vue3": "^2.0.6",
+    "core-js": "^3.21.1",
     "element-plus": "^2.4.2",
-    "lodash-es": "^4.17.5",
     "mitt": "^3.0.0",
     "pinia": "^2.0.9",
     "vue": "^3.3.8",
@@ -30,7 +29,6 @@
   "devDependencies": {
     "@vue/compiler-sfc": "^3.3.8",
     "driver.js": "^0.9.8",
-    "sass": "^1.43.4",
-    "vue-tsc": "^0.3.0"
+    "sass": "^1.43.4"
   }
 }

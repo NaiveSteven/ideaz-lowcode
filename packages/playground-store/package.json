@@ -15,7 +15,6 @@
     "build": "tsup"
   },
   "dependencies": {
-    "pinia": "^2.0.9",
-    "lodash-es": "^4.17.21"
+    "pinia": "^2.0.9"
   }
 }

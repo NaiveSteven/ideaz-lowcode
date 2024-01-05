@@ -1,9 +1,9 @@
-module.exports = {
+export default {
   root: true,
   plugins: ['stylelint-order'],
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   rules: {
-    indentation: 2,
+    'indentation': 2,
     'selector-pseudo-element-no-unknown': [
       true,
       {
@@ -124,4 +124,4 @@ module.exports = {
       'transition',
     ],
   },
-};
+}
