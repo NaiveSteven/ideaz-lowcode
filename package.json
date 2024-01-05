@@ -4,20 +4,10 @@
   "packageManager": "pnpm@7.30.0",
   "scripts": {
     "start": "pnpm -C packages/playground dev",
-    "dev": "yarn workspace @ideal-schema/core start",
-    "docs:serve": "yarn workspace @ideal-schema/ideal-ui-v3 serve",
-    "build": "rimraf -rf dist && lerna run build",
-    "build:playground": "yarn workspace @ideal-schema/playground build",
-    "build:core": "yarn workspace @ideal-schema/core build",
-    "build:shared": "yarn workspace @ideal-schema/shared build",
-    "build:schema": "yarn workspace @ideal-schema/json-schema build",
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "commit": "git add . && git-cz"
+    "build": "build"
   },
   "devDependencies": {
-    "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
+    "@antfu/eslint-config": "^2.6.1",
     "@ideal-schema/ideal-ui-v3": "workspace:*",
     "@ideal-schema/playground": "workspace:*",
     "@ideal-schema/playground-components": "workspace:*",
@@ -33,20 +23,14 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "@vitejs/plugin-vue-jsx": "^1.3.10",
     "autoprefixer": "^10.4.16",
-    "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "husky": "^7.0.0",
-    "lerna": "^4.0.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
+    "simple-git-hooks": "^2.9.0",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^22.0.0",
@@ -56,28 +40,7 @@
     "typescript": "^4.4.3",
     "vite": "^2.9.13"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix",
-      "eslint --max-warnings 0"
-    ],
-    "*.vue": [
-      "eslint --fix",
-      "prettier --write",
-      "stylelint --fix",
-      "eslint --max-warnings 0"
-    ],
-    "*.{scss,html}": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.md": [
-      "prettier --write"
-    ]
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   }
 }
