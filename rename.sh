@@ -1,15 +1,15 @@
-git filter-branch --env-filter -f '
-if [ "$GIT_AUTHOR_NAME" = "mjqin" ]
+git filter-branch -f --env-filter '
+OLD_EMAIL="mjqin@che300.com"
+CORRECT_NAME="NaiveSteven"
+CORRECT_EMAIL="1004537433@qq.com"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then
-export GIT_AUTHOR_NAME="NaiveSteven"
-export GIT_AUTHOR_EMAIL="1004537433@qq.com"
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
 fi
-' ref..HEAD
-
-git filter-branch --env-filter -f '
-if [ "$GIT_COMMITTER_NAME" = "mjqin" ]
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
 then
-export GIT_COMMITTER_NAME="NaiveSteven"
-export GIT_COMMITTER_EMAIL="1004537433@qq.com"
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
 fi
-' ref..HEAD
+' --tag-name-filter cat -- --branches --tags
