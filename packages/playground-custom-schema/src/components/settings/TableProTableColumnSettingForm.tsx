@@ -1,24 +1,22 @@
-import { computed, reactive, defineComponent, nextTick } from 'vue';
-import { cloneDeep } from 'lodash-es';
-import { useWorkspaceStore } from '@ideal-schema/playground-store';
-import { uid, isFunction } from '@ideal-schema/shared';
-import mitt from '@ideal-schema/playground-event';
-import { tableColTemplateSchema } from '../../schemas';
-import './style.scss';
+import { computed, defineComponent, reactive } from 'vue'
+import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { isFunction, uid } from '@ideal-schema/shared'
+import { tableColTemplateSchema } from '../../schemas'
+import './style.scss'
 
 export default defineComponent({
   name: 'TableProTableColumnSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore();
+    const workspaceStore = useWorkspaceStore()
 
     const formConfig = reactive({
       labelPosition: 'left',
       labelWidth: '120px',
       // size: 'default',
       colon: false,
-    });
+    })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent);
+    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
 
     const layout = {
       rowLayout: {
@@ -32,16 +30,12 @@ export default defineComponent({
         lg: 24,
         xl: 24,
       },
-    };
+    }
 
     const handleColumnDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start', {
-        type: '表格项属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-      const schema = tableProConfig.schema;
-      let tableCols: TableCol[] = [];
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = tableProConfig.schema
+      let tableCols: TableCol[] = []
       const data = {
         ...curOperateComponent.value,
         templateFormData: {
@@ -49,7 +43,7 @@ export default defineComponent({
           ...obj.formData,
         },
         ...obj.formData,
-      };
+      }
       if (obj.formData.type === 'slot') {
         data.templateSchema = (formData: IndexType) => [
           ...tableColTemplateSchema(formData),
@@ -62,13 +56,14 @@ export default defineComponent({
               placeholder: '请输入插槽名',
             },
           },
-        ];
-      } else {
-        data.templateFormData.slot = '';
+        ]
+      }
+      else {
+        data.templateFormData.slot = ''
       }
       if (obj.formData.type === 'default') {
-        delete data.type;
-        delete data.btnList;
+        delete data.type
+        delete data.btnList
       }
       if (obj.formData.type === 'button' && !data.btnList) {
         data.btnList = [
@@ -82,15 +77,15 @@ export default defineComponent({
             label: '删除',
             key: uid(),
           },
-        ];
-        data.templateFormData.btnList = data.btnList;
+        ]
+        data.templateFormData.btnList = data.btnList
       }
       tableCols = schema.tableCols!.map((item: TableCol) => {
-        if (item.id === curOperateComponent.value.id) {
-          return data;
-        }
-        return item;
-      });
+        if (item.id === curOperateComponent.value.id)
+          return data
+
+        return item
+      })
       workspaceStore.updateComponentList([
         {
           ...tableProConfig,
@@ -99,12 +94,9 @@ export default defineComponent({
             tableCols,
           },
         },
-      ]);
-      workspaceStore.updateCurOperateComponent(data);
-      nextTick(() => {
-        mitt.emit('attribute-end');
-      });
-    };
+      ])
+      workspaceStore.updateCurOperateComponent(data)
+    }
 
     return () => {
       return (
@@ -118,8 +110,8 @@ export default defineComponent({
                 formItemConfig={
                   isFunction(curOperateComponent.value.templateSchema)
                     ? curOperateComponent.value.templateSchema(
-                        curOperateComponent.value.templateFormData
-                      )
+                      curOperateComponent.value.templateFormData,
+                    )
                     : curOperateComponent.value.templateSchema
                 }
                 options={curOperateComponent.value.templateOptionsConfig}
@@ -128,7 +120,7 @@ export default defineComponent({
             </el-collapse-item>
           </el-collapse>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

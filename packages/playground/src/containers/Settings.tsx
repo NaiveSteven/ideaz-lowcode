@@ -1,24 +1,24 @@
-import { onBeforeUnmount, defineComponent } from 'vue';
-import AsideToggleWidget from '@/widgets/aside-toggle-widget';
-import SettingBreadcrumbWidget from '@/widgets/setting-breadcrumb-widget';
-import { Drawer } from '@/containers';
-import { SettingForm } from '@ideal-schema/playground-demi';
-import { useAsideToggle } from '@/hooks';
-import mitt from '@ideal-schema/playground-event';
-import './style.scss';
+import { defineComponent, onBeforeUnmount } from 'vue'
+import { SettingForm } from '@ideal-schema/playground-demi'
+import mitt from '@/event'
+import AsideToggleWidget from '@/widgets/aside-toggle-widget'
+import SettingBreadcrumbWidget from '@/widgets/setting-breadcrumb-widget'
+import { Drawer } from '@/containers'
+import { useAsideToggle } from '@/hooks'
+import './style.scss'
 
 export const Settings = defineComponent({
   name: 'Settings',
   setup() {
-    const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('right', '300px', 300);
+    const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('right', '300px', 300)
 
     mitt.on('aside-toggle', ((val: 'show' | 'hide') => {
-      arrowDirection.value = val && val === 'show' ? 'right' : 'left';
-    }) as () => void);
+      arrowDirection.value = val && val === 'show' ? 'right' : 'left'
+    }) as () => void)
 
     onBeforeUnmount(() => {
-      mitt.off('aside-toggle');
-    });
+      mitt.off('aside-toggle')
+    })
 
     return () => (
       <div id="settings-panel" ref="content" class="settings-panel">
@@ -37,6 +37,6 @@ export const Settings = defineComponent({
           </Drawer>
         </div>
       </div>
-    );
+    )
   },
-});
+})

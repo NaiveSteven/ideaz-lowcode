@@ -1,22 +1,21 @@
-import { computed, reactive, defineComponent } from 'vue';
-import { cloneDeep } from 'lodash-es';
-import mitt from '@ideal-schema/playground-event';
-import { useWorkspaceStore } from '@ideal-schema/playground-store';
-import './style.scss';
+import { computed, defineComponent, reactive } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import './style.scss'
 
 export default defineComponent({
   name: 'TableProSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore();
+    const workspaceStore = useWorkspaceStore()
 
     const formConfig = reactive({
       labelPosition: 'left',
       labelWidth: '120px',
       // size: 'default',
       colon: false,
-    });
+    })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent);
+    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
 
     const layout = {
       rowLayout: {
@@ -30,75 +29,70 @@ export default defineComponent({
         lg: 24,
         xl: 24,
       },
-    };
+    }
 
     const handleFormConfigChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start', {
-        type: '表格筛选表单属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      mitt.emit('attribute-end');
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
       const schema = {
         ...tableProConfig.schema,
         formConfig: {
           ...tableProConfig.schema.formConfig,
           ...obj.formData,
         },
-      };
+      }
       workspaceStore.updateCurOperateComponent({
         ...tableProConfig,
         schema,
-      });
+      })
       workspaceStore.updateComponentList([
         {
           ...tableProConfig,
           schema,
         },
-      ]);
-    };
+      ])
+    }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start', {
-        type: '表格属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      mitt.emit('attribute-end');
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-      const schema = cloneDeep(tableProConfig.schema);
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = cloneDeep(tableProConfig.schema)
       if (obj.formData.pagination === false) {
-        delete schema.pagination;
-      } else {
+        delete schema.pagination
+      }
+      else {
         schema.pagination = {
           page: 1,
           page_size: 10,
           total: 0,
-        };
+        }
       }
       if (obj.formData.tableDecorator !== 'el-card') {
         schema.tableDecorator = {
           name: obj.val,
-        };
-      } else {
-        delete schema.tableDecorator;
+        }
+      }
+      else {
+        delete schema.tableDecorator
       }
       if (obj.formData.formDecorator !== 'el-card') {
         schema.formDecorator = {
           name: obj.val,
-        };
-      } else {
-        delete schema.formDecorator;
+        }
+      }
+      else {
+        delete schema.formDecorator
       }
       if (obj.formData.rowKey !== 'id') {
-        schema.rowKey = obj.formData.rowKey;
-      } else {
+        schema.rowKey = obj.formData.rowKey
+      }
+      else {
         // delete schema.rowKey;
       }
-      if (obj.formData.defaultExpand) {
-        schema.defaultExpand = true;
-      } else {
-        delete schema.defaultExpand;
-      }
+      if (obj.formData.defaultExpand)
+        schema.defaultExpand = true
+
+      else
+        delete schema.defaultExpand
+
       workspaceStore.updateComponentList([
         {
           ...tableProConfig,
@@ -108,7 +102,7 @@ export default defineComponent({
           },
           schema,
         },
-      ]);
+      ])
       workspaceStore.updateCurOperateComponent({
         ...tableProConfig,
         templateFormData: {
@@ -116,8 +110,8 @@ export default defineComponent({
           ...obj.formData,
         },
         schema,
-      });
-    };
+      })
+    }
 
     return () => {
       return (
@@ -144,7 +138,7 @@ export default defineComponent({
             </el-collapse-item>
           </el-collapse>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

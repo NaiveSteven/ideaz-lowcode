@@ -8,7 +8,7 @@
   import ViewPort from './ViewPort.vue';
   import { useAsideToggle } from '@/hooks';
   import { useWorkspaceStore } from '@ideal-schema/playground-store';
-  import mitt from '@ideal-schema/playground-event';
+  import mitt from '@/event';
 
   const simulatorType = ref<'pc' | 'mobile'>('pc');
 

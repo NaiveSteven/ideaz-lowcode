@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
   plugins: [vue(), vueJsx()],
@@ -12,7 +12,6 @@ export default defineConfig({
     alias: {
       '@ideal-schema/shared': resolve('../shared/src'),
       '@ideal-schema/ideal-ui-v3': resolve('../ideal-ui-v3/src'),
-      '@ideal-schema/playground-event': resolve('../playground-event/src'),
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
       '@ideal-schema/playground-hooks': resolve('../playground-hooks/src'),
@@ -25,7 +24,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'vue',
-      fileName: (format) => `index.${format}.js`,
+      fileName: format => `index.${format}.js`,
     },
     sourcemap: false,
     rollupOptions: {
@@ -49,4 +48,4 @@ export default defineConfig({
     //   }
     // }
   },
-});
+})

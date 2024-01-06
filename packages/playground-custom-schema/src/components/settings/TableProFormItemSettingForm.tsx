@@ -1,34 +1,33 @@
-import { computed, reactive, defineComponent, nextTick } from 'vue';
-import { cloneDeep } from 'lodash-es';
-import { useWorkspaceStore } from '@ideal-schema/playground-store';
-import { uid } from '@ideal-schema/shared';
-import { FORM_COMPONENT_TYPE } from '../../source';
-import mitt from '@ideal-schema/playground-event';
+import { computed, defineComponent, reactive } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { uid } from '@ideal-schema/shared'
+import { FORM_COMPONENT_TYPE } from '../../source'
 import {
-  selectTableProSchema,
   SelectTableProFormData,
+  dateRangeTableProFormData,
+  dateRangeTableProSchema,
   inputTableProFormData,
   inputTableProSchema,
-  multipleSelectTableProSchema,
   multipleSelectTableProFormData,
-  dateRangeTableProSchema,
-  dateRangeTableProFormData,
-} from '../../schemas';
-import './style.scss';
+  multipleSelectTableProSchema,
+  selectTableProSchema,
+} from '../../schemas'
+import './style.scss'
 
 export default defineComponent({
   name: 'TableProFormItemSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore();
+    const workspaceStore = useWorkspaceStore()
 
     const formConfig = reactive({
       labelPosition: 'left',
       labelWidth: '120px',
       // size: 'default',
       colon: false,
-    });
+    })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent);
+    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
 
     const layout = {
       rowLayout: {
@@ -42,29 +41,25 @@ export default defineComponent({
         lg: 24,
         xl: 24,
       },
-    };
+    }
 
     const updateData = (
       form: WorkspaceComponentItem,
       schema: Schema,
-      changeData: FormChangeData
+      changeData: FormChangeData,
     ) => {
-      mitt.emit('attribute-start', {
-        type: '表格筛选项属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-      let tableCols: TableCol[] = [];
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      let tableCols: TableCol[] = []
       if (schema.tableCols && schema.tableCols.length) {
         tableCols = schema.tableCols.map((cur: TableCol) => {
           if (cur.formItemProps && cur.formItemProps.id === form.id) {
             return {
               ...cur,
               formItemProps: form,
-            };
+            }
           }
-          return cur;
-        });
+          return cur
+        })
         workspaceStore.updateComponentList([
           {
             ...tableProConfig,
@@ -77,23 +72,20 @@ export default defineComponent({
               tableCols,
             },
           },
-        ]);
+        ])
       }
-      workspaceStore.updateCurOperateComponent(form);
-      nextTick(() => {
-        mitt.emit('attribute-end');
-      });
-    };
+      workspaceStore.updateCurOperateComponent(form)
+    }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
         prop: obj.formData.prop,
-      };
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-      const schema = tableProConfig.schema;
-      updateData(item, schema, obj);
-    };
+      }
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = tableProConfig.schema
+      updateData(item, schema, obj)
+    }
 
     const handleFormDataChange = (obj: FormChangeData) => {
       if (obj.prop === 'componentType' && curOperateComponent.value.type !== obj.val) {
@@ -121,8 +113,8 @@ export default defineComponent({
             templateOptionsConfig: {
               componentType: FORM_COMPONENT_TYPE,
             },
-          };
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
+          }
+          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
             ...tableProConfig.schema,
             formModel: {
@@ -133,8 +125,8 @@ export default defineComponent({
               ...tableProConfig.schema.formOptions,
               [obj.prop]: [{ label: '标签', value: '1', key: uid() }],
             },
-          };
-          updateData(item, schema, obj);
+          }
+          updateData(item, schema, obj)
         }
         if (obj.val === 'multipleSelect') {
           const item = {
@@ -165,8 +157,8 @@ export default defineComponent({
             templateOptionsConfig: {
               componentType: FORM_COMPONENT_TYPE,
             },
-          };
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
+          }
+          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
             ...tableProConfig.schema,
             formModel: {
@@ -177,8 +169,8 @@ export default defineComponent({
               ...tableProConfig.schema.formOptions,
               [obj.prop]: [{ label: '标签', value: '1', key: uid() }],
             },
-          };
-          updateData(item, schema, obj);
+          }
+          updateData(item, schema, obj)
         }
         if (obj.val === 'input') {
           const item = {
@@ -204,10 +196,10 @@ export default defineComponent({
             templateOptionsConfig: {
               componentType: FORM_COMPONENT_TYPE,
             },
-          };
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-          const schema = tableProConfig.schema;
-          updateData(item, schema, obj);
+          }
+          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+          const schema = tableProConfig.schema
+          updateData(item, schema, obj)
         }
         if (obj.val === 'datepicker') {
           const item = {
@@ -238,16 +230,16 @@ export default defineComponent({
             templateOptionsConfig: {
               componentType: FORM_COMPONENT_TYPE,
             },
-          };
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
+          }
+          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
             ...tableProConfig.schema,
             formModel: {
               ...tableProConfig.schema.formModel,
               [obj.prop]: obj.val,
             },
-          };
-          updateData(item, schema, obj);
+          }
+          updateData(item, schema, obj)
         }
         if (obj.val === 'slot') {
           const item = {
@@ -293,40 +285,41 @@ export default defineComponent({
                 },
               },
             ],
-          };
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
+          }
+          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
             ...tableProConfig.schema,
             formModel: {
               ...tableProConfig.schema.formModel,
               [obj.prop]: obj.val,
             },
-          };
-          updateData(item, schema, obj);
+          }
+          updateData(item, schema, obj)
         }
-      } else {
+      }
+      else {
         const item = {
           ...curOperateComponent.value,
           attrs: {
             ...curOperateComponent.value.attrs,
             ...obj.formData,
           },
-        };
-        const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-        const schema = tableProConfig.schema;
-        updateData(item, schema, obj);
+        }
+        const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+        const schema = tableProConfig.schema
+        updateData(item, schema, obj)
       }
-    };
+    }
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
         formItem: { ...obj.formData },
-      };
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
-      const schema = tableProConfig.schema;
-      updateData(item, schema, obj);
-    };
+      }
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = tableProConfig.schema
+      updateData(item, schema, obj)
+    }
 
     return () => {
       return (
@@ -342,36 +335,40 @@ export default defineComponent({
                 onChange={handleFieldFormDataChange}
               />
             </el-collapse-item>
-            {curOperateComponent.value.templateSchema &&
-            curOperateComponent.value.templateSchema!.length ? (
-              <el-collapse-item title="组件属性" name="component">
-                <il-form
-                  key={curOperateComponent.value.id}
-                  layout={layout}
-                  formModel={curOperateComponent.value.templateFormData}
-                  form-config={formConfig}
-                  formItemConfig={curOperateComponent.value.templateSchema}
-                  options={curOperateComponent.value.templateOptionsConfig}
-                  onChange={handleFormDataChange}
-                />
-              </el-collapse-item>
-            ) : null}
-            {curOperateComponent.value.formItemTemplateSchema &&
-            curOperateComponent.value.formItemTemplateSchema?.length ? (
-              <el-collapse-item title="容器属性" name="formItem">
-                <il-form
-                  layout={layout}
-                  formModel={curOperateComponent.value.formItemFormData}
-                  form-config={formConfig}
-                  formItemConfig={curOperateComponent.value.formItemTemplateSchema}
-                  options={curOperateComponent.value.formItemOptionsConfig}
-                  onChange={handleFormItemFormDataChange}
-                />
-              </el-collapse-item>
-            ) : null}
+            {curOperateComponent.value.templateSchema
+            && curOperateComponent.value.templateSchema!.length
+              ? (
+                <el-collapse-item title="组件属性" name="component">
+                  <il-form
+                    key={curOperateComponent.value.id}
+                    layout={layout}
+                    formModel={curOperateComponent.value.templateFormData}
+                    form-config={formConfig}
+                    formItemConfig={curOperateComponent.value.templateSchema}
+                    options={curOperateComponent.value.templateOptionsConfig}
+                    onChange={handleFormDataChange}
+                  />
+                </el-collapse-item>
+                )
+              : null}
+            {curOperateComponent.value.formItemTemplateSchema
+            && curOperateComponent.value.formItemTemplateSchema?.length
+              ? (
+                <el-collapse-item title="容器属性" name="formItem">
+                  <il-form
+                    layout={layout}
+                    formModel={curOperateComponent.value.formItemFormData}
+                    form-config={formConfig}
+                    formItemConfig={curOperateComponent.value.formItemTemplateSchema}
+                    options={curOperateComponent.value.formItemOptionsConfig}
+                    onChange={handleFormItemFormDataChange}
+                  />
+                </el-collapse-item>
+                )
+              : null}
           </el-collapse>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

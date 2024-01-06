@@ -1,35 +1,29 @@
-import { computed, reactive, defineComponent } from 'vue';
-import { cloneDeep } from 'lodash-es';
-import mitt from '@ideal-schema/playground-event';
-import { isObject } from '@ideal-schema/shared';
-import { useWorkspaceStore, useMiddleFormStore } from '@ideal-schema/playground-store';
-import './style.scss';
+import { computed, defineComponent, reactive } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { isObject } from '@ideal-schema/shared'
+import { useMiddleFormStore, useWorkspaceStore } from '@ideal-schema/playground-store'
+import './style.scss'
 
 export default defineComponent({
   name: 'FormItemSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore();
-    const middleFormStore = useMiddleFormStore();
+    const workspaceStore = useWorkspaceStore()
+    const middleFormStore = useMiddleFormStore()
 
-    const workspaceFormConfig = computed(() => middleFormStore.getFormConfig);
+    const workspaceFormConfig = computed(() => middleFormStore.getFormConfig)
 
     const formConfig = reactive({
       labelPosition: 'left',
       labelWidth: '120px',
       // size: 'default',
       colon: false,
-    });
+    })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent);
+    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
 
     const handleFormDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start', {
-        type: '表单项属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      mitt.emit('attribute-end');
-      const cloneObj = cloneDeep(obj);
-      let o = {} as WorkspaceComponentItem;
+      const cloneObj = cloneDeep(obj)
+      let o = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
         o = {
           ...curOperateComponent.value,
@@ -47,20 +41,15 @@ export default defineComponent({
               ...cloneObj.formData,
             },
           },
-        };
+        }
       }
-      workspaceStore.updateCurOperateComponent(o);
-      workspaceStore.updateComponentItem(o);
-    };
+      workspaceStore.updateCurOperateComponent(o)
+      workspaceStore.updateComponentItem(o)
+    }
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start', {
-        type: '表单项属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      mitt.emit('attribute-end');
-      const cloneObj = cloneDeep(obj);
-      let o = {} as WorkspaceComponentItem;
+      const cloneObj = cloneDeep(obj)
+      let o = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
         o = {
           ...curOperateComponent.value,
@@ -72,22 +61,17 @@ export default defineComponent({
               ...cloneObj.formData,
             },
           },
-        };
+        }
       }
-      workspaceStore.updateCurOperateComponent(o);
-      workspaceStore.updateComponentItem(o);
-    };
+      workspaceStore.updateCurOperateComponent(o)
+      workspaceStore.updateComponentItem(o)
+    }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
-      const cloneObj = cloneDeep(obj);
-      let o = {} as WorkspaceComponentItem;
-      mitt.emit('attribute-start', {
-        type: '表单项属性变更',
-        data: cloneDeep(workspaceStore.getWorkspaceComponentList),
-      });
-      mitt.emit('attribute-end');
+      const cloneObj = cloneDeep(obj)
+      let o = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
-        const formConfig = { ...workspaceFormConfig.value };
+        const formConfig = { ...workspaceFormConfig.value }
         if (obj.formData.required) {
           if (isObject(formConfig.rules)) {
             formConfig.rules[obj.formData.prop] = [
@@ -96,8 +80,9 @@ export default defineComponent({
                 message: `请输入${curOperateComponent.value.formItemFormData!.label}`,
                 trigger: 'blur',
               },
-            ];
-          } else {
+            ]
+          }
+          else {
             formConfig.rules = {
               [obj.formData.prop]: [
                 {
@@ -106,13 +91,14 @@ export default defineComponent({
                   trigger: 'blur',
                 },
               ],
-            };
+            }
           }
-          middleFormStore.setFormConfig(formConfig);
-        } else {
+          middleFormStore.setFormConfig(formConfig)
+        }
+        else {
           if (isObject(formConfig.rules)) {
-            delete formConfig.rules[obj.formData.prop];
-            middleFormStore.setFormConfig(formConfig);
+            delete formConfig.rules[obj.formData.prop]
+            middleFormStore.setFormConfig(formConfig)
           }
         }
         o = {
@@ -123,17 +109,17 @@ export default defineComponent({
           }),
           templateFormData: reactive({
             ...curOperateComponent.value.templateFormData,
-            [cloneObj['formData']['prop']]: cloneObj.formData.default,
+            [cloneObj.formData.prop]: cloneObj.formData.default,
           }),
           schema: {
             ...curOperateComponent.value.schema,
             prop: cloneObj.formData.prop,
           },
-        };
+        }
       }
-      workspaceStore.updateCurOperateComponent(cloneDeep(o));
-      workspaceStore.updateComponentItem(cloneDeep(o));
-    };
+      workspaceStore.updateCurOperateComponent(cloneDeep(o))
+      workspaceStore.updateComponentItem(cloneDeep(o))
+    }
 
     const layout = {
       rowLayout: {
@@ -147,7 +133,7 @@ export default defineComponent({
         lg: 24,
         xl: 24,
       },
-    };
+    }
 
     return () => {
       return (
@@ -163,36 +149,38 @@ export default defineComponent({
                 onChange={handleFieldFormDataChange}
               />
             </el-collapse-item>
-            {curOperateComponent.value.templateSchema &&
-            curOperateComponent.value.templateSchema!.length ? (
-              <el-collapse-item title="组件属性" name="component">
-                <il-form
-                  key={curOperateComponent.value.id}
-                  layout={layout}
-                  formModel={curOperateComponent.value.templateFormData}
-                  form-config={formConfig}
-                  formItemConfig={curOperateComponent.value.templateSchema}
-                  options={curOperateComponent.value.templateOptionsConfig}
-                  onChange={handleFormDataChange}
-                />
-              </el-collapse-item>
-            ) : null}
-            {curOperateComponent.value.formItemTemplateSchema &&
-              curOperateComponent.value.formItemTemplateSchema?.length && (
-                <el-collapse-item title="容器属性" name="formItem">
+            {curOperateComponent.value.templateSchema
+            && curOperateComponent.value.templateSchema!.length
+              ? (
+                <el-collapse-item title="组件属性" name="component">
                   <il-form
+                    key={curOperateComponent.value.id}
                     layout={layout}
-                    formModel={curOperateComponent.value.formItemFormData}
+                    formModel={curOperateComponent.value.templateFormData}
                     form-config={formConfig}
-                    formItemConfig={curOperateComponent.value.formItemTemplateSchema}
-                    options={curOperateComponent.value.formItemOptionsConfig}
-                    onChange={handleFormItemFormDataChange}
+                    formItemConfig={curOperateComponent.value.templateSchema}
+                    options={curOperateComponent.value.templateOptionsConfig}
+                    onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
-              )}
+                )
+              : null}
+            {curOperateComponent.value.formItemTemplateSchema
+            && curOperateComponent.value.formItemTemplateSchema?.length && (
+              <el-collapse-item title="容器属性" name="formItem">
+                <il-form
+                  layout={layout}
+                  formModel={curOperateComponent.value.formItemFormData}
+                  form-config={formConfig}
+                  formItemConfig={curOperateComponent.value.formItemTemplateSchema}
+                  options={curOperateComponent.value.formItemOptionsConfig}
+                  onChange={handleFormItemFormDataChange}
+                />
+              </el-collapse-item>
+            )}
           </el-collapse>
         </div>
-      );
-    };
+      )
+    }
   },
-});
+})

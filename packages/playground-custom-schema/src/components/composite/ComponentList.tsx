@@ -1,10 +1,10 @@
-import { ref, defineComponent, PropType, Fragment } from 'vue';
-import { cloneDeep } from 'lodash-es';
-import { uid } from '@ideal-schema/shared';
-import { VueDraggable } from 'vue-draggable-plus';
-import mitt from '@ideal-schema/playground-event';
-import ComponentListItem from './ComponentListItem';
-import './style.scss';
+import type { PropType } from 'vue'
+import { Fragment, defineComponent, ref } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { uid } from '@ideal-schema/shared'
+import { VueDraggable } from 'vue-draggable-plus'
+import ComponentListItem from './ComponentListItem'
+import './style.scss'
 
 export default defineComponent({
   name: 'ComponentList',
@@ -17,9 +17,9 @@ export default defineComponent({
   },
   emits: ['click-component-item'],
   setup(props, { emit }) {
-    let tempData: any = null;
+    let tempData: any = null
 
-    const activeCollapseItems = ref(['表单组件', '组件模板', '高阶组件']);
+    const activeCollapseItems = ref(['表单组件', '组件模板', '高阶组件'])
 
     const log = (obj: { item: { innerText: string } }) => {
       props.componentList.forEach((item) => {
@@ -28,26 +28,24 @@ export default defineComponent({
             tempData = {
               ...cloneDeep(cur),
               id: uid(),
-            };
+            }
           }
-        });
-      });
-    };
+        })
+      })
+    }
 
-    const onEnd = (obj: { to: { id: string }; from: {}; newIndex: number }) => {
-      if (obj.to !== obj.from) {
-        mitt.emit('drag-start', '插入组件');
-        emit('click-component-item', tempData, obj.newIndex, obj.to.id);
-      }
-    };
+    const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
+      if (obj.to !== obj.from)
+        emit('click-component-item', tempData, obj.newIndex, obj.to.id)
+    }
 
-    const clone = () => {};
+    const clone = () => {}
 
-    const clickComponentItem = () => {};
+    const clickComponentItem = () => {}
 
     return () => (
       <el-collapse v-model={activeCollapseItems.value}>
-        {props.componentList.map((component) => (
+        {props.componentList.map(component => (
           <Fragment>
             <el-collapse-item title={component.collapseTitle} name={component.collapseTitle}>
               <div class="content-wrapper">
@@ -70,7 +68,7 @@ export default defineComponent({
                         component-list-item={element}
                         onClick={clickComponentItem}
                       />
-                    );
+                    )
                   })}
                 </VueDraggable>
               </div>
@@ -78,6 +76,6 @@ export default defineComponent({
           </Fragment>
         ))}
       </el-collapse>
-    );
+    )
   },
-});
+})

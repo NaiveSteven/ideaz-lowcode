@@ -12,7 +12,6 @@ export default defineConfig({
     alias: {
       '@ideal-schema/shared': resolve('../shared/src'),
       '@ideal-schema/ideal-ui-v3': resolve('../ideal-ui-v3/src'),
-      '@ideal-schema/playground-event': resolve('../playground-event/src'),
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
       '@ideal-schema/playground-hooks': resolve('../playground-hooks/src'),

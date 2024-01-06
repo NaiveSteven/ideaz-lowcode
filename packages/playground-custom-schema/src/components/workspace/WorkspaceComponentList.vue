@@ -4,7 +4,6 @@
   import { cloneDeep } from 'lodash-es';
   import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
   import { getTreeDataItem } from '@ideal-schema/shared';
-  import mitt from '@ideal-schema/playground-event';
   // import { ObjectField, useForm } from '@ideal-schema/core';
   import { useMiddleFormStoreData } from '../../hooks';
   import { useWorkspaceStore, useGlobalSettingStore } from '@ideal-schema/playground-store';
@@ -37,23 +36,6 @@
   const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType);
   const workspaceComponentList = computed(() => workspaceStore.getWorkspaceComponentList);
   const { formConfig } = useMiddleFormStoreData();
-
-  // const layoutClass = computed(() => {
-  //   const config = formConfig.value.layout || {
-  //     gutter: 0,
-  //     interval: 0,
-  //     justify: 'start',
-  //     direction: 'row',
-  //   };
-  //   return [
-  //     config.justify && 'c-justify-content-' + config.justify,
-  //     config.items && 'c-align-items-' + config.items,
-  //     config.content && 'c-align-content-' + config.content,
-  //     config.direction && 'c-flex-direction-' + config.direction,
-  //     config.wrap && 'c-flex-wrap-' + config.wrap,
-  //     // config.justify === 'flex' && 'flex',
-  //   ];
-  // });
 
   let tempData: any = null;
 
@@ -134,7 +116,6 @@
     const schema = tableProConfig.schema;
     let tableCols: TableCol[] = [];
     if (schema.tableCols && schema.tableCols.length) {
-      mitt.emit('drag-start', '表格筛选项拖拽');
       const newArr = [...schema.tableCols];
       const newFormItem = { ...schema.tableCols[oldIndex].formItemProps };
       const oldFormItem = { ...schema.tableCols[newIndex].formItemProps };
@@ -151,9 +132,6 @@
         },
       ]);
       workspaceStore.updateCurOperateComponent(data);
-      nextTick(() => {
-        mitt.emit('drag-end');
-      });
     }
   };
 
@@ -162,7 +140,6 @@
     newIndex: number,
     oldIndex: number
   ) => {
-    mitt.emit('drag-start', '表格列拖拽');
     const tableProConfig = workspaceStore.getWorkspaceComponentList[0];
     const schema = tableProConfig.schema;
     if (schema.tableCols && schema.tableCols.length) {
@@ -204,9 +181,6 @@
       ]);
       workspaceStore.updateCurOperateComponent(data);
       tableKey.value = new Date().valueOf();
-      nextTick(() => {
-        mitt.emit('drag-end');
-      });
     }
   };
 </script>
