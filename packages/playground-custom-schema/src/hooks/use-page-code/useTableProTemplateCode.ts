@@ -1,43 +1,43 @@
-export const useTableProTemplateCode = () => {
+export function useTableProTemplateCode() {
   const isTableProIncludesSlot = (tableCols: TableCol[]) => {
     return (tableCols || []).some(
-      (item: TableCol) => item.slot || (item.formItemProps && item.formItemProps.slot)
-    );
-  };
+      (item: TableCol) => item.slot || (item.formItemProps && item.formItemProps.slot),
+    )
+  }
 
   const getTableProSlotCode = (tableCols: TableCol[]) => {
     let str = ``;
     (tableCols || []).forEach((item: TableCol) => {
-      const formItemSlot = item.formItemProps ? item.formItemProps.slot : '';
+      const formItemSlot = item.formItemProps ? item.formItemProps.slot : ''
       if (item.slot) {
         str = str.length
-          ? str +
-            `
-        ` +
-            `<template #${item.slot}>
+          ? `${str
+            }
+        `
+            + `<template #${item.slot}>
             <div>占位代码</div>
         </template>`
-          : str +
-            `<template #${item.slot}>
+          : `${str
+            }<template #${item.slot}>
         <div>占位代码</div>
-    </template>`;
+    </template>`
       }
       if (formItemSlot) {
         str = str.length
-          ? str +
-            `
-      ` +
-            `<template #${formItemSlot}>
+          ? `${str
+            }
+      `
+            + `<template #${formItemSlot}>
           <div>占位代码</div>
       </template>`
-          : str +
-            `<template #${formItemSlot}>
+          : `${str
+            }<template #${formItemSlot}>
       <div>占位代码</div>
-  </template>`;
+  </template>`
       }
-    });
-    return str;
-  };
+    })
+    return str
+  }
 
   const getTableProTemplateCode = (tableCols: TableCol[]) => {
     return !isTableProIncludesSlot(tableCols)
@@ -51,8 +51,8 @@ export const useTableProTemplateCode = () => {
           :config="config"
         >
       ${getTableProSlotCode(tableCols)}
-    </c-table-pro>`;
-  };
+    </c-table-pro>`
+  }
 
-  return { getTableProTemplateCode };
-};
+  return { getTableProTemplateCode }
+}

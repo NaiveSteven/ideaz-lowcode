@@ -1,12 +1,12 @@
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
-import { useMockTableData } from './useMockTableData';
-import { useTableProTemplateCode } from './useTableProTemplateCode';
+import { useReduceJsonSchema } from '@ideal-schema/playground-demi'
+import { useMockTableData } from './useMockTableData'
+import { useTableProTemplateCode } from './useTableProTemplateCode'
 
-export const useVue3TableProDialogCode = () => {
-  const { getTableProTemplateCode } = useTableProTemplateCode();
+export function useTableProDialogCode() {
+  const { getTableProTemplateCode } = useTableProTemplateCode()
 
-  const { config } = useReduceJsonSchema('code', 'tablePro');
-  const { getTableData } = useMockTableData();
+  const { config } = useReduceJsonSchema('code', 'tablePro')
+  const { getTableData } = useMockTableData()
 
   return {
     code: `
@@ -71,7 +71,7 @@ export const useVue3TableProDialogCode = () => {
           config.loading = true;
           try {
             ${
-              config.hasOwnProperty('formModel')
+              Object.hasOwnProperty.call(config, 'formModel')
                 ? `const params = {
               ...config.pagination,
               ...config.formModel
@@ -106,5 +106,5 @@ export const useVue3TableProDialogCode = () => {
         }
       </script>`,
     getTableProTemplateCode,
-  };
-};
+  }
+}

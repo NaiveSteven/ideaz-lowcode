@@ -1,12 +1,11 @@
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
-import { useFormTemplateCode } from './useFormTemplateCode';
+import { useReduceJsonSchema } from '@ideal-schema/playground-demi'
+import { useFormTemplateCode } from './useFormTemplateCode'
 
-export const useFormDialogCode = (version: number) => {
-  const { formItemConfigs, formModel, formConfig, optionsConfig, layout } = useReduceJsonSchema();
-  const { getTemplateCode } = useFormTemplateCode('dialog', version);
+export function useFormDialogCode(version: number) {
+  const { formItemConfigs, formModel, formConfig, optionsConfig, layout } = useReduceJsonSchema()
+  const { getTemplateCode } = useFormTemplateCode('dialog', version)
 
-  if (version === 3) {
-    return `
+  return `
     ${getTemplateCode(formItemConfigs)}
 
     <script lang='ts' setup>
@@ -70,64 +69,5 @@ export const useFormDialogCode = (version: number) => {
         })
       };
 
-    </script>`;
-  }
-
-  return `
-  ${getTemplateCode(formItemConfigs)}
-
-  <script>
-  export default {
-    props: {
-      value: {
-        type: Boolean,
-        default: false
-      }
-    },
-    watch: {
-      value(val) {
-        this.isShowDialog = val
-        if (val) {
-          // show dialog to do
-        } else {
-          this.$refs.cFormRef.resetFields();
-        }
-      },
-      isShowDialog(val) {
-        this.$emit('input', val)
-      }
-    },
-    data() {
-      return {
-        isShowDialog: false,
-        isConfirmBtnLoading: false,
-        formModel: ${JSON.stringify(formModel)},
-        formConfig: ${JSON.stringify(formConfig)},
-        optionsConfig: ${JSON.stringify(optionsConfig)},
-        formItemConfig: ${JSON.stringify(formItemConfigs)},
-        layout: ${JSON.stringify(layout)},
-      }
-    },
-    methods: {
-      async handleSubmit() {
-        this.isConfirmBtnLoading = true;
-        try {
-          this.isConfirmBtnLoading = false;
-          this.$message.success('成功');
-          this.isShowDialog = false;
-        } catch (error) {
-          console.log(error, 'getTableData error');
-        }
-        this.isConfirmBtnLoading = false;
-      },
-      handleValidate() {
-        this.$refs.cFormRef.validate((val) => {
-          if(val) {
-            this.handleSubmit();
-          }
-        })
-      }
-    }
-  }
-  </script>`;
-};
+    </script>`
+}

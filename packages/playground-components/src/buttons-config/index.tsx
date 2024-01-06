@@ -76,7 +76,7 @@ export default defineComponent({
             filter=".not-drag"
             ghost-class="ghost"
             item-key="key"
-            onUpdate:modelValue={(val: OptionsItem[]) => emit('input', val)}
+            onUpdate: modelValue={(val: OptionsItem[]) => emit('input', val)}
           >
             {props.modelValue.map((element, index) => {
               return (
@@ -93,7 +93,7 @@ export default defineComponent({
                   <il-select
                     placeholder="type"
                     modelValue={element.type}
-                    onUpdate:modelValue={(val: string) =>
+                    onUpdate: modelValue={(val: string) =>
                       handleInputChange({ ...element, type: val })
                     }
                     options={BUTTON_TYPE_LIST}
