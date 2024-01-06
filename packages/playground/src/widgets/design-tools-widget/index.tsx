@@ -1,11 +1,10 @@
-import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
-import { CopySchemaCodeWidget, CopyPageCodeWidget } from '@ideal-schema/playground-demi';
-import ScreenPixel from './ScreenPixel';
-import Clear from './Clear';
-import View from './View';
-import Do from './Do';
-import './style.scss';
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playground-demi'
+import ScreenPixel from './ScreenPixel'
+import Clear from './Clear'
+import View from './View'
+import './style.scss'
 
 export default defineComponent({
   name: 'DesignToolsWidget',
@@ -22,7 +21,6 @@ export default defineComponent({
     return () => (
       <div class="design-tools">
         <div>
-          <Do class="mr-2" />
           <ScreenPixel
             value={props.pixelType}
             onClickPixel={(value: 'pc' | 'mobile') => emit('clickPixel', value)}
@@ -39,6 +37,6 @@ export default defineComponent({
           <Clear />
         </div>
       </div>
-    );
+    )
   },
-});
+})

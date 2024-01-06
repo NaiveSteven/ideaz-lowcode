@@ -1,5 +1,5 @@
-import Driver from 'driver.js';
-import 'driver.js/dist/driver.min.css';
+import Driver from 'driver.js'
+import 'driver.js/dist/driver.min.css'
 
 const steps = [
   {
@@ -42,39 +42,40 @@ const steps = [
       position: 'left',
     },
   },
-];
+]
 
-export const useDriver = () => {
-  let driver: Driver | null = null;
+export function useDriver() {
+  let driver: Driver | null = null
 
   driver = new Driver({
     allowClose: false,
     closeBtnText: '关闭',
     nextBtnText: '下一步',
     prevBtnText: '上一步',
-  });
-
-  const startDriver = () => {
-    const isNew = getIsNew();
-    if (isNew) {
-      driver?.defineSteps(steps);
-      driver?.start();
-      setLocalStorage();
-    }
-  };
+  })
 
   const getIsNew = () => {
     try {
-      const isNew = JSON.parse(localStorage.getItem('isNew') || '1');
-      return Number(isNew);
-    } catch (error) {
-      console.log(error, 'getIsNew error');
+      const isNew = JSON.parse(localStorage.getItem('isNew') || '1')
+      return Number(isNew)
     }
-  };
+    catch (error) {
+      console.log(error, 'getIsNew error')
+    }
+  }
 
   const setLocalStorage = () => {
-    localStorage.setItem('isNew', '0');
-  };
+    localStorage.setItem('isNew', '0')
+  }
 
-  return { startDriver, getIsNew };
-};
+  const startDriver = () => {
+    const isNew = getIsNew()
+    if (isNew) {
+      driver?.defineSteps(steps)
+      driver?.start()
+      setLocalStorage()
+    }
+  }
+
+  return { startDriver, getIsNew }
+}

@@ -1,29 +1,30 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "useDefineForClassFields": true,
+    "baseUrl": "./",
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "allowJs": true,
-    "checkJs": true,
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "baseUrl": "./",
-    "types": ["node"],
     "paths": {
       "@/*": ["./src/*"],
       "@ideal-schema/*": ["../../packages/*/src"]
-    }
-  },
+    },
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "importHelpers": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  }
   // "include": [
   //   "src/**/*.ts",
   //   "src/**/*.d.ts",

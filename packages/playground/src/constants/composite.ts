@@ -1,7 +1,7 @@
 export interface CompositeTab {
-  title: string;
-  icon: string;
-  key: string;
+  title: string
+  icon: string
+  key: string
 }
 
 export const COMPOSITE_TABS: CompositeTab[] = [
@@ -15,9 +15,4 @@ export const COMPOSITE_TABS: CompositeTab[] = [
     icon: 'i-menu',
     key: 'menu',
   },
-  {
-    title: '历史记录',
-    icon: 'i-clock',
-    key: 'history',
-  },
-];
+]
