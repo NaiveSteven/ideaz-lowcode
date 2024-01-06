@@ -1,17 +1,16 @@
-import { defineComponent, PropType, h, resolveComponent, computed, ref, watch } from 'vue';
-import { promiseTimeout } from '@vueuse/core';
-import { useWorkspaceStoreData } from '@/hooks';
-import { useHistoryStore } from '@ideal-schema/playground-store';
-import { Drawer } from '@/containers';
-import HistoryWidget from '@/widgets/history-widget';
-import ComponentTreeWidget from '@/widgets/component-tree-widget';
-import { ComponentWidget } from '@ideal-schema/playground-demi';
-import './style.scss';
-import type { CompositeTab } from '@/constants';
+import type { PropType } from 'vue'
+import { computed, defineComponent, h, ref, resolveComponent, watch } from 'vue'
+import { promiseTimeout } from '@vueuse/core'
+import { ComponentWidget } from '@ideal-schema/playground-demi'
+import { useWorkspaceStoreData } from '@/hooks'
+import { Drawer } from '@/containers'
+import ComponentTreeWidget from '@/widgets/component-tree-widget'
+import './style.scss'
+import type { CompositeTab } from '@/constants'
 
 export const CompositePanelTabContent = defineComponent({
   name: 'CompositePanelTabContent',
-  components: { ComponentWidget, HistoryWidget, ComponentTreeWidget },
+  components: { ComponentWidget, ComponentTreeWidget },
   props: {
     currentTabPane: {
       type: String as PropType<string>,
@@ -23,38 +22,26 @@ export const CompositePanelTabContent = defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceStoreData();
-    const historyStore = useHistoryStore();
+    const { curOperateComponent } = useWorkspaceStoreData()
 
-    const widgetKey = ref('key');
+    const widgetKey = ref('key')
 
     const componentName = computed(() => {
-      if (props.currentTabPane === 'component') {
-        return 'ComponentWidget';
-      }
-      if (props.currentTabPane === 'history') {
-        return 'HistoryWidget';
-      }
-      return 'ComponentTreeWidget';
-    });
+      if (props.currentTabPane === 'component')
+        return 'ComponentWidget'
+
+      return 'ComponentTreeWidget'
+    })
 
     watch(
       () => curOperateComponent.value,
       async (newVal, oldVal) => {
         if (newVal.id !== oldVal.id) {
-          await promiseTimeout(0);
-          widgetKey.value = String(new Date().valueOf());
+          await promiseTimeout(0)
+          widgetKey.value = String(new Date().valueOf())
         }
-      }
-    );
-
-    watch(
-      () => historyStore.current,
-      async () => {
-        await promiseTimeout(0);
-        widgetKey.value = String(new Date().valueOf());
-      }
-    );
+      },
+    )
 
     return () => (
       <Drawer title={props.currentTabPaneInfo.title}>
@@ -62,6 +49,6 @@ export const CompositePanelTabContent = defineComponent({
           ? h(resolveComponent(componentName.value), { key: widgetKey.value })
           : h(resolveComponent(componentName.value))}
       </Drawer>
-    );
+    )
   },
-});
+})

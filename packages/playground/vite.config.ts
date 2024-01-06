@@ -19,7 +19,6 @@ export default defineConfig({
       '@ideal-schema/ideal-ui-v3': resolve('../ideal-ui-v3/src'),
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
-      '@ideal-schema/playground-hooks': resolve('../playground-hooks/src'),
       '@ideal-schema/playground-demi': resolve('../playground-demi/src'),
       '@ideal-schema/playground-custom-schema': resolve('../playground-custom-schema/src'),
     },

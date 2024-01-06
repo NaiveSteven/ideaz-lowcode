@@ -1,5 +1,4 @@
 import { computed } from 'vue'
-import { useGlobalSetting } from '@ideal-schema/playground-hooks'
 import {
   useGlobalSettingStore,
   useMiddleFormStore,
@@ -11,7 +10,6 @@ import { useTableProDialogCode } from './useTableProDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
-  const { version } = useGlobalSetting()
   const workspaceStore = useWorkspaceStore()
   const middleFormStore = useMiddleFormStore()
   const globalSettingStore = useGlobalSettingStore()
@@ -30,8 +28,8 @@ export function usePageCode() {
   const getPageCode = () => {
     if (workspaceComponentType.value === 'form') {
       if (isDialog.value)
-        return useFormDialogCode(version.value)
-      return useFormPageCode(version.value)
+        return useFormDialogCode()
+      return useFormPageCode()
     }
     const { code } = useTableProCode()
     if (workspaceComponentType.value === 'tablePro') {

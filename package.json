@@ -15,7 +15,6 @@
     "@ideal-schema/playground-components": "workspace:*",
     "@ideal-schema/playground-custom-schema": "workspace:*",
     "@ideal-schema/playground-demi": "workspace:*",
-    "@ideal-schema/playground-hooks": "workspace:*",
     "@ideal-schema/playground-store": "workspace:*",
     "@ideal-schema/shared": "workspace:*",
     "@types/js-beautify": "^1.13.3",
