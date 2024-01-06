@@ -286,6 +286,10 @@ importers:
       vue-draggable-plus:
         specifier: ^0.2.6
         version: registry.npmmirror.com/vue-draggable-plus@0.2.7(@types/sortablejs@1.15.7)
+    devDependencies:
+      '@vue/compiler-sfc':
+        specifier: ^3.3.8
+        version: registry.npmmirror.com/@vue/compiler-sfc@3.4.5
 
   packages/playground-custom-schema:
     dependencies:

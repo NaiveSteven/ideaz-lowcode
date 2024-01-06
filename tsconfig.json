@@ -3,6 +3,7 @@
     "incremental": false,
     "target": "esnext",
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "lib": [
       "esnext",
       "dom"
@@ -18,8 +19,7 @@
     "types": [
       "vitest",
       "vite/client",
-      "vue/ref-macros",
-      "unplugin-vue-macros/macros-global"
+      "vue/ref-macros"
     ],
     "strict": true,
     "strictNullChecks": true,
