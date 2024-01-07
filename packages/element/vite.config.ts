@@ -15,11 +15,11 @@ export default defineConfig({
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
       '@ideal-schema/playground-demi': resolve('../playground-demi/src'),
-      '@ideal-schema/playground-custom-schema': resolve('../playground-custom-schema/src'),
+      '@ideal-schema/element': resolve('../element/src'),
     },
   },
   build: {
-    outDir: resolve(__dirname, '../../dist/playground-custom-schema'),
+    outDir: resolve(__dirname, '../../dist/element'),
   },
   server: {
     open: false,

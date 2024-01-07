@@ -11,10 +11,10 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
+    "@ideal-schema/element": "workspace:*",
     "@ideal-schema/ideal-ui-v3": "workspace:*",
     "@ideal-schema/playground": "workspace:*",
     "@ideal-schema/playground-components": "workspace:*",
-    "@ideal-schema/playground-custom-schema": "workspace:*",
     "@ideal-schema/playground-demi": "workspace:*",
     "@ideal-schema/playground-store": "workspace:*",
     "@ideal-schema/shared": "workspace:*",

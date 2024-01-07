@@ -1,4 +1,4 @@
-# playground-custom-schema
+# playground-element
 
 > TODO: description
 

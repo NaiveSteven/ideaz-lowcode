@@ -1,4 +1,4 @@
-import * as customs from '@ideal-schema/playground-custom-schema'
+import * as customs from '@ideal-schema/element'
 
 const arr: (keyof typeof customs)[] = []
 const obj: IndexType = {}
