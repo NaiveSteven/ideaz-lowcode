@@ -4,7 +4,18 @@
   "i18n-ally.keystyle": "nested",
   "i18n-ally.localesPaths": "locales",
   "i18n-ally.sortKeys": true,
-
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "html",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "styled-css",
+    "vue",
+    "vue-html"
+  ],
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 
