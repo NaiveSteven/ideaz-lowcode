@@ -1,6 +1,7 @@
-import { defineComponent, PropType, reactive, computed } from 'vue';
-import { useGlobalSettingStore } from '@ideal-schema/playground-store';
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
+import type { PropType } from 'vue'
+import { computed, defineComponent, reactive } from 'vue'
+import { useGlobalSettingStore } from '@ideal-schema/playground-store'
+import { getSchemaData } from '@ideal-schema/playground-demi'
 
 export default defineComponent({
   name: 'PlayWidget',
@@ -11,9 +12,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const globalSettingStore = useGlobalSettingStore();
+    const globalSettingStore = useGlobalSettingStore()
 
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType);
+    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
 
     const layout = {
       rowLayout: {
@@ -27,13 +28,13 @@ export default defineComponent({
         lg: 24,
         xl: 24,
       },
-    };
+    }
 
     return () => {
       if (workspaceComponentType.value === 'form') {
-        const { formItemConfigs, formModel, formConfig, optionsConfig } =
-          useReduceJsonSchema('preview');
-        const formModelReactive = reactive(formModel);
+        const { formItemConfigs, formModel, formConfig, optionsConfig }
+        = getSchemaData('preview')
+        const formModelReactive = reactive(formModel)
 
         return (
           <il-form
@@ -43,10 +44,10 @@ export default defineComponent({
             formItemConfig={formItemConfigs}
             options={optionsConfig}
           />
-        );
+        )
       }
-      const { config } = useReduceJsonSchema('preview', 'tablePro');
-      return <il-table-pro class="table-pro__preview" config={config} />;
-    };
+      const { config } = getSchemaData('preview', 'tablePro')
+      return <il-table-pro class="table-pro__preview" config={config} />
+    }
   },
-});
+})

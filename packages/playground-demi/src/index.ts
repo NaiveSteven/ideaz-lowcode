@@ -1,26 +1,26 @@
+import * as customs from '@ideal-schema/playground-custom-schema'
 
-
-import * as customs from '@ideal-schema/playground-custom-schema';
-
-const arr: (keyof typeof customs)[] = [];
-const obj: IndexType = {};
+const arr: (keyof typeof customs)[] = []
+const obj: IndexType = {}
 
 Object.keys(customs).forEach((key: any) => {
-  arr.push(key);
-});
+  arr.push(key)
+})
 arr.forEach((key: keyof typeof customs) => {
-  obj[key] = customs[key];
-});
+  obj[key] = customs[key]
+})
 
-const ComponentWidget = obj.ComponentWidget;
-const WorkspaceComponentList = obj.WorkspaceComponentList;
-const SettingForm = obj.SettingForm;
-const PlayWidget = obj.PlayWidget;
-const PageWidget = obj.PageWidget;
-const CopySchemaCodeWidget = obj.CopySchemaCodeWidget;
-const CopyPageCodeWidget = obj.CopyPageCodeWidget;
+const ComponentWidget = obj.ComponentWidget
+const WorkspaceComponentList = obj.WorkspaceComponentList
+const SettingForm = obj.SettingForm
+const PlayWidget = obj.PlayWidget
+const PageWidget = obj.PageWidget
+const CopySchemaCodeWidget = obj.CopySchemaCodeWidget
+const CopyPageCodeWidget = obj.CopyPageCodeWidget
+const getSchemaData = obj.getSchemaData
 
 export {
+  getSchemaData,
   ComponentWidget,
   WorkspaceComponentList,
   SettingForm,
@@ -28,5 +28,4 @@ export {
   PageWidget,
   CopySchemaCodeWidget,
   CopyPageCodeWidget,
-};
-export * from './hooks';
+}

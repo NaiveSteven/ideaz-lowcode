@@ -1,11 +1,11 @@
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi'
+import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useMockTableData } from './useMockTableData'
 import { useTableProTemplateCode } from './useTableProTemplateCode'
 
 export function useTableProDialogCode() {
   const { getTableProTemplateCode } = useTableProTemplateCode()
 
-  const { config } = useReduceJsonSchema('code', 'tablePro')
+  const { config } = getSchemaData('code', 'tablePro')
   const { getTableData } = useMockTableData()
 
   return {

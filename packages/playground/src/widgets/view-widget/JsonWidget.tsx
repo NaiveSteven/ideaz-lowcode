@@ -1,20 +1,19 @@
-import { defineComponent, ref, computed } from 'vue';
-import { useMiddleFormStoreData } from '@/hooks';
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
-import { useGlobalSettingStore } from '@ideal-schema/playground-store';
-import beautify from 'js-beautify';
-
-import Codemirror from 'codemirror-editor-vue3';
+import { computed, defineComponent, ref } from 'vue'
+import { getSchemaData } from '@ideal-schema/playground-demi'
+import { useGlobalSettingStore } from '@ideal-schema/playground-store'
+import beautify from 'js-beautify'
+import Codemirror from 'codemirror-editor-vue3'
+import { useMiddleFormStoreData } from '@/hooks'
 
 export default defineComponent({
   name: 'JsonWidget',
   setup() {
-    const { rootSchema } = useMiddleFormStoreData();
-    const globalSettingStore = useGlobalSettingStore();
+    const { rootSchema } = useMiddleFormStoreData()
+    const globalSettingStore = useGlobalSettingStore()
 
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType);
+    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
 
-    const editor = ref();
+    const editor = ref()
 
     const cmOptions = {
       mode: 'text/javascript', // Language mode
@@ -24,24 +23,24 @@ export default defineComponent({
       indentUnit: 2, // The smart indent unit is 2 spaces in length
       foldGutter: true, // Code folding
       styleActiveLine: true, // Display the style of the selected row
-    };
+    }
 
     const ready = (val: any) => {
-      editor.value = val;
+      editor.value = val
       // console.log(editor, 'editor');
-    };
+    }
 
     return () => (
       <Codemirror
         value={beautify.js_beautify(
           JSON.stringify(
             workspaceComponentType.value === 'tablePro'
-              ? useReduceJsonSchema(rootSchema.value, workspaceComponentType.value).config
-              : useReduceJsonSchema(rootSchema.value, workspaceComponentType.value)
+              ? getSchemaData(rootSchema.value, workspaceComponentType.value).config
+              : getSchemaData(rootSchema.value, workspaceComponentType.value),
           ),
           {
             indent_size: 2,
-          }
+          },
         )}
         class="h-full"
         language="json"
@@ -49,6 +48,6 @@ export default defineComponent({
         onChange={(value: any) => console.log(value, 'value')}
         onReady={ready}
       />
-    );
+    )
   },
-});
+})

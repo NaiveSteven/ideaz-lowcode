@@ -1,9 +1,8 @@
 <script setup lang="ts">
-  import { computed, ref, watch, nextTick } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { VueDraggable } from 'vue-draggable-plus';
   import { cloneDeep } from 'lodash-es';
-  import { useReduceJsonSchema } from '@ideal-schema/playground-demi';
-  import { getTreeDataItem } from '@ideal-schema/shared';
+  import { getSchemaData } from '@ideal-schema/playground-demi';
   // import { ObjectField, useForm } from '@ideal-schema/core';
   import { useMiddleFormStoreData } from '../../hooks';
   import { useWorkspaceStore, useGlobalSettingStore } from '@ideal-schema/playground-store';
@@ -228,8 +227,8 @@
         v-bind="{ ...formConfig }"
         :id="element.id"
         :key="element.schema.id"
-        :form-model="useReduceJsonSchema().formModel"
-        :options="useReduceJsonSchema().optionsConfig"
+        :form-model="getSchemaData().formModel"
+        :options="getSchemaData().optionsConfig"
         :style="{ zIndex: 1 }"
         :col="element.schema"
         :class="element.schema.title === 'Col' ? 'not-drag' : ''"

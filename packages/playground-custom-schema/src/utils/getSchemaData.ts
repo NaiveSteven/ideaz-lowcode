@@ -10,13 +10,13 @@ import {
   defaultSelectAttrs,
   defaultSwitchAttrs,
   defaultTextareaAttrs,
-} from '../../../playground-custom-schema/src/source'
+} from '../source'
 import {
   SelectTableProFormData,
   formItemFormData as defaultFormItemFormData,
   inputTableProFormData,
   tableColFormData,
-} from '../../../playground-custom-schema/src/schemas'
+} from '../schemas'
 
 const customSchemaComponentFormData: IndexType = {
   ...defaultCheckboxAttrs,
@@ -85,7 +85,7 @@ function delEmptyObject(data: any) {
   }
 }
 
-function getCustomSchemaObject(mode: 'code' | 'preview' = 'code', type: 'form' | 'tablePro' = 'form') {
+function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'tablePro' = 'form') {
   const workspaceStore = useWorkspaceStore()
   const middleFormStore = useMiddleFormStore()
   const componentList = cloneDeep(workspaceStore.getWorkspaceComponentList)
@@ -382,13 +382,4 @@ function getCustomSchemaObject(mode: 'code' | 'preview' = 'code', type: 'form' |
   }
 }
 
-const schemaMode = localStorage.getItem('schemaMode')
-  ? JSON.parse(localStorage.getItem('schemaMode')!)
-  : 'customSchema'
-
-let useReduceJsonSchema: any
-
-if (schemaMode === 'customSchema')
-  useReduceJsonSchema = getCustomSchemaObject
-
-export { useReduceJsonSchema }
+export { getSchemaData }

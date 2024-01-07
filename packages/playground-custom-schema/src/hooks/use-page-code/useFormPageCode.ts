@@ -1,9 +1,9 @@
-import { useReduceJsonSchema } from '@ideal-schema/playground-demi'
+import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useFormTemplateCode } from './useFormTemplateCode'
 
 export function useFormPageCode() {
-  const { formItemConfigs, formModel, formConfig, optionsConfig, layout } = useReduceJsonSchema()
-  const { getTemplateCode } = useFormTemplateCode('page', version)
+  const { formItemConfigs, formModel, formConfig, optionsConfig, layout } = getSchemaData()
+  const { getTemplateCode } = useFormTemplateCode('page')
 
   return `
     ${getTemplateCode(formItemConfigs)}

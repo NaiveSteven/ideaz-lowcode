@@ -1,4 +1,4 @@
-export function useFormTemplateCode(type: 'page' | 'dialog', version: number) {
+export function useFormTemplateCode(type: 'page' | 'dialog') {
   const getFormSlotCode = (formItemConfigs: FormItemConfigItem[]) => {
     let str = ``
     formItemConfigs.forEach((item: FormItemConfigItem) => {
