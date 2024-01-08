@@ -1,0 +1,159 @@
+.z-form-item {
+  .el-form-item__content {
+    // align-items: flex-start;
+
+    .el-input,
+    .el-cascader,
+    .el-select,
+    .el-date-editor {
+      width: 100%;
+    }
+  }
+
+  .z-form-item-label__icon {
+    transform: translate(0, 2px);
+    font-size: 14px;
+    cursor: help;
+  }
+
+  .z-form-item__extra {
+    clear: both;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.45);
+    transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    line-height: 1.5715;
+  }
+}
+
+
+.z-form-operation {
+  display: flex;
+
+  .el-button+.el-button {
+    margin-left: 8px;
+  }
+}
+
+.z-form-item-button__col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .el-form-item__content {
+    flex-wrap: nowrap;
+    justify-content: end;
+  }
+}
+
+.z-form-item-button {
+  padding-top: 1px;
+}
+
+.z-form-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+
+  .z-toggle__icon {
+    color: var(--el-color-primary);
+    transition: transform 0.2s;
+  }
+
+  .z-icon__arrow {
+    transform: rotate(180deg);
+    transform-origin: center center;
+  }
+
+  .z-form-toggle-button {
+    margin-left: 16px;
+
+    .el-icon {
+      margin-left: 2px;
+    }
+
+    &:hover {
+      color: var(--el-color-primary);
+    }
+
+    &:active {
+      color: var(--el-color-primary);
+    }
+
+    &:focus {
+      color: var(--el-color-primary);
+    }
+  }
+}
+
+
+.z-form-array-form-item {
+  width: 100%;
+}
+
+.z-array-form-item-card {
+  position: relative;
+  overflow: visible;
+  margin-bottom: 12px;
+  width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .z-array-form-operation__add--small {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+  }
+
+  .z-array-form-operation__add--default,
+  .z-array-form-operation__add--large {
+    position: absolute;
+    top: -16px;
+    right: 24px;
+  }
+
+  .z-array-form-operation__delete--small {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+  }
+
+  .z-array-form-operation__delete--default,
+  .z-array-form-operation__delete--large {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+  }
+
+  .el-form-item {
+    margin-bottom: 18px;
+  }
+
+  .el-card__body .el-form-item:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+.z-form {
+  .z-form-collapse {
+    width: 100%;
+
+    .el-collapse-item__content {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+  }
+
+  .z-form-steps {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .z-form-array__add {
+    width: 100%;
+  }
+}
