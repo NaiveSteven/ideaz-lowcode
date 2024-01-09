@@ -2,10 +2,20 @@ import { resolve } from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), UnoCSS()],
+  plugins: [
+    vue(),
+    vueJsx(),
+    UnoCSS(),
+    AutoImport({
+      imports: ['vue', 'vue-router', 'vue/macros'],
+      dts: 'auto-imports.d.ts',
+      vueTemplate: true,
+    }),
+  ],
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
