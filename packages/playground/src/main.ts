@@ -4,6 +4,8 @@ import * as ElIconModules from '@element-plus/icons-vue'
 import { store } from '@ideal-schema/playground-store'
 import CommonComponents from '@ideal-schema/playground-components'
 import idealUiV3 from '@ideal-schema/ideal-ui-v3'
+import IdeazElement from '@ideaz/element/element'
+import zhCn from '@ideaz/element/locale/lang/zh-cn'
 import App from './App.vue'
 import 'element-plus/dist/index.css'
 import '@/design/index.scss'
@@ -11,6 +13,7 @@ import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/theme/dracula.css'
 import '@ideal-schema/ideal-ui-v3/theme-chalk/src/index.scss'
 import router from './router/index'
+import '@ideaz/element/theme-chalk/src/index.scss'
 import OptionItemWidgetUse from './widgets/option-item-widget'
 import 'uno.css'
 
@@ -34,4 +37,5 @@ app
   // .use(store)
   .use(ElementPlus, { size: 'small' })
   .use(CommonComponents)
+  .use(IdeazElement, { locale: zhCn })
   .mount('#app')
