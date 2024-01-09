@@ -1,6 +1,7 @@
 import type { DialogProps } from '../src/props'
+import { useLocale } from '../../../hooks'
 
-export const useButton = (props: DialogProps) => {
+export function useButton(props: DialogProps) {
   const isConfirmBtnLoading = ref(false)
   const isCancelBtnLoading = ref(false)
 

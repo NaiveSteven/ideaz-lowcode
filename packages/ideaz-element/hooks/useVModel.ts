@@ -1,34 +1,21 @@
-import { isVue3 } from 'vue-demi';
+type EmitType = (event: any, ...args: any[]) => void
 
-type EmitType = (event: any, ...args: any[]) => void;
-
-export const useVModel = (props: Record<any, any>, emit: EmitType) => {
+export function useVModel(props: Record<any, any>, emit: EmitType) {
   const vModelVal = computed({
     get: () => {
-      if (isVue3) {
-        return props.modelValue;
-      }
-      return props.value;
+      return props.modelValue
     },
     set: (val) => {
-      if (isVue3) {
-        emit('update:modelValue', val);
-      } else {
-        emit('input', val);
-      }
+      emit('update:modelValue', val)
     },
-  });
+  })
 
   const handleInput = (val: string) => {
-    if (isVue3) {
-      emit('input', val);
-    } else {
-      vModelVal.value = val;
-    }
-  };
+    emit('input', val)
+  }
 
   return {
     vModelVal,
     handleInput,
-  };
-};
+  }
+}

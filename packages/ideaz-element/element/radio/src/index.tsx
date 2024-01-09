@@ -1,6 +1,7 @@
-import { resolveDynamicComponent } from '@ideaz/shared'
-import { isFunction, isValid } from '@ideaz/utils'
 import { get } from 'lodash-unified'
+import { resolveDynamicComponent } from '../../../shared'
+import { isFunction, isValid } from '../../../utils'
+import { useFormComponentAttrs, useFormSize, useVModel } from '../../../hooks'
 import { radioProps } from './props'
 import type { RadioOptionsItem } from './props'
 
@@ -15,7 +16,8 @@ export default defineComponent({
     const attrs = useAttrs()
 
     const getChildComponentName = (option: RadioOptionsItem) => {
-      if (!option.type && props.type) return `el-${props.type}`
+      if (!option.type && props.type)
+        return `el-${props.type}`
       if (option.type === 'radio' || option.type === 'radio-button')
         return `el-${option.type}`
       return 'el-radio'

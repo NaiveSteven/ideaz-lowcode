@@ -1,12 +1,13 @@
 import { Operation, QuestionFilled } from '@element-plus/icons-vue'
-import { isBoolean, isEmptyObject, isFunction, isObject, isSlot, isString } from '@ideaz/utils'
 import { ElIcon } from 'element-plus'
+import { isBoolean, isEmptyObject, isFunction, isObject, isSlot, isString } from '../../../utils'
 import type { TableColumnProps } from '../src/props'
+import { useLocale, useNamespace } from '../../../hooks'
 import TableButton from '../src/TableButton'
 import { SELECT_TYPES } from '../../form/hooks'
 import { useTableColComponentName } from './useTableColComponentName'
 
-export const useTableColumnSlots = (props: TableColumnProps, slots: any, emit: any) => {
+export function useTableColumnSlots(props: TableColumnProps, slots: any, emit: any) {
   const scopedSlots = shallowRef<any>({})
   const ns = useNamespace('table-column')
   const { t } = useLocale()
@@ -15,13 +16,13 @@ export const useTableColumnSlots = (props: TableColumnProps, slots: any, emit: a
     const { column = {} } = props
     const options = props.tableProps.options
     if (column.type === 'radio' || (column.type === 'select' && !column.attrs?.multiple))
-      return options[column.prop] ? options[column.prop].find((item: { label: string; value: any }) => item.value === row?.[column.prop])?.label : ''
+      return options[column.prop] ? options[column.prop].find((item: { label: string, value: any }) => item.value === row?.[column.prop])?.label : ''
 
     if ((column.type === 'select' && column.attrs?.multiple) || column.type === 'checkbox') {
       const label: string[] = []
       if (row[column.prop]) {
         row[column.prop].forEach((item: any) => {
-          label.push(options[column.prop].find((option: { label: string; value: any }) => option.value === item)?.label)
+          label.push(options[column.prop].find((option: { label: string, value: any }) => option.value === item)?.label)
         })
       }
       return label.join(',')
@@ -107,11 +108,13 @@ export const useTableColumnSlots = (props: TableColumnProps, slots: any, emit: a
             return column.render(h, scope)
 
           if (column.type === 'button') {
-            return <div class={ns.e('operation')}>
-              {column.buttons?.map((button) => {
-                return <TableButton button={button} scope={scope} size={size} />
-              })}
-            </div>
+            return (
+              <div class={ns.e('operation')}>
+                {column.buttons?.map((button) => {
+                  return <TableButton button={button} scope={scope} size={size} />
+                })}
+              </div>
+            )
           }
 
           if (column.type === 'sort')
@@ -119,9 +122,11 @@ export const useTableColumnSlots = (props: TableColumnProps, slots: any, emit: a
 
           if (tableProps.editable) {
             return scope.row.__isEdit === true
-              ? <el-form-item prop={`tableData.${scope.$index}.${column.prop}`} rules={getRules()} class={[ns.b('form-item'), ns.bm('form-item', size)]}>
-              {renderCustomComponent()}
-            </el-form-item>
+              ? (
+                <el-form-item prop={`tableData.${scope.$index}.${column.prop}`} rules={getRules()} class={[ns.b('form-item'), ns.bm('form-item', size)]}>
+                  {renderCustomComponent()}
+                </el-form-item>
+                )
               : <span>{getLabel(scope.row)}</span>
           }
 

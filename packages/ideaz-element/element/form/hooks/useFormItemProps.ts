@@ -1,7 +1,7 @@
-import { isFunction } from '@ideaz/utils'
+import { isFunction } from '../../../utils'
 import type { FormItemProps } from '../src/props'
 
-export const useFormItemProps = (props: FormItemProps) => {
+export function useFormItemProps(props: FormItemProps) {
   const formItemProps = computed(() => {
     const { col } = props
     const myProps = { extra: col.extra, rules: col.rules, ...col.formItemProps }

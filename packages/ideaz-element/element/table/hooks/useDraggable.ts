@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 
-export const useDraggable = (emit: any, tableData: Ref<any>) => {
+export function useDraggable(emit: any, tableData: Ref<any>) {
   const dragging = ref(false)
 
   const draggableOptions = [

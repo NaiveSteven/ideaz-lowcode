@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue'
-import type { EnhancedHTMLElement } from '@ideaz/utils'
-import { isFunction } from '@ideaz/utils'
+import type { EnhancedHTMLElement } from '../../../utils'
+import { isFunction } from '../../../utils'
+import { useNamespace } from '../../../hooks'
 import { useFullscreen } from '../hooks/useFullScreen'
 
 export default defineComponent({
@@ -53,9 +54,11 @@ export default defineComponent({
     }
 
     return () => {
-      return <div class={ns.b('')} onClick={toggleFullscreen}>
-        {renderContent()}
-      </div>
+      return (
+        <div class={ns.b('')} onClick={toggleFullscreen}>
+          {renderContent()}
+        </div>
+      )
     }
   },
 })

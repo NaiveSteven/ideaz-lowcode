@@ -1,4 +1,4 @@
-import { withInstall } from '@ideaz/utils'
+import { withInstall } from '../../utils'
 import TagSelectItem from './src/TagSelectItem'
 import TagSelect from './src/index'
 

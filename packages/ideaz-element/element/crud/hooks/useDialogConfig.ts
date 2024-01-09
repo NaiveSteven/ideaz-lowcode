@@ -1,12 +1,12 @@
-import type { Ref } from 'vue'
+import type { ComponentInternalInstance, Ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import type { ComponentInternalInstance } from 'vue-demi'
-import { isFunction, isObject } from '@ideaz/utils'
+import { isFunction, isObject } from '../../../utils'
+import { useLocale } from '../../../hooks'
 import type ZTable from '../../table/src/Table'
 import type { CrudProps } from '../src/props'
-import type { ValidateField } from '~/types'
+import type { ValidateField } from '../../types'
 
-export const useDialogConfig = (props: CrudProps, emit: any, currentMode: Ref<'edit' | 'add' | 'view'>, isShowDialog: Ref<boolean>, rowData: Ref<any>) => {
+export function useDialogConfig(props: CrudProps, emit: any, currentMode: Ref<'edit' | 'add' | 'view'>, isShowDialog: Ref<boolean>, rowData: Ref<any>) {
   const instance = getCurrentInstance() as ComponentInternalInstance
   const ctx = instance.proxy
   const dialogForm = ref()

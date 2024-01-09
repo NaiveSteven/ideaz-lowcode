@@ -1,6 +1,7 @@
 import type { FilterFormProps } from '../src/props'
+import { useLocale } from '../../../hooks'
 
-export const useFilterFormButtons = (props: FilterFormProps) => {
+export function useFilterFormButtons(props: FilterFormProps) {
   const { t } = useLocale()
 
   const searchButtonProps = computed(() => {

@@ -1,12 +1,13 @@
-import { isFunction } from '@ideaz/utils'
 import type { ElTable } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { Delete, EditPen, View } from '@element-plus/icons-vue'
 import type { ComponentInternalInstance } from 'vue'
+import { isFunction } from '../../../utils'
 import DialogTip from '../../dialog/src/dialog'
+import { useLocale } from '../../../hooks'
 import type { CrudProps } from '../src/props'
 
-export const useTableColumns = (props: CrudProps, emit: any, getTableData: () => void) => {
+export function useTableColumns(props: CrudProps, emit: any, getTableData: () => void) {
   const { t } = useLocale()
   const rowData = ref({})
   const isShowDialog = ref(false)
@@ -48,7 +49,7 @@ export const useTableColumns = (props: CrudProps, emit: any, getTableData: () =>
           DialogTip({
             type: 'danger',
             message: t('crud.deleteTip'),
-            onConfirm: async ({ done, confirmButtonLoading }: { done: () => void; confirmButtonLoading: Ref<boolean> }) => {
+            onConfirm: async ({ done, confirmButtonLoading }: { done: () => void, confirmButtonLoading: Ref<boolean> }) => {
               const dataKey = props.dataKey
               const deleteParams = props.request?.deleteParams
               confirmButtonLoading.value = true

@@ -3,7 +3,7 @@ import type { ExtractPropTypes, VNode } from 'vue'
 import type { ComponentSize, ElTable } from 'element-plus'
 import { tableProps } from '../../table/src/props'
 import { formProps } from '../../form/src/props'
-import type { TableFormConfig } from '~/types'
+import type { TableFormConfig } from '../../types'
 
 const _tableProps = omit(tableProps, 'columns')
 const _formProps = omit(formProps, 'columns')
@@ -141,7 +141,7 @@ export const crudProps = {
     default: 'id',
   },
   alert: {
-    type: [Object, Function, Boolean] as PropType<AlertConfig | ((selectionData: any) => VNode | Boolean)>,
+    type: [Object, Function, Boolean] as PropType<AlertConfig | ((selectionData: any) => VNode | boolean)>,
     default: () => ({}),
   },
   action: {

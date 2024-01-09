@@ -1,8 +1,9 @@
 import type { ElForm } from 'element-plus'
 import type { ComponentInternalInstance } from 'vue'
-import { isFunction } from '@ideaz/utils'
 import { ElButton } from 'element-plus'
+import { isFunction } from '../../../utils'
 import { useFilterFormButtons, useFilterFormItem, useFormConfig, useFormMethods } from '../hooks'
+import { useExpose, useFormSize, useNamespace } from '../../../hooks'
 import ZForm from './BaseForm'
 import type { ToggleButtonType } from './props'
 import { filterFormProps } from './props'
@@ -69,29 +70,31 @@ export default defineComponent({
 
     return () => {
       const { modelValue, options } = props
-      return <ZForm
-        ref="formRef"
-        columns={columns.value}
-        options={options || {}}
+      return (
+        <ZForm
+          ref="formRef"
+          columns={columns.value}
+          options={options || {}}
         // onkeydown={(e: KeyboardEvent) => handleKeyDown(e)}
-        {...{ ...attrs, ...formConfig.value }}
-        modelValue={modelValue}
-        onUpdate:modelValue={(val: any) => { emit('update:modelValue', val) }}
-        v-slots={{
-          ...slots,
-          button: () => (
-            <>
-              {renderOperation()}
-              {!!isShowToggleButton.value && (
-                <ToggleButton
-                  modelValue={toggleButtonType.value}
-                  onUpdate:modelValue={(val: ToggleButtonType) => (toggleButtonType.value = val)}
-                />
-              )}
-            </>
-          ),
-        }}
-      />
+          {...{ ...attrs, ...formConfig.value }}
+          modelValue={modelValue}
+          onUpdate:modelValue={(val: any) => { emit('update:modelValue', val) }}
+          v-slots={{
+            ...slots,
+            button: () => (
+              <>
+                {renderOperation()}
+                {!!isShowToggleButton.value && (
+                  <ToggleButton
+                    modelValue={toggleButtonType.value}
+                    onUpdate:modelValue={(val: ToggleButtonType) => (toggleButtonType.value = val)}
+                  />
+                )}
+              </>
+            ),
+          }}
+        />
+      )
     }
   },
 })

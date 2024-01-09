@@ -1,4 +1,4 @@
-import { withInstall } from '@ideaz/utils'
+import { withInstall } from '../../utils'
 import WaterMark from './src/index'
 
 export default withInstall(WaterMark)

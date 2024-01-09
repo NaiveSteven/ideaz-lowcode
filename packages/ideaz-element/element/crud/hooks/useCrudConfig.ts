@@ -1,12 +1,12 @@
 import { debounce } from 'lodash-unified'
 import type { ElForm } from 'element-plus'
-import { isObject } from '@ideaz/utils'
 import type { ComponentInternalInstance } from 'vue'
+import { isObject } from '../../../utils'
 import type { CrudProps } from '../src/props'
 import { useFormStorage } from './useFormStorage'
 import { usePaginationStorage } from './usePaginationStorage'
 
-export const useCrudConfig = (props: CrudProps, emit: any) => {
+export function useCrudConfig(props: CrudProps, emit: any) {
   const { proxy: ctx } = getCurrentInstance() as ComponentInternalInstance
 
   const { middleFormData, originFormData, isUseFormDataStorage } = useFormStorage(props, emit)

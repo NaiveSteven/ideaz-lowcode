@@ -1,6 +1,6 @@
 import { useComponentMethods } from './useComponentMethods'
 
-export const useFormComponentAttrs = (props: Record<any, any>) => {
+export function useFormComponentAttrs(props: Record<any, any>) {
   const { blur, focus, change, input, clear, visibleChange, removeTag }
     = useComponentMethods(props)
   const obj = {

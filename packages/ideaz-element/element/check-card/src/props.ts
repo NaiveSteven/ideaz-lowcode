@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue-demi'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { Alias } from '../../types'
 
 export const checkCardItemProps = {

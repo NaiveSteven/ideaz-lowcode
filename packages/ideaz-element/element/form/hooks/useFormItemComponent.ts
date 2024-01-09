@@ -3,7 +3,7 @@ import type { FormItemProps } from '../src/props'
 const Z_COMPONENT_NAMES = ['select', 'radio', 'checkbox', 'input']
 const ELEMENT_COMPONENT_NAMES = ['datepicker', 'switch']
 
-export const useFormItemComponent = (props: FormItemProps) => {
+export function useFormItemComponent(props: FormItemProps) {
   const getComponentName = (component: string | (() => string)) => {
     const propComponentName = typeof component === 'function' ? component() : component
 

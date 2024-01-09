@@ -1,4 +1,4 @@
-import type { EnhancedHTMLElement } from '@ideaz/utils'
+import type { EnhancedHTMLElement } from '../../../utils'
 import {
   enterFullscreen,
   exitFullscreen,
@@ -6,14 +6,14 @@ import {
   isFullscreen,
   isFunction,
   listenFullscreen,
-} from '@ideaz/utils'
+} from '../../../utils'
 
 export interface UseFullscreenOptions {
   getElement?: (() => EnhancedHTMLElement) | HTMLElement
   onFullscreenChange?: (state: boolean) => void
 }
 
-export const useFullscreen = ({ getElement = () => document.body, onFullscreenChange }: UseFullscreenOptions = {}) => {
+export function useFullscreen({ getElement = () => document.body, onFullscreenChange }: UseFullscreenOptions = {}) {
   const isTargetFullscreen = ref(false)
   const checkFullscreenStatus = () => {
     const element = isFunction(getElement) ? getElement() : getElement

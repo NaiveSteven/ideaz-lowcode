@@ -1,4 +1,4 @@
-export const useTableColComponentName = () => {
+export function useTableColComponentName() {
   const getComponentName = (type: string | (() => string)) => {
     const cNames = ['select']
     const propComponentName = typeof type === 'function' ? type() : type

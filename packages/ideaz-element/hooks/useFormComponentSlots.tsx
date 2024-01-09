@@ -1,11 +1,11 @@
-import { isFunction, isString } from '@ideaz/utils'
-import type { Ref, Slot } from 'vue-demi'
+import type { Ref, Slot } from 'vue'
+import { isFunction, isString } from '../utils'
 
 export interface Slots {
   [name: string]: undefined | string | (() => JSX.Element) | Slot
 }
 
-export const useFormComponentSlots = (props: Record<any, any>, slots: Slots, slotKeys: string[]) => {
+export function useFormComponentSlots(props: Record<any, any>, slots: Slots, slotKeys: string[]) {
   const scopedSlots: Ref<Slots> = shallowRef({})
 
   const getSlotContent = (

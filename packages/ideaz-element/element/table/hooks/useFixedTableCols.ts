@@ -1,7 +1,7 @@
-import { isArray, isObject } from '@ideaz/utils'
+import { isArray, isObject } from '../../../utils'
 import type { ToolBarProps } from '../src/props'
 import { getCheckData, getIsReturnToolBar } from '../utils'
-import type { TableCol } from '~/types'
+import type { TableCol } from '../../types'
 
 function getArrayDifference(array1: TableCol[], array2: string[]) {
   const uidSet = new Set(array2)
@@ -47,7 +47,7 @@ function removeItemsByValue(array: string[], value: any) {
   return array.filter(item => item !== value)
 }
 
-export const useFixedTableCols = (props: ToolBarProps, emit: any, centerCheckedTableCols: Ref<string[]>) => {
+export function useFixedTableCols(props: ToolBarProps, emit: any, centerCheckedTableCols: Ref<string[]>) {
   const leftFixedTableCols = ref<TableCol[]>(props.originFormatTableCols.filter((tableCol: TableCol) => tableCol.fixed === 'left'))
   const rightFixedTableCols = ref<TableCol[]>(props.originFormatTableCols.filter((tableCol: TableCol) => tableCol.fixed === 'right'))
   const oldLeftFixedTableCols = ref<TableCol[]>(props.originFormatTableCols.filter((tableCol: TableCol) => tableCol.fixed === 'left'))
@@ -188,14 +188,11 @@ export const useFixedTableCols = (props: ToolBarProps, emit: any, centerCheckedT
   function getCheckedFixedCols(direction: 'left' | 'right' | false, checkedUids?: string[]) {
     let tableCols: TableCol[] = []
     const checkedData = checkedUids || (direction === 'left' ? leftCheckedTableColsUids.value : rightCheckedTableColsUids.value)
-    if (direction === 'left') {
-      tableCols = tableCols.concat(leftFixedTableCols.value.filter(item => checkedData.includes(item.__uid)),
-        rightFixedTableCols.value.filter(item => rightCheckedTableColsUids.value.includes(item.__uid)))
-    }
-    else {
-      tableCols = tableCols.concat(rightFixedTableCols.value.filter(item => checkedData.includes(item.__uid)),
-        leftFixedTableCols.value.filter(item => leftCheckedTableColsUids.value.includes(item.__uid)))
-    }
+    if (direction === 'left')
+      tableCols = tableCols.concat(leftFixedTableCols.value.filter(item => checkedData.includes(item.__uid)), rightFixedTableCols.value.filter(item => rightCheckedTableColsUids.value.includes(item.__uid)))
+
+    else
+      tableCols = tableCols.concat(rightFixedTableCols.value.filter(item => checkedData.includes(item.__uid)), leftFixedTableCols.value.filter(item => leftCheckedTableColsUids.value.includes(item.__uid)))
 
     return tableCols
   }
@@ -205,7 +202,7 @@ export const useFixedTableCols = (props: ToolBarProps, emit: any, centerCheckedT
     const fixedUids = leftCheckedTableColsUids.value.concat(rightCheckedTableColsUids.value).filter(uid => uid !== tableCol.__uid)
 
     return getCheckData(props.toolBar, props.originFormatTableCols).filter(item => !fixedUids.includes(item.__uid)
-    && (centerCheckedTableCols.value.includes(item.__uid) || leftCheckedTableColsUids.value.includes(item.__uid) || rightCheckedTableColsUids.value.includes(item.__uid)))
+      && (centerCheckedTableCols.value.includes(item.__uid) || leftCheckedTableColsUids.value.includes(item.__uid) || rightCheckedTableColsUids.value.includes(item.__uid)))
   }
 
   function getOriginSortTableColsWithoutFixed(tableCol: TableCol) {

@@ -1,5 +1,5 @@
-import { isString } from '@ideaz/utils'
-import type { ExtractPropTypes, PropType } from 'vue-demi'
+import type { ExtractPropTypes, PropType } from 'vue'
+import { isString } from '../../../utils'
 
 export const definePropType = <T>(val: any): PropType<T> => val
 

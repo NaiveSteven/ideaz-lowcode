@@ -1,6 +1,7 @@
-import { isArray, isFunction, isSlot } from '@ideaz/utils'
 import { get } from 'lodash-unified'
-import type { Slots } from '@ideaz/hooks'
+import { isArray, isFunction, isSlot } from '../../../utils'
+import type { Slots } from '../../../hooks'
+import { useExpose, useFormComponentAttrs, useFormComponentSlots, useFormSize, useVModel } from '../../../hooks'
 import { useOptions, useSelectMethods } from '../hooks'
 import type { SelectOptionsItem } from './props'
 import { SELECT_SLOTS, selectProps } from './props'
@@ -55,11 +56,13 @@ export default defineComponent({
       >
         {options.value.map((option) => {
           if (isArray(option.options)) {
-            return <el-option-group label={option.label} key={option.label} disabled={option.disabled}>
-              {option.options.map((childOption) => {
-                return getOption(childOption)
-              })}
-            </el-option-group>
+            return (
+              <el-option-group label={option.label} key={option.label} disabled={option.disabled}>
+                {option.options.map((childOption) => {
+                  return getOption(childOption)
+                })}
+              </el-option-group>
+            )
           }
           return getOption(option)
         })}

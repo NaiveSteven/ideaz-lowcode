@@ -1,5 +1,6 @@
-import { resolveDynamicComponent } from '@ideaz/shared'
-import { cutStrByFullLength, getStrFullLength, getStyle, isObject, isValid } from '@ideaz/utils'
+import { resolveDynamicComponent } from '../../../shared'
+import { cutStrByFullLength, getStrFullLength, getStyle, isObject, isValid } from '../../../utils'
+import { useFormSize, useNamespace } from '../../../hooks'
 import { textProps } from './text'
 
 export default defineComponent({
@@ -40,7 +41,7 @@ export default defineComponent({
 
       // 当 height 未定义，且 lines 定义时，计算真实高度，否则使用 props.height
       if (!height && props.lines) {
-        const lineHeight = parseInt(getStyle($el, 'lineHeight') || '', 10) || 24
+        const lineHeight = Number.parseInt(getStyle($el, 'lineHeight') || '', 10) || 24
         height = lineHeight * props.lines
       }
       if ($text) {
@@ -103,25 +104,31 @@ export default defineComponent({
         content: (() => {
           if (computedReady.value) {
             if (oversize.value) {
-              return <el-tooltip content={getText()} {...tooltipConfig}>
-                <div>
-                  <span ref={textRef}>{getText()}</span>
-                  <span v-show={oversize.value} ref={moreRef}>...</span>
-                </div>
-              </el-tooltip>
+              return (
+                <el-tooltip content={getText()} {...tooltipConfig}>
+                  <div>
+                    <span ref={textRef}>{getText()}</span>
+                    <span v-show={oversize.value} ref={moreRef}>...</span>
+                  </div>
+                </el-tooltip>
+              )
             }
             else {
-              return <>
-                <span ref={textRef}>{getText()}</span>
-                <span v-show={oversize.value} ref={moreRef}>...</span>
-              </>
+              return (
+                <>
+                  <span ref={textRef}>{getText()}</span>
+                  <span v-show={oversize.value} ref={moreRef}>...</span>
+                </>
+              )
             }
           }
           else {
-            return <>
-              <span ref={textRef}>{getText()}</span>
-              <span v-show={oversize.value} ref={moreRef}>...</span>
-            </>
+            return (
+              <>
+                <span ref={textRef}>{getText()}</span>
+                <span v-show={oversize.value} ref={moreRef}>...</span>
+              </>
+            )
           }
         })(),
       })

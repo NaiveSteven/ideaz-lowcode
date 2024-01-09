@@ -1,9 +1,9 @@
 import { omit } from 'lodash-unified'
-import { isFunction } from '@ideaz/utils'
+import { isFunction } from '../../../utils'
 import type { DialogProps } from '../src/props'
 import { useButton } from './useButton'
 
-export const useDialog = (props: DialogProps, emit: any) => {
+export function useDialog(props: DialogProps, emit: any) {
   const dialogRef = ref()
   const isShowDialog = ref(false)
 

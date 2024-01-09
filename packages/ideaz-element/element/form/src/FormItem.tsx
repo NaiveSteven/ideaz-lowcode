@@ -1,8 +1,9 @@
-import { extractEvents, isFunction, isObject, isString } from '@ideaz/utils'
-import { getContentByRenderAndSlot, resolveDynamicComponent } from '@ideaz/shared'
 import { get } from 'lodash-unified'
-import { vueRef as ref } from '@ideaz/directives'
 import { ElFormItem } from 'element-plus'
+import { extractEvents, isFunction, isObject, isString } from '../../../utils'
+import { getContentByRenderAndSlot, resolveDynamicComponent } from '../../../shared'
+import { useFormSize, useNamespace } from '../../../hooks'
+import { vueRef as ref } from '../../../directives'
 import {
   useFormItemComponent,
   useFormItemProps,

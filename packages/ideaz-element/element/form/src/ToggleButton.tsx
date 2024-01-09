@@ -1,5 +1,6 @@
 import { ArrowDown } from '@element-plus/icons-vue'
 import { ElButton, ElIcon } from 'element-plus'
+import { useFormSize, useLocale, useNamespace } from '../../../hooks'
 
 export default defineComponent({
   name: 'ToggleButton',

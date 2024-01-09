@@ -1,3 +1,5 @@
+import { useFormComponentAttrs, useFormSize } from '../../../hooks'
+
 export default defineComponent({
   name: 'ZTableCustomColumnContainer',
   props: {

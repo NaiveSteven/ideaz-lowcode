@@ -1,5 +1,5 @@
 import { checkboxGroupProps } from 'element-plus'
-import type { ExtractPropTypes } from 'vue-demi'
+import type { ExtractPropTypes } from 'vue'
 import type { Alias, OptionsItem } from '../../types'
 
 export type CheckboxType = 'checkbox' | 'checkbox-button'

@@ -1,4 +1,4 @@
-import { withInstall } from '@ideaz/utils'
+import { withInstall } from '../../utils'
 import CheckCardItem from './src/CheckCardItem'
 import CheckCard from './src'
 

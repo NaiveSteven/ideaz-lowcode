@@ -1,8 +1,9 @@
 import { get } from 'lodash-unified'
-import { isFunction, isString } from '@ideaz/utils'
+import { isFunction, isString } from '../../../utils'
+import { useLocale } from '../../../hooks'
 import type { CrudProps } from '../src/props'
 
-export const useDrawerConfig = (props: CrudProps) => {
+export function useDrawerConfig(props: CrudProps) {
   const viewData = ref<any>({})
   const isDescLoading = ref(false)
 

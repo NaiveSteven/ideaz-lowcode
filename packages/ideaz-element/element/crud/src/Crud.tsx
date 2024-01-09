@@ -1,26 +1,26 @@
 import { ElAlert, ElButton, ElDrawer, useAttrs } from 'element-plus'
 import { omit } from 'lodash-unified'
 import { Delete, Download, Plus } from '@element-plus/icons-vue'
-import { isFunction } from '@ideaz/utils'
 import type { ComponentInternalInstance } from 'vue'
+import { isFunction } from '../../../utils'
 import { useFormMethods } from '../../form/hooks'
 import {
   useTableMethods,
 } from '../../table/hooks'
+import { useExpose, useFormSize, useLocale, useNamespace } from '../../../hooks'
 import ZFilterForm from '../../form/src/FilterForm'
 import ZDescription from '../../descriptions/src/index'
 import ZDialog from '../../dialog/src/index'
 import ZForm from '../../form/src/BaseForm'
 import ZTable from '../../table/src/Table'
 import { useDataRequest, useDescriptions, useDialogConfig, useDrawerConfig, useFormColumns, useSelectionData } from '../hooks'
+import type { Pagination } from '../../types'
 import { EXCLUDE_FORM_PROPS_KEYS, crudProps, crudProvideKey } from './props'
-import type { Pagination } from '~/types'
 
 export default defineComponent({
   name: 'ZCrud',
   props: crudProps,
-  emits: ['update:formData', 'update:pagination', 'search', 'reset', 'refresh', 'operate-submit', 'operate-delete',
-    'sort-change', 'update:data', 'update:editFormData', 'update:addFormData', 'update:selectionData', 'update:loading', 'selection-change', 'radio-change'],
+  emits: ['update:formData', 'update:pagination', 'search', 'reset', 'refresh', 'operate-submit', 'operate-delete', 'sort-change', 'update:data', 'update:editFormData', 'update:addFormData', 'update:selectionData', 'update:loading', 'selection-change', 'radio-change'],
   setup(props, { emit, slots }) {
     const attrs = useAttrs()
     const {
@@ -61,8 +61,14 @@ export default defineComponent({
     const { selectionData, isSelection, handleCheckboxChange, handleCloseAlert, handleMultipleDelete } = useSelectionData(props, emit, tableProps, refreshAfterRequest)
     const { addFormColumns, editFormColumns, searchFormColumns, detailColumns } = useFormColumns(props)
     const {
-      dialogProps, dialogFormData, dialogForm, isOperateFormLoading,
-      handleCancel, handleConfirm, handleDialogClosed, handleDialogOpen,
+      dialogProps,
+      dialogFormData,
+      dialogForm,
+      isOperateFormLoading,
+      handleCancel,
+      handleConfirm,
+      handleDialogClosed,
+      handleDialogOpen,
     } = useDialogConfig(props, emit, currentMode, isShowDialog, rowData)
     const { drawerProps, isDescLoading, viewData, handleDrawerOpen } = useDrawerConfig(props)
     const { descriptionColumns, descriptionProps } = useDescriptions(props)
@@ -116,19 +122,21 @@ export default defineComponent({
       if (isFunction(slots.alert))
         return slots.alert({ selectionData: selectionData.value })
 
-      return <ElAlert
-        type="success"
-        close-text={t('crud.unselect')}
-        onClose={handleCloseAlert}
-        class={ns.b('alert')}
-        {...omit(props.alert, ['title', 'description'])}
-        v-slots={{
-          title: isFunction(alert.title)
-            ? () => (alert.title as Function)(selectionData.value, ctx!.$refs.zTableRef)
-            : () => (alert.title || t('crud.selected') + selectionData.value.length + t('crud.term')),
-          default: isFunction(alert.description) ? () => (alert.description as Function)(selectionData.value, ctx!.$refs.zTableRef) : () => (alert.description || ''),
-        }}
-      />
+      return (
+        <ElAlert
+          type="success"
+          close-text={t('crud.unselect')}
+          onClose={handleCloseAlert}
+          class={ns.b('alert')}
+          {...omit(props.alert, ['title', 'description'])}
+          v-slots={{
+            title: isFunction(alert.title)
+              ? () => (alert.title as Function)(selectionData.value, ctx!.$refs.zTableRef)
+              : () => (alert.title || t('crud.selected') + selectionData.value.length + t('crud.term')),
+            default: isFunction(alert.description) ? () => (alert.description as Function)(selectionData.value, ctx!.$refs.zTableRef) : () => (alert.description || ''),
+          }}
+        />
+      )
     }
 
     const renderTable = () => {
@@ -141,30 +149,37 @@ export default defineComponent({
           v-slots={{
             ...slots,
             topLeft: () => {
-              return <>
-                {slots.topLeft && slots.topLeft()}
-                {props.action && props.add && <ElButton
-                  size={size.value}
-                  type='primary'
-                  icon={Plus}
-                  onClick={() => {
-                    currentMode.value = 'add'
-                    isShowDialog.value = true
-                  }}
-                >
-                  {t('crud.add')}
-                </ElButton>}
-                {!!props.export && <ElButton size={size.value} type='primary' icon={Download} class={ns.e('export')} onClick={handleExport}>{t('crud.export')}</ElButton>}
-                {!!isSelection.value && props.delete && props.action && <ElButton
-                  plain
-                  size={size.value}
-                  type='danger'
-                  class={ns.e('multiple-delete')}
-                  icon={Delete}
-                  onClick={handleMultipleDelete}>
-                  {t('crud.multipleDelete')}
-                </ElButton>}
-              </>
+              return (
+                <>
+                  {slots.topLeft && slots.topLeft()}
+                  {props.action && props.add && (
+                    <ElButton
+                      size={size.value}
+                      type="primary"
+                      icon={Plus}
+                      onClick={() => {
+                        currentMode.value = 'add'
+                        isShowDialog.value = true
+                      }}
+                    >
+                      {t('crud.add')}
+                    </ElButton>
+                  )}
+                  {!!props.export && <ElButton size={size.value} type="primary" icon={Download} class={ns.e('export')} onClick={handleExport}>{t('crud.export')}</ElButton>}
+                  {!!isSelection.value && props.delete && props.action && (
+                    <ElButton
+                      plain
+                      size={size.value}
+                      type="danger"
+                      class={ns.e('multiple-delete')}
+                      icon={Delete}
+                      onClick={handleMultipleDelete}
+                    >
+                      {t('crud.multipleDelete')}
+                    </ElButton>
+                  )}
+                </>
+              )
             },
             topBottom: () => {
               if (isSelection.value && props.action && props.alert)
@@ -178,8 +193,7 @@ export default defineComponent({
           onSort-change={handleSortChange}
           onSelection-change={handleCheckboxChange}
           onRadio-change={handleRadioChange}
-        >
-        </ZTable>,
+                  />,
       })
     }
 
@@ -208,8 +222,8 @@ export default defineComponent({
           onReset={handleReset}
           onkeydown={(e: KeyboardEvent) => handleKeyDown(e)}
           v-slots={slots}
-        >
-        </ZFilterForm>,
+                  >
+                  </ZFilterForm>,
       })
     }
 
@@ -218,53 +232,61 @@ export default defineComponent({
       const formData = currentMode.value === 'add' ? props.addFormData : currentMode.value === 'edit' ? props.editFormData : rowData.value
       const formProps = omit(props.form || {}, EXCLUDE_FORM_PROPS_KEYS)
       const operateFormProps = currentMode.value === 'add' ? omit(props.add || {}, EXCLUDE_FORM_PROPS_KEYS) : omit(props.edit || {}, EXCLUDE_FORM_PROPS_KEYS)
-      return <ZForm
-        {...{ size: size.value, labelWidth: '60px', ...formProps, ...operateFormProps }}
-        ref={dialogForm}
-        columns={columns}
-        options={props.options}
-        modelValue={dialogFormData.value}
-        onUpdate:modelValue={(val: any) => { dialogFormData.value = val }}
-        v-loading={isOperateFormLoading.value}
-        v-slots={slots}
-      >
+      return (
+        <ZForm
+          {...{ size: size.value, labelWidth: '60px', ...formProps, ...operateFormProps }}
+          ref={dialogForm}
+          columns={columns}
+          options={props.options}
+          modelValue={dialogFormData.value}
+          onUpdate:modelValue={(val: any) => { dialogFormData.value = val }}
+          v-loading={isOperateFormLoading.value}
+          v-slots={slots}
+        >
 
-      </ZForm>
+        </ZForm>
+      )
     }
 
     const renderDialog = () => {
-      return <ZDialog
-        modelValue={isShowDialog.value}
-        onUpdate:modelValue={(val: boolean) => isShowDialog.value = val}
-        {...dialogProps.value}
-        onOpen={handleDialogOpen}
-        onClosed={handleDialogClosed}
-        onConfirm={handleConfirm}
-        onCancel={handleCancel}
-      >
-        {renderOperateForm()}
-      </ZDialog>
+      return (
+        <ZDialog
+          modelValue={isShowDialog.value}
+          onUpdate:modelValue={(val: boolean) => isShowDialog.value = val}
+          {...dialogProps.value}
+          onOpen={handleDialogOpen}
+          onClosed={handleDialogClosed}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        >
+          {renderOperateForm()}
+        </ZDialog>
+      )
     }
 
     const renderDrawer = () => {
-      return <ElDrawer
-        modelValue={isShowDrawer.value}
-        onUpdate:modelValue={(val: boolean) => isShowDrawer.value = val}
-        {...drawerProps.value}
-        onOpen={() => handleDrawerOpen(rowData.value)}
-      >
-        <ZDescription v-loading={isDescLoading.value} columns={descriptionColumns.value} detail={viewData.value} {...{ size: size.value, ...descriptionProps.value }} />
-      </ElDrawer>
+      return (
+        <ElDrawer
+          modelValue={isShowDrawer.value}
+          onUpdate:modelValue={(val: boolean) => isShowDrawer.value = val}
+          {...drawerProps.value}
+          onOpen={() => handleDrawerOpen(rowData.value)}
+        >
+          <ZDescription v-loading={isDescLoading.value} columns={descriptionColumns.value} detail={viewData.value} {...{ size: size.value, ...descriptionProps.value }} />
+        </ElDrawer>
+      )
     }
 
     return () => {
       console.log('刷新')
-      return <div class={ns.b('')}>
-        {renderSearchForm()}
-        {renderTable()}
-        {renderDialog()}
-        {renderDrawer()}
-      </div>
+      return (
+        <div class={ns.b('')}>
+          {renderSearchForm()}
+          {renderTable()}
+          {renderDialog()}
+          {renderDrawer()}
+        </div>
+      )
     }
   },
 })

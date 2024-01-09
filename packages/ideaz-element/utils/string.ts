@@ -1,13 +1,14 @@
-export const getStrFullLength = (str = '') =>
-  str.split('').reduce((pre, cur) => {
+export function getStrFullLength(str = '') {
+  return str.split('').reduce((pre, cur) => {
     const charCode = cur.charCodeAt(0)
     if (charCode >= 0 && charCode <= 128)
       return pre + 1
 
     return pre + 2
   }, 0)
+}
 
-export const cutStrByFullLength = (str = '', maxLength: number) => {
+export function cutStrByFullLength(str = '', maxLength: number) {
   let showLength = 0
   return str.split('').reduce((pre, cur) => {
     const charCode = cur.charCodeAt(0)
@@ -23,7 +24,7 @@ export const cutStrByFullLength = (str = '', maxLength: number) => {
   }, '')
 }
 
-export const toCamelCase = (str: string) => {
+export function toCamelCase(str: string) {
   return str
     .replace(/-([a-z])/g, (g) => {
       return g[1].toUpperCase()
@@ -33,11 +34,11 @@ export const toCamelCase = (str: string) => {
     })
 }
 
-export const toKebabCase = (str: string) => {
+export function toKebabCase(str: string) {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-export const getPxValue = (value?: string | number) => {
+export function getPxValue(value?: string | number) {
   if (typeof value === 'string')
     return value.trim().endsWith('px') ? value.trim() : `${value.trim()}px`
 
@@ -47,22 +48,23 @@ export const getPxValue = (value?: string | number) => {
   return 'auto'
 }
 
-export const convertToPx = (value: string | number) => {
-  if (value === undefined) return value
+export function convertToPx(value: string | number) {
+  if (value === undefined)
+    return value
   if (typeof value === 'number') {
     return value
   }
   else if (typeof value === 'string') {
     const trimmed = value.trim()
     if (trimmed.endsWith('px')) {
-      return parseInt(trimmed.slice(0, -2), 10)
+      return Number.parseInt(trimmed.slice(0, -2), 10)
     }
     else {
-      const num = parseInt(trimmed, 10)
+      const num = Number.parseInt(trimmed, 10)
       if (!isNaN(num))
         return num
     }
   }
   // 如果传入的不是数字或可以转换为数字的字符串，则返回 NaN
-  return NaN
+  return Number.NaN
 }

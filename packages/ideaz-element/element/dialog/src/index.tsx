@@ -1,6 +1,7 @@
 import { WarningFilled } from '@element-plus/icons-vue'
-import { isFunction, isString } from '@ideaz/utils'
 import { ElButton, ElDialog, ElIcon } from 'element-plus'
+import { isFunction, isString } from '../../../utils'
+import { useLocale, useNamespace } from '../../../hooks'
 import { useDialog } from '../hooks'
 import { dialogProps } from './props'
 
@@ -39,43 +40,55 @@ export default defineComponent({
         return props.footer()
 
       if (type === 'info') {
-        return <div class={ns.e('footer')}>
+        return (
+          <div class={ns.e('footer')}>
+            <ElButton
+              type="primary"
+              size="default"
+              onClick={handleConfirm}
+              {...confirmBtnProps.value}
+            >
+              {t('dialog.got')}
+            </ElButton>
+          </div>
+        )
+      }
+      return (
+        <div class={ns.e('footer')}>
           <ElButton
-            type="primary"
+            type="default"
+            size="default"
+            onClick={handleCancel}
+            {...cancelBtnProps.value}
+          >
+            {cancelBtnProps.value.label}
+          </ElButton>
+          <ElButton
+            type={(type === 'warning' || type === 'danger') ? type : 'primary'}
             size="default"
             onClick={handleConfirm}
             {...confirmBtnProps.value}
-          >{t('dialog.got')}</ElButton>
+          >
+            {confirmBtnProps.value.label}
+          </ElButton>
         </div>
-      }
-      return <div class={ns.e('footer')}>
-        <ElButton
-          type="default"
-          size="default"
-          onClick={handleCancel}
-          {...cancelBtnProps.value}
-        >{cancelBtnProps.value.label}</ElButton>
-        <ElButton
-          type={(type === 'warning' || type === 'danger') ? type : 'primary'}
-          size="default"
-          onClick={handleConfirm}
-          {...confirmBtnProps.value}
-        >{confirmBtnProps.value.label}</ElButton>
-      </div>
+      )
     }
 
     const renderContent = () => {
       if (props.type !== 'normal') {
-        return <div class={ns.e('content')}>
-          <div class={ns.e('container')}>
-            <ElIcon class={[ns.e('status'), ns.bm('icon', props.type)]}>
-              <WarningFilled />
-            </ElIcon>
-            <div class={ns.e('message')}>
-              <p>{slots.default?.() || props.message}</p>
+        return (
+          <div class={ns.e('content')}>
+            <div class={ns.e('container')}>
+              <ElIcon class={[ns.e('status'), ns.bm('icon', props.type)]}>
+                <WarningFilled />
+              </ElIcon>
+              <div class={ns.e('message')}>
+                <p>{slots.default?.() || props.message}</p>
+              </div>
             </div>
           </div>
-        </div>
+        )
       }
       return slots.default?.()
     }
@@ -86,19 +99,21 @@ export default defineComponent({
     })
 
     return () => {
-      return <ElDialog
-        class={[ns.b(''), props.type !== 'normal' && ns.b('tip'), props.footer === false && ns.b('no-footer')]}
-        {...dialogConfig.value}
-        modelValue={props.modelValue || isShowDialog.value}
-        onUpdate:modelValue={(val: boolean) => { isShowDialog.value = val; emit('update:modelValue', val) }}
-        onClosed={handleClosed}
-        v-slots={{
-          footer: () => renderDialogFooter(),
-          header: getHeader(),
-        }}
-      >
-        {renderContent()}
-      </ElDialog>
+      return (
+        <ElDialog
+          class={[ns.b(''), props.type !== 'normal' && ns.b('tip'), props.footer === false && ns.b('no-footer')]}
+          {...dialogConfig.value}
+          modelValue={props.modelValue || isShowDialog.value}
+          onUpdate:modelValue={(val: boolean) => { isShowDialog.value = val; emit('update:modelValue', val) }}
+          onClosed={handleClosed}
+          v-slots={{
+            footer: () => renderDialogFooter(),
+            header: getHeader(),
+          }}
+        >
+          {renderContent()}
+        </ElDialog>
+      )
     }
   },
 })

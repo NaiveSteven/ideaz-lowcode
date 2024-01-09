@@ -5,8 +5,9 @@ interface IndexType {
   [propName: string]: any
 }
 
-export const getEventsFromCamel = (obj: IndexType) => {
-  if (!isObject(obj)) return {}
+export function getEventsFromCamel(obj: IndexType) {
+  if (!isObject(obj))
+    return {}
   const evts: IndexType = {}
   Object.keys(obj).forEach((key) => {
     if (key.startsWith('on')) {

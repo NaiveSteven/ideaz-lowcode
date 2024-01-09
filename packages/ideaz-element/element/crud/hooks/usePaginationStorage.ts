@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash-es'
-import { isObject } from '@ideaz/utils'
+import { isObject } from '../../../utils'
 import type { CrudProps } from '../src/props'
-import type { Pagination } from '~/types'
+import type { Pagination } from '../../types'
 
-export const usePaginationStorage = (props: CrudProps, emit: any) => {
+export function usePaginationStorage(props: CrudProps, emit: any) {
   const originPagination = ref(cloneDeep(props.pagination || {}))
 
   const middlePagination = computed<Pagination>({

@@ -1,6 +1,7 @@
-import { isFunction, isObject, isSlot, isString } from '@ideaz/utils'
 import { QuestionFilled } from '@element-plus/icons-vue'
 import { ElIcon, ElTooltip } from 'element-plus'
+import { isFunction, isObject, isSlot, isString } from '../../../utils'
+import { useNamespace } from '../../../hooks'
 
 export default defineComponent({
   name: 'FormItemLabel',

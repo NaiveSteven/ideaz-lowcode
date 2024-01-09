@@ -7,8 +7,8 @@ export interface EnhancedHTMLElement extends HTMLElement {
 interface EnhancedDocument extends Document {
   webkitExitFullscreen?: () => Promise<void>
   /**
-     * @deprecated https://developer.apple.com/documentation/webkit/domdocument/1494852-webkitcancelfullscreen
-     */
+   * @deprecated https://developer.apple.com/documentation/webkit/domdocument/1494852-webkitcancelfullscreen
+   */
   webkitCancelFullScreen?: () => Promise<void>
   mozCancelFullScreen?: () => Promise<void>
   msExitFullscreen?: () => Promise<void>
@@ -30,9 +30,9 @@ export function isUndefined(val: unknown): val is undefined {
 export function isFullscreenEnabled(): boolean {
   return !!(
     (document as EnhancedDocument).fullscreenEnabled
-        || (document as EnhancedDocument).webkitFullScreenEnabled
-        || (document as EnhancedDocument).mozFullScreenEnabled
-        || (document as EnhancedDocument).msFullScreenEnabled
+    || (document as EnhancedDocument).webkitFullScreenEnabled
+    || (document as EnhancedDocument).mozFullScreenEnabled
+    || (document as EnhancedDocument).msFullScreenEnabled
   )
 }
 
@@ -86,7 +86,7 @@ export async function exitFullscreen() {
  * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/requestFullScreen
  * There is a problem with top layer stacking. If you want to avoid the problem caused by stacking order,
  * you need to manually determine the full screen status. If the current state is already full screen, you can exit full screen first and then let the target element enter full screen
- * @param {EnhancedHTMLElement} [element=document.body] - Full screen target element, default to body
+ * @param {EnhancedHTMLElement} [element] - Full screen target element, default to body
  * @param {FullscreenOptions} options - Full screen options
  */
 export async function enterFullscreen(element: EnhancedHTMLElement = document.body, options?: FullscreenOptions) {

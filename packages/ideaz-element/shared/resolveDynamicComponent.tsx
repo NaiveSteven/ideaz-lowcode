@@ -1,5 +1,5 @@
-import { getCurrentInstance, isVue2, isVue3 } from 'vue-demi'
-import { toCamelCase } from '@ideaz/utils'
+import { getCurrentInstance } from 'vue'
+import { toCamelCase } from '../utils'
 
 interface IndexType {
   [propName: string]: any
@@ -11,31 +11,15 @@ interface ResolveOptions {
   content?: any
 }
 
-export const resolveDynamicComponent = (options: ResolveOptions) => {
+export function resolveDynamicComponent(options: ResolveOptions) {
   const nativeTags = ['div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-  const cop = isVue2
+  const cop = nativeTags.includes(options.name)
     ? options.name
-    : nativeTags.includes(options.name)
-      ? options.name
-      : getCurrentInstance()!.appContext!.components[toCamelCase(options.name)]
-  if (isVue3) {
-    return h(
-      // resolveComponent(options.name),
-      cop,
-      {
-        ...(options.attrs || {}),
-      },
-      options.content || {},
-    )
-  }
-  // return
-  // <name {...{ props: options.attrs || {} }} {...{ on: options.events || {} }}>
-  //   {options.content || null}
-  // </name>
+    : getCurrentInstance()!.appContext!.components[toCamelCase(options.name)]
   return h(
-    options.name,
+    // resolveComponent(options.name),
+    cop,
     {
-      props: { ...(options.attrs || {}) },
       ...(options.attrs || {}),
     },
     options.content || {},

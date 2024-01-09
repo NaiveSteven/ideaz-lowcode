@@ -1,4 +1,4 @@
-import { computed, ref, unref } from 'vue-demi'
+import { computed, ref, unref } from 'vue'
 import type { MaybeRef } from '@vueuse/core'
 import { formItemProvideKey, formProvideKey } from '../element/form/src/props'
 import { tableProvideKey } from '../element/table/src/props'
@@ -7,16 +7,15 @@ import { useGlobalSize } from './useGlobalSize'
 import { useProp } from './useProp'
 import { useAttr } from './useAttr'
 
-const getAttribute = (key: string) => {
-  if (useAttr(key)?.value) return useAttr(key)
-  if (useProp(key)?.value) return useProp(key)
+function getAttribute(key: string) {
+  if (useAttr(key)?.value)
+    return useAttr(key)
+  if (useProp(key)?.value)
+    return useProp(key)
   return { value: '' }
 }
 
-export const useFormSize = (
-  fallback?: MaybeRef<any | undefined>,
-  ignore: Partial<Record<'prop' | 'form' | 'formItem' | 'global' | 'table' | 'crud', boolean>> = {},
-) => {
+export function useFormSize(fallback?: MaybeRef<any | undefined>, ignore: Partial<Record<'prop' | 'form' | 'formItem' | 'global' | 'table' | 'crud', boolean>> = {}) {
   const emptyRef = ref(undefined)
 
   const size = ignore.prop ? emptyRef : getAttribute('size')

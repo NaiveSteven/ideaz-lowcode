@@ -1,5 +1,5 @@
-import { withInstall } from '@ideaz/utils'
 import type { App, Plugin } from 'vue'
+import { withInstall } from '../../utils'
 import Dialog from './src/index'
 import DialogTip from './src/dialog'
 

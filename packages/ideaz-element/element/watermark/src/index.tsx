@@ -1,7 +1,8 @@
-import { convertToPx } from '@ideaz/utils'
+import { convertToPx } from '../../../utils'
+import { useLocale, useNamespace } from '../../../hooks'
 import { watermarkProps } from './watermark'
 
-const getPixelRatio = (context: any) => {
+function getPixelRatio(context: any) {
   if (!context)
     return 1
 

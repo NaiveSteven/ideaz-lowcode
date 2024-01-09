@@ -1,7 +1,8 @@
-import type { CSSProperties } from 'vue-demi'
+import type { CSSProperties } from 'vue'
 import type { FormProps } from '../src/props'
+import { useNamespace } from '../../../hooks'
 
-export const useRow = (props: FormProps) => {
+export function useRow(props: FormProps) {
   const ns = useNamespace('row')
 
   const rowStyle = computed(() => {

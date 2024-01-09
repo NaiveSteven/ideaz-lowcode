@@ -1,6 +1,7 @@
-import { resolveDynamicComponent } from '@ideaz/shared'
-import { isValid } from '@ideaz/utils'
 import { get } from 'lodash-unified'
+import { resolveDynamicComponent } from '../../../shared'
+import { isValid } from '../../../utils'
+import { useFormComponentAttrs, useFormSize, useVModel } from '../../../hooks'
 import { checkboxProps } from './props'
 import type { CheckboxOptionsItem } from './props'
 
@@ -16,7 +17,8 @@ export default defineComponent({
     const attrs = useAttrs()
 
     const getChildComponentName = (option: CheckboxOptionsItem) => {
-      if (!option.type && props.type) return `el-${props.type}`
+      if (!option.type && props.type)
+        return `el-${props.type}`
       if (option.type === 'checkbox' || option.type === 'checkbox-button')
         return `el-${option.type}`
       return 'el-checkbox'

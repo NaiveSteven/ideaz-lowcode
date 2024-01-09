@@ -1,4 +1,4 @@
-import { isFunction, isString } from '@ideaz/utils'
+import { isFunction, isString } from '../../../utils'
 import { radioColumnProps } from './props'
 
 export default defineComponent({
@@ -49,15 +49,22 @@ export default defineComponent({
     })
 
     return () => {
-      return <el-table-column {...attrsAll.value} v-slots={{
-        default: ({ row }: any) => {
-          return <el-radio
-            v-model={radioValue.value}
-            label={getRowKey(row)}
-            onChange={() => handleRadioChange(row)}
-          />
-        },
-      }} />
+      return (
+        <el-table-column
+          {...attrsAll.value}
+          v-slots={{
+            default: ({ row }: any) => {
+              return (
+                <el-radio
+                  v-model={radioValue.value}
+                  label={getRowKey(row)}
+                  onChange={() => handleRadioChange(row)}
+                />
+              )
+            },
+          }}
+        />
+      )
     }
   },
 })

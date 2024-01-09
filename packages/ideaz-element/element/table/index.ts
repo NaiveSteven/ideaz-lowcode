@@ -1,4 +1,4 @@
-import { withInstall } from '@ideaz/utils'
+import { withInstall } from '../../utils'
 import Table from './src/Table'
 import TableCustomColumnContainer from './src/TableCustomColumnContainer'
 

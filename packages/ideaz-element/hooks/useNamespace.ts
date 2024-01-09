@@ -1,13 +1,7 @@
 export const defaultNamespace = 'z'
 const statePrefix = 'is-'
 
-const _bem = (
-  namespace: string,
-  block: string,
-  blockSuffix: string,
-  element: string,
-  modifier: string,
-) => {
+function _bem(namespace: string, block: string, blockSuffix: string, element: string, modifier: string) {
   let cls = `${namespace}-${block}`
   if (blockSuffix)
     cls += `-${blockSuffix}`
@@ -23,9 +17,7 @@ const _bem = (
 
 export const namespaceContextKey = 'namespaceContextKey'
 
-export const useGetDerivedNamespace = (
-  namespaceOverrides?: Ref<string | undefined>,
-) => {
+export function useGetDerivedNamespace(namespaceOverrides?: Ref<string | undefined>) {
   const derivedNamespace
     = namespaceOverrides || inject(namespaceContextKey, ref(defaultNamespace))
   const namespace = computed(() => {
@@ -34,10 +26,7 @@ export const useGetDerivedNamespace = (
   return namespace
 }
 
-export const useNamespace = (
-  block: string,
-  namespaceOverrides?: Ref<string | undefined>,
-) => {
+export function useNamespace(block: string, namespaceOverrides?: Ref<string | undefined>) {
   const namespace = useGetDerivedNamespace(namespaceOverrides)
   const b = (blockSuffix = '') =>
     _bem(namespace.value, block, blockSuffix, '', '')

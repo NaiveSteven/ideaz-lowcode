@@ -1,4 +1,4 @@
-import { withInstall } from '@ideaz/utils'
+import { withInstall } from '../../utils'
 import Crud from './src/Crud'
 
 export default withInstall(Crud)

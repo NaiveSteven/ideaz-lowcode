@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash-unified'
-import { isObject } from '@ideaz/utils'
+import { isObject } from '../../../utils'
 import type { CrudProps } from '../src/props'
 
-export const useFormStorage = (props: CrudProps, emit: any) => {
+export function useFormStorage(props: CrudProps, emit: any) {
   const originFormData = ref(cloneDeep(props.formData || {}))
 
   const middleFormData = computed({

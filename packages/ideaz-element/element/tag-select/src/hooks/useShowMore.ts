@@ -1,6 +1,6 @@
 import elementResizeDetectorMaker from 'element-resize-detector'
 
-export const useShowMore = () => {
+export function useShowMore() {
   const observer = elementResizeDetectorMaker()
   const zTag = ref()
   const isShowMore = ref(false)

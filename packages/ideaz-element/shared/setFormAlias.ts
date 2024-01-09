@@ -1,15 +1,15 @@
-import { isUnDef } from '@ideaz/utils';
+import { isUnDef } from '../utils'
 
 interface Props {
   alias?: {
-    label?: string;
-    value?: string;
-    disabled?: string;
-  };
-  [key: string]: any;
+    label?: string
+    value?: string
+    disabled?: string
+  }
+  [key: string]: any
 }
 
-export const setFormAlias = (props: Props) => {
+export function setFormAlias(props: Props) {
   return {
     keys: {
       label: isUnDef(props.alias) ? 'label' : props.alias?.label || 'label',
@@ -18,5 +18,5 @@ export const setFormAlias = (props: Props) => {
         ? 'disabled'
         : props.alias?.disabled || 'disabled',
     },
-  };
-};
+  }
+}
