@@ -10,7 +10,8 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": ["./src/*"],
-      "@ideal-schema/*": ["../../packages/*/src"]
+      "@ideal-schema/*": ["../../packages/*/src"],
+      "@ideaz/element": ["../../packages/ideaz-element"]
     },
     "resolveJsonModule": true,
     "types": ["node"],
