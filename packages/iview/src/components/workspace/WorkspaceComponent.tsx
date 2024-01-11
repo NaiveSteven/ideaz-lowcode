@@ -60,30 +60,10 @@ export default defineComponent({
     }
 
     function start(a: { oldIndex: number }) {
-      // schema-field
-      // tempData = getTreeDataItem(
-      //   props.workspaceComponentList,
-      //   a.clone.id.slice(12, a.clone.id.length)
-      // );
       tempData = props.workspaceComponentList[a.oldIndex]
-      // emit('on-update-cur-operate', {});
     }
     function end(a: { to: { id: string }, newIndex: number }) {
-      // const newData = props.workspaceComponentList[a.newIndex]
-      // if ((!tempData.pid && !a.to.id) || tempData.pid === a.to.id) {
-      //   emit('on-update-cur-operate', tempData);
-      //   return;
-      // }
-      // tempData.pid = newData.id;
-      // emit('on-add-item', tempData, a.newIndex, newData.id);
       emit('on-update-cur-operate', tempData)
-    }
-    function clone() {
-      // console.log(obj, 'cloneDogcloneDogcloneDogcloneDogcloneDog');
-      // return {
-      //   ...obj,
-      //   id: uuidv4(),
-      // };
     }
 
     return () => {
@@ -91,7 +71,6 @@ export default defineComponent({
         <VueDraggable
           modelValue={props.workspaceComponentList}
           class="dragArea list-group h-full"
-          clone={clone}
           animation={200}
           group="people"
           filter=".not-drag"
@@ -110,7 +89,6 @@ export default defineComponent({
                 onClick={(e: MouseEvent) => clickItem(e, formItem)}
               >
                 <z-form-item
-                  v-else
                   formConfig={formConfig.value}
                   id={formItem.id}
                   key={formItem.schema.id}
