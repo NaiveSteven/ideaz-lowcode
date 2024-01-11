@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import {
+  defaultSelectAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
@@ -8,19 +9,6 @@ import {
   selectTemplateOptionsConfig,
   selectTemplateSchema,
 } from '../schemas'
-
-export const defaultSelectAttrs = {
-  options: [
-    { label: '标签1', value: '1', key: uid() },
-    { label: '标签2', value: '2', key: uid() },
-  ],
-  select: '',
-  placeholder: '',
-  popperClass: '',
-  clearable: true,
-  disabled: false,
-  filterable: true,
-}
 
 export function SelectTemplateComponent(key = 'select') {
   return {

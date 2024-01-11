@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import {
+  defaultInputNumberAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
@@ -8,18 +9,6 @@ import {
   inputNumberTemplateOptionsConfig,
   inputNumberTemplateSchema,
 } from '../schemas'
-
-export const defaultInputNumberAttrs = {
-  min: undefined,
-  max: undefined,
-  step: 1,
-  precision: 1,
-  placeholder: '',
-  disabled: false,
-  controls: true,
-  stepStrictly: false,
-  controlsPosition: 'right',
-}
 
 export const InputNumberTemplateComponent = {
   id: uid(),

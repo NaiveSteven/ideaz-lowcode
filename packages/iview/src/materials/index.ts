@@ -1,4 +1,4 @@
-import { CrudTemplate } from '../template'
+import { CrudTemplate, NormalTemplate } from '../template'
 import { InputTemplateComponent } from './Input'
 import { TextareaTemplateComponent } from './Textarea'
 import { InputNumberTemplateComponent } from './InputNumber'
@@ -51,6 +51,6 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
   },
   {
     collapseTitle: '组件模板',
-    components: [CrudTemplate()],
+    components: [NormalTemplate, CrudTemplate()],
   },
 ]

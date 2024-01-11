@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import {
+  defaultInputAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
@@ -8,19 +9,6 @@ import {
   inputTemplateOptionsConfig,
   inputTemplateSchema,
 } from '../schemas'
-
-export const defaultInputAttrs = {
-  minlength: undefined,
-  maxlength: undefined,
-  placeholder: '',
-  suffixIcon: '',
-  prefixIcon: '',
-  clearable: true,
-  readonly: false,
-  disabled: false,
-  showWordLimit: false,
-  showPassword: false,
-}
 
 export function InputTemplateComponent(key = 'input') {
   return {

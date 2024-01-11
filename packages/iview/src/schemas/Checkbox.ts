@@ -1,3 +1,5 @@
+import { uid } from '@ideal-schema/shared'
+
 export const checkboxTemplateSchema = [
   {
     component: 'option-item-widget',
@@ -60,4 +62,17 @@ export const checkboxTemplateOptionsConfig = {
       value: 'small',
     },
   ],
+}
+
+export const defaultCheckboxAttrs = {
+  checkbox: [],
+  options: [
+    { label: '标签1', value: '1', key: uid() },
+    { label: '标签2', value: '2', key: uid() },
+  ],
+  textColor: '#ffffff',
+  fill: '#409Eff',
+  disabled: false,
+  min: undefined,
+  max: undefined,
 }

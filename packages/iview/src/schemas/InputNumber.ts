@@ -73,3 +73,15 @@ export const inputNumberTemplateOptionsConfig = {
     },
   ],
 }
+
+export const defaultInputNumberAttrs = {
+  min: undefined,
+  max: undefined,
+  step: 1,
+  precision: 1,
+  placeholder: '',
+  disabled: false,
+  controls: true,
+  stepStrictly: false,
+  controlsPosition: 'right',
+}

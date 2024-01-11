@@ -115,3 +115,16 @@ export const inputTableProFormData = {
   clearable: true,
   showWordLimit: false,
 }
+
+export const defaultInputAttrs = {
+  minlength: undefined,
+  maxlength: undefined,
+  placeholder: '',
+  suffixIcon: '',
+  prefixIcon: '',
+  clearable: true,
+  readonly: false,
+  disabled: false,
+  showWordLimit: false,
+  showPassword: false,
+}

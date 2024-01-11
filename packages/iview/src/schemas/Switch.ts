@@ -23,3 +23,10 @@ export const switchTemplateSchema = [
     label: '禁用',
   },
 ]
+
+export const defaultSwitchAttrs = {
+  width: 40,
+  activeText: undefined,
+  inactiveText: undefined,
+  disabled: false,
+}

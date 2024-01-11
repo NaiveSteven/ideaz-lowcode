@@ -87,3 +87,19 @@ export const multipleSelectTableProFormData = {
   options: [{ label: '标签', value: '1', key: uid() }],
   placeholder: '',
 }
+
+export const defaultMultipleSelectAttrs = {
+  multipleSelect: [],
+  options: [
+    { label: '标签1', value: '1', key: uid() },
+    { label: '标签2', value: '2', key: uid() },
+  ],
+  multiple: true,
+  placeholder: '',
+  popperClass: '',
+  clearable: true,
+  disabled: false,
+  filterable: true,
+  collapseTags: false,
+  multipleLimit: 0,
+}

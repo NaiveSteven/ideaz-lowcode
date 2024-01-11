@@ -3,20 +3,12 @@ import { uid } from '@ideal-schema/shared'
 import {
   dateRangeTemplateOptionsConfig,
   dateRangeTemplateSchema,
+  defaultDateRangeAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
 } from '../schemas'
-
-export const defaultDateRangeAttrs = {
-  component: 'daterange',
-  clearable: true,
-  disabled: false,
-  startPlaceholder: '开始日期',
-  endPlaceholder: '结束日期',
-  valueFormat: 'yyyy-MM-dd',
-}
 
 export function DateRangeTemplateComponent() {
   return {

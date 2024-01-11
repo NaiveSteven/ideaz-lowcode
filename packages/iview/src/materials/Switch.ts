@@ -1,19 +1,13 @@
 import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import {
+  defaultSwitchAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   switchTemplateSchema,
 } from '../schemas'
-
-export const defaultSwitchAttrs = {
-  width: 40,
-  activeText: undefined,
-  inactiveText: undefined,
-  disabled: false,
-}
 
 export function SwitchTemplateComponent(key = 'switch') {
   return {

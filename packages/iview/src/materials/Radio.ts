@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import {
+  defaultRadioAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
@@ -8,17 +9,6 @@ import {
   radioTemplateOptionsConfig,
   radioTemplateSchema,
 } from '../schemas'
-
-export const defaultRadioAttrs = {
-  radio: '',
-  options: [
-    { label: '标签1', value: '1', key: uid() },
-    { label: '标签2', value: '2', key: uid() },
-  ],
-  textColor: '#ffffff',
-  fill: '#409Eff',
-  disabled: false,
-}
 
 export const RadioTemplateComponent = {
   id: uid(),
