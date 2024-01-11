@@ -25,6 +25,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve('src'),
+      '@ideaz/iview': resolve('../iview/src'),
       '@ideaz/element': resolve('../ideaz-element'),
       '@ideal-schema/shared': resolve('../shared/src'),
       '@ideal-schema/ideal-ui-v3': resolve('../ideal-ui-v3/src'),

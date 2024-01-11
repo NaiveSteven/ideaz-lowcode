@@ -17,6 +17,9 @@ importers:
       '@ideal-schema/ideal-ui-v3':
         specifier: workspace:*
         version: link:packages/ideal-ui-v3
+      '@ideal-schema/iview':
+        specifier: workspace:*
+        version: link:packages/iview
       '@ideal-schema/playground':
         specifier: workspace:*
         version: link:packages/playground
@@ -311,6 +314,49 @@ importers:
       vue:
         specifier: ^3.3.8
         version: registry.npmmirror.com/vue@3.4.5(typescript@5.3.3)
+
+  packages/iview:
+    dependencies:
+      '@element-plus/icons-vue':
+        specifier: 2.3.1
+        version: registry.npmmirror.com/@element-plus/icons-vue@2.3.1(vue@3.4.5)
+      '@vueuse/core':
+        specifier: ^8.3.1
+        version: registry.npmmirror.com/@vueuse/core@8.9.4(vue@3.4.5)
+      codemirror-editor-vue3:
+        specifier: ^2.0.6
+        version: registry.npmmirror.com/codemirror-editor-vue3@2.4.1(codemirror@5.65.16)(diff-match-patch@1.0.5)(vue@3.4.5)
+      core-js:
+        specifier: ^3.21.1
+        version: registry.npmmirror.com/core-js@3.35.0
+      element-plus:
+        specifier: ^2.4.2
+        version: registry.npmmirror.com/element-plus@2.4.4(@vue/composition-api@1.7.2)(vue@3.4.5)
+      mitt:
+        specifier: ^3.0.0
+        version: registry.npmmirror.com/mitt@3.0.1
+      pinia:
+        specifier: ^2.0.9
+        version: registry.npmmirror.com/pinia@2.1.7(typescript@5.3.3)(vue@3.4.5)
+      vue:
+        specifier: ^3.3.8
+        version: registry.npmmirror.com/vue@3.4.5(typescript@5.3.3)
+      vue-draggable-plus:
+        specifier: ^0.2.6
+        version: registry.npmmirror.com/vue-draggable-plus@0.2.7(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2)
+      vue-router:
+        specifier: '4'
+        version: registry.npmmirror.com/vue-router@4.2.5(vue@3.4.5)
+    devDependencies:
+      '@vue/compiler-sfc':
+        specifier: ^3.3.8
+        version: registry.npmmirror.com/@vue/compiler-sfc@3.4.5
+      driver.js:
+        specifier: ^0.9.8
+        version: registry.npmmirror.com/driver.js@0.9.8
+      sass:
+        specifier: ^1.43.4
+        version: registry.npmmirror.com/sass@1.69.7
 
   packages/playground:
     dependencies:

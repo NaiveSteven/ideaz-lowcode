@@ -9,7 +9,7 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
-export const defaultInputAttrs = {
+export const defaultDateRangeAttrs = {
   component: 'daterange',
   clearable: true,
   disabled: false,
@@ -42,7 +42,7 @@ export function DateRangeTemplateComponent() {
     }),
     formItemTemplateSchema,
     formItemOptionsConfig: formItemTemplateOptionsConfig,
-    componentFormData: reactive({ ...defaultInputAttrs }),
+    componentFormData: reactive({ ...defaultDateRangeAttrs }),
     componentSchema: dateRangeTemplateSchema,
     componentOptionsConfig: dateRangeTemplateOptionsConfig,
     fieldOptionsConfig: {},

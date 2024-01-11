@@ -1,4 +1,5 @@
 import * as customs from '@ideal-schema/element'
+import * as iview from '@ideaz/iview'
 
 const arr: (keyof typeof customs)[] = []
 const obj: IndexType = {}
@@ -10,7 +11,7 @@ arr.forEach((key: keyof typeof customs) => {
   obj[key] = customs[key]
 })
 
-const ComponentWidget = obj.ComponentWidget
+const ComponentWidget = iview.ComponentWidget
 const WorkspaceComponentList = obj.WorkspaceComponentList
 const SettingForm = obj.SettingForm
 const PlayWidget = obj.PlayWidget

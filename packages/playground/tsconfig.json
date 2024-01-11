@@ -11,7 +11,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@ideal-schema/*": ["../../packages/*/src"],
-      "@ideaz/element": ["../../packages/ideaz-element"]
+      "@ideaz/element": ["../../packages/ideaz-element"],
+      "@ideaz/iview": ["../../packages/iview/src"]
     },
     "resolveJsonModule": true,
     "types": ["node"],
