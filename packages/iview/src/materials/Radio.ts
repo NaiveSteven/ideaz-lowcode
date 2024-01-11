@@ -1,0 +1,61 @@
+import { reactive } from 'vue'
+import { uid } from '@ideal-schema/shared'
+import {
+  fieldTemplateSchema,
+  formItemFormData,
+  formItemTemplateOptionsConfig,
+  formItemTemplateSchema,
+  radioTemplateOptionsConfig,
+  radioTemplateSchema,
+} from '../schemas'
+
+export const defaultRadioAttrs = {
+  radio: '',
+  options: [
+    { label: '标签1', value: '1', key: uid() },
+    { label: '标签2', value: '2', key: uid() },
+  ],
+  textColor: '#ffffff',
+  fill: '#409Eff',
+  disabled: false,
+}
+
+export const RadioTemplateComponent = {
+  id: uid(),
+  icon: 'i-ice-cream-square',
+  title: '单选框',
+  schema: {
+    component: 'radio',
+    field: 'radio',
+    label: '单选框',
+    fieldProps: {
+      textColor: '#ffffff',
+      fill: '#409Eff',
+      disabled: false,
+    },
+  },
+  formItemFormData: reactive({
+    ...formItemFormData,
+    label: '单选框',
+  }),
+  formItemTemplateSchema,
+  formItemOptionsConfig: formItemTemplateOptionsConfig,
+  componentFormData: reactive({ ...defaultRadioAttrs }),
+  componentSchema: radioTemplateSchema,
+  componentOptionsConfig: radioTemplateOptionsConfig,
+  fieldFormData: reactive({
+    field: 'radio',
+    default: '',
+  }),
+  fieldSchema: fieldTemplateSchema({ defaultComponent: 'select', required: true }),
+  fieldOptionsConfig: {
+    default: [
+      { label: '标签1', value: '1', key: uid() },
+      { label: '标签2', value: '2', key: uid() },
+    ],
+  },
+  allowCopy: true,
+  allowDelete: true,
+  activeCollapseItems: ['field', 'component', 'formItem'],
+  children: [],
+}
