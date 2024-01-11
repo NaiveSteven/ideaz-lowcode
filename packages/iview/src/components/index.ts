@@ -1,5 +1,6 @@
-// import WorkspaceComponentList from './workspace/WorkspaceComponentList.vue';
+import WorkspaceComponent from './workspace/WorkspaceComponent'
+
 // import SettingForm from './settings/SettingForm';
 
 export * from './composite'
-// export { WorkspaceComponentList, SettingForm };
+export { WorkspaceComponent }
