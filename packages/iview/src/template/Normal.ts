@@ -20,6 +20,5 @@ export const NormalTemplate = {
     TextareaTemplateComponent(uid()),
   ],
   icon: 'i-printer',
-  label: '常规模板',
   title: '常规模板',
 }
