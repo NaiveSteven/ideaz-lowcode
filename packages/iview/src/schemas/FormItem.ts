@@ -50,4 +50,5 @@ export const formItemFormData = {
   errorMessage: '',
   showMessage: true,
   inlineMessage: false,
+  required: false,
 }
