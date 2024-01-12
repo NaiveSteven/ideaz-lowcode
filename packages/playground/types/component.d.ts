@@ -131,7 +131,7 @@ declare interface OptionsItem {
 }
 
 declare interface FormChangeData {
-  val: any
-  prop: string
+  value: any
+  field: string
   formData: IndexType
 }

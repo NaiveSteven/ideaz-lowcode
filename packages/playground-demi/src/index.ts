@@ -13,7 +13,7 @@ arr.forEach((key: keyof typeof customs) => {
 
 const ComponentWidget = iview.ComponentWidget
 const WorkspaceComponentList = iview.WorkspaceComponent
-const SettingForm = obj.SettingForm
+const SettingForm = iview.SettingForm
 const PlayWidget = iview.PlayWidget
 const PageWidget = iview.PageWidget
 const CopySchemaCodeWidget = iview.CopySchemaCodeWidget

@@ -1,6 +1,5 @@
 import WorkspaceComponent from './workspace/WorkspaceComponent'
-
-// import SettingForm from './settings/SettingForm';
+import SettingForm from './settings/SettingForm'
 
 export * from './composite'
-export { WorkspaceComponent }
+export { WorkspaceComponent, SettingForm }
