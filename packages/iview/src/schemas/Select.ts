@@ -51,7 +51,7 @@ export const selectTemplateOptionsConfig = {
   ],
 }
 
-export const selectTableProSchema = [
+export const selectCrudSchema = [
   {
     component: 'option-item-widget',
     field: 'options',
@@ -80,7 +80,7 @@ export const selectTableProSchema = [
   },
 ]
 
-export const SelectTableProFormData = {
+export const SelectCrudFormData = {
   options: [{ label: '标签', value: '1', key: uid() }],
   placeholder: '',
   clearable: true,

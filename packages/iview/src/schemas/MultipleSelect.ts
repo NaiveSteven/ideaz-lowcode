@@ -69,7 +69,7 @@ export const multipleSelectTemplateOptionsConfig = {
   ],
 }
 
-export const multipleSelectTableProSchema = [
+export const multipleSelectCrudSchema = [
   {
     component: 'option-item-widget',
     field: 'options',
@@ -83,7 +83,7 @@ export const multipleSelectTableProSchema = [
   },
 ]
 
-export const multipleSelectTableProFormData = {
+export const multipleSelectCrudFormData = {
   options: [{ label: '标签', value: '1', key: uid() }],
   placeholder: '',
 }

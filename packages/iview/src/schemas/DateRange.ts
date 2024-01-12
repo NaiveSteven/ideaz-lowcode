@@ -43,7 +43,7 @@ export const dateRangeTemplateOptionsConfig = {
   ],
 }
 
-export const dateRangeTableProSchema = [
+export const dateRangeCrudSchema = [
   {
     component: 'input',
     field: 'startPlaceholder',
@@ -61,7 +61,7 @@ export const dateRangeTableProSchema = [
   },
 ]
 
-export const dateRangeTableProFormData = {
+export const dateRangeCrudFormData = {
   startPlaceholder: '开始时间',
   endPlaceholder: '结束时间',
   valueFormat: 'yyyy-MM-dd',

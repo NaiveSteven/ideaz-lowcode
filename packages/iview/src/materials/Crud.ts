@@ -5,8 +5,8 @@ import {
   crudTableTemplateSchema,
   fieldTemplateSchema,
   formItemTemplateOptionsConfig,
-  inputTableProFormData,
-  inputTableProSchema,
+  inputCrudFormData,
+  inputCrudSchema,
   tableColFormData,
   tableColTemplateOptionsConfig,
   tableColTemplateSchema,
@@ -35,7 +35,7 @@ const tableCols = [
       field: 'name',
       label: '通知单名称',
       templateFormData: reactive({
-        ...inputTableProFormData,
+        ...inputCrudFormData,
         componentType: 'input',
       }),
       templateSchema: [
@@ -44,7 +44,7 @@ const tableCols = [
           field: 'componentType',
           label: '组件类别',
         },
-        ...inputTableProSchema,
+        ...inputCrudSchema,
       ],
       templateOptionsConfig: {
         componentType: FORM_COMPONENT_TYPE,
@@ -106,7 +106,7 @@ const tableCols = [
       field: 'address',
       label: '地址',
       componentFormData: reactive({
-        ...inputTableProFormData,
+        ...inputCrudFormData,
         componentType: 'input',
       }),
       componentSchema: [
@@ -115,7 +115,7 @@ const tableCols = [
           field: 'componentType',
           label: '组件类别',
         },
-        ...inputTableProSchema,
+        ...inputCrudSchema,
       ],
       componentOptionsConfig: {
         componentType: FORM_COMPONENT_TYPE,

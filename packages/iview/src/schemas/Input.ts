@@ -74,7 +74,7 @@ export const inputTemplateOptionsConfig = {
   ],
 }
 
-export const inputTableProSchema = [
+export const inputCrudSchema = [
   {
     component: 'el-input-number',
     field: 'minlength',
@@ -108,7 +108,7 @@ export const inputTableProSchema = [
   },
 ]
 
-export const inputTableProFormData = {
+export const inputCrudFormData = {
   minlength: undefined,
   maxlength: undefined,
   placeholder: '',
