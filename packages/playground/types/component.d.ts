@@ -100,12 +100,12 @@ declare interface WorkspaceComponentItem {
   label?: string
   title: string
   schema: Schema
-  templateFormData?: IndexType
-  templateSchema?: Schema | Schema[] | any
+  componentFormData?: IndexType
+  componentSchema?: Schema | Schema[] | any
   fieldFormData?: IndexType
   fieldSchema?: Schema | Schema[]
   fieldOptionsConfig?: IndexType
-  templateOptionsConfig?: IndexType
+  componentOptionsConfig?: IndexType
   allowCopy?: boolean
   allowDelete?: boolean
   activeCollapseItems?: string[]

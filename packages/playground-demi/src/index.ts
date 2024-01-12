@@ -18,7 +18,7 @@ const PlayWidget = iview.PlayWidget
 const PageWidget = obj.PageWidget
 const CopySchemaCodeWidget = obj.CopySchemaCodeWidget
 const CopyPageCodeWidget = obj.CopyPageCodeWidget
-const getSchemaData = obj.getSchemaData
+const getSchemaData = iview.getSchemaData
 
 export {
   getSchemaData,

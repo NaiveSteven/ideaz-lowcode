@@ -17,16 +17,12 @@ declare interface Schema {
     style?: any
     [propName: string]: any
   }
-  // custom schema
-  attrs?: IndexType
-  formItem?: IndexType
-  prop?: string
   // table pro
-  tableCols?: TableCol[]
+  columns?: TableCol[]
   data?: any
   cellClassName?: string | ((obj: { columnIndex: number }) => string)
-  formModel?: IndexType
-  formOptions?: IndexType
+  searchFormData?: IndexType
+  options?: IndexType
   pagination?: Pagination
   tableDecorator?: IndexType
   formDecorator?: IndexType
