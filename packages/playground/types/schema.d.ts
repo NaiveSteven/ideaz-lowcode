@@ -34,4 +34,5 @@ declare interface Schema {
   field?: string
   formItemProps?: IndexType
   label?: string
+  required?: boolean
 }

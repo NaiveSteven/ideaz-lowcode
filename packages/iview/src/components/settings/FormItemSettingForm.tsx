@@ -78,6 +78,7 @@ export default defineComponent({
           }),
           schema: {
             ...curOperateComponent.value.schema,
+            required: !!cloneObj.formData.required,
             field: cloneObj.formData.field,
           },
         }
