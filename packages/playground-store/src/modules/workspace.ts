@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import { uid } from '@ideal-schema/shared'
-import { cloneDeep, isEqual } from 'lodash-es'
+import { cloneDeep } from 'lodash-es'
 import { changeDataId, getTreeDataItem } from '../utils/index'
-import { useMiddleFormStore } from './middleForm'
 import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
@@ -36,15 +35,12 @@ export const useWorkspaceStore = defineStore({
   },
   actions: {
     pushComponentItem(componentItem: WorkspaceComponentItem, index: number, toId: string) {
-      const middleFormStore = useMiddleFormStore()
       if (!toId) {
         this.workspaceComponentList.splice(index, 0, componentItem)
-        middleFormStore.addSchema(componentItem)
       }
       else {
         const item = getTreeDataItem(this.workspaceComponentList, toId)
         item.children.splice(index, 0, componentItem)
-        middleFormStore.addSchema(componentItem, item.schema.id)
       }
 
       // state.workspaceComponentList.push(data.componentItem);
@@ -52,7 +48,6 @@ export const useWorkspaceStore = defineStore({
     },
     updateComponentItem(componentItem: WorkspaceComponentItem) {
       let index = -1
-      const isSame = false
       if (componentItem.pid) {
         const itemParent = getTreeDataItem(
           this.workspaceComponentList,
@@ -61,11 +56,8 @@ export const useWorkspaceStore = defineStore({
         index = itemParent.children.findIndex(
           (item: WorkspaceComponentItem) => item.id === componentItem.id,
         )
-        if (index > -1) {
-          // isSame = isEqual(itemParent.children[index], componentItem)
-          // if (!isSame) {}
+        if (index > -1)
           itemParent.children.splice(index, 1, componentItem)
-        }
       }
       else {
         index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
@@ -73,12 +65,9 @@ export const useWorkspaceStore = defineStore({
         if (index > -1)
           this.workspaceComponentList.splice(index, 1, componentItem)
       }
-      const middleFormStore = useMiddleFormStore()
-      middleFormStore.updateSchema(componentItem)
     },
     // 删除componentItem，同时删除schemas中的某一项
     deleteComponentItem(componentItem: WorkspaceComponentItem) {
-      const middleFormStore = useMiddleFormStore()
       let index = -1
       if (componentItem.pid) {
         const itemParent = getTreeDataItem(
@@ -88,10 +77,8 @@ export const useWorkspaceStore = defineStore({
         index = itemParent.children.findIndex(
           (item: WorkspaceComponentItem) => item.id === componentItem.id,
         )
-        if (index > -1) {
+        if (index > -1)
           itemParent.children.splice(index, 1)
-          middleFormStore.delSchema(componentItem)
-        }
       }
       else {
         const globalSettingStore = useGlobalSettingStore()
@@ -99,10 +86,9 @@ export const useWorkspaceStore = defineStore({
         // 表单部分
         if (workspaceComponentType === 'form') {
           index = this.workspaceComponentList.findIndex(item => item.id === componentItem.id)
-          if (index > -1) {
+          if (index > -1)
             this.workspaceComponentList.splice(index, 1)
-            middleFormStore.delSchema(componentItem)
-          }
+
           // 表单表格
         }
         else {
@@ -217,9 +203,7 @@ export const useWorkspaceStore = defineStore({
       // middleFormStore.updateSchemas(components);
     },
     clearWorkspaceComponentList() {
-      const middleFormStore = useMiddleFormStore()
       this.workspaceComponentList = []
-      middleFormStore.clearSchemas()
     },
     updateCurOperateComponent(curOperateComponent: WorkspaceComponentItem) {
       this.curOperateComponent = curOperateComponent

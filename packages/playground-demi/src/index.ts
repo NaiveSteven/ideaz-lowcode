@@ -15,9 +15,9 @@ const ComponentWidget = iview.ComponentWidget
 const WorkspaceComponentList = iview.WorkspaceComponent
 const SettingForm = obj.SettingForm
 const PlayWidget = iview.PlayWidget
-const PageWidget = obj.PageWidget
-const CopySchemaCodeWidget = obj.CopySchemaCodeWidget
-const CopyPageCodeWidget = obj.CopyPageCodeWidget
+const PageWidget = iview.PageWidget
+const CopySchemaCodeWidget = iview.CopySchemaCodeWidget
+const CopyPageCodeWidget = iview.CopyPageCodeWidget
 const getSchemaData = iview.getSchemaData
 
 export {

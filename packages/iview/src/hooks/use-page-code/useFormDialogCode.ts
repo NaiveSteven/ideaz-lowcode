@@ -2,11 +2,11 @@ import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useFormTemplateCode } from './useFormTemplateCode'
 
 export function useFormDialogCode() {
-  const { formItemConfigs, formModel, formConfig, optionsConfig, layout } = getSchemaData()
+  const { columns, options, formData, formConfig } = getSchemaData()
   const { getTemplateCode } = useFormTemplateCode('dialog')
 
   return `
-    ${getTemplateCode(formItemConfigs)}
+    ${getTemplateCode(columns)}
 
     <script lang='ts' setup>
       import { ref, watch, nextTick } from 'vue';
@@ -22,14 +22,13 @@ export function useFormDialogCode() {
       );
       const emit = defineEmits(['update:modelValue']);
 
-      const cFormRef = ref();
+      const formRef = ref();
       const isConfirmBtnLoading = ref(false);
       const visible = ref(false);
-      const formModel = ref(${JSON.stringify(formModel)})
+      const formData = ref(${JSON.stringify(formData)})
       const formConfig = ${JSON.stringify(formConfig)}
-      const optionsConfig = ${JSON.stringify(optionsConfig)}
-      const formItemConfig = ${JSON.stringify(formItemConfigs)}
-      const layout = ${JSON.stringify(layout)}
+      const options = ${JSON.stringify(options)}
+      const columns = ${JSON.stringify(columns)}
 
       watch(
         () => props.modelValue,
@@ -44,7 +43,7 @@ export function useFormDialogCode() {
         if (!newValue) {
 
         } else {
-          cFormRef.value.resetFields();
+          formRef.value.resetFields();
         }
         emit('update:modelValue', newValue);
       }, { immediate: true });
@@ -62,7 +61,7 @@ export function useFormDialogCode() {
       };
 
       const handleValidate = () => {
-        cFormRef.value.validate((val) => {
+        formRef.value.validate((val) => {
           if(val) {
             handleSubmit();
           }

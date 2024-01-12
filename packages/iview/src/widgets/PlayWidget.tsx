@@ -17,18 +17,21 @@ export default defineComponent({
 
     return () => {
       if (workspaceComponentType.value === 'form') {
-        // const { formItemConfigs, formModel, formConfig, optionsConfig }
-        // = getSchemaData('preview')
-        const formModelReactive = reactive({})
+        const { formData, formConfig, options, columns }
+          = getSchemaData('preview')
+        const formModelReactive = reactive({ ...formData })
 
         return (
           <z-form
             v-model={formModelReactive}
+            {...formConfig}
+            options={options}
+            columns={columns}
           />
         )
       }
-      const { config } = getSchemaData('preview', 'tablePro')
-      return <il-table-pro class="table-pro__preview" config={config} />
+      // const { config } = getSchemaData('preview', 'tablePro')
+      // return <il-table-pro class="table-pro__preview" config={config} />
     }
   },
 })

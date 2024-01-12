@@ -37,34 +37,33 @@ export function useFormTemplateCode(type: 'page' | 'dialog') {
     ]
   }
 
-  const isIncludesSlot = (formItemConfigs: FormItemConfigItem[]) => {
-    return formItemConfigs.some((item: FormItemConfigItem) => item.slot)
+  const isIncludesSlot = (columns: FormItemConfigItem[]) => {
+    console.log(columns, 'columns')
+    return columns.some((item: FormItemConfigItem) => item.slot)
   }
 
-  const getTemplateCode = (formItemConfigs: FormItemConfigItem[]) => {
-    return !isIncludesSlot(formItemConfigs)
+  const getTemplateCode = (columns: FormItemConfigItem[]) => {
+    return !isIncludesSlot(columns)
       ? `
     ${getTemplateContainerCode()[0]}
-      <c-form
-        ref="cFormRef"
-        :form-model="formModel"
-        :form-config="formConfig"
-        :options="optionsConfig"
-        :form-item-config="formItemConfig"
-        :layout="layout"
+      <z-form
+        ref="formRef"
+        v-bind="formConfig"
+        v-model="formData"
+        :options="options"
+        :columns="columns"
       />
       ${getTemplateContainerCode()[1]}`
       : `${getTemplateContainerCode()[0]}
-    <c-form
-      ref="cFormRef"
-      :form-model="formModel"
-      :form-config="formConfig"
-      :options="optionsConfig"
-      :form-item-config="formItemConfig"
-      :layout="layout"
+    <z-form
+      ref="formRef"
+      v-bind="formConfig"
+      v-model="formData"
+      :options="options"
+      :columns="columns"
     >
-      ${getFormSlotCode(formItemConfigs)}
-    </c-form>
+      ${getFormSlotCode(columns)}
+    </z-form>
   ${getTemplateContainerCode()[1]}`
   }
 

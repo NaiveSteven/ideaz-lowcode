@@ -22,7 +22,7 @@ export function usePageCode() {
     if (workspaceComponentType.value === 'form')
       return middleFormConfig.value.background === 'dialog'
 
-    return componentList.value[0]?.templateFormData?.background === 'dialog'
+    return componentList.value[0]?.componentFormData?.background === 'dialog'
   })
 
   const getPageCode = () => {

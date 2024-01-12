@@ -25,7 +25,7 @@ onMounted(() => {
     <div class="main-panel">
       <CompositePanel />
       <WorkspacePanel />
-      <!-- <Settings /> -->
+      <Settings />
     </div>
     <TipDialogWidget v-model="isShowTipDialog" />
   </div>
