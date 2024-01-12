@@ -1,4 +1,5 @@
 import { VueDraggable } from 'vue-draggable-plus'
+import { getSchemaData } from '@ideal-schema/playground-demi'
 
 // import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
@@ -67,6 +68,7 @@ export default defineComponent({
     }
 
     return () => {
+      const { formData, options } = getSchemaData()
       return (
         <VueDraggable
           modelValue={props.workspaceComponentList}
@@ -75,7 +77,7 @@ export default defineComponent({
           group="people"
           filter=".not-drag"
           item-key="id"
-          onUpdate: modelValue={(val: any) => workspaceStore.updateComponentList(val)}
+          onUpdate:modelValue={(val: any) => workspaceStore.updateComponentList(val)}
           onStart={start}
           onEnd={end}
         >
@@ -92,8 +94,8 @@ export default defineComponent({
                   formConfig={formConfig.value}
                   id={formItem.id}
                   key={formItem.schema.id}
-                  form-model={{}}
-                  options={{}}
+                  modelValue={formData}
+                  options={options}
                   style={{ zIndex: 1 }}
                   col={formItem.schema}
                   class={formItem.schema.title === 'Col' ? 'not-drag' : ''}
