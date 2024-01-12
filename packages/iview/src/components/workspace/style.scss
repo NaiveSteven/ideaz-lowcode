@@ -1,0 +1,11 @@
+.workspace-ghost {
+  box-sizing: border-box;
+  height: 3px;
+  padding: 0;
+  overflow: hidden;
+  font-size: 0;
+  content: '';
+  background: #409eff;
+  border: 2px solid #409eff;
+  outline-width: 0;
+}

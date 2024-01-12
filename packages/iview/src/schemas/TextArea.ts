@@ -64,3 +64,18 @@ export const textareaTemplateSchema = [
     label: '高度自适应',
   },
 ]
+
+export const defaultTextareaAttrs = {
+  type: 'textarea',
+  rows: 2,
+  minlength: undefined,
+  maxlength: undefined,
+  placeholder: '',
+  suffixIcon: '',
+  prefixIcon: '',
+  clearable: true,
+  readonly: false,
+  disabled: false,
+  showWordLimit: false,
+  autosize: false,
+}

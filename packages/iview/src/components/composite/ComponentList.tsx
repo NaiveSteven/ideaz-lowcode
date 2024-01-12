@@ -64,7 +64,7 @@ export default defineComponent({
                         <span class="list-item-icon">
                           <el-icon size="20">{h(resolveComponent(element.icon))}</el-icon>
                         </span>
-                        <span class="list-item-text">{element.label}</span>
+                        <span class="list-item-text">{element.title}</span>
                       </div>
                     )
                   })}

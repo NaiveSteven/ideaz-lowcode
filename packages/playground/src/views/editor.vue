@@ -1,25 +1,23 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { WorkspacePanel } from '@/containers';
-import { Settings, CompositePanel } from '@/containers';
-import TipDialogWidget from '@/widgets/tip-dialog-widget/index.vue';
-import { useDriver } from '@/hooks';
+import { onMounted, ref } from 'vue'
+import { CompositePanel, Settings, WorkspacePanel } from '@/containers'
+import TipDialogWidget from '@/widgets/tip-dialog-widget/index.vue'
+import { useDriver } from '@/hooks'
 
-const { startDriver, getIsNew } = useDriver();
-const isShowTipDialog = ref(false);
+const { startDriver, getIsNew } = useDriver()
+const isShowTipDialog = ref(false)
 const isUpdate = Number(
-  sessionStorage.getItem('isUpdate') ? JSON.parse(sessionStorage.getItem('isUpdate')!) : 0
-);
+  sessionStorage.getItem('isUpdate') ? JSON.parse(sessionStorage.getItem('isUpdate')!) : 0,
+)
 
-if (!getIsNew() && !isUpdate) {
-  isShowTipDialog.value = true;
-}
+if (!getIsNew() && !isUpdate)
+  isShowTipDialog.value = true
 
 onMounted(() => {
   setTimeout(() => {
-    startDriver();
-  }, 201);
-});
+    startDriver()
+  }, 201)
+})
 </script>
 
 <template>
@@ -27,7 +25,7 @@ onMounted(() => {
     <div class="main-panel">
       <CompositePanel />
       <WorkspacePanel />
-      <Settings />
+      <!-- <Settings /> -->
     </div>
     <TipDialogWidget v-model="isShowTipDialog" />
   </div>
@@ -36,29 +34,29 @@ onMounted(() => {
 <style lang="scss" scoped>
 .root {
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
+  height: 100%;
 
   .main-panel {
     position: relative;
     display: flex;
-    overflow: hidden;
+    flex: 1;
     width: 100%;
     height: 100%;
     min-height: 0;
-    flex: 1;
+    overflow: hidden;
 
     .workspace-panel {
       position: relative;
-      display: flex;
-      overflow: hidden;
-      padding: 4px;
-      background-color: #eee;
-      flex-grow: 1;
-      flex-direction: column;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 4px;
+      overflow: hidden;
+      background-color: #eee;
     }
   }
 }

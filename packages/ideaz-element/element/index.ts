@@ -14,13 +14,13 @@ import ZCrud from './crud'
 import Dialog from './dialog'
 import { makeInstaller } from './makeInstaller'
 
-const { ZForm, ZFilterForm } = Form
+const { ZForm, ZFilterForm, ZFormItem } = Form
 const { ZTable, ZTableCustomColumnContainer } = Table
 const { ZCheckCard, ZCheckCardItem } = CheckCard
 const { ZTagSelect, ZTagSelectItem } = TagSelect
 const { ZDialog, ZDialogTip } = Dialog
 
-const components = [ZCheckbox, ZRadio, ZSelect, ZForm, ZInput, ZTable, ZFilterForm, ZTagSelect, ZText, ZWatermark, ZCheckCard, ZCheckCardItem, ZDescription, ZTagSelectItem, ZTableCustomColumnContainer, ZFullScreen, ZCrud, ZDialog, ZDialogTip]
+const components = [ZCheckbox, ZRadio, ZSelect, ZForm, ZInput, ZTable, ZFilterForm, ZTagSelect, ZText, ZWatermark, ZCheckCard, ZCheckCardItem, ZDescription, ZTagSelectItem, ZTableCustomColumnContainer, ZFullScreen, ZCrud, ZDialog, ZDialogTip, ZFormItem]
 
 const installer = makeInstaller([...components])
 
@@ -47,4 +47,5 @@ export {
   ZCrud,
   ZDialog,
   ZDialogTip,
+  ZFormItem,
 }

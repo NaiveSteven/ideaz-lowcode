@@ -37,5 +37,5 @@ app
   // .use(store)
   .use(ElementPlus, { size: 'small' })
   .use(CommonComponents)
-  .use(IdeazElement, { locale: zhCn })
+  .use(IdeazElement, { locale: zhCn, size: 'default' })
   .mount('#app')
