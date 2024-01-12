@@ -21,15 +21,9 @@ export function SlotTemplateComponent() {
     componentOptionsConfig: {},
     fieldOptionsConfig: {},
     fieldFormData: reactive({
-      field: 'slot',
       slot: 'slot',
     }),
     fieldSchema: [
-      {
-        component: 'input',
-        field: 'prop',
-        label: '字段名',
-      },
       {
         component: 'input',
         field: 'slot',

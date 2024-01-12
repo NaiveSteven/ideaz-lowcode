@@ -99,7 +99,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'tableP
     return {
       columns: componentList.map((item) => {
         if (
-          item.schema.type === 'placeholder-block'
+          item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
           && mode !== 'preview'
         ) {
