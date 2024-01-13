@@ -69,10 +69,13 @@ export default defineComponent({
     const { t } = useLocale()
     const size = ref(props.size)
 
-    provide(tableProvideKey, {
-      props,
-      size: size.value,
-    })
+    // remark
+    provide(tableProvideKey, computed(() => {
+      return {
+        ...toRefs(props),
+        size: size.value,
+      }
+    }))
 
     const renderPagination = () => {
       return pagination.value.pageSize

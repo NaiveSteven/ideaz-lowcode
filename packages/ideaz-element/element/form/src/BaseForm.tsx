@@ -55,10 +55,13 @@ export default defineComponent({
       scrollToField,
     })
 
-    provide(formProvideKey, {
-      props,
-      size: formConfig.value.size,
-    })
+    // remark
+    provide(formProvideKey, computed(() => {
+      return {
+        ...toRefs(props),
+        size: formConfig.value.size,
+      }
+    }))
 
     const renderCommonColumn = (contentColumns: FormColumn[]) => {
       const { modelValue, options } = props
