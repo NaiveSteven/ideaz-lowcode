@@ -18,10 +18,6 @@ export default defineComponent({
       type: Object as PropType<WorkspaceComponentItem>,
       default: () => ({}),
     },
-    rootSchema: {
-      type: Object as PropType<Schema>,
-      default: () => ({}),
-    },
     formData: {
       type: Object as PropType<IndexType>,
       default: () => ({}),
@@ -72,7 +68,7 @@ export default defineComponent({
       return (
         <VueDraggable
           modelValue={props.workspaceComponentList}
-          class="dragArea list-group h-full"
+          class="dragArea list-group h-full w-full"
           animation={200}
           group="people"
           filter=".not-drag"

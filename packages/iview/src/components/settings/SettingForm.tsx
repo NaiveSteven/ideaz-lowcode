@@ -16,7 +16,7 @@ export default defineComponent({
       colon: false,
     })
 
-    const formTemplateModel = reactive({
+    const formTemplateModel = ref({
       background: 'page',
       labelPosition: 'right',
       labelWidth: '100px',
@@ -44,7 +44,7 @@ export default defineComponent({
           <div class="form-content">
             <z-form
               options={formTemplateOptionsConfig}
-              v-model={formTemplateModel}
+              v-model={formTemplateModel.value}
               {...formConfig}
               columns={formTemplateSchema}
               onChange={handleMiddleFormChange}

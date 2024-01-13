@@ -13,6 +13,7 @@ export const useMiddleFormStore = defineStore({
     formConfig: {
       labelPosition: 'right',
       labelWidth: '100px',
+      size: 'default',
     },
     formData: {},
     schemas: {
