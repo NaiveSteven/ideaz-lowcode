@@ -16,7 +16,7 @@ export const multipleSelectTemplateSchema = [
     component: 'el-input-number',
     field: 'multipleLimit',
     label: '最多选择数',
-    attrs: {
+    fieldProps: {
       controlsPosition: 'right',
     },
   },

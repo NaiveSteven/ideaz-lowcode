@@ -32,14 +32,6 @@ export const crudTableTemplateSchema = [
 ]
 
 export const crudFormTemplateSchema = [
-  // {
-  //   component: 'select',
-  //   field: 'size',
-  //   formItem: { label: '尺寸' },
-  //   attrs: {
-  //     placeholder: '请选择尺寸',
-  //   },
-  // },
   {
     component: 'input',
     field: 'labelWidth',

@@ -31,7 +31,7 @@ const tableCols = [
     search: {
       id: uid(),
       name: 'tableForm',
-      type: 'input',
+      component: 'input',
       title: '表单项',
       field: 'name',
       label: '表单项1',
@@ -113,7 +113,7 @@ const tableCols = [
     id: uid(),
     search: {
       id: uid(),
-      type: 'input',
+      component: 'input',
       name: 'tableForm',
       title: '表单项',
       field: 'address',
