@@ -1,8 +1,10 @@
 import { VueDraggable } from 'vue-draggable-plus'
 import { getSchemaData } from '@ideal-schema/playground-demi'
+import { cloneDeep } from 'lodash-es'
 
 // import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useGlobalSettingStore, useWorkspaceStore } from '@ideal-schema/playground-store'
+import TableActionsWidget from '../../widgets/TableActionsWidget'
 import { useMiddleFormStoreData } from '../../hooks'
 import './style.scss'
 
@@ -33,7 +35,9 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const workspaceStore = useWorkspaceStore()
+    const globalSettingStore = useGlobalSettingStore()
     const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
+    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
     const { formConfig } = useMiddleFormStoreData()
 
     let tempData: any = null
@@ -63,6 +67,103 @@ export default defineComponent({
       emit('on-update-cur-operate', tempData)
     }
 
+    const setClassName = ({ columnIndex }: any) => {
+      const columns
+        = props.workspaceComponentList[0].schema.columns?.filter(item => item.prop) || []
+      if (columns[columnIndex])
+        return `schema-field${columns[columnIndex].id}`
+    }
+
+    const handleTableColClick = (column: any, event: MouseEvent) => {
+      event.preventDefault()
+      event.stopPropagation()
+      const columnIndex = column.getColumnIndex()
+      const columns
+        = workspaceStore.getWorkspaceComponentList[0].schema.columns?.filter(item => item.prop)
+        || []
+      const tableCol = columns[columnIndex]
+      workspaceStore.updateCurOperateComponent(tableCol as WorkspaceComponentItem)
+    }
+
+    const handleUpdateFormItem = (
+      data: WorkspaceComponentItem,
+      newIndex: number,
+      oldIndex: number,
+    ) => {
+      if (!data.id) {
+        emit('on-update-cur-operate', {})
+        return
+      }
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = tableProConfig.schema
+      let columns: TableCol[] = []
+      if (schema.columns && schema.columns.length) {
+        const newArr = [...schema.columns]
+        const newFormItem = { ...schema.columns[oldIndex].formItemProps }
+        const oldFormItem = { ...schema.columns[newIndex].formItemProps }
+        newArr[newIndex].formItemProps = newFormItem
+        newArr[oldIndex].formItemProps = oldFormItem
+        columns = newArr
+        workspaceStore.updateComponentList([
+          {
+            ...tableProConfig,
+            schema: {
+              ...tableProConfig.schema,
+              columns,
+            },
+          },
+        ])
+        workspaceStore.updateCurOperateComponent(data)
+      }
+    }
+
+    const handleUpdateTableColumn = (
+      data: WorkspaceComponentItem,
+      newIndex: number,
+      oldIndex: number,
+    ) => {
+      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const schema = tableProConfig.schema
+      if (schema.columns && schema.columns.length) {
+        const filterColumns = cloneDeep(schema.columns.filter(item => item.prop))
+        const filterFormItems = schema.columns.filter(item => item.formItemProps)
+
+        const newTableCol = { ...filterColumns[oldIndex] }
+        const oldTableCol = { ...filterColumns[newIndex] }
+        filterColumns[newIndex] = newTableCol
+        filterColumns[oldIndex] = oldTableCol
+        if (filterColumns.length >= filterFormItems.length) {
+          filterColumns.forEach((item, index) => {
+            delete item.formItemProps
+            if (filterFormItems[index])
+              item.formItemProps = filterFormItems[index].formItemProps
+          })
+        }
+        else {
+          filterFormItems.forEach((item, index) => {
+            if (!filterColumns[index])
+              filterColumns[index] = {}
+
+            filterColumns[index].formItemProps = filterFormItems[index].formItemProps
+          })
+        }
+        workspaceStore.updateComponentList([
+          {
+            ...tableProConfig,
+            schema: {
+              ...tableProConfig.schema,
+              columns: [...filterColumns],
+              cellClassName: ({ columnIndex }: any) => {
+                return `schema-field${filterColumns[columnIndex].id}`
+              },
+            },
+          },
+        ])
+        workspaceStore.updateCurOperateComponent(data)
+        tableKey.value = new Date().valueOf()
+      }
+    }
+
     return () => {
       const { formData, options } = getSchemaData()
       return (
@@ -73,11 +174,31 @@ export default defineComponent({
           group="people"
           filter=".not-drag"
           item-key="id"
-          onUpdate:modelValue={(val: any) => workspaceStore.updateComponentList(val)}
+          onUpdate: modelValue={(val: any) => workspaceStore.updateComponentList(val)}
           onStart={start}
           onEnd={end}
         >
           {props.workspaceComponentList.map((formItem: WorkspaceComponentItem) => {
+            if (workspaceComponentType.value === 'crud') {
+              return (
+                <TableActionsWidget>
+                  <z-crud
+                    id={formItem.id}
+                    key={tableKey.value}
+                    class="tablePro"
+                    {...{ ...formItem.schema, cellClassName: setClassName }}
+                    style={{ zIndex: 1 }}
+                    pid={formItem.children ? formItem.id : ''}
+                    onOn-update-form-item={handleUpdateFormItem}
+                    onOn-update-table-column={handleUpdateTableColumn}
+                    onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
+                    onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
+                    onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
+                  />
+                </TableActionsWidget>
+              )
+            }
+
             return (
               <div
                 id={`schema-field${formItem.id}`}

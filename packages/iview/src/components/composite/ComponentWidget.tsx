@@ -18,7 +18,7 @@ export default defineComponent({
       index: number,
       toId: string,
     ) => {
-      if (expandComponentItem.name === 'tablePro') {
+      if (expandComponentItem.name === 'crud') {
         const componentItem = {
           ...expandComponentItem,
           id: uid(),
@@ -30,12 +30,12 @@ export default defineComponent({
         workspaceStore.updateComponentList([])
         workspaceStore.pushComponentItem(componentItem, index, toId)
         workspaceStore.updateCurOperateComponent(componentItem)
-        globalSettingStore.updateWorkspaceComponentType('tablePro')
+        globalSettingStore.updateWorkspaceComponentType('crud')
         return
       }
       else {
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
-        if (workspaceComponentType.value === 'tablePro') {
+        if (workspaceComponentType.value === 'crud') {
           workspaceStore.updateComponentList([])
           workspaceStore.updateCurOperateComponent({} as WorkspaceComponentItem)
         }

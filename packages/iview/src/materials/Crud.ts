@@ -20,7 +20,7 @@ const FORM_COMPONENT_TYPE = [
   { label: '插槽', value: 'slot' },
 ]
 
-const tableCols = [
+const columns = [
   {
     name: 'tableCol',
     prop: 'name',
@@ -185,11 +185,11 @@ const tableCols = [
 export function CrudTemplateComponent() {
   return {
     id: uid(),
-    name: 'tablePro',
+    name: 'crud',
     icon: 'i-list',
     title: '增删改查',
     schema: {
-      headerRowClassName: 'tableProHeader',
+      headerRowClassName: 'crudHeader',
       draggable: true,
       defaultExpand: true,
       rowKey: 'id',
@@ -216,7 +216,7 @@ export function CrudTemplateComponent() {
         pageSize: 10,
         total: 0,
       },
-      tableCols,
+      columns,
     },
     componentFormData: reactive({
       rowKey: 'id',
