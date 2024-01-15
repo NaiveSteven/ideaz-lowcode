@@ -15,8 +15,6 @@ export default defineComponent({
     return () => {
       return (
         <div id="view-port" class="view-port" onClick={() => updateCurOperateComponent({} as WorkspaceComponentItem)}>
-          asf
-          {curOperateComponent.value.name}
           {curOperateComponent.value.name === 'crud'
             ? (
               <WorkspaceComponent

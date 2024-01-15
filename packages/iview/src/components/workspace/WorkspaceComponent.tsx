@@ -179,26 +179,6 @@ export default defineComponent({
           onEnd={end}
         >
           {props.workspaceComponentList.map((formItem: WorkspaceComponentItem) => {
-            if (workspaceComponentType.value === 'crud') {
-              return (
-                <TableActionsWidget>
-                  <z-crud
-                    id={formItem.id}
-                    key={tableKey.value}
-                    class="tablePro"
-                    {...{ ...formItem.schema, cellClassName: setClassName }}
-                    style={{ zIndex: 1 }}
-                    pid={formItem.children ? formItem.id : ''}
-                    onOn-update-form-item={handleUpdateFormItem}
-                    onOn-update-table-column={handleUpdateTableColumn}
-                    onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
-                    onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
-                    onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
-                  />
-                </TableActionsWidget>
-              )
-            }
-
             return (
               <div
                 id={`schema-field${formItem.id}`}
@@ -207,16 +187,36 @@ export default defineComponent({
                 style={{ marginBottom: '22px' }}
                 onClick={(e: MouseEvent) => clickItem(e, formItem)}
               >
-                <z-form-item
-                  formConfig={formConfig.value}
-                  id={formItem.id}
-                  key={formItem.schema.id}
-                  modelValue={formData}
-                  options={options}
-                  style={{ zIndex: 1 }}
-                  col={formItem.schema}
-                  class={formItem.schema.title === 'Col' ? 'not-drag' : ''}
-                />
+                {workspaceComponentType.value === 'crud'
+                  ? (
+                    <TableActionsWidget>
+                      <z-crud
+                        id={formItem.id}
+                        key={tableKey.value}
+                        class="tablePro"
+                        {...{ ...formItem.schema, cellClassName: setClassName }}
+                        style={{ zIndex: 1 }}
+                        pid={formItem.children ? formItem.id : ''}
+                        onOn-update-form-item={handleUpdateFormItem}
+                        onOn-update-table-column={handleUpdateTableColumn}
+                        onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
+                        onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
+                        onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
+                      />
+                    </TableActionsWidget>
+                    )
+                  : (
+                    <z-form-item
+                      formConfig={formConfig.value}
+                      id={formItem.id}
+                      key={formItem.schema.id}
+                      modelValue={formData}
+                      options={options}
+                      style={{ zIndex: 1 }}
+                      col={formItem.schema}
+                      class={formItem.schema.title === 'Col' ? 'not-drag' : ''}
+                    />
+                    )}
               </div>
             )
           })}
