@@ -30,8 +30,8 @@ export default defineComponent({
           />
         )
       }
-      // const { config } = getSchemaData('preview', 'tablePro')
-      // return <il-table-pro class="table-pro__preview" config={config} />
+      const { config, columns } = getSchemaData('preview', 'crud')
+      return <z-crud class="crud__preview" {...config} columns={columns} />
     }
   },
 })

@@ -125,11 +125,11 @@ function getColumns() {
         title: '表单项',
         field: 'address',
         label: '表单项2',
-        templateFormData: reactive({
+        componentFormData: reactive({
           ...inputCrudFormData,
           componentType: 'input',
         }),
-        templateSchema: [
+        componentSchema: [
           {
             component: 'select',
             field: 'componentType',
@@ -137,7 +137,7 @@ function getColumns() {
           },
           ...inputCrudSchema,
         ],
-        templateOptionsConfig: {
+        componentOptionsConfig: {
           componentType: FORM_COMPONENT_TYPE,
         },
         fieldFormData: reactive({

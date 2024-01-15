@@ -1,11 +1,11 @@
 .table-pro-actions__container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
+  justify-content: center;
+  width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
-  width: 100%;
+  overflow: hidden;
 
   .table-pro-actions__content {
     position: relative;
@@ -46,10 +46,10 @@
     display: flex;
     align-items: center;
     font-size: 10px;
-    color: rgba(0, 0, 0, 0.45);
-    transition: color 0.3s;
     line-height: 1;
+    color: rgba(0, 0, 0, 45%);
     cursor: pointer;
+    transition: color 0.3s;
 
     > .el-icon {
       margin-right: 6px;
@@ -61,7 +61,7 @@
   }
 }
 
-.table-pro__preview {
+.crud__preview {
   .el-button + .el-button {
     margin-left: 12px !important;
   }
