@@ -21,202 +21,209 @@ const FORM_COMPONENT_TYPE = [
   { label: '插槽', value: 'slot' },
 ]
 
-const columns = [
-  {
-    name: 'tableCol',
-    prop: 'name',
-    label: '姓名',
-    title: '表格项',
-    id: uid(),
-    search: {
-      id: uid(),
-      name: 'tableForm',
-      component: 'input',
-      title: '表单项',
-      field: 'name',
-      label: '表单项1',
-      componentFormData: reactive({
-        ...inputCrudFormData,
-        componentType: 'input',
-      }),
-      componentSchema: [
-        {
-          component: 'select',
-          field: 'componentType',
-          label: '组件类别',
-        },
-        ...inputCrudSchema,
-      ],
-      componentOptionsConfig: {
-        componentType: FORM_COMPONENT_TYPE,
-      },
-      fieldFormData: reactive({
-        field: 'name',
-        default: '',
-      }),
-      fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
-      formItemFormData: reactive({
-        label: '表单项1',
-        tooltip: '',
-        extra: '',
-      }),
-      formItemTemplateSchema: [
-        {
-          component: 'input',
-          field: 'label',
-          label: '标签',
-        },
-        {
-          component: 'input',
-          field: 'tooltip',
-          label: '提示',
-        },
-        {
-          component: 'input',
-          field: 'extra',
-          label: '额外信息',
-        },
-      ],
-      formItemOptionsConfig: formItemTemplateOptionsConfig,
-      activeCollapseItems: ['field', 'component', 'formItem'],
-      allowCopy: true,
-      allowDelete: true,
-    },
-    componentSchema: tableColTemplateSchema,
-    componentOptionsConfig: tableColTemplateOptionsConfig,
-    componentFormData: reactive({
-      ...tableColFormData,
+function getColumns() {
+  const mockNameId = uid()
+  const mockAddressId = uid()
+  return [
+    {
+      name: 'tableCol',
       prop: 'name',
       label: '姓名',
-      buttons: [
-        {
-          key: uid(),
-          type: 'text',
-          label: '编辑',
+      title: '表格项',
+      id: mockNameId,
+      search: {
+        name: 'tableForm',
+        formItemProps: {
+          id: `schema-field${mockNameId}`,
         },
-        {
-          type: 'text',
-          label: '删除',
-          key: uid(),
+        component: 'input',
+        title: '表单项',
+        field: 'name',
+        label: '表单项1',
+        componentFormData: reactive({
+          ...inputCrudFormData,
+          componentType: 'input',
+        }),
+        componentSchema: [
+          {
+            component: 'select',
+            field: 'componentType',
+            label: '组件类别',
+          },
+          ...inputCrudSchema,
+        ],
+        componentOptionsConfig: {
+          componentType: FORM_COMPONENT_TYPE,
         },
-      ],
-    }),
-    activeCollapseItems: ['column'],
-    allowCopy: true,
-    allowDelete: true,
-  },
-  {
-    name: 'tableCol',
-    prop: 'address',
-    label: '地址',
-    title: '表格项',
-    id: uid(),
-    search: {
-      id: uid(),
-      component: 'input',
-      name: 'tableForm',
-      title: '表单项',
-      field: 'address',
-      label: '表单项2',
-      templateFormData: reactive({
-        ...inputCrudFormData,
-        componentType: 'input',
-      }),
-      templateSchema: [
-        {
-          component: 'select',
-          field: 'componentType',
-          label: '组件类别',
-        },
-        ...inputCrudSchema,
-      ],
-      templateOptionsConfig: {
-        componentType: FORM_COMPONENT_TYPE,
+        fieldFormData: reactive({
+          field: 'name',
+          default: '',
+        }),
+        fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
+        formItemFormData: reactive({
+          label: '表单项1',
+          tooltip: '',
+          extra: '',
+        }),
+        formItemTemplateSchema: [
+          {
+            component: 'input',
+            field: 'label',
+            label: '标签',
+          },
+          {
+            component: 'input',
+            field: 'tooltip',
+            label: '提示',
+          },
+          {
+            component: 'input',
+            field: 'extra',
+            label: '额外信息',
+          },
+        ],
+        formItemOptionsConfig: formItemTemplateOptionsConfig,
+        activeCollapseItems: ['field', 'component', 'formItem'],
+        allowCopy: true,
+        allowDelete: true,
       },
-      fieldFormData: reactive({
-        field: 'address',
-        default: '',
+      componentSchema: tableColTemplateSchema,
+      componentOptionsConfig: tableColTemplateOptionsConfig,
+      componentFormData: reactive({
+        ...tableColFormData,
+        prop: 'name',
+        label: '姓名',
+        buttons: [
+          {
+            key: uid(),
+            type: 'text',
+            label: '编辑',
+          },
+          {
+            type: 'text',
+            label: '删除',
+            key: uid(),
+          },
+        ],
       }),
-      fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
-      formItemFormData: reactive({
-        label: '表单项2',
-        tooltip: '',
-        extra: '',
-      }),
-      formItemTemplateSchema: [
-        {
-          component: 'input',
-          field: 'label',
-          label: '标签',
-        },
-        {
-          component: 'input',
-          field: 'tooltip',
-          label: '提示',
-        },
-        {
-          component: 'input',
-          field: 'extra',
-          label: '额外信息',
-        },
-      ],
-      formItemOptionsConfig: formItemTemplateOptionsConfig,
-      activeCollapseItems: ['field', 'component', 'formItem'],
+      activeCollapseItems: ['column'],
       allowCopy: true,
       allowDelete: true,
     },
-    componentSchema: tableColTemplateSchema,
-    componentOptionsConfig: tableColTemplateOptionsConfig,
-    componentFormData: reactive({
-      ...tableColFormData,
+    {
+      name: 'tableCol',
       prop: 'address',
       label: '地址',
-      buttons: [
-        {
-          key: uid(),
-          type: 'text',
-          label: '编辑',
+      title: '表格项',
+      id: mockAddressId,
+      search: {
+        formItemProps: {
+          id: `schema-field${mockAddressId}`,
         },
-        {
-          type: 'text',
-          label: '删除',
-          key: uid(),
+        component: 'input',
+        name: 'tableForm',
+        title: '表单项',
+        field: 'address',
+        label: '表单项2',
+        templateFormData: reactive({
+          ...inputCrudFormData,
+          componentType: 'input',
+        }),
+        templateSchema: [
+          {
+            component: 'select',
+            field: 'componentType',
+            label: '组件类别',
+          },
+          ...inputCrudSchema,
+        ],
+        templateOptionsConfig: {
+          componentType: FORM_COMPONENT_TYPE,
         },
-      ],
-    }),
-    activeCollapseItems: ['column'],
-    allowCopy: true,
-    allowDelete: true,
-  },
-  {
-    name: 'tableCol',
-    id: uid(),
-    title: '表格项',
-    prop: 'phone',
-    label: '手机号',
-    componentSchema: tableColTemplateSchema,
-    componentOptionsConfig: tableColTemplateOptionsConfig,
-    componentFormData: reactive({
-      ...tableColFormData,
+        fieldFormData: reactive({
+          field: 'address',
+          default: '',
+        }),
+        fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
+        formItemFormData: reactive({
+          label: '表单项2',
+          tooltip: '',
+          extra: '',
+        }),
+        formItemTemplateSchema: [
+          {
+            component: 'input',
+            field: 'label',
+            label: '标签',
+          },
+          {
+            component: 'input',
+            field: 'tooltip',
+            label: '提示',
+          },
+          {
+            component: 'input',
+            field: 'extra',
+            label: '额外信息',
+          },
+        ],
+        formItemOptionsConfig: formItemTemplateOptionsConfig,
+        activeCollapseItems: ['field', 'component', 'formItem'],
+        allowCopy: true,
+        allowDelete: true,
+      },
+      componentSchema: tableColTemplateSchema,
+      componentOptionsConfig: tableColTemplateOptionsConfig,
+      componentFormData: reactive({
+        ...tableColFormData,
+        prop: 'address',
+        label: '地址',
+        buttons: [
+          {
+            key: uid(),
+            type: 'text',
+            label: '编辑',
+          },
+          {
+            type: 'text',
+            label: '删除',
+            key: uid(),
+          },
+        ],
+      }),
+      activeCollapseItems: ['column'],
+      allowCopy: true,
+      allowDelete: true,
+    },
+    {
+      name: 'tableCol',
+      id: uid(),
+      title: '表格项',
       prop: 'phone',
       label: '手机号',
-      buttons: [
-        {
-          key: uid(),
-          type: 'text',
-          label: '编辑',
-        },
-        {
-          type: 'text',
-          label: '删除',
-          key: uid(),
-        },
-      ],
-    }),
-    activeCollapseItems: ['column'],
-    allowCopy: true,
-    allowDelete: true,
-  },
+      componentSchema: tableColTemplateSchema,
+      componentOptionsConfig: tableColTemplateOptionsConfig,
+      componentFormData: reactive({
+        ...tableColFormData,
+        prop: 'phone',
+        label: '手机号',
+        buttons: [
+          {
+            key: uid(),
+            type: 'text',
+            label: '编辑',
+          },
+          {
+            type: 'text',
+            label: '删除',
+            key: uid(),
+          },
+        ],
+      }),
+      activeCollapseItems: ['column'],
+      allowCopy: true,
+      allowDelete: true,
+    },
   // {
   //   name: 'tableCol',
   //   id: uid(),
@@ -260,9 +267,11 @@ const columns = [
   //   allowCopy: true,
   //   allowDelete: true,
   // },
-]
+  ]
+}
 
 export function CrudTemplate() {
+  const columns = getColumns()
   return {
     id: uid(),
     name: 'crud',
