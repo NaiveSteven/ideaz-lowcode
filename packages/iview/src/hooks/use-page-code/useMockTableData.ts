@@ -22,8 +22,8 @@ export function useMockTableData() {
   const getTableData = () => {
     const tableData: IndexType[] = []
     const tableDataItem: IndexType = {}
-    if (workspaceComponentList.value[0]?.schema?.tableCols) {
-      workspaceComponentList.value[0]?.schema?.tableCols?.forEach((item) => {
+    if (workspaceComponentList.value[0]?.schema?.columns) {
+      workspaceComponentList.value[0]?.schema?.columns?.forEach((item) => {
         if (item.prop && !item.type)
           tableDataItem[item.prop] = randomlyGeneratedChineseCharacters(3)
       });

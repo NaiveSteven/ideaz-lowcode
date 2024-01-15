@@ -1,11 +1,11 @@
-export function useTableProTemplateCode() {
-  const isTableProIncludesSlot = (tableCols: TableCol[]) => {
+export function useCrudTemplateCode() {
+  const isCrudIncludesSlot = (tableCols: TableCol[]) => {
     return (tableCols || []).some(
-      (item: TableCol) => item.slot || (item.formItemProps && item.formItemProps.slot),
+      (item: TableCol) => item.slot || (item.search && item.search.slot),
     )
   }
 
-  const getTableProSlotCode = (tableCols: TableCol[]) => {
+  const getCrudSlotCode = (tableCols: TableCol[]) => {
     let str = ``;
     (tableCols || []).forEach((item: TableCol) => {
       const formItemSlot = item.formItemProps ? item.formItemProps.slot : ''
@@ -39,20 +39,20 @@ export function useTableProTemplateCode() {
     return str
   }
 
-  const getTableProTemplateCode = (tableCols: TableCol[]) => {
-    return !isTableProIncludesSlot(tableCols)
-      ? `<c-table-pro
-        :config="config"
+  const getCrudTemplateCode = (tableCols: TableCol[]) => {
+    return !isCrudIncludesSlot(tableCols)
+      ? `<z-crud
+        :columns="columns"
         @reset="handleSearch"
         @search="handleSearch"
         @refresh="handlePaginationChange"
       />`
-      : `<c-table-pro
-          :config="config"
+      : `<z-crud
+          :columns="columns"
         >
-      ${getTableProSlotCode(tableCols)}
-    </c-table-pro>`
+      ${getCrudSlotCode(tableCols)}
+    </z-crud>`
   }
 
-  return { getTableProTemplateCode }
+  return { getCrudTemplateCode }
 }

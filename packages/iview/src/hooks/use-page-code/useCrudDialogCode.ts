@@ -1,18 +1,18 @@
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useMockTableData } from './useMockTableData'
-import { useTableProTemplateCode } from './useTableProTemplateCode'
+import { useCrudTemplateCode } from './useCrudTemplateCode'
 
-export function useTableProDialogCode() {
-  const { getTableProTemplateCode } = useTableProTemplateCode()
+export function useCrudDialogCode() {
+  const { getCrudTemplateCode } = useCrudTemplateCode()
 
-  const { config } = getSchemaData('code', 'tablePro')
+  const { config } = getSchemaData('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
     code: `
       <template>
         <el-dialog v-model="visible" title="标题" width="620px">
-          ${getTableProTemplateCode(config.tableCols)}
+          ${getCrudTemplateCode(config.tableCols)}
           <template #footer>
             <el-button size="default" @click="visible = false">取 消</el-button>
             <el-button type="primary" size="default" @click="visible = false"
@@ -41,6 +41,7 @@ export function useTableProDialogCode() {
           tableDecorator: { name: 'div' },
           ...config,
         })});
+        const searchFormData = ref(${JSON.stringify(config.searchFormData)});
         const tableData = ${JSON.stringify(getTableData())};
 
         watch(
@@ -56,7 +57,7 @@ export function useTableProDialogCode() {
           if (!newValue) {
             config.pagination = {
               page: 1,
-              page_size: 10,
+              pageSize: 10,
               total: 0
             }
             config.data = []
@@ -70,15 +71,9 @@ export function useTableProDialogCode() {
         const getTableData = async () => {
           config.loading = true;
           try {
-            ${
-              Object.hasOwnProperty.call(config, 'formModel')
-                ? `const params = {
+            const params = {
               ...config.pagination,
-              ...config.formModel
-            }`
-                : `const params = {
-              ...config.pagination,
-            }`
+              ...searchFormData.value,
             }
             await delay(200);
             config.data = tableData;
@@ -90,7 +85,7 @@ export function useTableProDialogCode() {
 
         const handlePaginationChange = (val) => {
           config.pagination.page = val.page;
-          config.pagination.page_size = val.page_size;
+          config.pagination.pageSize = val.pageSize;
           getTableData();
         }
 
@@ -105,6 +100,6 @@ export function useTableProDialogCode() {
           });
         }
       </script>`,
-    getTableProTemplateCode,
+    getCrudTemplateCode,
   }
 }

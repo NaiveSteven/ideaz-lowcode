@@ -4,9 +4,9 @@ import {
   useMiddleFormStore,
   useWorkspaceStore,
 } from '@ideal-schema/playground-store'
-import { useTableProCode } from './useTableProPageCode'
+import { useCrudPageCode } from './useCrudPageCode'
 import { useFormDialogCode } from './useFormDialogCode'
-import { useTableProDialogCode } from './useTableProDialogCode'
+import { useCrudDialogCode } from './useCrudDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
@@ -31,10 +31,10 @@ export function usePageCode() {
         return useFormDialogCode()
       return useFormPageCode()
     }
-    const { code } = useTableProCode()
-    if (workspaceComponentType.value === 'tablePro') {
+    const { code } = useCrudPageCode()
+    if (workspaceComponentType.value === 'crud') {
       if (isDialog.value)
-        return useTableProDialogCode().code
+        return useCrudDialogCode().code
       return code
     }
 

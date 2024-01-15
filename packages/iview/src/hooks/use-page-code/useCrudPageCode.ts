@@ -1,38 +1,32 @@
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useMockTableData } from './useMockTableData'
-import { useTableProTemplateCode } from './useTableProTemplateCode'
+import { useCrudTemplateCode } from './useCrudTemplateCode'
 
-export function useTableProCode() {
-  const { getTableProTemplateCode } = useTableProTemplateCode()
+export function useCrudPageCode() {
+  const { getCrudTemplateCode } = useCrudTemplateCode()
 
-  const { config } = getSchemaData('code', 'tablePro')
+  const { config } = getSchemaData('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
     code: `
       <template>
-        ${getTableProTemplateCode(config.tableCols)}
+        ${getCrudTemplateCode(config.columns)}
       </template>
 
       <script lang='ts' setup>
-        import { reactive } from 'vue';
+        import { reactive, ref } from 'vue';
 
         const config = reactive(${JSON.stringify(config)});
-
+        const searchFormData = ref(${JSON.stringify(config.searchFormData)});
         const tableData = ${JSON.stringify(getTableData())};
 
         const getTableData = async () => {
           config.loading = true;
           try {
-            ${
-              Object.hasOwnProperty.call(config, 'formModel')
-                ? `const params = {
+            const params = {
               ...config.pagination,
-              ...config.formModel
-            }`
-                : `const params = {
-              ...config.pagination,
-            }`
+              ...searchFormData.value,
             }
             await delay(200);
             config.data = tableData;
@@ -44,7 +38,7 @@ export function useTableProCode() {
 
         const handlePaginationChange = (val) => {
           config.pagination.page = val.page;
-          config.pagination.page_size = val.page_size;
+          config.pagination.pageSize = val.pageSize;
           getTableData();
         }
 
@@ -61,6 +55,6 @@ export function useTableProCode() {
 
         getTableData();
       </script>`,
-    getTableProTemplateCode,
+    getCrudTemplateCode,
   }
 }
