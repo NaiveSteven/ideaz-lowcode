@@ -12,15 +12,13 @@ export default defineComponent({
     const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
 
     const handleCopyJSON = () => {
-      console.log(workspaceComponentType.value, 'workspaceComponentType.value')
-
       const schema = getSchemaData('code', workspaceComponentType.value)
       copy(
         beautify.js_beautify(
           JSON.stringify(
-            workspaceComponentType.value === 'tablePro'
-              ? getSchemaData(schema, workspaceComponentType.value).config
-              : getSchemaData(schema, workspaceComponentType.value),
+            workspaceComponentType.value === 'crud'
+              ? { ...schema.config, columns: schema.columns }
+              : schema,
           ),
           {
             indent_size: 2,

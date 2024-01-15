@@ -3,12 +3,10 @@ import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import beautify from 'js-beautify'
 import Codemirror from 'codemirror-editor-vue3'
-import { useMiddleFormStoreData } from '@/hooks'
 
 export default defineComponent({
   name: 'JsonWidget',
   setup() {
-    const { rootSchema } = useMiddleFormStoreData()
     const globalSettingStore = useGlobalSettingStore()
 
     const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
@@ -34,9 +32,9 @@ export default defineComponent({
       <Codemirror
         value={beautify.js_beautify(
           JSON.stringify(
-            workspaceComponentType.value === 'tablePro'
-              ? getSchemaData(rootSchema.value, workspaceComponentType.value).config
-              : getSchemaData(rootSchema.value, workspaceComponentType.value),
+            workspaceComponentType.value === 'crud'
+              ? { ...getSchemaData('code', workspaceComponentType.value).config, columns: getSchemaData('code', workspaceComponentType.value).columns }
+              : getSchemaData('code', workspaceComponentType.value),
           ),
           {
             indent_size: 2,
