@@ -19,6 +19,7 @@ const PageWidget = iview.PageWidget
 const CopySchemaCodeWidget = iview.CopySchemaCodeWidget
 const CopyPageCodeWidget = iview.CopyPageCodeWidget
 const getSchemaData = iview.getSchemaData
+const ViewPort = iview.ViewPort
 
 export {
   getSchemaData,
@@ -29,4 +30,5 @@ export {
   PageWidget,
   CopySchemaCodeWidget,
   CopyPageCodeWidget,
+  ViewPort,
 }

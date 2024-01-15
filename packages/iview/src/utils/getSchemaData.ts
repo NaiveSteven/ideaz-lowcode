@@ -99,7 +99,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'tableP
     return {
       columns: componentList.map((item) => {
         if (
-          item.schema.type === 'placeholder-block'
+          item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
           && mode !== 'preview'
         ) {
@@ -108,14 +108,14 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'tableP
           }
         }
 
-        const formItemProps = item.schema.formItemProps
+        const formItemProps = item.schema
         const fieldProps = item.schema.fieldProps
         if (isObject(formItemProps)) {
           Object.keys(formItemProps).forEach((key) => {
             if (
-              defaultFormItemFormData[key as keyof typeof defaultFormItemFormData] === formItemProps[key]
+              defaultFormItemFormData[key as keyof typeof defaultFormItemFormData] === formItemProps[key as keyof Schema]
             )
-              delete formItemProps[key]
+              delete item.schema[key as keyof Schema]
           })
         }
         Object.keys(defaultComponentFormData).forEach((key) => {
@@ -138,13 +138,9 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'tableP
           }
         })
         delEmptyObject(fieldProps)
-        delEmptyObject(formItemProps)
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))
           delete item.schema.fieldProps
-
-        if (isObject(formItemProps) && isEmpty(formItemProps))
-          delete item.schema.formItemProps
 
         return item.schema
       }),

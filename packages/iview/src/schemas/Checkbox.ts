@@ -10,11 +10,6 @@ export const checkboxTemplateSchema = [
     },
   },
   {
-    component: 'select',
-    field: 'size',
-    label: '尺寸',
-  },
-  {
     component: 'el-input-number',
     field: 'min',
     label: '勾选的最小数量',

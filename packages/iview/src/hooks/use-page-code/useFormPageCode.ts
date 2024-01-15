@@ -11,10 +11,10 @@ export function useFormPageCode() {
     <script lang='ts' setup>
       import { ref } from 'vue';
 
+      const columns = ref(${JSON.stringify(columns)})
       const formData = ref(${JSON.stringify(formData)})
       const formConfig = ${JSON.stringify(formConfig)}
       const options = ${JSON.stringify(options)}
-      const formConfig = ${JSON.stringify(formConfig)}
 
     </script>`
 }

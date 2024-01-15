@@ -21,7 +21,7 @@ const FORM_COMPONENT_TYPE = [
   { label: '插槽', value: 'slot' },
 ]
 
-const tableCols = [
+const columns = [
   {
     name: 'tableCol',
     prop: 'name',
@@ -31,7 +31,7 @@ const tableCols = [
     search: {
       id: uid(),
       name: 'tableForm',
-      type: 'input',
+      component: 'input',
       title: '表单项',
       field: 'name',
       label: '表单项1',
@@ -113,7 +113,7 @@ const tableCols = [
     id: uid(),
     search: {
       id: uid(),
-      type: 'input',
+      component: 'input',
       name: 'tableForm',
       title: '表单项',
       field: 'address',
@@ -217,62 +217,62 @@ const tableCols = [
     allowCopy: true,
     allowDelete: true,
   },
-  {
-    name: 'tableCol',
-    id: uid(),
-    title: '表格项',
-    prop: 'operation',
-    label: '操作',
-    type: 'button',
-    buttons: [
-      {
-        key: uid(),
-        type: 'text',
-        label: '添加',
-      },
-      {
-        type: 'text',
-        label: '删除',
-        key: uid(),
-      },
-    ],
-    componentSchema: tableColTemplateSchema,
-    componentOptionsConfig: tableColTemplateOptionsConfig,
-    componentFormData: reactive({
-      ...tableColFormData,
-      type: 'button',
-      prop: 'operation',
-      label: '操作',
-      buttons: [
-        {
-          key: uid(),
-          type: 'text',
-          label: '编辑',
-        },
-        {
-          type: 'text',
-          label: '删除',
-          key: uid(),
-        },
-      ],
-    }),
-    activeCollapseItems: ['column'],
-    allowCopy: true,
-    allowDelete: true,
-  },
+  // {
+  //   name: 'tableCol',
+  //   id: uid(),
+  //   title: '表格项',
+  //   prop: 'operation',
+  //   label: '操作',
+  //   type: 'button',
+  //   buttons: [
+  //     {
+  //       key: uid(),
+  //       type: 'text',
+  //       label: '添加',
+  //     },
+  //     {
+  //       type: 'text',
+  //       label: '删除',
+  //       key: uid(),
+  //     },
+  //   ],
+  //   componentSchema: tableColTemplateSchema,
+  //   componentOptionsConfig: tableColTemplateOptionsConfig,
+  //   componentFormData: reactive({
+  //     ...tableColFormData,
+  //     type: 'button',
+  //     prop: 'operation',
+  //     label: '操作',
+  //     buttons: [
+  //       {
+  //         key: uid(),
+  //         type: 'text',
+  //         label: '编辑',
+  //       },
+  //       {
+  //         type: 'text',
+  //         label: '删除',
+  //         key: uid(),
+  //       },
+  //     ],
+  //   }),
+  //   activeCollapseItems: ['column'],
+  //   allowCopy: true,
+  //   allowDelete: true,
+  // },
 ]
 
 export function CrudTemplate() {
   return {
     id: uid(),
-    name: 'tablePro',
+    name: 'crud',
     icon: 'i-list',
     title: '增删改查',
     schema: {
-      headerRowClassName: 'tableProHeader',
+      headerRowClassName: 'crudHeader',
       cellClassName: ({ columnIndex }: { columnIndex: number }) => {
-        if (tableCols[columnIndex])
-          return `schema-field${tableCols[columnIndex].id}`
+        if (columns[columnIndex])
+          return `schema-field${columns[columnIndex].id}`
       },
       draggable: true,
       defaultExpand: true,
@@ -300,7 +300,7 @@ export function CrudTemplate() {
         pageSize: 10,
         total: 0,
       },
-      tableCols,
+      columns,
     },
     componentFormData: reactive({
       rowKey: 'id',

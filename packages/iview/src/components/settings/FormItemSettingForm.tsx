@@ -52,10 +52,7 @@ export default defineComponent({
           formItemFormData: cloneObj.formData,
           schema: {
             ...curOperateComponent.value.schema,
-            formItemProps: {
-              ...curOperateComponent.value.schema?.formItemProps,
-              ...cloneObj.formData,
-            },
+            ...cloneObj.formData,
           },
         }
       }

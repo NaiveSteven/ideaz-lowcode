@@ -24,11 +24,6 @@ export const formItemTemplateSchema = [
     field: 'showMessage',
     label: '错误信息显示',
   },
-  {
-    component: 'el-switch',
-    field: 'inlineMessage',
-    label: '行内表单',
-  },
 ]
 
 export const formItemTemplateOptionsConfig = {
@@ -55,4 +50,5 @@ export const formItemFormData = {
   errorMessage: '',
   showMessage: true,
   inlineMessage: false,
+  required: false,
 }

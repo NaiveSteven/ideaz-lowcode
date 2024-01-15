@@ -8,16 +8,25 @@ export const inputNumberTemplateSchema = [
     component: 'el-input-number',
     field: 'min',
     label: '最小值',
+    fieldProps: {
+      controlsPosition: 'right',
+    },
   },
   {
     component: 'el-input-number',
     field: 'max',
     label: '最大值',
+    fieldProps: {
+      controlsPosition: 'right',
+    },
   },
   {
     component: 'el-input-number',
     field: 'step',
     label: '计数器步长',
+    fieldProps: {
+      controlsPosition: 'right',
+    },
   },
   {
     component: 'input',

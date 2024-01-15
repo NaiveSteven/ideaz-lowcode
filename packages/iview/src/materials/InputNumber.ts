@@ -19,7 +19,6 @@ export const InputNumberTemplateComponent = {
     field: 'inputNumber',
     label: '数字输入',
     fieldProps: {
-      size: 'default',
       min: undefined,
       max: undefined,
       step: 1,

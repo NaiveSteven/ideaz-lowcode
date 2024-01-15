@@ -13,7 +13,7 @@ export function getSelectFormItemTemplate() {
   const newFormItem = {
     id: uid(),
     name: 'tableForm',
-    type: 'select',
+    component: 'select',
     title: '表单项',
     field: prop,
     icon: '',
