@@ -1,6 +1,8 @@
 import { useMiddleFormStore, useWorkspaceStore } from '@ideal-schema/playground-store'
 import { formTemplateOptionsConfig, formTemplateSchema } from '../../schemas'
 import FormItemSettingForm from './FormItemSettingForm'
+import CrudFormItemSettingForm from './CrudFormItemSettingForm'
+import CrudSettingForm from './CrudSettingForm'
 import './style.scss'
 
 export default defineComponent({
@@ -33,6 +35,7 @@ export default defineComponent({
 
     const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
     const middleFormConfig = computed(() => middleFormStore.getFormConfig)
+    const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
 
     const handleMiddleFormChange = (data: { value: any, field: any }) => {
       middleFormStore.setFormConfig({ ...middleFormConfig.value, [data.field]: data.value })
@@ -52,6 +55,17 @@ export default defineComponent({
           </div>
         )
       }
+
+      if (curOperateComponent.value.name === 'crud')
+        return <CrudSettingForm />
+
+      if (
+        componentList.value
+        && componentList.value.length
+        && componentList.value[0].name === 'crud'
+      )
+        return <CrudFormItemSettingForm />
+
       return <FormItemSettingForm />
     }
   },

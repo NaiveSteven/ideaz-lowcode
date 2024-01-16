@@ -61,7 +61,8 @@ declare interface FormItemConfigItem extends WorkspaceComponentItem {
 
 declare interface Pagination {
   page: number
-  page_size: number
+  page_size?: number
+  pageSize?: number
   total: number
   [propName: string]: any
 }
