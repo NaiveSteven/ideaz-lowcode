@@ -14,7 +14,6 @@ export default defineComponent({
     const formConfig = reactive({
       labelPosition: 'left',
       labelWidth: '120px',
-      // size: 'default',
       colon: false,
     })
 
