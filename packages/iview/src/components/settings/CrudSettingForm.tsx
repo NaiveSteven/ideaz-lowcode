@@ -41,8 +41,8 @@ export default defineComponent({
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
-      const schema = cloneDeep(tableProConfig.schema)
+      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const schema = cloneDeep(crud.schema)
       if (obj.formData.pagination === false) {
         delete schema.pagination
       }
@@ -75,26 +75,26 @@ export default defineComponent({
       else {
         // delete schema.rowKey;
       }
-      if (obj.formData.defaultExpand)
-        schema.defaultExpand = true
+      if (obj.formData.collapsed)
+        schema.collapsed = true
 
       else
-        delete schema.defaultExpand
+        schema.collapsed = false
 
       workspaceStore.updateComponentList([
         {
-          ...tableProConfig,
+          ...crud,
           componentFormData: {
-            ...tableProConfig.componentFormData,
+            ...crud.componentFormData,
             ...obj.formData,
           },
           schema,
         },
       ])
       workspaceStore.updateCurOperateComponent({
-        ...tableProConfig,
+        ...crud,
         componentFormData: {
-          ...tableProConfig.componentFormData,
+          ...crud.componentFormData,
           ...obj.formData,
         },
         schema,

@@ -85,7 +85,7 @@ export default defineComponent({
         <div class="form-content">
           <el-collapse v-model={curOperateComponent.value.activeCollapseItems}>
             <el-collapse-item title="列属性" name="column">
-              <il-form
+              <z-form
                 v-model={curOperateComponent.value.componentFormData}
                 {...formConfig}
                 columns={

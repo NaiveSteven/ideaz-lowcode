@@ -37,4 +37,5 @@ declare interface Schema {
   required?: boolean
   form?: IndexType
   search?: IndexType
+  collapsed?: boolean
 }

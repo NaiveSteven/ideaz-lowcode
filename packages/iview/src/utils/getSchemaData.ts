@@ -195,8 +195,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     if (componentFormData?.rowKey && componentFormData.rowKey !== 'id')
       config.rowKey = componentFormData?.rowKey
 
-    if (componentFormData?.defaultExpand === false)
-      config.defaultExpand = componentFormData?.defaultExpand
+    if (componentFormData?.collapsed === false)
+      config.collapsed = componentFormData?.collapsed
 
     if (componentFormData?.pagination)
       config.pagination = schema.pagination

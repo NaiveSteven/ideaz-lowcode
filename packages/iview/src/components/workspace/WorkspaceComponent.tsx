@@ -47,7 +47,7 @@ export default defineComponent({
     watch(
       () => curOperateComponent.value,
       () => {
-        if (curOperateComponent.value.name === 'tableCol')
+        if (curOperateComponent.value.name === 'tableCol' || curOperateComponent.value.name === 'crud')
           tableKey.value = new Date().valueOf()
       },
     )

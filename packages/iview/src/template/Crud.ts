@@ -284,7 +284,7 @@ export function CrudTemplate() {
           return `schema-field${columns[columnIndex].id}`
       },
       draggable: true,
-      defaultExpand: true,
+      collapsed: true,
       rowKey: 'id',
       searchFormData: {
         name: '',
@@ -315,7 +315,7 @@ export function CrudTemplate() {
       rowKey: 'id',
       formDecorator: 'el-card',
       tableDecorator: 'el-card',
-      defaultExpand: true,
+      collapsed: true,
       pagination: true,
       background: 'page',
     }),

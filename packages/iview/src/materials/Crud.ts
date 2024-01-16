@@ -191,7 +191,7 @@ export function CrudTemplateComponent() {
     schema: {
       headerRowClassName: 'crudHeader',
       draggable: true,
-      defaultExpand: true,
+      collapsed: true,
       rowKey: 'id',
       searchFormData: {
         name: '',
@@ -222,7 +222,7 @@ export function CrudTemplateComponent() {
       rowKey: 'id',
       formDecorator: 'el-card',
       tableDecorator: 'el-card',
-      defaultExpand: true,
+      collapsed: true,
       pagination: true,
     }),
     componentSchema: crudTableTemplateSchema,

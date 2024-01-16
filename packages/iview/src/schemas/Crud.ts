@@ -21,7 +21,7 @@ export const crudTableTemplateSchema = [
   },
   {
     component: 'el-switch',
-    field: 'defaultExpand',
+    field: 'collapsed',
     label: '表单默认展开',
   },
   {
