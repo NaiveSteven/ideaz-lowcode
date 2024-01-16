@@ -4,7 +4,7 @@ import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import './style.scss'
 
 export default defineComponent({
-  name: 'TableProSettingForm',
+  name: 'CrudSettingForm',
   setup() {
     const workspaceStore = useWorkspaceStore()
 

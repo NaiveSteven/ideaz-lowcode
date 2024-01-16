@@ -3,6 +3,7 @@ import { formTemplateOptionsConfig, formTemplateSchema } from '../../schemas'
 import FormItemSettingForm from './FormItemSettingForm'
 import CrudFormItemSettingForm from './CrudFormItemSettingForm'
 import CrudSettingForm from './CrudSettingForm'
+import CrudTableColumnSettingForm from './CrudTableColumnSettingForm'
 import './style.scss'
 
 export default defineComponent({
@@ -54,6 +55,9 @@ export default defineComponent({
           </div>
         )
       }
+
+      if (curOperateComponent.value.name === 'tableCol')
+        return <CrudTableColumnSettingForm />
 
       if (curOperateComponent.value.name === 'crud')
         return <CrudSettingForm />
