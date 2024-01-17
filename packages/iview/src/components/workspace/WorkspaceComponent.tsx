@@ -6,6 +6,7 @@ import { cloneDeep } from 'lodash-es'
 import { useGlobalSettingStore, useWorkspaceStore } from '@ideal-schema/playground-store'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
 import { useMiddleFormStoreData } from '../../hooks'
+import mitt from '../../event'
 import './style.scss'
 
 export default defineComponent({
@@ -44,10 +45,29 @@ export default defineComponent({
 
     const tableKey = ref(new Date().valueOf())
 
+    onMounted(() => {
+      mitt.on('form-item-click', (({ event, id }: { id: string, event: PointerEvent }) => {
+        event?.stopPropagation()
+        event?.preventDefault()
+        if (props.curOperateComponent.id === id)
+          return
+        let item: any = {}
+        workspaceStore.getWorkspaceComponentList[0]?.schema?.columns?.forEach((col) => {
+          if (col.search?.formItemProps?.id === `schema-field${id}`)
+            item = { ...col.search }
+        })
+        emit('on-update-cur-operate', item)
+      }) as () => void)
+    })
+
+    onBeforeUnmount(() => {
+      mitt.off('form-item-click')
+    })
+
     watch(
       () => curOperateComponent.value,
       () => {
-        if (curOperateComponent.value.name === 'tableCol' || curOperateComponent.value.name === 'crud')
+        if (curOperateComponent.value.name === 'tableCol' || curOperateComponent.value.name === 'crud' || curOperateComponent.value.name === 'tableForm')
           tableKey.value = new Date().valueOf()
       },
     )
