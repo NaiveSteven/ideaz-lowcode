@@ -12,6 +12,7 @@ import {
   tableColTemplateOptionsConfig,
   tableColTemplateSchema,
 } from '../schemas'
+import mitt from '../event'
 
 const FORM_COMPONENT_TYPE = [
   { label: '输入框', value: 'input' },
@@ -30,11 +31,13 @@ function getColumns() {
       prop: 'name',
       label: '姓名',
       title: '表格项',
-      id: mockNameId,
+      id: uid(),
       search: {
+        id: mockNameId,
         name: 'tableForm',
         formItemProps: {
           id: `schema-field${mockNameId}`,
+          onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: mockNameId }) },
         },
         component: 'input',
         title: '表单项',
@@ -115,10 +118,12 @@ function getColumns() {
       prop: 'address',
       label: '地址',
       title: '表格项',
-      id: mockAddressId,
+      id: uid(),
       search: {
+        id: mockAddressId,
         formItemProps: {
           id: `schema-field${mockAddressId}`,
+          onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: mockAddressId }) },
         },
         component: 'input',
         name: 'tableForm',
@@ -285,15 +290,15 @@ export function CrudTemplate() {
       },
       draggable: true,
       collapsed: true,
+      size: 'default',
       rowKey: 'id',
       searchFormData: {
         name: '',
         address: '',
       },
-      form: {
+      search: {
         labelPosition: 'right',
-        labelWidth: '80px',
-        size: 'small',
+        labelWidth: '100px',
         draggable: true,
       },
       data: [

@@ -109,14 +109,13 @@ export default defineComponent({
       let ele = document.getElementById(`schema-field${curOperateComponent.value?.id}`)
       if (!curOperateComponent.value.id)
         ele = document.getElementById('view-port')
-
       if (curOperateComponent.value.name === 'tableCol') {
         const schema = componentList.value[0].schema
         const len = schema.data.length
         const bottomDom = document.getElementsByClassName(
           `schema-field${curOperateComponent.value?.id}`,
         )[len - 1]
-        const topDom = document.getElementsByClassName('tableProHeader')[0]
+        const topDom = document.getElementsByClassName('crudHeader')[0]
         if (bottomDom && topDom) {
           const bottomDomRect = bottomDom.getBoundingClientRect()
           const topDomRect = topDom.getBoundingClientRect()
