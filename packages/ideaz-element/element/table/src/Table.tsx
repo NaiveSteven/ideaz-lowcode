@@ -20,7 +20,7 @@ export default defineComponent({
   directives: { draggable },
   inheritAttrs: false,
   props: tableProps,
-  emits: ['refresh', 'radio-change', 'update:data', 'update:pagination', 'drag-sort-end'],
+  emits: ['refresh', 'radio-change', 'update:data', 'update:pagination', 'drag-sort-end', 'drag-column-end'],
   setup(props, { emit, slots }) {
     const {
       setCurrentRow,
@@ -64,7 +64,7 @@ export default defineComponent({
       zTableFormRef,
     } = useTableColumns(props, emit, tableData)
     const { scopedSlots, tableSlots } = useTableSlots(formatTableCols, slots)
-    const { draggableOptions, dragging } = useDraggable(emit, tableData)
+    const { draggableOptions, dragging } = useDraggable(emit, tableData, middleTableCols)
     const ns = useNamespace('table')
     const { t } = useLocale()
     const size = ref(props.size)

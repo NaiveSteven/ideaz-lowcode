@@ -218,7 +218,7 @@ export default defineComponent({
                         style={{ zIndex: 1 }}
                         pid={formItem.children ? formItem.id : ''}
                         onOn-update-form-item={handleUpdateFormItem}
-                        onOn-update-table-column={handleUpdateTableColumn}
+                        onDrag-column-end={handleUpdateTableColumn}
                         onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
                         onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
                         onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}

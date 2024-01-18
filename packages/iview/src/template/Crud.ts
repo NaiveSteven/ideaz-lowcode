@@ -229,49 +229,53 @@ function getColumns() {
       allowCopy: true,
       allowDelete: true,
     },
-  // {
-  //   name: 'tableCol',
-  //   id: uid(),
-  //   title: '表格项',
-  //   prop: 'operation',
-  //   label: '操作',
-  //   type: 'button',
-  //   buttons: [
-  //     {
-  //       key: uid(),
-  //       type: 'text',
-  //       label: '添加',
-  //     },
-  //     {
-  //       type: 'text',
-  //       label: '删除',
-  //       key: uid(),
-  //     },
-  //   ],
-  //   componentSchema: tableColTemplateSchema,
-  //   componentOptionsConfig: tableColTemplateOptionsConfig,
-  //   componentFormData: reactive({
-  //     ...tableColFormData,
-  //     type: 'button',
-  //     prop: 'operation',
-  //     label: '操作',
-  //     buttons: [
-  //       {
-  //         key: uid(),
-  //         type: 'text',
-  //         label: '编辑',
-  //       },
-  //       {
-  //         type: 'text',
-  //         label: '删除',
-  //         key: uid(),
-  //       },
-  //     ],
-  //   }),
-  //   activeCollapseItems: ['column'],
-  //   allowCopy: true,
-  //   allowDelete: true,
-  // },
+    {
+      name: 'tableCol',
+      id: uid(),
+      title: '表格项',
+      prop: 'operation',
+      label: '操作',
+      type: 'button',
+      buttons: [
+        {
+          key: uid(),
+          type: 'primary',
+          link: true,
+          label: '添加',
+        },
+        {
+          type: 'primary',
+          link: true,
+          label: '删除',
+          key: uid(),
+        },
+      ],
+      componentSchema: tableColTemplateSchema,
+      componentOptionsConfig: tableColTemplateOptionsConfig,
+      componentFormData: reactive({
+        ...tableColFormData,
+        type: 'button',
+        prop: 'operation',
+        label: '操作',
+        buttons: [
+          {
+            type: 'primary',
+            key: uid(),
+            link: true,
+            label: '编辑',
+          },
+          {
+            type: 'primary',
+            link: true,
+            label: '删除',
+            key: uid(),
+          },
+        ],
+      }),
+      activeCollapseItems: ['column'],
+      allowCopy: true,
+      allowDelete: true,
+    },
   ]
 }
 
@@ -283,6 +287,7 @@ export function CrudTemplate() {
     icon: 'i-list',
     title: '增删改查',
     schema: {
+      action: false,
       headerRowClassName: 'crudHeader',
       cellClassName: ({ columnIndex }: { columnIndex: number }) => {
         if (columns[columnIndex])
