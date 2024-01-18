@@ -42,6 +42,9 @@ export default defineComponent({
     }
 
     return () => {
+      if (!curOperateComponent.value.id && componentList.value?.[0]?.name === 'crud')
+        return null
+
       if (!curOperateComponent.value.id) {
         return (
           <div class="form-content">
