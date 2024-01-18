@@ -4,7 +4,7 @@ import { VueDraggable } from 'vue-draggable-plus'
 import { isFunction } from '../../../utils'
 import { useFixedTableCols, useToolBarTableCols } from '../hooks'
 import type { TableCol } from '../../types'
-import { useLocale, useNamespace } from '../../../hooks'
+import { useFormSize, useLocale, useNamespace } from '../../../hooks'
 import { toolBarProps } from './props'
 
 function mergeArraysByUID(arr1: TableCol[], arr2: TableCol[]) {
@@ -53,6 +53,8 @@ export default defineComponent({
     } = useFixedTableCols(props, emit, checkedTableCols)
     const ns = useNamespace('table-tool-bar')
     const { t } = useLocale()
+    // remark size
+    const size = useFormSize()
 
     const isIndeterminate = ref(getIsIndeterminate(leftCheckedTableColsUids.value, checkedTableCols.value, rightCheckedTableColsUids.value))
     const checkAll = ref(getIsCheckAll(leftCheckedTableColsUids.value, checkedTableCols.value, rightCheckedTableColsUids.value))
@@ -222,7 +224,7 @@ export default defineComponent({
       return (
         <div class={ns.b('')}>
           <el-tooltip effect="dark" content={t('common.refresh')} placement="top" showAfter={300}>
-            <el-button v-loading={loading} icon={Refresh} text onClick={handleRefresh}></el-button>
+            <el-button v-loading={loading} icon={Refresh} size={size.value} text onClick={handleRefresh}></el-button>
           </el-tooltip>
           <el-tooltip effect="dark" content={t('table.density')} placement="top" showAfter={300}>
             <el-dropdown
@@ -251,7 +253,7 @@ export default defineComponent({
           </el-tooltip>
           <el-tooltip effect="dark" content={isFullScreen.value ? t('common.cancelFullScreen') : t('common.fullScreen')} placement="top" showAfter={300}>
             <z-full-screen el={fullScreenElement || document.getElementsByClassName('z-table__container')[0]} onChange={(val: boolean) => isFullScreen.value = val}>
-              <el-button icon={FullScreen} text />
+              <el-button icon={FullScreen} text size={size.value} />
             </z-full-screen>
           </el-tooltip>
           <el-tooltip effect="dark" content={t('table.columnSetting')} placement="top" showAfter={300}>
@@ -262,7 +264,7 @@ export default defineComponent({
                 trigger="click"
                 v-slots={{
                   reference: () => (
-                    <el-button icon={Operation} text></el-button>
+                    <el-button icon={Operation} text size={size.value}></el-button>
                   ),
                 }}
               >
