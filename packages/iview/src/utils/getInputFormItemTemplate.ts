@@ -7,11 +7,13 @@ import {
   inputCrudFormData,
   inputCrudSchema,
 } from '../schemas'
+import mitt from '../event'
 
 export function getInputFormItemTemplate() {
   const prop = uid()
+  const inputId = uid()
   const newFormItem = {
-    id: uid(),
+    id: inputId,
     name: 'tableForm',
     component: 'input',
     title: '表单项',
@@ -19,6 +21,10 @@ export function getInputFormItemTemplate() {
     icon: '',
     schema: {},
     label: '标签',
+    formItemProps: {
+      id: `schema-field${inputId}`,
+      onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: inputId }) },
+    },
     componentFormData: reactive({
       ...inputCrudFormData,
       componentType: 'input',

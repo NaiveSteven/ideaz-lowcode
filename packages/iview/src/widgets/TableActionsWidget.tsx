@@ -76,7 +76,7 @@ export default defineComponent({
         label: '添加表单项',
         click: () => {
           let lastIndex = 0
-          const { newFormItem, prop } = getInputFormItemTemplate()
+          const { newFormItem } = getInputFormItemTemplate()
           const columns = workspaceComponentList.value[0].schema.columns!
           columns.forEach((item: TableCol, index: number) => {
             if (item.search && lastIndex < index)
