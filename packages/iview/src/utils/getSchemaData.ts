@@ -271,6 +271,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 
         delete searchFormItem.fieldProps?.options
         delete searchFormItem.formItemProps?.class
+        delete searchFormItem.formItemProps?.id
+        delete searchFormItem.formItemProps?.onClick
         delete searchFormItem.schema
         delete searchFormItem.icon
 

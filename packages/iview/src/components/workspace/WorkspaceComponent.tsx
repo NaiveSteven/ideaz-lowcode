@@ -146,7 +146,7 @@ export default defineComponent({
       const schema = tableProConfig.schema
       if (schema.columns && schema.columns.length) {
         const filterColumns = cloneDeep(schema.columns.filter(item => item.prop))
-        const filterFormItems = schema.columns.filter(item => item.formItemProps)
+        const filterFormItems = schema.columns.filter(item => item.search)
 
         const newTableCol = { ...filterColumns[oldIndex] }
         const oldTableCol = { ...filterColumns[newIndex] }
@@ -154,9 +154,9 @@ export default defineComponent({
         filterColumns[oldIndex] = oldTableCol
         if (filterColumns.length >= filterFormItems.length) {
           filterColumns.forEach((item, index) => {
-            delete item.formItemProps
+            delete item.search
             if (filterFormItems[index])
-              item.formItemProps = filterFormItems[index].formItemProps
+              item.search = filterFormItems[index].search
           })
         }
         else {
@@ -164,7 +164,7 @@ export default defineComponent({
             if (!filterColumns[index])
               filterColumns[index] = {}
 
-            filterColumns[index].formItemProps = filterFormItems[index].formItemProps
+            filterColumns[index].search = filterFormItems[index].search
           })
         }
         workspaceStore.updateComponentList([
