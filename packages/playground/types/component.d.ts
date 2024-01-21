@@ -115,6 +115,7 @@ declare interface WorkspaceComponentItem {
   // 表单项 表格项
   formItemProps?: FormItemConfigItem
   attrs?: IndexType
+  fieldProps?: IndexType
   type?: string
   btnList?: BtnItem[]
 }

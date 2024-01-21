@@ -22,6 +22,7 @@ declare interface Schema {
   data?: any
   cellClassName?: string | ((obj: { columnIndex: number }) => string)
   searchFormData?: IndexType
+  formData?: IndexType
   options?: IndexType
   pagination?: Pagination
   tableDecorator?: IndexType
