@@ -1,5 +1,5 @@
 import { computed, defineComponent, reactive } from 'vue'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, debounce } from 'lodash-es'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
 import { FORM_COMPONENT_TYPE } from '../../materials'
@@ -46,19 +46,23 @@ export default defineComponent({
           }
           return cur
         })
-        workspaceStore.updateComponentList([
-          {
-            ...crud,
-            schema: {
-              ...schema,
-              formData: {
-                ...schema.formData,
-                [changeData.formData.field]: changeData.formData.default,
+        const updateWorkspaceComponentList = debounce(() => {
+          workspaceStore.updateComponentList([
+            {
+              ...crud,
+              schema: {
+                ...schema,
+                formData: {
+                  ...schema.formData,
+                  [changeData.formData.field]: changeData.formData.default,
+                },
+                columns,
               },
-              columns,
             },
-          },
-        ])
+          ])
+        }, 50)
+
+        updateWorkspaceComponentList()
       }
       workspaceStore.updateCurOperateComponent(form)
     }
@@ -67,6 +71,7 @@ export default defineComponent({
       const item = {
         ...curOperateComponent.value,
         field: obj.formData.field,
+        fieldFormData: obj.formData,
       }
       const crud = workspaceStore.getWorkspaceComponentList[0]
       const schema = crud.schema
