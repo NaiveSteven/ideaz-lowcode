@@ -307,6 +307,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
       if (tableCol.type === 'button') {
         delete tableCol.prop
         tableCol.buttons = item.buttons?.map((item) => {
+          if (item.link) {
+            return {
+              link: item.link,
+              type: item.type,
+              label: item.label,
+            }
+          }
           return {
             type: item.type,
             label: item.label,
