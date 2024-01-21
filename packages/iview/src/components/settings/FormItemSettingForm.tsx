@@ -92,6 +92,7 @@ export default defineComponent({
               <z-form
                 v-model={curOperateComponent.value.fieldFormData}
                 {...formConfig}
+                key={curOperateComponent.value.id}
                 columns={curOperateComponent.value.fieldSchema}
                 options={curOperateComponent.value.fieldOptionsConfig}
                 onChange={handleFieldFormDataChange}
@@ -118,6 +119,7 @@ export default defineComponent({
                 <z-form
                   v-model={curOperateComponent.value.formItemFormData}
                   {...formConfig}
+                  key={curOperateComponent.value.id}
                   columns={curOperateComponent.value.formItemTemplateSchema}
                   options={curOperateComponent.value.formItemOptionsConfig}
                   onChange={handleFormItemFormDataChange}

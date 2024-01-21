@@ -304,6 +304,7 @@ export default defineComponent({
               <z-form
                 v-model={curOperateComponent.value.fieldFormData}
                 {...formConfig}
+                key={curOperateComponent.value.id}
                 columns={curOperateComponent.value.fieldSchema}
                 options={curOperateComponent.value.fieldOptionsConfig}
                 onChange={handleFieldFormDataChange}
@@ -314,9 +315,9 @@ export default defineComponent({
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
-                    key={curOperateComponent.value.id}
                     v-model={curOperateComponent.value.componentFormData}
                     {...formConfig}
+                    key={curOperateComponent.value.id}
                     columns={curOperateComponent.value.componentSchema}
                     options={curOperateComponent.value.componentOptionsConfig}
                     onChange={handleFormDataChange}
@@ -331,6 +332,7 @@ export default defineComponent({
                   <z-form
                     v-model={curOperateComponent.value.formItemFormData}
                     {...formConfig}
+                    key={curOperateComponent.value.id}
                     columns={curOperateComponent.value.formItemTemplateSchema}
                     options={curOperateComponent.value.formItemOptionsConfig}
                     onChange={handleFormItemFormDataChange}

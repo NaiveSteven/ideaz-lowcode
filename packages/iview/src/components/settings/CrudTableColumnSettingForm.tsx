@@ -90,6 +90,7 @@ export default defineComponent({
               <z-form
                 v-model={curOperateComponent.value.componentFormData}
                 {...formConfig}
+                key={curOperateComponent.value.id}
                 columns={
                   isFunction(curOperateComponent.value.componentSchema)
                     ? curOperateComponent.value.componentSchema(
