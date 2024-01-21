@@ -30,7 +30,7 @@ export function tableColTemplateSchema(formData: any) {
     },
     {
       component: 'buttons-config',
-      field: 'btnList',
+      field: 'buttons',
       hide: () => formData.type !== 'button',
       label: '按钮',
       formItemProps: { class: 'form-item-options__container' },

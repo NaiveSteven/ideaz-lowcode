@@ -21,7 +21,7 @@ export default defineComponent({
       const crud = workspaceStore.getWorkspaceComponentList[0]
       const schema = crud.schema
       let columns: TableCol[] = []
-      const data = {
+      const data: WorkspaceComponentItem = {
         ...curOperateComponent.value,
         componentFormData: {
           ...curOperateComponent.value.componentFormData,
@@ -41,26 +41,28 @@ export default defineComponent({
         ]
       }
       else {
-        data.componentFormData.slot = ''
+        data.componentFormData!.slot = ''
       }
       if (obj.formData.type === 'default') {
         delete data.type
-        delete data.btnList
+        delete data.buttons
       }
-      if (obj.formData.type === 'button' && !data.btnList) {
-        data.btnList = [
+      if (obj.formData.type === 'button' && !data.buttons) {
+        data.buttons = [
           {
             key: uid(),
-            type: 'text',
+            type: 'primary',
+            link: true,
             label: '编辑',
           },
           {
-            type: 'text',
+            type: 'primary',
+            link: true,
             label: '删除',
             key: uid(),
           },
         ]
-        data.componentFormData.btnList = data.btnList
+        data.componentFormData!.buttons = data.buttons
       }
       columns = schema.columns?.map((item: TableCol) => {
         if (item.id === curOperateComponent.value.id)
