@@ -284,7 +284,7 @@ export default defineComponent({
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
-        formItemProps: { ...obj.formData },
+        formItemProps: { ...curOperateComponent.value.formItemProps, ...obj.formData },
       }
       const crud = workspaceStore.getWorkspaceComponentList[0]
       const schema = crud.schema
