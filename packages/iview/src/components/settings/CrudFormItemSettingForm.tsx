@@ -34,26 +34,26 @@ export default defineComponent({
       schema: Schema,
       changeData: FormChangeData,
     ) => {
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceStore.getWorkspaceComponentList[0]
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
         columns = schema.columns.map((cur: TableCol) => {
-          if (cur.formItemProps && cur.formItemProps.id === form.id) {
+          if (cur.search && cur.search.id === form.id) {
             return {
               ...cur,
-              formItemProps: form,
+              search: form,
             }
           }
           return cur
         })
         workspaceStore.updateComponentList([
           {
-            ...tableProConfig,
+            ...crud,
             schema: {
               ...schema,
-              searchFormData: {
-                ...schema.searchFormData,
-                [changeData.formData.prop]: changeData.formData.default,
+              formData: {
+                ...schema.formData,
+                [changeData.formData.field]: changeData.formData.default,
               },
               columns,
             },
@@ -66,10 +66,10 @@ export default defineComponent({
     const handleFieldFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
-        prop: obj.formData.prop,
+        field: obj.formData.field,
       }
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
-      const schema = tableProConfig.schema
+      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const schema = crud.schema
       updateData(item, schema, obj)
     }
 
@@ -78,37 +78,35 @@ export default defineComponent({
         if (obj.value === 'select') {
           const item = {
             ...curOperateComponent.value,
-            type: 'select',
-            attrs: {
+            component: 'select',
+            fieldProps: {
               ...SelectCrudFormData,
             },
-            templateSchema: [
+            componentSchema: [
               {
-                type: 'select',
-                prop: 'componentType',
-                formItem: {
-                  label: '组件类别',
-                },
+                component: 'select',
+                field: 'componentType',
+                label: '组件类别',
               },
               ...cloneDeep(selectCrudSchema),
             ],
-            templateFormData: reactive({
+            componentFormData: reactive({
               ...SelectCrudFormData,
               componentType: 'select',
             }),
-            templateOptionsConfig: {
+            componentOptionsConfig: {
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
-            ...tableProConfig.schema,
+            ...crud.schema,
             searchFormData: {
-              ...tableProConfig.schema.searchFormData,
+              ...crud.schema.searchFormData,
               [obj.field]: obj.value,
             },
-            formOptions: {
-              ...tableProConfig.schema.options,
+            options: {
+              ...crud.schema.options,
               [obj.field]: [{ label: '标签', value: '1', key: uid() }],
             },
           }
@@ -117,8 +115,8 @@ export default defineComponent({
         if (obj.value === 'multipleSelect') {
           const item = {
             ...curOperateComponent.value,
-            type: 'select',
-            attrs: {
+            component: 'select',
+            fieldProps: {
               ...multipleSelectCrudFormData,
               multiple: true,
             },
@@ -142,15 +140,15 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
-            ...tableProConfig.schema,
+            ...crud.schema,
             searchFormData: {
-              ...tableProConfig.schema.searchFormData,
+              ...crud.schema.searchFormData,
               [obj.field]: obj.value,
             },
-            formOptions: {
-              ...tableProConfig.schema.options,
+            options: {
+              ...crud.schema.options,
               [obj.field]: [{ label: '标签', value: '1', key: uid() }],
             },
           }
@@ -159,8 +157,8 @@ export default defineComponent({
         if (obj.value === 'input') {
           const item = {
             ...curOperateComponent.value,
-            type: 'input',
-            attrs: reactive({
+            component: 'input',
+            fieldProps: reactive({
               ...inputCrudFormData,
             }),
             componentSchema: [
@@ -179,15 +177,15 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
-          const schema = tableProConfig.schema
+          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const schema = crud.schema
           updateData(item, schema, obj)
         }
         if (obj.value === 'datepicker') {
           const item = {
             ...curOperateComponent.value,
-            type: 'datepicker',
-            attrs: reactive({
+            component: 'datepicker',
+            fieldProps: reactive({
               ...dateRangeCrudFormData,
               type: 'daterange',
             }),
@@ -211,11 +209,11 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
-            ...tableProConfig.schema,
+            ...crud.schema,
             searchFormData: {
-              ...tableProConfig.schema.searchFormData,
+              ...crud.schema.searchFormData,
               [obj.field]: obj.value,
             },
           }
@@ -224,7 +222,7 @@ export default defineComponent({
         if (obj.value === 'slot') {
           const item = {
             ...curOperateComponent.value,
-            type: 'placeholder-block',
+            component: 'placeholder-block',
             componentSchema: [
               {
                 component: 'select',
@@ -248,7 +246,7 @@ export default defineComponent({
             fieldSchema: [
               {
                 component: 'input',
-                field: 'prop',
+                field: 'field',
                 label: '字段名',
               },
               {
@@ -258,11 +256,11 @@ export default defineComponent({
               },
             ],
           }
-          const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceStore.getWorkspaceComponentList[0]
           const schema = {
-            ...tableProConfig.schema,
+            ...crud.schema,
             searchFormData: {
-              ...tableProConfig.schema.searchFormData,
+              ...crud.schema.searchFormData,
               [obj.field]: obj.value,
             },
           }
@@ -272,13 +270,13 @@ export default defineComponent({
       else {
         const item = {
           ...curOperateComponent.value,
-          attrs: {
-            ...curOperateComponent.value.attrs,
+          fieldProps: {
+            ...curOperateComponent.value.fieldProps,
             ...obj.formData,
           },
         }
-        const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
-        const schema = tableProConfig.schema
+        const crud = workspaceStore.getWorkspaceComponentList[0]
+        const schema = crud.schema
         updateData(item, schema, obj)
       }
     }
@@ -286,10 +284,10 @@ export default defineComponent({
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
-        formItem: { ...obj.formData },
+        formItemProps: { ...obj.formData },
       }
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
-      const schema = tableProConfig.schema
+      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const schema = crud.schema
       updateData(item, schema, obj)
     }
 
