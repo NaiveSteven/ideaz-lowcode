@@ -1,6 +1,5 @@
-import { defineComponent, computed } from 'vue';
-import type { PropType } from 'vue';
-import PolyInput from '../poly-input';
+import type { PropType } from 'vue'
+import PolyInput from '../poly-input'
 
 export default defineComponent({
   name: 'ValueInput',
@@ -13,11 +12,15 @@ export default defineComponent({
       type: Array as PropType<OptionsItem[]>,
       default: () => [],
     },
+    exclude: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
   },
-  emits: ['change'],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const polyTypes = computed(() => {
-      return [
+      const types = [
         {
           tip: '文本',
           icon: 'T',
@@ -47,7 +50,7 @@ export default defineComponent({
           tip: '布尔',
           icon: 'B',
           type: 'boolean',
-          component: 'il-select',
+          component: 'z-select',
           componentProps: {
             style: {
               minWidth: '83px',
@@ -69,7 +72,7 @@ export default defineComponent({
           tip: '数组',
           icon: 'A',
           type: 'array',
-          component: 'il-select',
+          component: 'z-select',
           componentProps: {
             multiple: true,
             options: props.arrayOptions,
@@ -80,16 +83,16 @@ export default defineComponent({
           },
           toChangeValue: [],
         },
-      ];
-    });
+      ]
+      return types.filter(item => props.exclude.includes(item.type) === false)
+    })
 
     return () => (
       <PolyInput
         polyTypes={polyTypes.value}
         modelValue={props.modelValue}
-        onInput={(val: string) => emit('change', val)}
-        onChange={(val: string) => emit('change', val)}
+        onUpdate:modelValue={(val: string) => emit('update:modelValue', val)}
       />
-    );
+    )
   },
-});
+})

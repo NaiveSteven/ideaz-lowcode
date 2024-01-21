@@ -1,14 +1,13 @@
-import { defineComponent, ref, h, computed, resolveComponent, watch } from 'vue';
-import { isString, isBoolean, isNumber, isArray } from '@ideal-schema/shared';
-import type { PropType } from 'vue';
+import { isArray, isBoolean, isNumber, isString } from '@ideal-schema/shared'
+import type { PropType } from 'vue'
 
 interface IPolyType {
-  tip: string;
-  icon: string;
-  component: string;
-  type: string;
-  componentProps?: IndexType;
-  toChangeValue: any;
+  tip: string
+  icon: string
+  component: string
+  type: string
+  componentProps?: IndexType
+  toChangeValue: any
 }
 
 export default defineComponent({
@@ -23,60 +22,59 @@ export default defineComponent({
       default: () => [],
     },
   },
-  emits: ['input', 'change'],
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const currentIndex = ref(0);
+    const currentIndex = ref(0)
 
-    const current = computed(() => props.polyTypes[currentIndex.value]);
+    const current = computed(() => props.polyTypes[currentIndex.value])
 
     const getType = (val: any) => {
-      if (isNumber(val)) {
-        return 'number';
-      }
-      if (isBoolean(val)) {
-        return 'boolean';
-      }
-      if (isString(val)) {
-        return 'string';
-      }
-      if (isArray(val)) {
-        return 'array';
-      }
-      return 'string';
-    };
+      if (isNumber(val))
+        return 'number'
+
+      if (isBoolean(val))
+        return 'boolean'
+
+      if (isString(val))
+        return 'string'
+
+      if (isArray(val))
+        return 'array'
+
+      return 'string'
+    }
 
     watch(
       () => props.modelValue,
       () => {
-        const type = getType(props.modelValue);
-        const index = props.polyTypes.findIndex((item) => item.type === type);
-        currentIndex.value = index;
+        const type = getType(props.modelValue)
+        const index = props.polyTypes.findIndex(item => item.type === type)
+        currentIndex.value = index
       },
-      { immediate: true }
-    );
+      { immediate: true },
+    )
 
     const handleChangeCurrent = () => {
-      const len = props.polyTypes.length;
+      const len = props.polyTypes.length
       if (currentIndex.value < len - 1) {
-        ++currentIndex.value;
-        emit('input', current.value.toChangeValue);
-        return;
+        ++currentIndex.value
+        emit('update:modelValue', current.value.toChangeValue)
+        return
       }
       if (currentIndex.value === len - 1) {
-        currentIndex.value = 0;
-        emit('input', current.value.toChangeValue);
-        return;
+        currentIndex.value = 0
+        emit('update:modelValue', current.value.toChangeValue)
       }
-    };
+    }
 
     return () => (
       <div class="flex">
         {h(resolveComponent(current.value.component), {
-          modelValue: props.modelValue,
+          'modelValue': props.modelValue,
           ...current.value.componentProps,
-          class: 'mr-1',
-          onInput: (val: string) => emit('input', val),
-          onChange: (val: string) => emit('change', val),
+          'class': 'mr-1',
+          'size': 'small',
+          'onUpdate:modelValue': (val: string) => emit('update:modelValue', val),
         })}
         <el-tooltip effect="dark" content={current.value.tip} showAfter={500} placement="top">
           <el-button type="default" size="small" onClick={handleChangeCurrent}>
@@ -85,6 +83,6 @@ export default defineComponent({
           </el-button>
         </el-tooltip>
       </div>
-    );
+    )
   },
-});
+})

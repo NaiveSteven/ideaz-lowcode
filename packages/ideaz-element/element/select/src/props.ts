@@ -13,7 +13,8 @@ export const selectProps = {
     required: false,
   },
   modelValue: {
-    type: [String, Number, Array],
+    // remark select props
+    type: [String, Number, Array, Boolean],
     default: '',
     required: false,
   },
