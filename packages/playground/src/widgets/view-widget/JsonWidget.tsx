@@ -1,4 +1,3 @@
-import { computed, defineComponent, ref } from 'vue'
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import beautify from 'js-beautify'

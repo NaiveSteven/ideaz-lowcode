@@ -1,6 +1,3 @@
-import { defineComponent, h, resolveComponent } from 'vue';
-import type { PropType } from 'vue';
-
 const VIEW_BUTTON_GROUPS = [
   {
     icon: 'i-brush',

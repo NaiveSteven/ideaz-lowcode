@@ -1,4 +1,3 @@
-import { defineComponent, useSlots } from 'vue';
 import './style.scss';
 
 export default defineComponent({

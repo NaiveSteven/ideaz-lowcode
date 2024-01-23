@@ -1,8 +1,8 @@
-import { defineComponent, computed, unref, CSSProperties } from 'vue';
+import { CSSProperties } from 'vue';
 import Copy from './Copy';
 import Delete from './Delete';
 import Selector from './Selector';
-import { useWorkspaceStoreData } from '@/hooks';
+import { useWorkspaceStoreData } from '../../hooks';
 import type { PropType } from 'vue';
 
 export default defineComponent({
@@ -21,8 +21,8 @@ export default defineComponent({
       props.position === 'bottom'
         ? (position.top = '100%')
         : props.position === 'inner-top'
-        ? ((position.top = '0'), (position.right = '1px'))
-        : (position.bottom = '100%');
+          ? ((position.top = '0'), (position.right = '1px'))
+          : (position.bottom = '100%');
       return {
         position: 'absolute',
         right: 0,

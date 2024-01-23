@@ -1,7 +1,6 @@
-import { defineComponent, computed } from 'vue';
-import { useWorkspaceStoreMethods, useWorkspaceStoreData, useInElement } from '@/hooks';
+import { useWorkspaceStoreMethods, useWorkspaceStoreData, useInElement } from '../../hooks';
 import { useGlobalSettingStore } from '@ideal-schema/playground-store';
-import { getPids, getTreeDataItem } from '@/utils/index';
+import { getPids, getTreeDataItem } from '../../utils/index';
 
 export default defineComponent({
   name: 'Selector',
@@ -80,23 +79,8 @@ export default defineComponent({
           <div style={{ position: 'absolute', top: '100%', left: 0 }} class="selector-menu">
             {workspaceComponentType.value === 'form'
               ? selectors.value
-                  .slice(1, selectors.value.length)
-                  .map((item: { id: string; title: string }) => {
-                    return (
-                      <el-button
-                        type="primary"
-                        size="small"
-                        class={['aux-button', 'mt-1']}
-                        onClick={() => handleClickTitle(item)}
-                      >
-                        <el-icon>
-                          <i-setting />
-                        </el-icon>
-                        <span>{item.title}</span>
-                      </el-button>
-                    );
-                  })
-              : tableProSelectors.value.map((item) => {
+                .slice(1, selectors.value.length)
+                .map((item: { id: string; title: string }) => {
                   return (
                     <el-button
                       type="primary"
@@ -110,7 +94,22 @@ export default defineComponent({
                       <span>{item.title}</span>
                     </el-button>
                   );
-                })}
+                })
+              : tableProSelectors.value.map((item) => {
+                return (
+                  <el-button
+                    type="primary"
+                    size="small"
+                    class={['aux-button', 'mt-1']}
+                    onClick={() => handleClickTitle(item)}
+                  >
+                    <el-icon>
+                      <i-setting />
+                    </el-icon>
+                    <span>{item.title}</span>
+                  </el-button>
+                );
+              })}
             {renderFormSelector(
               selectors.value.length ? 'aux-button selector-menu mt-1' : 'aux-button selector-menu',
               !!curOperateComponent.value.id

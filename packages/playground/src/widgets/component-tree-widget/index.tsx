@@ -1,7 +1,6 @@
-import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import type { ElTree } from 'element-plus'
-import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '@/hooks'
+import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../hooks'
 
 export default defineComponent({
   name: 'ComponentTreeWidget',

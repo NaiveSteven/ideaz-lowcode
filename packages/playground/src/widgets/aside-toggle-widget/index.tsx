@@ -1,5 +1,4 @@
-import { defineComponent, computed, CSSProperties } from 'vue';
-import type { PropType } from 'vue';
+import { CSSProperties } from 'vue';
 import './style.scss';
 
 export default defineComponent({

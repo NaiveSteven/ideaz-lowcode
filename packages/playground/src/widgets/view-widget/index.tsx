@@ -1,4 +1,3 @@
-import { defineComponent, PropType, h, resolveComponent } from 'vue';
 import JsonWidget from './JsonWidget';
 import { PlayWidget, PageWidget } from '@ideal-schema/playground-demi';
 import './style.scss';

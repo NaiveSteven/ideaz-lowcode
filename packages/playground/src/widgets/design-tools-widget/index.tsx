@@ -1,5 +1,3 @@
-import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
 import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playground-demi'
 import ScreenPixel from './ScreenPixel'
 import Clear from './Clear'

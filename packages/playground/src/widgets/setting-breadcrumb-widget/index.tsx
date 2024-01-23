@@ -1,9 +1,7 @@
-import { computed, defineComponent } from 'vue'
-
 import { cloneDeep } from 'lodash-es'
 import { useGlobalSettingStore } from '@ideal-schema/playground-store'
-import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '@/hooks'
-import { getPids, getTreeDataItem } from '@/utils/index'
+import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../hooks'
+import { getPids, getTreeDataItem } from '../../utils/index'
 import './style.scss'
 
 interface TitleItem {

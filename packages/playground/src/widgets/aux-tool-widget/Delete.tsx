@@ -1,5 +1,4 @@
-import { defineComponent } from 'vue';
-import { useWorkspaceStoreMethods, useWorkspaceStoreData } from '@/hooks';
+import { useWorkspaceStoreMethods, useWorkspaceStoreData } from '../../hooks';
 
 export default defineComponent({
   name: 'Delete',

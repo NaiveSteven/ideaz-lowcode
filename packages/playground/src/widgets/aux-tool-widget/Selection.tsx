@@ -1,19 +1,7 @@
-import type {
-  CSSProperties,
-} from 'vue'
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  unref,
-  watch,
-} from 'vue'
+import type { CSSProperties } from 'vue'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import Helpers from './Helpers'
-import mitt from '@/event'
+import mitt from '../../event'
 import './style.scss'
 
 export default defineComponent({
@@ -128,7 +116,7 @@ export default defineComponent({
             top: topDomRect.top,
             right: bottomDomRect.right,
             bottom: bottomDomRect.bottom,
-            toJSON: () => {},
+            toJSON: () => { },
           }
         }
       }

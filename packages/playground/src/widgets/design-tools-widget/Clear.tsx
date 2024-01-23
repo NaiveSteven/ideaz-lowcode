@@ -1,5 +1,4 @@
-import { defineComponent } from 'vue'
-import { useWorkspaceStoreMethods } from '@/hooks'
+import { useWorkspaceStoreMethods } from '../../hooks'
 
 export default defineComponent({
   name: 'Clear',

@@ -25,7 +25,7 @@
   });
 </script>
 <script lang="ts" setup>
-  import { useShowDialog } from '@/hooks';
+  import { useShowDialog } from '../../hooks';
 
   const props = withDefaults(
     defineProps<{
