@@ -17,7 +17,6 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vitest",
       "vite/client",
       "vue/ref-macros"
     ],
@@ -35,6 +34,11 @@
       "path": "./tsconfig.node.json"
     }
   ],
+  "paths": {
+    "@ideal-schema/*": ["./packages/*/src"],
+    "@ideaz/element": ["./packages/ideaz-element"],
+    "@ideaz/iview": ["./packages/iview/src"]
+  },
   "include": [
     "packages/playground/auto-imports.d.ts",
     "packages/**/*.vue",
