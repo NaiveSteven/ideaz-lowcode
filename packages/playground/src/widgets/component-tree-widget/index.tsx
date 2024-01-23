@@ -1,67 +1,82 @@
-import { defineComponent, ref, computed, onMounted } from 'vue';
-import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '@/hooks';
-import { useGlobalSettingStore } from '@ideal-schema/playground-store';
-import type { ElTree } from 'element-plus';
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { useGlobalSettingStore } from '@ideal-schema/playground-store'
+import type { ElTree } from 'element-plus'
+import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '@/hooks'
 
 export default defineComponent({
   name: 'ComponentTreeWidget',
   setup() {
-    const globalSettingStore = useGlobalSettingStore();
-    const { workspaceComponentList, curOperateComponent } = useWorkspaceStoreData();
-    const { updateCurOperateComponent } = useWorkspaceStoreMethods();
+    const globalSettingStore = useGlobalSettingStore()
+    const { workspaceComponentList, curOperateComponent } = useWorkspaceStoreData()
+    const { updateCurOperateComponent } = useWorkspaceStoreMethods()
 
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType);
+    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
 
-    const tree = ref<InstanceType<typeof ElTree>>();
+    const tree = ref<InstanceType<typeof ElTree>>()
 
     const treeData = computed(() => {
-      if (workspaceComponentType.value === 'form') {
-        return [{ label: '表单', id: 'form', children: workspaceComponentList.value }];
-      }
-      const formItemTree: any = [];
-      const tableColTree: any = [];
-      workspaceComponentList.value[0].schema.tableCols?.forEach((item) => {
-        if (item.formItemProps) {
+      if (workspaceComponentType.value === 'form')
+        return [{ title: '表单', id: 'form', children: workspaceComponentList.value }]
+
+      const formItemTree: any = []
+      const tableColTree: any = []
+      workspaceComponentList.value[0].schema.columns?.forEach((item) => {
+        if (item.search) {
           formItemTree.push({
-            ...item.formItemProps,
-            label: item.formItemProps.formItem?.label || item.formItemProps.slot,
-          });
+            ...item.search,
+            title: item.search.label || item.search.slot,
+          })
         }
         tableColTree.push({
           ...item,
-          label: item.label || item.slot,
-        });
-      });
+          title: item.label || item.slot,
+        })
+      })
       return [
         {
-          label: '表单表格',
+          title: '增删改查',
           id: workspaceComponentList.value[0].id,
-          children: formItemTree.concat(tableColTree),
+          children: [
+            {
+              title: '筛选表单',
+              children: formItemTree,
+            },
+            {
+              title: '表格项',
+              children: tableColTree,
+            },
+          ],
         },
-      ];
-    });
+      ]
+    })
 
     onMounted(async () => {
-      if (tree.value) {
-        tree.value.setCurrentKey(curOperateComponent.value.id || 'form');
-      }
-    });
+      if (tree.value)
+        tree.value.setCurrentKey(curOperateComponent.value.id || 'form')
+    })
 
     const handleClick = (item: WorkspaceComponentItem) => {
-      if (item.id === 'form') {
-        updateCurOperateComponent({} as WorkspaceComponentItem);
-        return;
+      if (item.id === workspaceComponentList.value[0].id) {
+        updateCurOperateComponent(workspaceComponentList.value[0])
+        return
       }
-      updateCurOperateComponent(item);
-    };
+      if (item.title === '筛选表单' || item.title === '表格项')
+        return
+
+      if (item.id === 'form') {
+        updateCurOperateComponent({} as WorkspaceComponentItem)
+        return
+      }
+      updateCurOperateComponent(item)
+    }
 
     const renderTreeDefault = ({ data }: { data: WorkspaceComponentItem }) => {
       return (
-        <div class="text-xs w-full h-full flex items-center" onClick={() => handleClick(data)}>
-          {data.label}
+        <div class="h-full w-full flex items-center text-xs" onClick={() => handleClick(data)}>
+          {data.title}
         </div>
-      );
-    };
+      )
+    }
 
     return () => (
       <el-tree
@@ -73,6 +88,6 @@ export default defineComponent({
         highlightCurrent={true}
         v-slots={{ default: renderTreeDefault }}
       />
-    );
+    )
   },
-});
+})
