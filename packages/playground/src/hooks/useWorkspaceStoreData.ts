@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 
 export function useWorkspaceStoreData() {

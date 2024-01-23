@@ -1,5 +1,3 @@
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
 export function useInElement(id: string) {
   const isOutside = ref(true)
 

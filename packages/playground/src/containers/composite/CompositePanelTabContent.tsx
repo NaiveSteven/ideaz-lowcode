@@ -1,12 +1,10 @@
-import type { PropType } from 'vue'
-import { computed, defineComponent, h, ref, resolveComponent, watch } from 'vue'
 import { promiseTimeout } from '@vueuse/core'
 import { ComponentWidget } from '@ideal-schema/playground-demi'
-import { useWorkspaceStoreData } from '@/hooks'
-import { Drawer } from '@/containers'
-import ComponentTreeWidget from '@/widgets/component-tree-widget'
+import { useWorkspaceStoreData } from '../../hooks'
+import { Drawer } from '../../containers'
+import ComponentTreeWidget from '../../widgets/component-tree-widget'
 import './style.scss'
-import type { CompositeTab } from '@/constants'
+import type { CompositeTab } from '../../constants'
 
 export const CompositePanelTabContent = defineComponent({
   name: 'CompositePanelTabContent',

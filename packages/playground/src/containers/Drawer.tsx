@@ -1,5 +1,4 @@
-import { defineComponent, useSlots, PropType } from 'vue';
-import './style.scss';
+import './style.scss'
 
 export const Drawer = defineComponent({
   name: 'Drawer',
@@ -10,7 +9,7 @@ export const Drawer = defineComponent({
     },
   },
   setup(props) {
-    const slots = useSlots();
+    const slots = useSlots()
 
     return () => (
       <div class="drawer">
@@ -20,6 +19,6 @@ export const Drawer = defineComponent({
         </div>
         <div class="drawer__body">{slots.default && slots.default()}</div>
       </div>
-    );
+    )
   },
-});
+})

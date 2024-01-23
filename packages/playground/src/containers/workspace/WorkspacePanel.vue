@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { ViewPort } from '@ideal-schema/playground-demi'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
-import DesignToolsWidget from '@/widgets/design-tools-widget'
-import Selection from '@/widgets/aux-tool-widget/Selection'
-import PcSimulatorWidget from '@/widgets/simulator-widget/PcSimulatorWidget'
-import MobileSimulatorWidget from '@/widgets/simulator-widget/MobileSimulatorWidget'
-import ViewWidget from '@/widgets/view-widget'
-import { useAsideToggle } from '@/hooks'
-import mitt from '@/event'
+import DesignToolsWidget from '../../widgets/design-tools-widget'
+import Selection from '../../widgets/aux-tool-widget/Selection'
+import PcSimulatorWidget from '../../widgets/simulator-widget/PcSimulatorWidget'
+import MobileSimulatorWidget from '../../widgets/simulator-widget/MobileSimulatorWidget'
+import ViewWidget from '../../widgets/view-widget'
+import { useAsideToggle } from '../../hooks'
+import mitt from '../../event'
 
 const simulatorType = ref<'pc' | 'mobile'>('pc')
 
 const { clickAsideToggleWidget } = useAsideToggle('left', '300px', 300, 'right')
 const workspaceStore = useWorkspaceStore()
-const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
 const viewType = computed(() => workspaceStore.getViewType)
 
 function handleClickView(value: 'json' | 'design' | 'play') {

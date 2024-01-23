@@ -1,6 +1,5 @@
-import { getCurrentInstance, onBeforeUnmount, ref } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
-import mitt from '@/event'
+import mitt from '../event'
 
 export function useAsideToggle(direction: 'right' | 'left', trueWidth: string, interval: number, fixedDirection?: 'right' | 'left') {
   const { proxy: ctx } = getCurrentInstance() as ComponentInternalInstance

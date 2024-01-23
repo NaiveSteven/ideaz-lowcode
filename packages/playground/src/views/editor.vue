@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { CompositePanel, Settings, WorkspacePanel } from '@/containers'
-import TipDialogWidget from '@/widgets/tip-dialog-widget/index.vue'
-import { useDriver } from '@/hooks'
+import { CompositePanel, Settings, WorkspacePanel } from '../containers'
+import TipDialogWidget from '../widgets/tip-dialog-widget/index.vue'
+import { useDriver } from '../hooks'
 
 const { startDriver, getIsNew } = useDriver()
 const isShowTipDialog = ref(false)

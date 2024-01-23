@@ -1,21 +1,20 @@
-import { defineComponent, ref } from 'vue';
-import { useAsideToggle } from '@/hooks';
-import AsideToggleWidget from '@/widgets/aside-toggle-widget';
-import { CompositePanelTabs } from './CompositePanelTabs';
-import { CompositePanelTabContent } from './CompositePanelTabContent';
-import './style.scss';
+import { useAsideToggle } from '../../hooks'
+import AsideToggleWidget from '../../widgets/aside-toggle-widget'
+import { CompositePanelTabs } from './CompositePanelTabs'
+import { CompositePanelTabContent } from './CompositePanelTabContent'
+import './style.scss'
 
 export const CompositePanel = defineComponent({
   name: 'CompositePanel',
   setup() {
-    const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('left', '300px', 300);
+    const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('left', '300px', 300)
 
-    const currentTabPane = ref('component');
+    const currentTabPane = ref('component')
     const currentTabPaneInfo = ref({
       key: 'component',
       title: '组件',
       icon: 'i-setting',
-    });
+    })
 
     return () => (
       <div class="composite-panel">
@@ -35,6 +34,6 @@ export const CompositePanel = defineComponent({
           />
         </div>
       </div>
-    );
+    )
   },
-});
+})

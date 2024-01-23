@@ -1,6 +1,5 @@
-import { defineComponent, h, resolveComponent, PropType } from 'vue';
-import { COMPOSITE_TABS } from '@/constants';
-import type { CompositeTab } from '@/constants';
+import { COMPOSITE_TABS } from '../../constants'
+import type { CompositeTab } from '../../constants'
 
 export const CompositePanelTabs = defineComponent({
   name: 'CompositePanelTabs',
@@ -17,13 +16,13 @@ export const CompositePanelTabs = defineComponent({
   emits: ['update:modelValue', 'update:currentTabPaneInfo'],
   setup(props, { emit }) {
     const clickTabPane = (item: CompositeTab) => {
-      emit('update:modelValue', item.key);
-      emit('update:currentTabPaneInfo', item);
-    };
+      emit('update:modelValue', item.key)
+      emit('update:currentTabPaneInfo', item)
+    }
 
     return () => (
       <div class="composite-panel-tabs">
-        {COMPOSITE_TABS.map((item) => (
+        {COMPOSITE_TABS.map(item => (
           <el-tooltip placement="right" content={item.title} showAfter={500} effect="dark">
             <div
               class={[
@@ -37,6 +36,6 @@ export const CompositePanelTabs = defineComponent({
           </el-tooltip>
         ))}
       </div>
-    );
+    )
   },
-});
+})

@@ -1,10 +1,9 @@
-import { defineComponent, onBeforeUnmount } from 'vue'
 import { SettingForm } from '@ideal-schema/playground-demi'
-import mitt from '@/event'
-import AsideToggleWidget from '@/widgets/aside-toggle-widget'
-import SettingBreadcrumbWidget from '@/widgets/setting-breadcrumb-widget'
-import { Drawer } from '@/containers'
-import { useAsideToggle } from '@/hooks'
+import mitt from '../event'
+import AsideToggleWidget from '../widgets/aside-toggle-widget'
+import SettingBreadcrumbWidget from '../widgets/setting-breadcrumb-widget'
+import { Drawer } from '../containers'
+import { useAsideToggle } from '../hooks'
 import './style.scss'
 
 export const Settings = defineComponent({

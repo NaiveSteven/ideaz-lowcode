@@ -60,7 +60,6 @@ export function useDriver() {
       return Number(isNew)
     }
     catch (error) {
-      console.log(error, 'getIsNew error')
     }
   }
 
