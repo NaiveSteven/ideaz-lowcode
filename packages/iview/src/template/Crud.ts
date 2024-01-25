@@ -1,4 +1,5 @@
 import { uid } from '@ideal-schema/shared'
+import mitt from '../event'
 import {
   crudFormTemplateSchema,
   crudTableOptionsConfig,
@@ -11,7 +12,6 @@ import {
   tableColTemplateOptionsConfig,
   tableColTemplateSchema,
 } from '../schemas'
-import mitt from '../event'
 
 const FORM_COMPONENT_TYPE = [
   { label: '输入框', value: 'input' },
@@ -334,7 +334,7 @@ export function CrudTemplate() {
     fieldFormData: reactive({
       labelWidth: '80px',
     }),
-    allowCopy: true,
+    allowCopy: false,
     allowDelete: true,
     activeCollapseItems: ['table', 'form'],
     children: [],

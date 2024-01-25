@@ -119,6 +119,7 @@ declare interface WorkspaceComponentItem {
   type?: string
   btnList?: BtnItem[]
   buttons?: BtnItem[]
+  search?: IndexType
 }
 
 declare interface ExpandTemplateItem {

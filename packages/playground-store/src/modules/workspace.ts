@@ -1,6 +1,7 @@
-import { defineStore } from 'pinia'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
+import { defineStore } from 'pinia'
+import mitt from '../../../iview/src/event'
 import { changeDataId, getTreeDataItem } from '../utils/index'
 import { useGlobalSettingStore } from './globalSetting'
 
@@ -39,9 +40,6 @@ export const useWorkspaceStore = defineStore({
         const item = getTreeDataItem(this.workspaceComponentList, toId)
         item.children.splice(index, 0, componentItem)
       }
-
-      // state.workspaceComponentList.push(data.componentItem);
-      // console.log(this.workspaceComponentList, 'vuex中的workspaceComponentList');
     },
     updateComponentItem(componentItem: WorkspaceComponentItem) {
       let index = -1
@@ -58,12 +56,10 @@ export const useWorkspaceStore = defineStore({
       }
       else {
         index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
-        // isSame = isEqual(this.workspaceComponentList[index], componentItem)
         if (index > -1)
           this.workspaceComponentList.splice(index, 1, componentItem)
       }
     },
-    // 删除componentItem，同时删除schemas中的某一项
     deleteComponentItem(componentItem: WorkspaceComponentItem) {
       let index = -1
       if (componentItem.pid) {
@@ -90,45 +86,28 @@ export const useWorkspaceStore = defineStore({
         }
         else {
           // 表单项
-          const tableCols = this.workspaceComponentList[0].schema.tableCols || []
+          const columns = this.workspaceComponentList[0].schema.columns || []
           if (componentItem.name === 'tableForm') {
-            tableCols.forEach((item: any) => {
-              if (item.formItemProps && item.formItemProps.id === componentItem.id)
-                delete item.formItemProps
+            columns.forEach((item) => {
+              if (item.search && item.search.id === componentItem.id)
+                delete item.search
             })
           }
-          if (componentItem.name === 'tablePro')
+          if (componentItem.name === 'crud')
             this.workspaceComponentList = []
 
           if (componentItem.name === 'tableCol') {
-            const index = tableCols.findIndex((item: any) => item.id === componentItem.id)
-            const tableCol = cloneDeep(tableCols[index])
-            if (tableCol.formItemProps) {
-              tableCols[index] = {
-                formItemProps: tableCol.formItemProps,
+            const index = columns.findIndex(item => item.id === componentItem.id)
+            const tableCol = cloneDeep(columns[index])
+            if (tableCol.search) {
+              columns[index] = {
+                search: tableCol.search,
               }
             }
             else {
-              tableCols.splice(index, 1)
+              columns.splice(index, 1)
             }
-            // const filterTableCols = cloneDeep(tableCols.filter((item) => item.prop));
-            // const filterFormItems = tableCols.filter((item) => item.formItemProps);
-            // if (filterTableCols.length >= filterFormItems.length) {
-            //   filterTableCols.forEach((item, index) => {
-            //     delete item.formItemProps;
-            //     if (filterFormItems[index]) {
-            //       item.formItemProps = filterFormItems[index].formItemProps;
-            //     }
-            //   });
-            // } else {
-            //   filterFormItems.forEach((item, index) => {
-            //     if (!filterTableCols[index]) {
-            //       filterTableCols[index] = {};
-            //     }
-            //     filterTableCols[index].formItemProps = filterFormItems[index].formItemProps;
-            //   });
-            // }
-            this.workspaceComponentList[0].schema.tableCols = tableCols
+            this.workspaceComponentList[0].schema.columns = columns
           }
         }
       }
@@ -154,27 +133,36 @@ export const useWorkspaceStore = defineStore({
           // 表单项
           if (componentItem.name === 'tableForm') {
             let lastIndex = 0
-            const newFormItem = { ...componentItem, id: uid() }
-            const tableCols = this.workspaceComponentList[0].schema.tableCols || []
-            tableCols.forEach((item: any, index: number) => {
-              if (item.formItemProps && lastIndex < index)
+            const formItemId = uid()
+            const newFormItem = {
+              ...componentItem,
+              id: formItemId,
+              formItemProps: {
+                ...componentItem.formItemProps,
+                id: `schema-field${formItemId}`,
+                onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: formItemId }) },
+              },
+            }
+            const columns = this.workspaceComponentList[0].schema.columns || []
+            columns.forEach((item, index: number) => {
+              if (item.search && lastIndex < index)
                 lastIndex = index
             })
-            if (!tableCols[lastIndex + 1]) {
-              tableCols[lastIndex + 1] = {
-                formItemProps: newFormItem,
+            if (!columns[lastIndex + 1]) {
+              columns[lastIndex + 1] = {
+                search: newFormItem,
               }
             }
             else {
-              tableCols[lastIndex + 1].formItemProps = newFormItem
+              columns[lastIndex + 1].search = newFormItem
             }
             this.curOperateComponent = newFormItem
           }
           // 表格项
           if (componentItem.name === 'tableCol') {
             const newTableCol = { ...componentItem, id: uid() }
-            delete newTableCol.formItemProps
-            const tableCols = this.workspaceComponentList[0].schema.tableCols!.concat([
+            delete newTableCol.search
+            const columns = this.workspaceComponentList[0].schema.columns?.concat([
               newTableCol,
             ])
             this.workspaceComponentList = [
@@ -182,9 +170,9 @@ export const useWorkspaceStore = defineStore({
                 ...this.workspaceComponentList[0],
                 schema: {
                   ...this.workspaceComponentList[0].schema,
-                  tableCols,
+                  columns,
                   cellClassName: ({ columnIndex }: any) => {
-                    return `schema-field${tableCols[columnIndex].id}`
+                    return `schema-field${columns?.[columnIndex].id}`
                   },
                 },
               },
@@ -195,9 +183,7 @@ export const useWorkspaceStore = defineStore({
       }
     },
     updateComponentList(components: WorkspaceComponentItem[]) {
-      // const middleFormStore = useMiddleFormStore();
       this.workspaceComponentList = components
-      // middleFormStore.updateSchemas(components);
     },
     clearWorkspaceComponentList() {
       this.workspaceComponentList = []
