@@ -1,11 +1,13 @@
+import { Delete, EditPen, View } from '@element-plus/icons-vue'
 import type { ElTable } from 'element-plus'
 import { ElMessage } from 'element-plus'
-import { Delete, EditPen, View } from '@element-plus/icons-vue'
 import type { ComponentInternalInstance } from 'vue'
+import { useLocale } from '../../../hooks'
 import { isFunction } from '../../../utils'
 import DialogTip from '../../dialog/src/dialog'
-import { useLocale } from '../../../hooks'
+import type { TableCol } from '../../types'
 import type { CrudProps } from '../src/props'
+import { COLUMN_TYPE_FIELDS } from '../src/props'
 
 export function useTableColumns(props: CrudProps, emit: any, getTableData: () => void) {
   const { t } = useLocale()
@@ -83,9 +85,11 @@ export function useTableColumns(props: CrudProps, emit: any, getTableData: () =>
     }
   }
 
+  // remark tableColumns
   const tableColumns = computed(() => {
+    const columns = props.columns?.filter((column: TableCol) => COLUMN_TYPE_FIELDS.some(key => column[key]))
     if (props.action) {
-      return props.columns?.concat([
+      return columns.concat([
         {
           type: 'button',
           label: t('table.action'),
@@ -97,7 +101,7 @@ export function useTableColumns(props: CrudProps, emit: any, getTableData: () =>
         },
       ])
     }
-    return props.columns
+    return columns
   })
 
   return { tableColumns, isShowDialog, rowData, currentMode, isShowDrawer, refreshAfterRequest }

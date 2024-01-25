@@ -1,8 +1,8 @@
+import type { ComponentSize, ElTable } from 'element-plus'
 import { omit } from 'lodash-unified'
 import type { ExtractPropTypes, VNode } from 'vue'
-import type { ComponentSize, ElTable } from 'element-plus'
-import { tableProps } from '../../table/src/props'
 import { formProps } from '../../form/src/props'
+import { tableProps } from '../../table/src/props'
 import type { TableFormConfig } from '../../types'
 
 const _tableProps = omit(tableProps, 'columns')
@@ -153,3 +153,4 @@ export const crudProps = {
 export type CrudProps = ExtractPropTypes<typeof crudProps>
 export const crudProvideKey = Symbol('crudKey')
 export const EXCLUDE_FORM_PROPS_KEYS = ['columns', 'dialog']
+export const COLUMN_TYPE_FIELDS = ['type', 'slot', 'label', 'render', 'prop', '__uid']
