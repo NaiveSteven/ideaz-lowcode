@@ -70,6 +70,7 @@ export default defineComponent({
     )
 
     function clickItem(e: MouseEvent, item: WorkspaceComponentItem) {
+      console.log('666666')
       e.preventDefault()
       e.stopPropagation()
       if (props.curOperateComponent.id === item.id)
@@ -81,7 +82,8 @@ export default defineComponent({
       tempData = props.workspaceComponentList[a.oldIndex]
     }
     function end(a: { to: { id: string }, newIndex: number }) {
-      emit('on-update-cur-operate', tempData)
+      if (workspaceComponentType.value === 'form')
+        emit('on-update-cur-operate', tempData)
     }
 
     const setClassName = ({ columnIndex }: any) => {
@@ -102,34 +104,34 @@ export default defineComponent({
       updateCurOperateComponent(tableCol as WorkspaceComponentItem)
     }
 
-    const handleUpdateFormItem = (
-      data: WorkspaceComponentItem,
-      newIndex: number,
-      oldIndex: number,
-    ) => {
-      if (!data.id) {
-        emit('on-update-cur-operate', {})
-        return
-      }
-      const tableProConfig = workspaceComponentList.value[0]
-      const schema = tableProConfig.schema
-      let columns: TableCol[] = []
+    const handleUpdateFormItem = ({ columns, dragEvent }: { columns: WorkspaceComponentItem[], dragEvent: any }) => {
+      const oldIndex = dragEvent.oldIndex
+      const newIndex = dragEvent.newIndex
+      const data = columns[newIndex]
+      // console.log(columns,newIndex,'asdf')
+      // if (!data.id) {
+      //   emit('on-update-cur-operate', {})
+      //   return
+      // }
+      const config = workspaceComponentList.value[0]
+      const schema = config.schema
+      let cols: TableCol[] = []
       if (schema.columns && schema.columns.length) {
         const newArr = [...schema.columns]
-        const newFormItem = { ...schema.columns[oldIndex].formItemProps }
-        const oldFormItem = { ...schema.columns[newIndex].formItemProps }
-        newArr[newIndex].formItemProps = newFormItem
-        newArr[oldIndex].formItemProps = oldFormItem
-        columns = newArr
-        updateComponentList([
-          {
-            ...tableProConfig,
-            schema: {
-              ...tableProConfig.schema,
-              columns,
-            },
-          },
-        ])
+        const newFormItem = { ...schema.columns[oldIndex].search }
+        const oldFormItem = { ...schema.columns[newIndex].search }
+        newArr[newIndex].search = newFormItem
+        newArr[oldIndex].search = oldFormItem
+        cols = newArr
+        // updateComponentList([
+        //   {
+        //     ...config,
+        //     schema: {
+        //       ...config.schema,
+        //       columns: cols,
+        //     },
+        //   },
+        // ])
         updateCurOperateComponent(data)
       }
     }
@@ -214,7 +216,7 @@ export default defineComponent({
                         {...{ ...formItem.schema, cellClassName: setClassName }}
                         style={{ zIndex: 1 }}
                         pid={formItem.children ? formItem.id : ''}
-                        onOn-update-form-item={handleUpdateFormItem}
+                        onUpdate:columns={handleUpdateFormItem}
                         onDrag-column-end={handleUpdateTableColumn}
                         onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
                         onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
