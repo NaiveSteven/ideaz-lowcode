@@ -1,18 +1,17 @@
-import { defineComponent } from 'vue';
-import './style.scss';
-import { useRouter } from 'vue-router';
+import './style.scss'
+import { useRouter } from 'vue-router'
 
 export const Header = defineComponent({
   name: 'Header',
   setup() {
-    const router = useRouter();
+    const router = useRouter()
 
     const handleChangeMode = () => {
-      router.push({ name: 'setting' });
+      router.push({ name: 'setting' })
       // localStorage.removeItem('schemaMode');
       // localStorage.removeItem('version');
       // window.location.reload();
-    };
+    }
 
     return () => (
       <div class="header">
@@ -23,6 +22,6 @@ export const Header = defineComponent({
           </el-button>
         </div>
       </div>
-    );
+    )
   },
-});
+})

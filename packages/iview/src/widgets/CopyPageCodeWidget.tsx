@@ -1,20 +1,19 @@
-import { defineComponent } from 'vue';
-import { copy } from '@ideal-schema/shared';
-import beautify from 'js-beautify';
-import { usePageCode } from '../hooks';
+import { copy } from '@ideal-schema/shared'
+import beautify from 'js-beautify'
+import { usePageCode } from '../hooks'
 
 export default defineComponent({
   name: 'CopyPageCodeWidget',
   setup() {
-    const { getPageCode } = usePageCode();
+    const { getPageCode } = usePageCode()
 
     const handleCopyJSON = () => {
       copy(
         beautify.html_beautify(getPageCode(), {
           indent_size: 2,
-        })
-      );
-    };
+        }),
+      )
+    }
 
     return () => {
       return (
@@ -25,7 +24,7 @@ export default defineComponent({
             </el-icon>
           </el-button>
         </el-tooltip>
-      );
-    };
+      )
+    }
   },
-});
+})

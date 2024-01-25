@@ -1,4 +1,3 @@
-import { computed, defineComponent } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import { useGlobalSettingStore, useWorkspaceStore } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'

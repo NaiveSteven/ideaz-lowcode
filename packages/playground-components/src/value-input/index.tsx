@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 import PolyInput from '../poly-input'
 
 export default defineComponent({

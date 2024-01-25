@@ -1,4 +1,3 @@
-import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import { FORM_COMPONENT_TYPE } from '../materials'
 import {

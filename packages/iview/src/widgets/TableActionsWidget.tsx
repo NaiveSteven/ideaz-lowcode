@@ -1,4 +1,3 @@
-import { computed, defineComponent, reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import { getInputFormItemTemplate } from '../utils'

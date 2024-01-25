@@ -1,4 +1,3 @@
-import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
 
 export function SlotTemplateComponent() {

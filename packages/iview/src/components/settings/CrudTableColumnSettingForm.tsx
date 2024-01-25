@@ -1,4 +1,3 @@
-import { computed, defineComponent, reactive } from 'vue'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import { isFunction, uid } from '@ideal-schema/shared'
 import { tableColTemplateSchema } from '../../schemas'

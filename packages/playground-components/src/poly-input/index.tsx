@@ -1,5 +1,4 @@
 import { isArray, isBoolean, isNumber, isString } from '@ideal-schema/shared'
-import type { PropType } from 'vue'
 
 interface IPolyType {
   tip: string

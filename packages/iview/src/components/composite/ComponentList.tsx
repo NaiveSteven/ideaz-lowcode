@@ -1,5 +1,4 @@
-import type { PropType } from 'vue'
-import { Fragment, defineComponent, ref } from 'vue'
+import { Fragment } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { uid } from '@ideal-schema/shared'
 import { VueDraggable } from 'vue-draggable-plus'

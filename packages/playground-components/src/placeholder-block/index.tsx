@@ -1,5 +1,3 @@
-import { defineComponent } from 'vue';
-
 export default defineComponent({
   name: 'PlaceholderBlock',
   setup() {
@@ -11,7 +9,8 @@ export default defineComponent({
           width: '100%',
           backgroundColor: '#f0f0f0',
         }}
-      ></div>
-    );
+      >
+      </div>
+    )
   },
-});
+})

@@ -1,4 +1,3 @@
-import { computed, defineComponent } from 'vue'
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import { copy } from '@ideal-schema/shared'

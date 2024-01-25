@@ -1,13 +1,12 @@
-import { defineComponent, ref } from 'vue';
-import beautify from 'js-beautify';
-import Codemirror from 'codemirror-editor-vue3';
-import { usePageCode } from '../hooks';
+import beautify from 'js-beautify'
+import Codemirror from 'codemirror-editor-vue3'
+import { usePageCode } from '../hooks'
 
 export default defineComponent({
   name: 'PageWidget',
   setup() {
-    const editor = ref();
-    const { getPageCode } = usePageCode();
+    const editor = ref()
+    const { getPageCode } = usePageCode()
 
     const cmOptions = {
       mode: 'text/javascript', // Language mode
@@ -17,11 +16,11 @@ export default defineComponent({
       indentUnit: 2, // The smart indent unit is 2 spaces in length
       foldGutter: true, // Code folding
       styleActiveLine: true, // Display the style of the selected row
-    };
+    }
 
     const ready = (val: any) => {
-      editor.value = val;
-    };
+      editor.value = val
+    }
 
     return () => {
       return (
@@ -35,7 +34,7 @@ export default defineComponent({
           onChange={(value: any) => console.log(value, 'value')}
           onReady={ready}
         />
-      );
-    };
+      )
+    }
   },
-});
+})

@@ -1,7 +1,5 @@
-import { defineComponent } from 'vue'
 import { uid } from '@ideal-schema/shared'
 import { VueDraggable } from 'vue-draggable-plus'
-import type { PropType } from 'vue'
 
 export default defineComponent({
   name: 'ButtonsConfig',

@@ -1,4 +1,3 @@
-import { computed, defineComponent, reactive } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import './style.scss'

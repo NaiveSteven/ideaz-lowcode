@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { useMiddleFormStore } from '@ideal-schema/playground-store'
 
 export function useMiddleFormStoreData() {
