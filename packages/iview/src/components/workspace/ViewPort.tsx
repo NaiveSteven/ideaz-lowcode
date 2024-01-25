@@ -1,13 +1,11 @@
-import { useWorkspaceForm } from '@ideal-schema/playground-store'
-import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../../../playground/src/hooks'
+import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import WorkspaceComponent from '../workspace/WorkspaceComponent'
 
 export default defineComponent({
   name: 'ViewPort',
   setup() {
-    const { workspaceComponentList: list, curOperateComponent } = useWorkspaceStoreData()
     const { formData, formConfig } = useWorkspaceForm()
-    const { pushComponentItem, updateCurOperateComponent } = useWorkspaceStoreMethods()
+    const { pushComponentItem, updateCurOperateComponent, workspaceComponentList: list, curOperateComponent } = useWorkspaceComponent()
 
     const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {
       pushComponentItem(item, index, toId)
@@ -25,7 +23,7 @@ export default defineComponent({
                 onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateCurOperateComponent(item)}
                 onOn-add-item={handleAddComponentItem}
               />
-              )
+            )
             : (
               <z-form class="h-full" modelValue={formData.value} {...formConfig.value}>
                 <WorkspaceComponent
@@ -36,8 +34,7 @@ export default defineComponent({
                   onOn-add-item={handleAddComponentItem}
                 />
               </z-form>
-              )}
-
+            )}
         </div>
       )
     }

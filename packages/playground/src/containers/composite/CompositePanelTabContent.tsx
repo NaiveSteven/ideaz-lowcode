@@ -1,10 +1,10 @@
-import { promiseTimeout } from '@vueuse/core'
 import { ComponentWidget } from '@ideal-schema/playground-demi'
-import { useWorkspaceStoreData } from '../../hooks'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { promiseTimeout } from '@vueuse/core'
+import type { CompositeTab } from '../../constants'
 import { Drawer } from '../../containers'
 import ComponentTreeWidget from '../../widgets/component-tree-widget'
 import './style.scss'
-import type { CompositeTab } from '../../constants'
 
 export const CompositePanelTabContent = defineComponent({
   name: 'CompositePanelTabContent',
@@ -20,7 +20,7 @@ export const CompositePanelTabContent = defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceStoreData()
+    const { curOperateComponent } = useWorkspaceComponent()
 
     const widgetKey = ref('key')
 

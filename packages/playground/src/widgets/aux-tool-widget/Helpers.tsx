@@ -1,9 +1,9 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store';
+import type { PropType } from 'vue';
 import { CSSProperties } from 'vue';
 import Copy from './Copy';
 import Delete from './Delete';
 import Selector from './Selector';
-import { useWorkspaceStoreData } from '../../hooks';
-import type { PropType } from 'vue';
 
 export default defineComponent({
   name: 'Helpers',
@@ -14,7 +14,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceStoreData();
+    const { curOperateComponent } = useWorkspaceComponent();
 
     const style = computed<CSSProperties>(() => {
       const position: CSSProperties = {};

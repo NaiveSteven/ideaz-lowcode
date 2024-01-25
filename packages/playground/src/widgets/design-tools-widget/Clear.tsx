@@ -1,11 +1,10 @@
-import { useGlobalSetting } from '@ideal-schema/playground-store'
-import { useWorkspaceStoreMethods } from '../../hooks'
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 
 export default defineComponent({
   name: 'Clear',
   setup() {
     const { updateWorkspaceComponentType } = useGlobalSetting()
-    const { updateCurOperateComponent, clearWorkspaceComponentList } = useWorkspaceStoreMethods()
+    const { updateCurOperateComponent, clearWorkspaceComponentList } = useWorkspaceComponent()
 
     const handleClearAll = () => {
       clearWorkspaceComponentList()

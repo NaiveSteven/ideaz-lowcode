@@ -1,10 +1,9 @@
-import { useWorkspaceStoreMethods, useWorkspaceStoreData } from '../../hooks';
+import { useWorkspaceComponent } from '@ideal-schema/playground-store';
 
 export default defineComponent({
   name: 'Copy',
   setup() {
-    const { curOperateComponent } = useWorkspaceStoreData();
-    const { copyComponentItem } = useWorkspaceStoreMethods();
+    const { curOperateComponent, copyComponentItem } = useWorkspaceComponent();
 
     const handleCopy = (e: MouseEvent) => {
       e.preventDefault();

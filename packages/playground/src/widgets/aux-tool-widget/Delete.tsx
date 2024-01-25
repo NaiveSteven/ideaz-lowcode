@@ -1,10 +1,9 @@
-import { useWorkspaceStoreMethods, useWorkspaceStoreData } from '../../hooks';
+import { useWorkspaceComponent } from '@ideal-schema/playground-store';
 
 export default defineComponent({
   name: 'Delete',
   setup() {
-    const { curOperateComponent } = useWorkspaceStoreData();
-    const { deleteComponentItem, updateCurOperateComponent } = useWorkspaceStoreMethods();
+    const { curOperateComponent, deleteComponentItem, updateCurOperateComponent } = useWorkspaceComponent();
 
     const handleDelete = () => {
       deleteComponentItem(curOperateComponent.value);

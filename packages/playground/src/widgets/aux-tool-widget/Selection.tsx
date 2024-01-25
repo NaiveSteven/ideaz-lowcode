@@ -1,18 +1,15 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import type { CSSProperties } from 'vue'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
-import Helpers from './Helpers'
 import mitt from '../../event'
+import Helpers from './Helpers'
 import './style.scss'
 
 export default defineComponent({
   name: 'Selection',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList } = useWorkspaceComponent()
 
     const position = ref<DOMRect>({} as DOMRect)
-
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-    const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
 
     const interval = setInterval(() => {
       setPosition()
@@ -64,7 +61,7 @@ export default defineComponent({
     })
 
     const selectorPosition = computed(() => {
-      const index = componentList.value.findIndex(
+      const index = workspaceComponentList.value.findIndex(
         item => curOperateComponent.value.id === item.id,
       )
       if (index === 0 || curOperateComponent.value.pid)
@@ -98,7 +95,7 @@ export default defineComponent({
       if (!curOperateComponent.value.id)
         ele = document.getElementById('view-port')
       if (curOperateComponent.value.name === 'tableCol') {
-        const schema = componentList.value[0].schema
+        const schema = workspaceComponentList.value[0].schema
         const len = schema.data.length
         const bottomDom = document.getElementsByClassName(
           `schema-field${curOperateComponent.value?.id}`,
