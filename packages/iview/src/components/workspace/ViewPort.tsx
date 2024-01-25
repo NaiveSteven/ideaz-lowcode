@@ -1,11 +1,12 @@
+import { useWorkspaceForm } from '@ideal-schema/playground-store'
+import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../../../playground/src/hooks'
 import WorkspaceComponent from '../workspace/WorkspaceComponent'
-import { useMiddleFormStoreData, useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../../../playground/src/hooks'
 
 export default defineComponent({
   name: 'ViewPort',
   setup() {
     const { workspaceComponentList: list, curOperateComponent } = useWorkspaceStoreData()
-    const { formData, formConfig } = useMiddleFormStoreData()
+    const { formData, formConfig } = useWorkspaceForm()
     const { pushComponentItem, updateCurOperateComponent } = useWorkspaceStoreMethods()
 
     const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {

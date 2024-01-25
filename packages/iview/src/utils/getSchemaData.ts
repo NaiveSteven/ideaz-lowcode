@@ -1,19 +1,14 @@
-import { cloneDeep } from 'lodash-es'
 import { isEmpty, isObject } from '@ideal-schema/shared'
-import { useMiddleFormStore, useWorkspaceStore } from '../../../playground-store/src'
+import { cloneDeep } from 'lodash-es'
+import { useWorkspaceForm, useWorkspaceStore } from '../../../playground-store/src'
 import {
-  SelectCrudFormData,
-  defaultCheckboxAttrs,
-  formItemFormData as defaultFormItemFormData,
-  defaultInputAttrs,
+  defaultCheckboxAttrs, defaultInputAttrs,
   defaultInputNumberAttrs,
   defaultMultipleSelectAttrs,
   defaultRadioAttrs,
   defaultSelectAttrs,
   defaultSwitchAttrs,
-  defaultTextareaAttrs,
-  inputCrudFormData,
-  tableColFormData,
+  defaultTextareaAttrs, formItemFormData as defaultFormItemFormData, inputCrudFormData, SelectCrudFormData, tableColFormData
 } from '../schemas'
 
 const defaultComponentFormData: IndexType = {
@@ -65,16 +60,15 @@ function delEmptyObject(data: any) {
 
 function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
   const workspaceStore = useWorkspaceStore()
-  const middleFormStore = useMiddleFormStore()
+  const { formConfig } = useWorkspaceForm()
   const componentList = cloneDeep(workspaceStore.getWorkspaceComponentList)
   if (type === 'form') {
-    const formConfig = cloneDeep(middleFormStore.getFormConfig)
     const formData: IndexType = {}
     const options: IndexType = {}
 
     const isRequired = componentList.some(item => item.fieldFormData?.required)
     if (isRequired)
-      formConfig.rules = {}
+      formConfig.value.rules = {}
 
     componentList.forEach((item) => {
       const field = item.fieldFormData?.field
@@ -95,12 +89,12 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
       }
     })
     Object.keys(formConfig).forEach((key) => {
-      if (defaultSchemaForm[key] === formConfig[key])
-        delete formConfig[key]
+      if (defaultSchemaForm[key] === formConfig.value[key])
+        delete formConfig.value[key]
     })
 
-    delete formConfig.layout
-    delete formConfig.background
+    delete formConfig.value.layout
+    delete formConfig.value.background
     delEmptyObject(formConfig)
 
     return {
@@ -152,7 +146,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         return item.schema
       }),
       formData,
-      formConfig,
+      formConfig: formConfig.value,
       options,
     }
   }
@@ -353,3 +347,4 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 }
 
 export { getSchemaData }
+

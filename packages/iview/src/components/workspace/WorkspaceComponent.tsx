@@ -3,9 +3,8 @@ import { cloneDeep } from 'lodash-es'
 import { VueDraggable } from 'vue-draggable-plus'
 
 // import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSetting, useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useGlobalSetting, useWorkspaceForm, useWorkspaceStore } from '@ideal-schema/playground-store'
 import mitt from '../../event'
-import { useMiddleFormStoreData } from '../../hooks'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
 import './style.scss'
 
@@ -38,7 +37,7 @@ export default defineComponent({
     const workspaceStore = useWorkspaceStore()
     const { workspaceComponentType } = useGlobalSetting()
     const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-    const { formConfig } = useMiddleFormStoreData()
+    const { formConfig } = useWorkspaceForm()
 
     let tempData: any = null
 

@@ -1,6 +1,6 @@
 import {
   useGlobalSetting,
-  useMiddleFormStore,
+  useWorkspaceForm,
   useWorkspaceStore
 } from '@ideal-schema/playground-store'
 import { useCrudDialogCode } from './useCrudDialogCode'
@@ -10,15 +10,14 @@ import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
   const workspaceStore = useWorkspaceStore()
-  const middleFormStore = useMiddleFormStore()
+  const { formConfig } = useWorkspaceForm()
   const { workspaceComponentType } = useGlobalSetting()
 
   const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
-  const middleFormConfig = computed(() => middleFormStore.getFormConfig)
 
   const isDialog = computed(() => {
     if (workspaceComponentType.value === 'form')
-      return middleFormConfig.value.background === 'dialog'
+      return formConfig.value.background === 'dialog'
 
     return componentList.value[0]?.componentFormData?.background === 'dialog'
   })

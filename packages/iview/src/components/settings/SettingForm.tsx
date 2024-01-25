@@ -1,16 +1,16 @@
-import { useMiddleFormStore, useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useWorkspaceForm, useWorkspaceStore } from '@ideal-schema/playground-store'
 import { formTemplateOptionsConfig, formTemplateSchema } from '../../schemas'
-import FormItemSettingForm from './FormItemSettingForm'
 import CrudFormItemSettingForm from './CrudFormItemSettingForm'
 import CrudSettingForm from './CrudSettingForm'
 import CrudTableColumnSettingForm from './CrudTableColumnSettingForm'
+import FormItemSettingForm from './FormItemSettingForm'
 import './style.scss'
 
 export default defineComponent({
   name: 'SettingForm',
   setup() {
     const workspaceStore = useWorkspaceStore()
-    const middleFormStore = useMiddleFormStore()
+    const { formConfig: workspaceFormConfig, setFormConfig } = useWorkspaceForm()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -34,11 +34,10 @@ export default defineComponent({
     })
 
     const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-    const middleFormConfig = computed(() => middleFormStore.getFormConfig)
     const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
 
     const handleMiddleFormChange = (data: { value: any, field: any }) => {
-      middleFormStore.setFormConfig({ ...middleFormConfig.value, [data.field]: data.value })
+      setFormConfig({ ...workspaceFormConfig.value, [data.field]: data.value })
     }
 
     return () => {
