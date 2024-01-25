@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash-es'
 import { VueDraggable } from 'vue-draggable-plus'
 
 // import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSetting, useWorkspaceForm, useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import mitt from '../../event'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
 import './style.scss'
@@ -34,9 +34,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent, updateComponentList } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
     const { formConfig } = useWorkspaceForm()
 
     let tempData: any = null
@@ -50,7 +49,7 @@ export default defineComponent({
         if (props.curOperateComponent.id === id)
           return
         let item: any = {}
-        workspaceStore.getWorkspaceComponentList[0]?.schema?.columns?.forEach((col) => {
+        workspaceComponentList.value[0]?.schema?.columns?.forEach((col) => {
           if (col.search?.formItemProps?.id === `schema-field${id}`)
             item = { ...col.search }
         })
@@ -97,10 +96,10 @@ export default defineComponent({
       event.stopPropagation()
       const columnIndex = column.getColumnIndex()
       const columns
-        = workspaceStore.getWorkspaceComponentList[0].schema.columns?.filter(item => item.prop)
+        = workspaceComponentList.value[0].schema.columns?.filter(item => item.prop)
         || []
       const tableCol = columns[columnIndex]
-      workspaceStore.updateCurOperateComponent(tableCol as WorkspaceComponentItem)
+      updateCurOperateComponent(tableCol as WorkspaceComponentItem)
     }
 
     const handleUpdateFormItem = (
@@ -112,7 +111,7 @@ export default defineComponent({
         emit('on-update-cur-operate', {})
         return
       }
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const tableProConfig = workspaceComponentList.value[0]
       const schema = tableProConfig.schema
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
@@ -122,7 +121,7 @@ export default defineComponent({
         newArr[newIndex].formItemProps = newFormItem
         newArr[oldIndex].formItemProps = oldFormItem
         columns = newArr
-        workspaceStore.updateComponentList([
+        updateComponentList([
           {
             ...tableProConfig,
             schema: {
@@ -131,7 +130,7 @@ export default defineComponent({
             },
           },
         ])
-        workspaceStore.updateCurOperateComponent(data)
+        updateCurOperateComponent(data)
       }
     }
 
@@ -140,7 +139,7 @@ export default defineComponent({
       newIndex: number,
       oldIndex: number,
     ) => {
-      const tableProConfig = workspaceStore.getWorkspaceComponentList[0]
+      const tableProConfig = workspaceComponentList.value[0]
       const schema = tableProConfig.schema
       if (schema.columns && schema.columns.length) {
         const filterColumns = cloneDeep(schema.columns.filter(item => item.prop))
@@ -165,7 +164,7 @@ export default defineComponent({
             filterColumns[index].search = filterFormItems[index].search
           })
         }
-        workspaceStore.updateComponentList([
+        updateComponentList([
           {
             ...tableProConfig,
             schema: {
@@ -177,7 +176,7 @@ export default defineComponent({
             },
           },
         ])
-        workspaceStore.updateCurOperateComponent(data)
+        updateCurOperateComponent(data)
         tableKey.value = new Date().valueOf()
       }
     }
@@ -192,7 +191,7 @@ export default defineComponent({
           group="people"
           filter=".not-drag"
           item-key="id"
-          onUpdate:modelValue={(val: any) => workspaceStore.updateComponentList(val)}
+          onUpdate:modelValue={(val: any) => updateComponentList(val)}
           onStart={start}
           onEnd={end}
         >

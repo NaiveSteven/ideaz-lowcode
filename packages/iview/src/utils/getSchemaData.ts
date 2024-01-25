@@ -1,6 +1,6 @@
 import { isEmpty, isObject } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
-import { useWorkspaceForm, useWorkspaceStore } from '../../../playground-store/src'
+import { useWorkspaceComponent, useWorkspaceForm } from '../../../playground-store/src'
 import {
   defaultCheckboxAttrs, defaultInputAttrs,
   defaultInputNumberAttrs,
@@ -59,18 +59,18 @@ function delEmptyObject(data: any) {
 }
 
 function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
-  const workspaceStore = useWorkspaceStore()
+  const { workspaceComponentList } = useWorkspaceComponent()
   const { formConfig } = useWorkspaceForm()
-  const componentList = cloneDeep(workspaceStore.getWorkspaceComponentList)
+
   if (type === 'form') {
     const formData: IndexType = {}
     const options: IndexType = {}
 
-    const isRequired = componentList.some(item => item.fieldFormData?.required)
+    const isRequired = workspaceComponentList.value.some(item => item.fieldFormData?.required)
     if (isRequired)
       formConfig.value.rules = {}
 
-    componentList.forEach((item) => {
+      workspaceComponentList.value.forEach((item) => {
       const field = item.fieldFormData?.field
       if (field) {
         formData[field] = item.fieldFormData!.default
@@ -98,7 +98,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     delEmptyObject(formConfig)
 
     return {
-      columns: componentList.map((item) => {
+      columns: workspaceComponentList.value.map((item) => {
         if (
           item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
@@ -152,9 +152,9 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
   }
 
   if (type === 'crud') {
-    if (!componentList[0])
+    if (!workspaceComponentList.value[0])
       return { config: {} } as IndexType
-    const component = componentList[0]
+    const component = workspaceComponentList.value[0]
     const schema = component.schema
     const config: IndexType = {}
     let columns: Array<TableCol> = []

@@ -1,11 +1,11 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import './style.scss'
 
 export default defineComponent({
   name: 'CrudSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent, updateComponentList } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -13,10 +13,8 @@ export default defineComponent({
       colon: false,
     })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-
     const handleFormConfigChange = (obj: FormChangeData) => {
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       const schema = {
         ...crud.schema,
         search: {
@@ -24,14 +22,14 @@ export default defineComponent({
           ...obj.formData,
         },
       }
-      workspaceStore.updateCurOperateComponent({
+      updateCurOperateComponent({
         ...crud,
         fieldFormData: reactive({
           ...curOperateComponent.value.fieldFormData,
         }),
         schema,
       })
-      workspaceStore.updateComponentList([
+      updateComponentList([
         {
           ...crud,
           schema,
@@ -40,7 +38,7 @@ export default defineComponent({
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       const schema = cloneDeep(crud.schema)
       if (obj.formData.pagination === false) {
         delete schema.pagination
@@ -80,7 +78,7 @@ export default defineComponent({
       else
         schema.collapsed = false
 
-      workspaceStore.updateComponentList([
+      updateComponentList([
         {
           ...crud,
           componentFormData: {
@@ -90,7 +88,7 @@ export default defineComponent({
           schema,
         },
       ])
-      workspaceStore.updateCurOperateComponent({
+      updateCurOperateComponent({
         ...crud,
         componentFormData: {
           ...crud.componentFormData,

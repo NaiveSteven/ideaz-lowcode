@@ -1,7 +1,5 @@
 import {
-  useGlobalSetting,
-  useWorkspaceForm,
-  useWorkspaceStore
+  useGlobalSetting, useWorkspaceComponent, useWorkspaceForm
 } from '@ideal-schema/playground-store'
 import { useCrudDialogCode } from './useCrudDialogCode'
 import { useCrudPageCode } from './useCrudPageCode'
@@ -9,17 +7,15 @@ import { useFormDialogCode } from './useFormDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
-  const workspaceStore = useWorkspaceStore()
+  const { workspaceComponentList } = useWorkspaceComponent()
   const { formConfig } = useWorkspaceForm()
   const { workspaceComponentType } = useGlobalSetting()
-
-  const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
 
   const isDialog = computed(() => {
     if (workspaceComponentType.value === 'form')
       return formConfig.value.background === 'dialog'
 
-    return componentList.value[0]?.componentFormData?.background === 'dialog'
+    return workspaceComponentList.value[0]?.componentFormData?.background === 'dialog'
   })
 
   const getPageCode = () => {

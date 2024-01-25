@@ -1,19 +1,17 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
-import { getInputFormItemTemplate } from '../utils'
 import {
   tableColFormData,
   tableColTemplateOptionsConfig,
-  tableColTemplateSchema,
+  tableColTemplateSchema
 } from '../schemas'
+import { getInputFormItemTemplate } from '../utils'
 import './style.scss'
 
 export default defineComponent({
   name: 'TableActionsWidget',
   setup(props, { slots }) {
-    const workspaceStore = useWorkspaceStore()
-
-    const workspaceComponentList = computed(() => workspaceStore.getWorkspaceComponentList)
+    const { workspaceComponentList, updateComponentList } = useWorkspaceComponent()
 
     const ACTIONS = [
       {
@@ -53,7 +51,7 @@ export default defineComponent({
               ...tableCol,
             }
           }
-          workspaceStore.updateComponentList([
+          updateComponentList([
             {
               ...workspaceComponentList.value[0],
               schema: {
@@ -89,7 +87,7 @@ export default defineComponent({
           else {
             columns[lastIndex + 1].search = newFormItem
           }
-          workspaceStore.updateComponentList([
+          updateComponentList([
             {
               ...workspaceComponentList.value[0],
               schema: {

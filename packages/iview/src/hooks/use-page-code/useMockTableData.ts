@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 
 function randomlyGeneratedChineseCharacters(num: number) {
   const arr = []
@@ -15,8 +15,7 @@ function randomlyGeneratedChineseCharacters(num: number) {
 }
 
 export function useMockTableData() {
-  const workspaceStore = useWorkspaceStore()
-  const workspaceComponentList = computed(() => workspaceStore.workspaceComponentList)
+  const { workspaceComponentList } = useWorkspaceComponent()
 
   const getTableData = () => {
     const tableData: IndexType[] = []

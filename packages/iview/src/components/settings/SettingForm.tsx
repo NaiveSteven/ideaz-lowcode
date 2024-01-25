@@ -1,4 +1,4 @@
-import { useWorkspaceForm, useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import { formTemplateOptionsConfig, formTemplateSchema } from '../../schemas'
 import CrudFormItemSettingForm from './CrudFormItemSettingForm'
 import CrudSettingForm from './CrudSettingForm'
@@ -9,7 +9,7 @@ import './style.scss'
 export default defineComponent({
   name: 'SettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList } = useWorkspaceComponent()
     const { formConfig: workspaceFormConfig, setFormConfig } = useWorkspaceForm()
 
     const formConfig = reactive({
@@ -33,15 +33,12 @@ export default defineComponent({
       validateOnRuleChange: true,
     })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-    const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
-
     const handleMiddleFormChange = (data: { value: any, field: any }) => {
       setFormConfig({ ...workspaceFormConfig.value, [data.field]: data.value })
     }
 
     return () => {
-      if (!curOperateComponent.value.id && componentList.value?.[0]?.name === 'crud')
+      if (!curOperateComponent.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
         return null
 
       if (!curOperateComponent.value.id) {
@@ -65,9 +62,9 @@ export default defineComponent({
         return <CrudSettingForm />
 
       if (
-        componentList.value
-        && componentList.value.length
-        && componentList.value[0].name === 'crud'
+        workspaceComponentList.value
+        && workspaceComponentList.value.length
+        && workspaceComponentList.value[0].name === 'crud'
       )
         return <CrudFormItemSettingForm />
 

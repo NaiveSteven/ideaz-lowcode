@@ -1,4 +1,4 @@
-import { useGlobalSetting, useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { DEFAULT_COMPONENT_TEMPLATES } from '../../materials'
@@ -7,7 +7,7 @@ import ComponentList from './ComponentList'
 export default defineComponent({
   name: 'ComponentWidget',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { updateComponentList, pushComponentItem, updateCurOperateComponent } = useWorkspaceComponent()
     const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const clickExpandComponentItem = (
@@ -24,17 +24,17 @@ export default defineComponent({
             ...expandComponentItem.schema,
           },
         }
-        workspaceStore.updateComponentList([])
-        workspaceStore.pushComponentItem(componentItem, index, toId)
-        workspaceStore.updateCurOperateComponent(componentItem)
+        updateComponentList([])
+        pushComponentItem(componentItem, index, toId)
+        updateCurOperateComponent(componentItem)
         updateWorkspaceComponentType('crud')
         return
       }
       else {
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceComponentType.value === 'crud') {
-          workspaceStore.updateComponentList([])
-          workspaceStore.updateCurOperateComponent({} as WorkspaceComponentItem)
+          updateComponentList([])
+          updateCurOperateComponent({} as WorkspaceComponentItem)
         }
         updateWorkspaceComponentType('form')
       }
@@ -48,13 +48,13 @@ export default defineComponent({
             ...expandComponentItem.schema,
           },
         }
-        workspaceStore.pushComponentItem(componentItem, index, toId)
-        workspaceStore.updateCurOperateComponent(componentItem)
+        pushComponentItem(componentItem, index, toId)
+        updateCurOperateComponent(componentItem)
         // 模板
       }
       else if (Array.isArray(expandComponentItem.templates)) {
-        workspaceStore.updateComponentList(cloneDeep(expandComponentItem.templates!))
-        workspaceStore.updateCurOperateComponent({} as WorkspaceComponentItem)
+        updateComponentList(cloneDeep(expandComponentItem.templates!))
+        updateCurOperateComponent({} as WorkspaceComponentItem)
       }
     }
 

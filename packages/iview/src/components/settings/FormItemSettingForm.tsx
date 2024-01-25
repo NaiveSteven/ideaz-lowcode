@@ -1,11 +1,11 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
 import './style.scss'
 
 export default defineComponent({
   name: 'FormItemSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, updateCurOperateComponent, updateComponentItem } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -13,8 +13,6 @@ export default defineComponent({
       // size: 'default',
       colon: false,
     })
-
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
 
     const handleFormDataChange = (obj: FormChangeData) => {
       const cloneObj = cloneDeep(obj)
@@ -38,8 +36,8 @@ export default defineComponent({
           },
         }
       }
-      workspaceStore.updateCurOperateComponent(item)
-      workspaceStore.updateComponentItem(item)
+      updateCurOperateComponent(item)
+      updateComponentItem(item)
     }
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
@@ -55,8 +53,8 @@ export default defineComponent({
           },
         }
       }
-      workspaceStore.updateCurOperateComponent(item)
-      workspaceStore.updateComponentItem(item)
+      updateCurOperateComponent(item)
+      updateComponentItem(item)
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
@@ -79,8 +77,8 @@ export default defineComponent({
           },
         }
       }
-      workspaceStore.updateCurOperateComponent(cloneDeep(o))
-      workspaceStore.updateComponentItem(cloneDeep(o))
+      updateCurOperateComponent(cloneDeep(o))
+      updateComponentItem(cloneDeep(o))
     }
 
     return () => {
@@ -98,7 +96,7 @@ export default defineComponent({
               />
             </el-collapse-item>
             {curOperateComponent.value.componentSchema
-            && curOperateComponent.value.componentSchema?.length
+              && curOperateComponent.value.componentSchema?.length
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
@@ -110,21 +108,21 @@ export default defineComponent({
                     onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
-                )
+              )
               : null}
             {curOperateComponent.value.formItemTemplateSchema
-            && Array.isArray(curOperateComponent.value.formItemTemplateSchema) && (
-              <el-collapse-item title="容器属性" name="formItem">
-                <z-form
-                  v-model={curOperateComponent.value.formItemFormData}
-                  {...formConfig}
-                  key={curOperateComponent.value.id}
-                  columns={curOperateComponent.value.formItemTemplateSchema}
-                  options={curOperateComponent.value.formItemOptionsConfig}
-                  onChange={handleFormItemFormDataChange}
-                />
-              </el-collapse-item>
-            )}
+              && Array.isArray(curOperateComponent.value.formItemTemplateSchema) && (
+                <el-collapse-item title="容器属性" name="formItem">
+                  <z-form
+                    v-model={curOperateComponent.value.formItemFormData}
+                    {...formConfig}
+                    key={curOperateComponent.value.id}
+                    columns={curOperateComponent.value.formItemTemplateSchema}
+                    options={curOperateComponent.value.formItemOptionsConfig}
+                    onChange={handleFormItemFormDataChange}
+                  />
+                </el-collapse-item>
+              )}
           </el-collapse>
         </div>
       )

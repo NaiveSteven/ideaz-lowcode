@@ -1,23 +1,21 @@
-import { cloneDeep, debounce } from 'lodash-es'
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
+import { cloneDeep, debounce } from 'lodash-es'
 import { FORM_COMPONENT_TYPE } from '../../materials'
 import {
-  SelectCrudFormData,
   dateRangeCrudFormData,
   dateRangeCrudSchema,
   inputCrudFormData,
   inputCrudSchema,
   multipleSelectCrudFormData,
-  multipleSelectCrudSchema,
-  selectCrudSchema,
+  multipleSelectCrudSchema, SelectCrudFormData, selectCrudSchema
 } from '../../schemas'
 import './style.scss'
 
 export default defineComponent({
   name: 'TableProFormItemSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -26,14 +24,12 @@ export default defineComponent({
       colon: false,
     })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-
     const updateData = (
       form: WorkspaceComponentItem,
       schema: Schema,
       changeData: FormChangeData,
     ) => {
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
         columns = schema.columns.map((cur: TableCol) => {
@@ -46,7 +42,7 @@ export default defineComponent({
           return cur
         })
         const updateWorkspaceComponentList = debounce(() => {
-          workspaceStore.updateComponentList([
+          updateComponentList([
             {
               ...crud,
               schema: {
@@ -63,7 +59,7 @@ export default defineComponent({
 
         updateWorkspaceComponentList()
       }
-      workspaceStore.updateCurOperateComponent(form)
+      updateCurOperateComponent(form)
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
@@ -72,7 +68,7 @@ export default defineComponent({
         field: obj.formData.field,
         fieldFormData: obj.formData,
       }
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       const schema = crud.schema
       updateData(item, schema, obj)
     }
@@ -102,7 +98,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceComponentList.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -144,7 +140,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceComponentList.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -181,7 +177,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceComponentList.value[0]
           const schema = crud.schema
           updateData(item, schema, obj)
         }
@@ -213,7 +209,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceComponentList.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -260,7 +256,7 @@ export default defineComponent({
               },
             ],
           }
-          const crud = workspaceStore.getWorkspaceComponentList[0]
+          const crud = workspaceComponentList.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -279,7 +275,7 @@ export default defineComponent({
             ...obj.formData,
           },
         }
-        const crud = workspaceStore.getWorkspaceComponentList[0]
+        const crud = workspaceComponentList.value[0]
         const schema = crud.schema
         updateData(item, schema, obj)
       }
@@ -290,7 +286,7 @@ export default defineComponent({
         ...curOperateComponent.value,
         formItemProps: { ...curOperateComponent.value.formItemProps, ...obj.formData },
       }
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       const schema = crud.schema
       updateData(item, schema, obj)
     }
@@ -310,7 +306,7 @@ export default defineComponent({
               />
             </el-collapse-item>
             {curOperateComponent.value.componentSchema
-            && curOperateComponent.value.componentSchema!.length
+              && curOperateComponent.value.componentSchema!.length
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
@@ -322,10 +318,10 @@ export default defineComponent({
                     onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
-                )
+              )
               : null}
             {curOperateComponent.value.formItemTemplateSchema
-            && Array.isArray(curOperateComponent.value.formItemTemplateSchema)
+              && Array.isArray(curOperateComponent.value.formItemTemplateSchema)
               ? (
                 <el-collapse-item title="容器属性" name="formItem">
                   <z-form
@@ -337,7 +333,7 @@ export default defineComponent({
                     onChange={handleFormItemFormDataChange}
                   />
                 </el-collapse-item>
-                )
+              )
               : null}
           </el-collapse>
         </div>

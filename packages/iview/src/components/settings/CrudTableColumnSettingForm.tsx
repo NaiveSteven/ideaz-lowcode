@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { isFunction, uid } from '@ideal-schema/shared'
 import { tableColTemplateSchema } from '../../schemas'
 import './style.scss'
@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudTableColumnSettingForm',
   setup() {
-    const workspaceStore = useWorkspaceStore()
+    const { curOperateComponent, workspaceComponentList, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -14,10 +14,8 @@ export default defineComponent({
       colon: false,
     })
 
-    const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-
     const handleColumnDataChange = (obj: FormChangeData) => {
-      const crud = workspaceStore.getWorkspaceComponentList[0]
+      const crud = workspaceComponentList.value[0]
       const schema = crud.schema
       let columns: TableCol[] = []
       const data: WorkspaceComponentItem = {
@@ -69,7 +67,7 @@ export default defineComponent({
 
         return item
       }) || []
-      workspaceStore.updateComponentList([
+      updateComponentList([
         {
           ...crud,
           schema: {
@@ -78,7 +76,7 @@ export default defineComponent({
           },
         },
       ])
-      workspaceStore.updateCurOperateComponent(data)
+      updateCurOperateComponent(data)
     }
 
     return () => {
