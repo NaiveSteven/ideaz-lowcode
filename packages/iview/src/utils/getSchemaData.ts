@@ -155,7 +155,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 
   if (type === 'crud') {
     if (!componentList[0])
-      return { config: {} }
+      return { config: {} } as IndexType
     const component = componentList[0]
     const schema = component.schema
     const config: IndexType = {}
@@ -338,6 +338,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     }) || []
 
     return { config, columns }
+  }
+
+  return {
+    formData: {},
+    formConfig: {},
+    options: {},
+    columns: [],
   }
 }
 
