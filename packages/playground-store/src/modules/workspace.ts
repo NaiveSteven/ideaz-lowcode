@@ -15,10 +15,7 @@ type ViewType = 'json' | 'design' | 'play'
 export const useWorkspaceStore = defineStore({
   id: 'workspace',
   state: (): WorkspaceState => ({
-    // 显示在workspace的组件列表
     workspaceComponentList: [],
-
-    // 当前在workspace操作的组件
     curOperateComponent: {} as WorkspaceComponentItem,
     viewType: 'design',
   }),
