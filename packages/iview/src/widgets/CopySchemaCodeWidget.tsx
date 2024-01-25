@@ -1,14 +1,12 @@
 import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSettingStore } from '@ideal-schema/playground-store'
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 import { copy } from '@ideal-schema/shared'
 import beautify from 'js-beautify'
 
 export default defineComponent({
   name: 'CopySchemaCodeWidget',
   setup() {
-    const globalSettingStore = useGlobalSettingStore()
-
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
+    const { workspaceComponentType } = useGlobalSetting()
 
     const handleCopyJSON = () => {
       const schema = getSchemaData('code', workspaceComponentType.value)

@@ -1,13 +1,11 @@
-import { useWorkspaceStoreMethods, useWorkspaceStoreData, useInElement } from '../../hooks';
-import { useGlobalSettingStore } from '@ideal-schema/playground-store';
+import { useGlobalSetting } from '@ideal-schema/playground-store';
+import { useInElement, useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../hooks';
 import { getPids, getTreeDataItem } from '../../utils/index';
 
 export default defineComponent({
   name: 'Selector',
   setup() {
-    const globalSettingStore = useGlobalSettingStore();
-
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType);
+    const { workspaceComponentType } = useGlobalSetting();
     const { curOperateComponent, workspaceComponentList } = useWorkspaceStoreData();
     const { updateCurOperateComponent } = useWorkspaceStoreMethods();
     const { isOutside, changeBtnStatus } = useInElement('selector-btn');

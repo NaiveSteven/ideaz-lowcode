@@ -1,5 +1,5 @@
-import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import { getSchemaData } from '@ideal-schema/playground-demi'
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 
 export default defineComponent({
   name: 'PlayWidget',
@@ -10,8 +10,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const globalSettingStore = useGlobalSettingStore()
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
+    const { workspaceComponentType } = useGlobalSetting()
     const formData = ref({})
     const columns = ref<any>([])
     const tableConfig = ref({})

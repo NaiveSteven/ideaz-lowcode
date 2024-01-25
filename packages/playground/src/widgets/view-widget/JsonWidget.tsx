@@ -1,14 +1,12 @@
 import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSettingStore } from '@ideal-schema/playground-store'
-import beautify from 'js-beautify'
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 import Codemirror from 'codemirror-editor-vue3'
+import beautify from 'js-beautify'
 
 export default defineComponent({
   name: 'JsonWidget',
   setup() {
-    const globalSettingStore = useGlobalSettingStore()
-
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
+    const { workspaceComponentType } = useGlobalSetting()
 
     const editor = ref()
 

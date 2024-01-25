@@ -1,18 +1,17 @@
 import {
-  useGlobalSettingStore,
+  useGlobalSetting,
   useMiddleFormStore,
-  useWorkspaceStore,
+  useWorkspaceStore
 } from '@ideal-schema/playground-store'
+import { useCrudDialogCode } from './useCrudDialogCode'
 import { useCrudPageCode } from './useCrudPageCode'
 import { useFormDialogCode } from './useFormDialogCode'
-import { useCrudDialogCode } from './useCrudDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
   const workspaceStore = useWorkspaceStore()
   const middleFormStore = useMiddleFormStore()
-  const globalSettingStore = useGlobalSettingStore()
-  const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
+  const { workspaceComponentType } = useGlobalSetting()
 
   const componentList = computed(() => workspaceStore.getWorkspaceComponentList)
   const middleFormConfig = computed(() => middleFormStore.getFormConfig)

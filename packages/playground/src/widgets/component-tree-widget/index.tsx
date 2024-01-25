@@ -1,15 +1,13 @@
-import { useGlobalSettingStore } from '@ideal-schema/playground-store'
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 import type { ElTree } from 'element-plus'
 import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../hooks'
 
 export default defineComponent({
   name: 'ComponentTreeWidget',
   setup() {
-    const globalSettingStore = useGlobalSettingStore()
+    const { workspaceComponentType } = useGlobalSetting()
     const { workspaceComponentList, curOperateComponent } = useWorkspaceStoreData()
     const { updateCurOperateComponent } = useWorkspaceStoreMethods()
-
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
 
     const tree = ref<InstanceType<typeof ElTree>>()
 

@@ -1,5 +1,5 @@
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
-import { useGlobalSettingStore } from '@ideal-schema/playground-store'
 import { useWorkspaceStoreData, useWorkspaceStoreMethods } from '../../hooks'
 import { getPids, getTreeDataItem } from '../../utils/index'
 import './style.scss'
@@ -12,9 +12,8 @@ interface TitleItem {
 export default defineComponent({
   name: 'DesignToolsWidget',
   setup() {
-    const globalSettingStore = useGlobalSettingStore()
+    const { workspaceComponentType } = useGlobalSetting()
 
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
     const { curOperateComponent, workspaceComponentList } = useWorkspaceStoreData()
     const { updateCurOperateComponent } = useWorkspaceStoreMethods()
 

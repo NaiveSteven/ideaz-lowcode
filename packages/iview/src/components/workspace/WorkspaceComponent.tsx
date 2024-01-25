@@ -1,12 +1,12 @@
-import { VueDraggable } from 'vue-draggable-plus'
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { cloneDeep } from 'lodash-es'
+import { VueDraggable } from 'vue-draggable-plus'
 
 // import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSettingStore, useWorkspaceStore } from '@ideal-schema/playground-store'
-import TableActionsWidget from '../../widgets/TableActionsWidget'
-import { useMiddleFormStoreData } from '../../hooks'
+import { useGlobalSetting, useWorkspaceStore } from '@ideal-schema/playground-store'
 import mitt from '../../event'
+import { useMiddleFormStoreData } from '../../hooks'
+import TableActionsWidget from '../../widgets/TableActionsWidget'
 import './style.scss'
 
 export default defineComponent({
@@ -36,9 +36,8 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const workspaceStore = useWorkspaceStore()
-    const globalSettingStore = useGlobalSettingStore()
+    const { workspaceComponentType } = useGlobalSetting()
     const curOperateComponent = computed(() => workspaceStore.getCurOperateComponent)
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
     const { formConfig } = useMiddleFormStoreData()
 
     let tempData: any = null
@@ -224,7 +223,7 @@ export default defineComponent({
                         onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
                       />
                     </TableActionsWidget>
-                    )
+                  )
                   : (
                     <z-form-item
                       formConfig={formConfig.value}
@@ -236,7 +235,7 @@ export default defineComponent({
                       col={formItem.schema}
                       class={formItem.schema.title === 'Col' ? 'not-drag' : ''}
                     />
-                    )}
+                  )}
               </div>
             )
           })}

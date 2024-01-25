@@ -1,5 +1,5 @@
+import { useGlobalSetting, useWorkspaceStore } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
-import { useGlobalSettingStore, useWorkspaceStore } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
 import { DEFAULT_COMPONENT_TEMPLATES } from '../../materials'
 import ComponentList from './ComponentList'
@@ -8,9 +8,7 @@ export default defineComponent({
   name: 'ComponentWidget',
   setup() {
     const workspaceStore = useWorkspaceStore()
-    const globalSettingStore = useGlobalSettingStore()
-
-    const workspaceComponentType = computed(() => globalSettingStore.getWorkspaceComponentType)
+    const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const clickExpandComponentItem = (
       expandComponentItem: WorkspaceComponentItem,
@@ -29,7 +27,7 @@ export default defineComponent({
         workspaceStore.updateComponentList([])
         workspaceStore.pushComponentItem(componentItem, index, toId)
         workspaceStore.updateCurOperateComponent(componentItem)
-        globalSettingStore.updateWorkspaceComponentType('crud')
+        updateWorkspaceComponentType('crud')
         return
       }
       else {
@@ -38,7 +36,7 @@ export default defineComponent({
           workspaceStore.updateComponentList([])
           workspaceStore.updateCurOperateComponent({} as WorkspaceComponentItem)
         }
-        globalSettingStore.updateWorkspaceComponentType('form')
+        updateWorkspaceComponentType('form')
       }
       // 表单
       if (!expandComponentItem.templates || !Array.isArray(expandComponentItem.templates)) {
