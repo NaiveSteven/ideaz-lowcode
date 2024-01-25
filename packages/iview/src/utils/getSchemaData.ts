@@ -48,6 +48,10 @@ const skipFieldPropsKeys: Array<{ key: string, value: any }> = [
     key: 'type',
     value: ['textarea', 'daterange'],
   },
+  {
+    key: 'multiple',
+    value: true,
+  },
 ]
 
 function delEmptyObject(data: any) {
