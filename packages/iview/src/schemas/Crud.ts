@@ -21,11 +21,6 @@ export const crudTableTemplateSchema = [
   },
   {
     component: 'el-switch',
-    field: 'collapsed',
-    label: '表单默认展开',
-  },
-  {
-    component: 'el-switch',
     field: 'pagination',
     label: '分页',
   },
@@ -36,6 +31,11 @@ export const crudFormTemplateSchema = [
     component: 'input',
     field: 'labelWidth',
     label: '标签宽度',
+  },
+  {
+    component: 'el-switch',
+    field: 'collapsed',
+    label: '表单默认展开',
   },
 ]
 

@@ -10,7 +10,7 @@ import {
   inputCrudSchema,
   tableColFormData,
   tableColTemplateOptionsConfig,
-  tableColTemplateSchema,
+  tableColTemplateSchema
 } from '../schemas'
 
 const FORM_COMPONENT_TYPE = [
@@ -324,7 +324,6 @@ export function CrudTemplate() {
       rowKey: 'id',
       formDecorator: 'el-card',
       tableDecorator: 'el-card',
-      collapsed: true,
       pagination: true,
       background: 'page',
     }),
@@ -333,6 +332,7 @@ export function CrudTemplate() {
     fieldSchema: crudFormTemplateSchema,
     fieldFormData: reactive({
       labelWidth: '80px',
+      collapsed: true,
     }),
     allowCopy: false,
     allowDelete: true,

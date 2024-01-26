@@ -193,7 +193,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     if (componentFormData?.rowKey && componentFormData.rowKey !== 'id')
       config.rowKey = componentFormData?.rowKey
 
-    if (componentFormData?.collapsed === false)
+    if (component.fieldFormData?.collapsed === false)
       config.collapsed = componentFormData?.collapsed
 
     if (componentFormData?.pagination)

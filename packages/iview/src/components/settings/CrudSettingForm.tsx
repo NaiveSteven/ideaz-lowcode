@@ -22,10 +22,17 @@ export default defineComponent({
           ...obj.formData,
         },
       }
+      if (obj.formData.collapsed)
+        schema.collapsed = true
+
+      else
+        schema.collapsed = false
+
       updateCurOperateComponent({
         ...crud,
         fieldFormData: reactive({
           ...curOperateComponent.value.fieldFormData,
+          ...obj.formData
         }),
         schema,
       })
@@ -72,11 +79,6 @@ export default defineComponent({
       else {
         // delete schema.rowKey;
       }
-      if (obj.formData.collapsed)
-        schema.collapsed = true
-
-      else
-        schema.collapsed = false
 
       updateComponentList([
         {
