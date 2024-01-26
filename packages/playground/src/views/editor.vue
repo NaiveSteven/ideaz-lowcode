@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { CompositePanel, Settings, WorkspacePanel } from '../containers'
-import TipDialogWidget from '../widgets/tip-dialog-widget/index.vue'
 import { useDriver } from '../hooks'
 
-const { startDriver, getIsNew } = useDriver()
-const isShowTipDialog = ref(false)
-const isUpdate = Number(
-  sessionStorage.getItem('isUpdate') ? JSON.parse(sessionStorage.getItem('isUpdate')!) : 0,
-)
-
-if (!getIsNew() && !isUpdate)
-  isShowTipDialog.value = true
+const { startDriver } = useDriver()
 
 onMounted(() => {
   setTimeout(() => {
@@ -26,7 +18,6 @@ onMounted(() => {
       <WorkspacePanel />
       <Settings />
     </div>
-    <TipDialogWidget v-model="isShowTipDialog" />
   </div>
 </template>
 
