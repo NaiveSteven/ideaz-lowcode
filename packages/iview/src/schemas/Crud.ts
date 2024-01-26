@@ -2,12 +2,18 @@ export const crudTableTemplateSchema = [
   {
     component: 'select',
     field: 'background',
-    label: '背景',
+    label: '场景',
+    tooltip: '代码生成会按照不同的场景生成适配的代码',
+  },
+  {
+    component: 'select',
+    field: 'size',
+    label: '尺寸',
   },
   {
     component: 'input',
     field: 'rowKey',
-    label: '行数据的key',
+    label: 'rowKey',
   },
   {
     component: 'input',
@@ -43,5 +49,10 @@ export const crudTableOptionsConfig = {
   background: [
     { label: '页面', value: 'page' },
     { label: '弹窗', value: 'dialog' },
+  ],
+  size: [
+    { label: 'large', value: 'large' },
+    { label: 'default', value: 'default' },
+    { label: 'small', value: 'small' },
   ],
 }

@@ -39,4 +39,5 @@ declare interface Schema {
   form?: IndexType
   search?: IndexType
   collapsed?: boolean
+  size?: 'default' | 'small' | 'large'
 }

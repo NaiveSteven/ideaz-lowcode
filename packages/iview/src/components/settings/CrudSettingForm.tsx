@@ -32,7 +32,7 @@ export default defineComponent({
         ...crud,
         fieldFormData: reactive({
           ...curOperateComponent.value.fieldFormData,
-          ...obj.formData
+          ...obj.formData,
         }),
         schema,
       })
@@ -57,6 +57,7 @@ export default defineComponent({
           total: 0,
         }
       }
+
       if (obj.formData.tableDecorator !== 'el-card') {
         schema.tableDecorator = {
           name: obj.value,
@@ -65,6 +66,7 @@ export default defineComponent({
       else {
         delete schema.tableDecorator
       }
+
       if (obj.formData.formDecorator !== 'el-card') {
         schema.formDecorator = {
           name: obj.value,
@@ -73,12 +75,15 @@ export default defineComponent({
       else {
         delete schema.formDecorator
       }
+
       if (obj.formData.rowKey !== 'id') {
         schema.rowKey = obj.formData.rowKey
       }
       else {
         // delete schema.rowKey;
       }
+
+      schema.size = obj.formData.size
 
       updateComponentList([
         {
