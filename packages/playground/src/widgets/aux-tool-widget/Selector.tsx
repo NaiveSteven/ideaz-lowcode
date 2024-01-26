@@ -1,43 +1,43 @@
-import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store';
-import { useInElement } from '../../hooks';
-import { getPids, getTreeDataItem } from '../../utils/index';
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useInElement } from '../../hooks'
+import { getPids, getTreeDataItem } from '../../utils/index'
 
 export default defineComponent({
   name: 'Selector',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting();
-    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent();
-    const { isOutside, changeBtnStatus } = useInElement('selector-btn');
+    const { workspaceComponentType } = useGlobalSetting()
+    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { isOutside, changeBtnStatus } = useInElement('selector-btn')
 
     const selectors = computed(() => {
-      return getPids(workspaceComponentList.value, curOperateComponent.value);
-    });
+      return getPids(workspaceComponentList.value, curOperateComponent.value)
+    })
 
     const tableProSelectors = computed(() => {
       if (
-        curOperateComponent.value.name === 'tableCol' ||
-        curOperateComponent.value.name === 'tableForm'
+        curOperateComponent.value.name === 'tableCol'
+        || curOperateComponent.value.name === 'tableForm'
       ) {
         return [
           {
             id: workspaceComponentList.value[0].id,
-            title: '表单表格',
+            title: '增删改查',
           },
-        ];
+        ]
       }
-      return [];
-    });
+      return []
+    })
 
-    const handleClickTitle = (item: { id: string; title: string }) => {
-      changeBtnStatus(true);
-      const clickData = getTreeDataItem(workspaceComponentList.value, item.id);
-      updateCurOperateComponent(clickData);
-    };
+    const handleClickTitle = (item: { id: string, title: string }) => {
+      changeBtnStatus(true)
+      const clickData = getTreeDataItem(workspaceComponentList.value, item.id)
+      updateCurOperateComponent(clickData)
+    }
 
     const handleClickForm = () => {
-      changeBtnStatus(true);
-      updateCurOperateComponent({} as WorkspaceComponentItem);
-    };
+      changeBtnStatus(true)
+      updateCurOperateComponent({} as WorkspaceComponentItem)
+    }
 
     const renderCurOperateSelector = () => (
       <el-button
@@ -52,7 +52,7 @@ export default defineComponent({
         </el-icon>
         <span>{curOperateComponent.value.title}</span>
       </el-button>
-    );
+    )
 
     const renderFormSelector = (cls: string, condition: boolean) => {
       return (
@@ -66,18 +66,18 @@ export default defineComponent({
             </el-button>
           )}
         </>
-      );
-    };
+      )
+    }
 
     return () => (
-      <div class="mr-1 relative" id="selector-btn">
+      <div class="relative mr-1" id="selector-btn">
         {renderCurOperateSelector()}
         {!isOutside.value && (
           <div style={{ position: 'absolute', top: '100%', left: 0 }} class="selector-menu">
             {workspaceComponentType.value === 'form'
               ? selectors.value
                 .slice(1, selectors.value.length)
-                .map((item: { id: string; title: string }) => {
+                .map((item: { id: string, title: string }) => {
                   return (
                     <el-button
                       type="primary"
@@ -90,7 +90,7 @@ export default defineComponent({
                       </el-icon>
                       <span>{item.title}</span>
                     </el-button>
-                  );
+                  )
                 })
               : tableProSelectors.value.map((item) => {
                 return (
@@ -105,16 +105,16 @@ export default defineComponent({
                     </el-icon>
                     <span>{item.title}</span>
                   </el-button>
-                );
+                )
               })}
             {renderFormSelector(
               selectors.value.length ? 'aux-button selector-menu mt-1' : 'aux-button selector-menu',
-              !!curOperateComponent.value.id
+              !!curOperateComponent.value.id,
             )}
           </div>
         )}
         {renderFormSelector('aux-button', !curOperateComponent.value.id)}
       </div>
-    );
+    )
   },
-});
+})

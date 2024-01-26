@@ -64,7 +64,7 @@ export default defineComponent({
       const index = workspaceComponentList.value.findIndex(
         item => curOperateComponent.value.id === item.id,
       )
-      if (index === 0 || curOperateComponent.value.pid)
+      if (index === 0 || curOperateComponent.value.pid || curOperateComponent.value.name === 'tableForm')
         return 'bottom'
 
       if (index === -1)

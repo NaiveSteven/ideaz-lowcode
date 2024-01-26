@@ -302,7 +302,7 @@ export function CrudTemplate() {
       },
       search: {
         labelPosition: 'right',
-        labelWidth: '100px',
+        labelWidth: '80px',
         draggable: true,
       },
       data: [
