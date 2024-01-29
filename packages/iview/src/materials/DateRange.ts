@@ -19,7 +19,7 @@ export function DateRangeTemplateComponent() {
       field: 'datepicker',
       label: '日期范围',
       fieldProps: {
-        component: 'daterange',
+        type: 'daterange',
         clearable: true,
         disabled: false,
         startPlaceholder: '开始日期',

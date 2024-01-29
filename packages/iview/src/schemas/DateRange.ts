@@ -2,12 +2,14 @@ export const dateRangeTemplateSchema = [
   {
     component: 'input',
     field: 'startPlaceholder',
-    label: '开始日期占位内容',
+    label: '占位内容',
+    tooltip: '开始日期占位内容',
   },
   {
     component: 'input',
     field: 'endPlaceholder',
-    label: '结束日期占位内容',
+    label: '占位内容',
+    tooltip: '结束日期占位内容',
   },
   {
     component: 'input',
@@ -47,12 +49,14 @@ export const dateRangeCrudSchema = [
   {
     component: 'input',
     field: 'startPlaceholder',
-    label: '开始日期占位内容',
+    label: '占位内容',
+    tooltip: '开始日期占位内容',
   },
   {
     component: 'input',
     field: 'endPlaceholder',
     label: '结束日期占位内容',
+    tooltip: '结束日期占位内容',
   },
   {
     component: 'input',
@@ -68,7 +72,7 @@ export const dateRangeCrudFormData = {
 }
 
 export const defaultDateRangeAttrs = {
-  component: 'daterange',
+  type: 'daterange',
   clearable: true,
   disabled: false,
   startPlaceholder: '开始日期',
