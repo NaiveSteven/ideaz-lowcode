@@ -7,6 +7,7 @@ export const Header = defineComponent({
       <div class="header">
         <div></div>
         <div class="header--actions">
+          <notify />
         </div>
       </div>
     )
