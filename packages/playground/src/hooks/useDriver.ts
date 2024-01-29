@@ -14,7 +14,7 @@ const steps = [
     element: '.drawer',
     popover: {
       title: '组件物料',
-      description: '表单组件、布局组件物料都在这',
+      description: '基础组件、高阶组件物料都在这',
       position: 'right',
     },
   },
