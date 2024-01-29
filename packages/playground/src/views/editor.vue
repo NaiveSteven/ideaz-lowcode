@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CompositePanel, Settings, WorkspacePanel } from '../containers'
+import { CompositePanel, Header, Settings, WorkspacePanel } from '../containers'
 import { useDriver } from '../hooks'
 
 const { startDriver } = useDriver()
@@ -13,6 +13,7 @@ onMounted(() => {
 
 <template>
   <div class="root">
+    <Header />
     <div class="main-panel">
       <CompositePanel />
       <WorkspacePanel />
