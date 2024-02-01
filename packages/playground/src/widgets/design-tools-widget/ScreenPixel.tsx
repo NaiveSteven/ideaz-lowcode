@@ -2,7 +2,7 @@ export default defineComponent({
   name: 'ScreenPixel',
   props: {
     value: {
-      type: String as PropType<'pc' | 'mobile'>,
+      type: String as PropType<'pc' | 'mobile' | 'pad'>,
       default: 'pc',
     },
   },
@@ -24,7 +24,14 @@ export default defineComponent({
             </el-icon>
           </el-tooltip>
         </el-button>
+        <el-button disabled={props.value === 'pad'} onClick={() => emit('clickPixel', 'pad')}>
+          <el-tooltip effect="light" content="平板端" placement="top" showAfter={500}>
+            <el-icon>
+              <i-monitor />
+            </el-icon>
+          </el-tooltip>
+        </el-button>
       </el-button-group>
-    );
+    )
   },
-});
+})

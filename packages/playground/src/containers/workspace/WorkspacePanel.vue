@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ViewPort } from '@ideal-schema/playground-demi'
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
-import DesignToolsWidget from '../../widgets/design-tools-widget'
-import Selection from '../../widgets/aux-tool-widget/Selection'
-import PcSimulatorWidget from '../../widgets/simulator-widget/PcSimulatorWidget'
-import MobileSimulatorWidget from '../../widgets/simulator-widget/MobileSimulatorWidget'
-import ViewWidget from '../../widgets/view-widget'
-import { useAsideToggle } from '../../hooks'
 import mitt from '../../event'
+import { useAsideToggle } from '../../hooks'
+import Selection from '../../widgets/aux-tool-widget/Selection'
+import DesignToolsWidget from '../../widgets/design-tools-widget'
+import MobileSimulatorWidget from '../../widgets/simulator-widget/MobileSimulatorWidget'
+import PadSimulatorWidget from '../../widgets/simulator-widget/PadSimulatorWidget'
+import PcSimulatorWidget from '../../widgets/simulator-widget/PcSimulatorWidget'
+import ViewWidget from '../../widgets/view-widget'
 
-const simulatorType = ref<'pc' | 'mobile'>('pc')
+const simulatorType = ref<'pc' | 'mobile' | 'pad'>('pc')
 
 const { clickAsideToggleWidget } = useAsideToggle('left', '300px', 300, 'right')
 const { viewType, updateViewType } = useWorkspaceComponent()
@@ -19,6 +20,17 @@ function handleClickView(value: 'json' | 'design' | 'play') {
   clickAsideToggleWidget(value === 'design' ? 'right' : undefined)
   mitt.emit('aside-toggle', value === 'design' ? 'show' : 'hide')
 }
+
+const simulatorWidget = computed(() => {
+  switch (simulatorType.value) {
+    case 'pc':
+      return PcSimulatorWidget
+    case 'mobile':
+      return MobileSimulatorWidget
+    case 'pad':
+      return PadSimulatorWidget
+  }
+})
 </script>
 
 <template>
@@ -29,7 +41,7 @@ function handleClickView(value: 'json' | 'design' | 'play') {
       @click-pixel="(value: 'pc' | 'mobile') => simulatorType = value"
       @click-view="handleClickView"
     />
-    <component :is="simulatorType === 'pc' ? PcSimulatorWidget : MobileSimulatorWidget">
+    <component :is="simulatorWidget">
       <Selection v-if="viewType === 'design'" />
       <ViewPort v-if="viewType === 'design'" />
       <ViewWidget v-else :view-type="viewType" />
