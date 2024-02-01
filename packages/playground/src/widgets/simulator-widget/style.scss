@@ -60,9 +60,17 @@
     }
   }
 
-  .pad-simulator {
-    .content-container {
-      background-color: #fff;
+  .vue-drag-resize-rotate {
+    background-color: #fff;
+    border: 1px dashed #eee;
+
+    .handle {
+      z-index: 5;
+      display: block !important;
+    }
+
+    .handle-rot {
+      display: none !important;
     }
   }
 }

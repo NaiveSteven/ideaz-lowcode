@@ -363,6 +363,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: 2.3.1
         version: registry.npmmirror.com/@element-plus/icons-vue@2.3.1(vue@3.4.5)
+      '@gausszhou/vue3-drag-resize-rotate':
+        specifier: ^3.0.2
+        version: registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate@3.0.2(vue@3.4.5)
       '@vueuse/core':
         specifier: ^8.3.1
         version: registry.npmmirror.com/@vueuse/core@8.9.4(vue@3.4.5)
@@ -3268,6 +3271,17 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz}
     name: '@floating-ui/utils'
     version: 0.1.6
+
+  registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate@3.0.2(vue@3.4.5):
+    resolution: {integrity: sha512-aIIMkk8OBy5TQ84OZzPSpWIApUq9nao8oLq/8yMHeI1TXevO71ZA8Lqt5Kl8D0ZD7InTGOx9U9tkv1kD/BT4tQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate/-/vue3-drag-resize-rotate-3.0.2.tgz}
+    id: registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate/3.0.2
+    name: '@gausszhou/vue3-drag-resize-rotate'
+    version: 3.0.2
+    peerDependencies:
+      vue: ^3.2.37
+    dependencies:
+      vue: registry.npmmirror.com/vue@3.4.5(typescript@5.3.3)
+    dev: false
 
   registry.npmmirror.com/@hapi/hoek@9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@hapi/hoek/-/hoek-9.3.0.tgz}

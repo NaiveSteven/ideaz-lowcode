@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "2.3.1",
+    "@gausszhou/vue3-drag-resize-rotate": "^3.0.2",
     "@vueuse/core": "^8.3.1",
     "axios": "^0.26.1",
     "codemirror": ">=5.64.0 <6",
