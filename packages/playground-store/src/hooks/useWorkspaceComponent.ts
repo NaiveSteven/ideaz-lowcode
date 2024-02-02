@@ -1,16 +1,20 @@
 import { useWorkspaceStore } from '../modules/workspace'
 
-export const useWorkspaceComponent = () => {
-    const workspaceStore = useWorkspaceStore()
+export function useWorkspaceComponent() {
+  const workspaceStore = useWorkspaceStore()
 
-    const workspaceComponentList = computed(() => workspaceStore.workspaceComponentList)
-    const curOperateComponent = computed(() => workspaceStore.curOperateComponent)
-    const viewType = computed(() => workspaceStore.viewType)
+  const workspaceComponentList = computed(() => workspaceStore.workspaceComponentList)
+  const curOperateComponent = computed(() => workspaceStore.curOperateComponent)
+  const viewType = computed(() => workspaceStore.viewType)
+  const boardHeight = computed(() => workspaceStore.boardHeight)
+  const boardWidth = computed(() => workspaceStore.boardWidth)
 
   return {
     workspaceComponentList,
     curOperateComponent,
     viewType,
+    boardHeight,
+    boardWidth,
     pushComponentItem: workspaceStore.pushComponentItem,
     updateComponentItem: workspaceStore.updateComponentItem,
     deleteComponentItem: workspaceStore.deleteComponentItem,
@@ -18,6 +22,7 @@ export const useWorkspaceComponent = () => {
     updateComponentList: workspaceStore.updateComponentList,
     clearWorkspaceComponentList: workspaceStore.clearWorkspaceComponentList,
     updateCurOperateComponent: workspaceStore.updateCurOperateComponent,
-    updateViewType: workspaceStore.updateViewType
+    updateViewType: workspaceStore.updateViewType,
+    updateBoardWH: workspaceStore.updateBoardWH,
   }
 }

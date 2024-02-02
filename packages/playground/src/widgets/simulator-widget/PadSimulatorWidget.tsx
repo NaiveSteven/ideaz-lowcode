@@ -18,6 +18,10 @@ export default defineComponent({
       isLoading.value = false
     })
 
+    const handleResizeStop = (left: number, top: number, width: number, height: number) => {
+      console.log(width, height, 'casdf')
+    }
+
     return () => (
       <div class="board">
         {!isLoading.value && (
@@ -30,6 +34,7 @@ export default defineComponent({
             w={width.value}
             h={height.value}
             enableNativeDrag={true}
+            onResizestop={handleResizeStop}
           >
             {slots.default && slots.default()}
           </vue-drag-resize-rotate>
