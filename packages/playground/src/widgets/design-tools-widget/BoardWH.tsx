@@ -4,13 +4,13 @@ import './style.scss'
 export default defineComponent({
   name: 'Clear',
   setup() {
-    const { boardHeight, boardWidth } = useWorkspaceComponent()
+    const { updateBoardWH, boardHeight, boardWidth } = useWorkspaceComponent()
 
     return () => (
       <div class="board-wh">
-        <el-input modelValue={boardWidth.value} />
+        <el-input modelValue={boardWidth.value} onInput={(val: string) => updateBoardWH(Number(val), boardHeight.value)} />
         <span class="board-wh-md">x</span>
-        <el-input modelValue={boardHeight.value} />
+        <el-input modelValue={boardHeight.value} onInput={(val: string) => updateBoardWH(boardWidth.value, Number(val))} />
       </div>
     )
   },
