@@ -1,14 +1,15 @@
 import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playground-demi'
-import ScreenPixel from './ScreenPixel'
+import BoardWH from './BoardWH'
 import Clear from './Clear'
-import View from './View'
+import ScreenPixel from './ScreenPixel'
 import './style.scss'
+import View from './View'
 
 export default defineComponent({
   name: 'DesignToolsWidget',
   props: {
     pixelType: {
-      type: String as PropType<'pc' | 'mobile'>,
+      type: String as PropType<'pc' | 'mobile' | 'pad'>,
     },
     viewType: {
       type: String as PropType<'json' | 'design' | 'play'>,
@@ -18,11 +19,13 @@ export default defineComponent({
   setup(props, { emit }) {
     return () => (
       <div class="design-tools">
-        <div>
+        <div class="flex justify-between">
           <ScreenPixel
+            class="mr-5"
             value={props.pixelType}
-            onClickPixel={(value: 'pc' | 'mobile') => emit('clickPixel', value)}
+            onClickPixel={(value: 'pc' | 'mobile' | 'pad') => emit('clickPixel', value)}
           />
+          {props.pixelType === 'pad' && <BoardWH />}
         </div>
         <div>
           <View

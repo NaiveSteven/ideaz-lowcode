@@ -1,8 +1,10 @@
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import './style.scss'
 
 export default defineComponent({
   name: 'PadSimulatorWidget',
   setup() {
+    const { updateBoardWH } = useWorkspaceComponent()
     const slots = useSlots()
 
     const width = ref(0)
@@ -15,11 +17,13 @@ export default defineComponent({
       const domRect = dom.getBoundingClientRect()
       width.value = domRect.width
       height.value = domRect.height
+      console.log(width.value, height.value, 'asdf')
+      updateBoardWH(width.value, height.value)
       isLoading.value = false
     })
 
     const handleResizeStop = (left: number, top: number, width: number, height: number) => {
-      console.log(width, height, 'casdf')
+      updateBoardWH(width, height)
     }
 
     return () => (
