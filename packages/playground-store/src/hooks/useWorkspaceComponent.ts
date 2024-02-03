@@ -8,6 +8,8 @@ export function useWorkspaceComponent() {
   const viewType = computed(() => workspaceStore.viewType)
   const boardHeight = computed(() => workspaceStore.boardHeight)
   const boardWidth = computed(() => workspaceStore.boardWidth)
+  const originBoardHeight = computed(() => workspaceStore.originBoardHeight)
+  const originBoardWidth = computed(() => workspaceStore.originBoardWidth)
 
   return {
     workspaceComponentList,
@@ -15,6 +17,8 @@ export function useWorkspaceComponent() {
     viewType,
     boardHeight,
     boardWidth,
+    originBoardHeight,
+    originBoardWidth,
     pushComponentItem: workspaceStore.pushComponentItem,
     updateComponentItem: workspaceStore.updateComponentItem,
     deleteComponentItem: workspaceStore.deleteComponentItem,
@@ -24,5 +28,6 @@ export function useWorkspaceComponent() {
     updateCurOperateComponent: workspaceStore.updateCurOperateComponent,
     updateViewType: workspaceStore.updateViewType,
     updateBoardWH: workspaceStore.updateBoardWH,
+    updateOriginBoardWH: workspaceStore.updateOriginBoardWH,
   }
 }

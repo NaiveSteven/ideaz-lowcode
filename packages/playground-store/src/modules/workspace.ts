@@ -11,6 +11,8 @@ interface WorkspaceState {
   viewType: ViewType
   boardWidth: number
   boardHeight: number
+  originBoardWidth: number
+  originBoardHeight: number
 }
 
 type ViewType = 'json' | 'design' | 'play'
@@ -23,6 +25,8 @@ export const useWorkspaceStore = defineStore({
     viewType: 'design',
     boardWidth: 0,
     boardHeight: 0,
+    originBoardHeight: 0,
+    originBoardWidth: 0,
   }),
   getters: {
     getWorkspaceComponentList(): WorkspaceComponentItem[] {
@@ -207,6 +211,10 @@ export const useWorkspaceStore = defineStore({
     updateBoardWH(width: number, height: number) {
       this.boardHeight = height
       this.boardWidth = width
+    },
+    updateOriginBoardWH(width: number, height: number) {
+      this.originBoardHeight = height
+      this.originBoardWidth = width
     },
   },
 })
