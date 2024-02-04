@@ -18,7 +18,8 @@ const { viewType, updateViewType } = useWorkspaceComponent()
 function handleClickView(value: 'json' | 'design' | 'play') {
   updateViewType(value)
   clickAsideToggleWidget(value === 'design' ? 'right' : undefined)
-  mitt.emit('aside-toggle', value === 'design' ? 'show' : 'hide')
+  mitt.emit('right-aside-toggle', value === 'design' ? 'show' : 'hide')
+  mitt.emit('left-aside-toggle', value === 'design' ? 'show' : 'hide')
 }
 
 const simulatorWidget = computed(() => {

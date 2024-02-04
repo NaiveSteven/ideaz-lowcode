@@ -1,9 +1,9 @@
 import { SettingForm } from '@ideal-schema/playground-demi'
+import { Drawer } from '../containers'
 import mitt from '../event'
+import { useAsideToggle } from '../hooks'
 import AsideToggleWidget from '../widgets/aside-toggle-widget'
 import SettingBreadcrumbWidget from '../widgets/setting-breadcrumb-widget'
-import { Drawer } from '../containers'
-import { useAsideToggle } from '../hooks'
 import './style.scss'
 
 export const Settings = defineComponent({
@@ -11,12 +11,12 @@ export const Settings = defineComponent({
   setup() {
     const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('right', '300px', 300)
 
-    mitt.on('aside-toggle', ((val: 'show' | 'hide') => {
+    mitt.on('right-aside-toggle', ((val: 'show' | 'hide') => {
       arrowDirection.value = val && val === 'show' ? 'right' : 'left'
     }) as () => void)
 
     onBeforeUnmount(() => {
-      mitt.off('aside-toggle')
+      mitt.off('right-aside-toggle')
     })
 
     return () => (
