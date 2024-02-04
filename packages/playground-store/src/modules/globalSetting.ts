@@ -15,7 +15,7 @@ export const useGlobalSettingStore = defineStore({
       : 2,
     workspaceComponentType: 'form',
     compositeArrowDirection: 'left',
-    settingArrowDirection: 'left',
+    settingArrowDirection: 'right',
   }),
   getters: {
     getVersion(): number {

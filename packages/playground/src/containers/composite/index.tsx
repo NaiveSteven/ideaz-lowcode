@@ -1,4 +1,3 @@
-import mitt from '../../event'
 import { useAsideToggle } from '../../hooks'
 import AsideToggleWidget from '../../widgets/aside-toggle-widget'
 import { CompositePanelTabContent } from './CompositePanelTabContent'
@@ -8,18 +7,17 @@ import './style.scss'
 export const CompositePanel = defineComponent({
   name: 'CompositePanel',
   setup() {
-    const { arrowDirection, clickAsideToggleWidget } = useAsideToggle('left', '300px', 300)
+    const { compositeArrowDirection, clickAsideToggleWidget } = useAsideToggle('left', '300px', 300)
 
-    mitt.on('left-aside-toggle', ((val: 'show' | 'hide') => {
-      const direction = val === 'show' ? 'left' : 'right'
-      if (arrowDirection.value === direction)
-        return
-      clickAsideToggleWidget()
-    }) as () => void)
+    // mitt.on('left-aside-toggle', ((val: 'show' | 'hide') => {
+    //   const direction = val === 'show' ? 'left' : 'right'
+    //   if (arrowDirection.value === direction) return
+    //   clickAsideToggleWidget()
+    // }) as () => void)
 
-    onBeforeUnmount(() => {
-      mitt.off('left-aside-toggle')
-    })
+    // onBeforeUnmount(() => {
+    //   mitt.off('left-aside-toggle')
+    // })
 
     const currentTabPane = ref('component')
     const currentTabPaneInfo = ref({
@@ -37,7 +35,7 @@ export const CompositePanel = defineComponent({
         <div ref="content" class="composite-panel-tabs-content">
           <AsideToggleWidget
             right="-11px"
-            arrow-direction={arrowDirection.value}
+            arrow-direction={compositeArrowDirection.value}
             onClick={() => clickAsideToggleWidget()}
           />
           <CompositePanelTabContent

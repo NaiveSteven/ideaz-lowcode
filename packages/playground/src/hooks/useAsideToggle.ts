@@ -1,27 +1,30 @@
-import type { ComponentInternalInstance } from 'vue'
+import { useGlobalSetting } from '@ideal-schema/playground-store'
 import mitt from '../event'
 
-export function useAsideToggle(direction: 'right' | 'left', trueWidth: string, interval: number, fixedDirection?: 'right' | 'left') {
-  const { proxy: ctx } = getCurrentInstance() as ComponentInternalInstance
-
-  const arrowDirection = ref(direction)
+export function useAsideToggle(direction: 'right' | 'left', trueWidth: string, interval: number) {
+  const { compositeArrowDirection, settingArrowDirection, updateCompositeArrowDirection, updateSettingArrowDirection } = useGlobalSetting()
 
   let timeout: NodeJS.Timeout
 
   const clickAsideToggleWidget = (hideDirection?: 'right' | 'left') => {
     let contentElement: HTMLElement
-    if (fixedDirection === 'right' || hideDirection === 'right')
+    if (direction === 'right')
       contentElement = document.getElementById('settings-panel') as HTMLElement
     else
-      contentElement = ctx?.$refs.content as HTMLElement
+      contentElement = document.getElementsByClassName('composite-panel-tabs-content')[0] as HTMLElement
 
     const width = contentElement.style.width
-    if (((!width || width === '0px') && width !== '' && !fixedDirection) || hideDirection)
+    if (((!width || width === '0px') && width !== '') || hideDirection)
       contentElement.style.width = trueWidth
     else
       contentElement.style.width = '0'
 
-    arrowDirection.value = arrowDirection.value === 'right' ? 'left' : 'right'
+    if (direction === 'right')
+      updateSettingArrowDirection(settingArrowDirection.value === 'right' ? 'left' : 'right')
+
+    else
+      updateCompositeArrowDirection(compositeArrowDirection.value === 'right' ? 'left' : 'right')
+
     timeout = setTimeout(() => mitt.emit('selection-change'), interval)
   }
 
@@ -29,5 +32,5 @@ export function useAsideToggle(direction: 'right' | 'left', trueWidth: string, i
     clearTimeout(timeout)
   })
 
-  return { arrowDirection, clickAsideToggleWidget }
+  return { compositeArrowDirection, settingArrowDirection, clickAsideToggleWidget }
 }

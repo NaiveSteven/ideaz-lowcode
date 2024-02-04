@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ViewPort } from '@ideal-schema/playground-demi'
-import { useWorkspaceComponent } from '@ideal-schema/playground-store'
-import mitt from '../../event'
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { useAsideToggle } from '../../hooks'
 import Selection from '../../widgets/aux-tool-widget/Selection'
 import DesignToolsWidget from '../../widgets/design-tools-widget'
@@ -12,14 +11,19 @@ import ViewWidget from '../../widgets/view-widget'
 
 const simulatorType = ref<'pc' | 'mobile' | 'pad'>('pc')
 
-const { clickAsideToggleWidget } = useAsideToggle('left', '300px', 300, 'right')
+const { compositeArrowDirection, settingArrowDirection } = useGlobalSetting()
+const { clickAsideToggleWidget: clickSettingAsideToggle } = useAsideToggle('right', '300px', 300)
+const { clickAsideToggleWidget: clickCompositeAsideToggle } = useAsideToggle('left', '300px', 300)
 const { viewType, updateViewType } = useWorkspaceComponent()
 
 function handleClickView(value: 'json' | 'design' | 'play') {
   updateViewType(value)
-  clickAsideToggleWidget(value === 'design' ? 'right' : undefined)
-  mitt.emit('right-aside-toggle', value === 'design' ? 'show' : 'hide')
-  mitt.emit('left-aside-toggle', value === 'design' ? 'show' : 'hide')
+  const compositeDirection = value === 'design' ? 'left' : 'right'
+  const settingDirection = value === 'design' ? 'right' : 'left'
+  if (compositeArrowDirection.value !== compositeDirection)
+    clickCompositeAsideToggle()
+  if (settingArrowDirection.value !== settingDirection)
+    clickSettingAsideToggle()
 }
 
 const simulatorWidget = computed(() => {
