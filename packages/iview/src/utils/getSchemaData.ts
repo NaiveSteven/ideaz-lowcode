@@ -9,6 +9,7 @@ import {
   defaultInputNumberAttrs,
   defaultMultipleSelectAttrs,
   defaultRadioAttrs,
+  defaultRateAttrs,
   defaultSelectAttrs,
   defaultSwitchAttrs,
   defaultTextareaAttrs,
@@ -25,6 +26,7 @@ const defaultComponentFormData: IndexType = {
   ...defaultSelectAttrs,
   ...defaultSwitchAttrs,
   ...defaultTextareaAttrs,
+  ...defaultRateAttrs,
 }
 
 const defaultSchemaForm: IndexType = {

@@ -6,6 +6,7 @@ import { InputTemplateComponent } from './Input'
 import { InputNumberTemplateComponent } from './InputNumber'
 import { MultipleSelectTemplateComponent } from './MultipleSelect'
 import { RadioTemplateComponent } from './Radio'
+import { RateTemplateComponent } from './Rate'
 import { SelectTemplateComponent } from './Select'
 import { SlotTemplateComponent } from './Slot'
 import { SwitchTemplateComponent } from './Switch'
@@ -43,6 +44,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       CheckboxTemplateComponent(),
       DateTemplateComponent(),
       DateRangeTemplateComponent(),
+      RateTemplateComponent(),
       SlotTemplateComponent(),
     ],
   },
