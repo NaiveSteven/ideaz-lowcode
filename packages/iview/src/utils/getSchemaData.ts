@@ -2,13 +2,18 @@ import { isEmpty, isObject } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { useWorkspaceComponent, useWorkspaceForm } from '../../../playground-store/src'
 import {
-  defaultCheckboxAttrs, defaultInputAttrs,
+  SelectCrudFormData,
+  defaultCheckboxAttrs,
+  formItemFormData as defaultFormItemFormData,
+  defaultInputAttrs,
   defaultInputNumberAttrs,
   defaultMultipleSelectAttrs,
   defaultRadioAttrs,
   defaultSelectAttrs,
   defaultSwitchAttrs,
-  defaultTextareaAttrs, formItemFormData as defaultFormItemFormData, inputCrudFormData, SelectCrudFormData, tableColFormData
+  defaultTextareaAttrs,
+  inputCrudFormData,
+  tableColFormData,
 } from '../schemas'
 
 const defaultComponentFormData: IndexType = {
@@ -41,7 +46,7 @@ const skipFieldPropsKeys: Array<{ key: string, value: any }> = [
   },
   {
     key: 'type',
-    value: ['textarea', 'daterange'],
+    value: ['textarea', 'daterange', 'date'],
   },
   {
     key: 'multiple',
@@ -70,7 +75,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     if (isRequired)
       formConfig.value.rules = {}
 
-      workspaceComponentList.value.forEach((item) => {
+    workspaceComponentList.value.forEach((item) => {
       const field = item.fieldFormData?.field
       if (field) {
         formData[field] = item.fieldFormData!.default
@@ -347,4 +352,3 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 }
 
 export { getSchemaData }
-

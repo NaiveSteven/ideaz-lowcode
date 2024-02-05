@@ -1,5 +1,6 @@
 import { CrudTemplate } from '../template'
 import { CheckboxTemplateComponent } from './Checkbox'
+import { DateTemplateComponent } from './Date'
 import { DateRangeTemplateComponent } from './DateRange'
 import { InputTemplateComponent } from './Input'
 import { InputNumberTemplateComponent } from './InputNumber'
@@ -40,6 +41,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       SwitchTemplateComponent(),
       MultipleSelectTemplateComponent(),
       CheckboxTemplateComponent(),
+      DateTemplateComponent(),
       DateRangeTemplateComponent(),
       SlotTemplateComponent(),
     ],
