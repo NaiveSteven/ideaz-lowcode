@@ -6,10 +6,10 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema,
+  formItemTemplateSchema
 } from '../schemas'
 
-export function CheckboxTemplateComponent(key = 'checkbox') {
+export function CheckboxTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
     icon: 'i-lightning',

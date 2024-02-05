@@ -6,17 +6,18 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema,
+  formItemTemplateSchema
 } from '../schemas'
 
-export function DateRangeTemplateComponent() {
+export function DateRangeTemplateComponent(): WorkspaceComponentItem {
+  const field = uid()
   return {
     id: uid(),
     icon: 'i-calendar',
     title: '日期范围',
     schema: {
       component: 'datepicker',
-      field: 'datepicker',
+      field,
       label: '日期范围',
       fieldProps: {
         type: 'daterange',
@@ -38,7 +39,7 @@ export function DateRangeTemplateComponent() {
     componentOptionsConfig: dateRangeTemplateOptionsConfig,
     fieldOptionsConfig: {},
     fieldFormData: reactive({
-      field: 'datepicker',
+      field,
       default: [],
     }),
     fieldSchema: fieldTemplateSchema(),

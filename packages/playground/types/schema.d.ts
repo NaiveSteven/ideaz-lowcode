@@ -20,7 +20,7 @@ declare interface Schema {
   // table pro
   columns?: TableCol[]
   data?: any
-  cellClassName?: string | ((obj: { columnIndex: number }) => string)
+  cellClassName?: string | ((obj: { columnIndex: number }) => void)
   searchFormData?: IndexType
   formData?: IndexType
   options?: IndexType
@@ -39,5 +39,8 @@ declare interface Schema {
   form?: IndexType
   search?: IndexType
   collapsed?: boolean
+  action?: boolean
+  headerRowClassName?: string
+  draggable?: boolean
   size?: 'default' | 'small' | 'large'
 }

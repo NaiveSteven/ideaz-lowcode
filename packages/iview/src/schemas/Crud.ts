@@ -3,7 +3,7 @@ export const crudTableTemplateSchema = [
     component: 'select',
     field: 'background',
     label: '场景',
-    tooltip: '代码生成会按照不同的场景生成适配的代码',
+    tooltip: '代码生成会按照不同的场景生成适配的代码'
   },
   {
     component: 'select',
@@ -54,5 +54,5 @@ export const crudTableOptionsConfig = {
     { label: 'large', value: 'large' },
     { label: 'default', value: 'default' },
     { label: 'small', value: 'small' },
-  ],
+  ]
 }

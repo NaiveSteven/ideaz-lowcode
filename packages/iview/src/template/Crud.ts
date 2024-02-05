@@ -10,7 +10,7 @@ import {
   inputCrudSchema,
   tableColFormData,
   tableColTemplateOptionsConfig,
-  tableColTemplateSchema,
+  tableColTemplateSchema
 } from '../schemas'
 
 const FORM_COMPONENT_TYPE = [
@@ -40,7 +40,7 @@ function getColumns() {
         },
         component: 'input',
         title: '表单项',
-        field: 'name',
+        field: mockNameId,
         label: '表单项1',
         componentFormData: reactive({
           ...inputCrudFormData,
@@ -58,7 +58,7 @@ function getColumns() {
           componentType: FORM_COMPONENT_TYPE,
         },
         fieldFormData: reactive({
-          field: 'name',
+          field: mockNameId,
           default: '',
         }),
         fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
@@ -127,7 +127,7 @@ function getColumns() {
         component: 'input',
         name: 'tableForm',
         title: '表单项',
-        field: 'address',
+        field: mockAddressId,
         label: '表单项2',
         componentFormData: reactive({
           ...inputCrudFormData,
@@ -145,7 +145,7 @@ function getColumns() {
           componentType: FORM_COMPONENT_TYPE,
         },
         fieldFormData: reactive({
-          field: 'address',
+          field: mockAddressId,
           default: '',
         }),
         fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
@@ -278,7 +278,7 @@ function getColumns() {
   ]
 }
 
-export function CrudTemplate() {
+export function CrudTemplate(): WorkspaceComponentItem {
   const columns = getColumns()
   return {
     id: uid(),

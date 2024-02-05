@@ -104,7 +104,7 @@ declare interface WorkspaceComponentItem {
   componentFormData?: IndexType
   componentSchema?: Schema | Schema[] | any
   fieldFormData?: IndexType
-  fieldSchema?: Schema | Schema[]
+  fieldSchema?: Schema | Schema[] | any
   fieldOptionsConfig?: IndexType
   componentOptionsConfig?: IndexType
   allowCopy?: boolean

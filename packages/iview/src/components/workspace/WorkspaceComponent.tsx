@@ -62,8 +62,9 @@ export default defineComponent({
     })
 
     watch(() => curOperateComponent.value, (val, old) => {
-      if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
+      if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed) {
         tableKey.value = new Date().valueOf()
+      }
     })
 
     function clickItem(e: MouseEvent, item: WorkspaceComponentItem) {
@@ -78,8 +79,9 @@ export default defineComponent({
       tempData = props.workspaceComponentList[a.oldIndex]
     }
     function end(a: { to: { id: string }, newIndex: number }) {
-      if (workspaceComponentType.value === 'form')
+      if (workspaceComponentType.value === 'form') {
         emit('on-update-cur-operate', tempData)
+      }
     }
 
     const setClassName = ({ columnIndex }: any) => {
@@ -221,7 +223,7 @@ export default defineComponent({
                         onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
                       />
                     </TableActionsWidget>
-                    )
+                  )
                   : (
                     <z-form-item
                       formConfig={formConfig.value}
@@ -233,7 +235,7 @@ export default defineComponent({
                       col={formItem.schema}
                       class={formItem.schema.title === 'Col' ? 'not-drag' : ''}
                     />
-                    )}
+                  )}
               </div>
             )
           })}

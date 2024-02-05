@@ -6,10 +6,10 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   inputTemplateOptionsConfig,
-  inputTemplateSchema,
+  inputTemplateSchema
 } from '../schemas'
 
-export function InputTemplateComponent(key = 'input') {
+export function InputTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
     icon: 'i-lightning',

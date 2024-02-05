@@ -5,10 +5,10 @@ import {
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
-  switchTemplateSchema,
+  switchTemplateSchema
 } from '../schemas'
 
-export function SwitchTemplateComponent(key = 'switch') {
+export function SwitchTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
     icon: 'i-cpu',

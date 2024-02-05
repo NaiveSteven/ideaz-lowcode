@@ -5,10 +5,10 @@ import {
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
-  textareaTemplateSchema,
+  textareaTemplateSchema
 } from '../schemas'
 
-export function TextareaTemplateComponent(key = 'textarea') {
+export function TextareaTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
     icon: 'i-coin',

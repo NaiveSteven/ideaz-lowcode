@@ -8,7 +8,7 @@ export function tableColTemplateSchema(formData: any) {
     {
       component: 'input',
       field: 'prop',
-      label: 'field',
+      label: 'prop',
       fieldProps: {
         placeholder: '请输入列字段名',
       },

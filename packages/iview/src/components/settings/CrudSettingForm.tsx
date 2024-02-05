@@ -32,7 +32,7 @@ export default defineComponent({
         ...crud,
         fieldFormData: reactive({
           ...curOperateComponent.value.fieldFormData,
-          ...obj.formData,
+          ...obj.formData
         }),
         schema,
       })

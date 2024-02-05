@@ -6,10 +6,10 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   selectTemplateOptionsConfig,
-  selectTemplateSchema,
+  selectTemplateSchema
 } from '../schemas'
 
-export function SelectTemplateComponent(key = 'select') {
+export function SelectTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
     icon: 'i-bicycle',
