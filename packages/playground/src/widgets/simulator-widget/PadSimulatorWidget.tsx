@@ -1,15 +1,13 @@
-import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import mitt from '../../event'
 import './style.scss'
 
 export default defineComponent({
   name: 'PadSimulatorWidget',
   setup() {
     const { updateBoardWH, boardHeight, boardWidth, originBoardHeight, originBoardWidth, updateOriginBoardWH } = useWorkspaceComponent()
+    const { compositeArrowDirection, settingArrowDirection } = useGlobalSetting()
     const slots = useSlots()
-
-    watch(() => [boardHeight.value, boardWidth.value], () => {
-      updateResizeWH()
-    })
 
     const width = ref(0)
     const height = ref(0)
@@ -18,12 +16,32 @@ export default defineComponent({
     const dragKey = ref(new Date().valueOf())
 
     onMounted(() => {
-      const dom = document.getElementsByClassName('board')[0]
-      const domRect = dom.getBoundingClientRect()
-      width.value = domRect.width
-      height.value = domRect.height
-      updateBoardWH(width.value, height.value)
-      updateOriginBoardWH(width.value, height.value)
+      mitt.on('board-drag-reset', () => {
+        updateBoardWH(originBoardWidth.value, originBoardHeight.value)
+        dragKey.value = new Date().valueOf()
+      })
+    })
+
+    onBeforeUnmount(() => {
+      mitt.off('board-drag-reset')
+    })
+
+    watch(() => [boardHeight.value, boardWidth.value], async () => {
+      await nextTick()
+      width.value = boardWidth.value
+      height.value = boardHeight.value
+    })
+
+    watch(() => [compositeArrowDirection.value, settingArrowDirection.value], async () => {
+      await delay(300)
+      await nextTick()
+      // When the user expands the board, the drag-and-drop area needs to be extended simultaneously
+      if (boardWidth.value === originBoardWidth.value && boardHeight.value === originBoardHeight.value)
+        initResizeWH()
+    })
+
+    onMounted(() => {
+      initResizeWH()
       isLoading.value = false
     })
 
@@ -31,12 +49,19 @@ export default defineComponent({
       updateBoardWH(width, height)
     }
 
-    const updateResizeWH = async () => {
-      await nextTick()
-      width.value = boardWidth.value
-      height.value = boardHeight.value
-      if (Number(boardWidth.value) === Number(originBoardWidth.value) && Number(boardHeight.value) === Number(originBoardHeight.value))
-        dragKey.value = new Date().valueOf()
+    async function initResizeWH() {
+      const dom = document.getElementsByClassName('board')[0]
+      const domRect = dom.getBoundingClientRect()
+      width.value = domRect.width
+      height.value = domRect.height
+      updateBoardWH(width.value, height.value)
+      updateOriginBoardWH(width.value, height.value)
+    }
+
+    function delay(time: number) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, time)
+      })
     }
 
     return () => (
