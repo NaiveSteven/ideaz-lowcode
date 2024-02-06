@@ -11,6 +11,7 @@ import { SelectTemplateComponent } from './Select'
 import { SlotTemplateComponent } from './Slot'
 import { SwitchTemplateComponent } from './Switch'
 import { TextareaTemplateComponent } from './Textarea'
+import { VirtualizedSelectTemplateComponent } from './VirtualizedSelect'
 
 export * from './Checkbox'
 export * from './Input'
@@ -38,6 +39,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       TextareaTemplateComponent(),
       InputNumberTemplateComponent(),
       SelectTemplateComponent(),
+      VirtualizedSelectTemplateComponent(),
       RadioTemplateComponent(),
       SwitchTemplateComponent(),
       MultipleSelectTemplateComponent(),

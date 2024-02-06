@@ -14,12 +14,13 @@
   .c-toggle__container,
   .el-pagination--small,
   .el-input-number__decrease,
+  .el-select-v2,
   .el-input-number__increase {
     pointer-events: none !important;
   }
 }
 
-.el-input-number {
+.el-input-number, .el-select-v2 {
   width: 100%;
 }
 
