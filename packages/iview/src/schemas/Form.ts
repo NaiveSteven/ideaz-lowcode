@@ -25,6 +25,16 @@ export const formTemplateSchema = [
     label: '标签后缀',
   },
   {
+    component: 'select',
+    field: 'requireAsteriskPosition',
+    label: '必填星号位置',
+  },
+  {
+    component: 'el-switch',
+    field: 'hideRequiredAsterisk',
+    label: '必填星号隐藏',
+  },
+  {
     component: 'el-switch',
     field: 'disabled',
     label: '禁用',
@@ -33,11 +43,6 @@ export const formTemplateSchema = [
     component: 'el-switch',
     field: 'colon',
     label: '冒号',
-  },
-  {
-    component: 'el-switch',
-    field: 'hideRequiredAsterisk',
-    label: '必填星号隐藏',
   },
   {
     component: 'el-switch',
@@ -58,6 +63,11 @@ export const formTemplateSchema = [
     component: 'el-switch',
     field: 'validateOnRuleChange',
     label: 'rule触发验证',
+  },
+  {
+    component: 'el-switch',
+    field: 'scrollToError',
+    label: '校验失败滚动',
   },
 ]
 
@@ -98,6 +108,16 @@ export const formTemplateOptionsConfig = {
     {
       label: 'top',
       value: 'top',
+    },
+  ],
+  requireAsteriskPosition: [
+    {
+      label: 'left',
+      value: 'left',
+    },
+    {
+      label: 'right',
+      value: 'right',
     },
   ],
 }

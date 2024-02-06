@@ -63,5 +63,5 @@ export const defaultRateAttrs = {
   voidIcon: 'i-star',
   disabledVoidIcon: 'i-star-filled',
   showScore: false,
-  clearable: false,
+  clearable: true,
 }
