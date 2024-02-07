@@ -1,18 +1,18 @@
+import CheckCard from './check-card'
 import ZCheckbox from './checkbox'
+import ZCrud from './crud'
+import ZDescription from './descriptions'
+import Dialog from './dialog'
+import Form from './form'
+import ZFullScreen from './full-screen'
+import ZInput from './input'
+import { makeInstaller } from './makeInstaller'
 import ZRadio from './radio'
 import ZSelect from './select'
-import Form from './form'
-import ZInput from './input'
 import Table from './table'
 import TagSelect from './tag-select'
 import ZText from './text'
 import ZWatermark from './watermark'
-import CheckCard from './check-card'
-import ZDescription from './descriptions'
-import ZFullScreen from './full-screen'
-import ZCrud from './crud'
-import Dialog from './dialog'
-import { makeInstaller } from './makeInstaller'
 
 const { ZForm, ZFilterForm, ZFormItem } = Form
 const { ZTable, ZTableCustomColumnContainer } = Table
@@ -25,8 +25,9 @@ const components = [ZCheckbox, ZRadio, ZSelect, ZForm, ZInput, ZTable, ZFilterFo
 const installer = makeInstaller([...components])
 
 export default installer
+// remark useCol
+export * from './form/hooks'
 export * from './types'
-
 export {
   ZRadio,
   ZSelect,
@@ -49,3 +50,5 @@ export {
   ZDialogTip,
   ZFormItem,
 }
+
+

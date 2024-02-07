@@ -41,6 +41,7 @@ const defaultSchemaForm: IndexType = {
   validateOnRuleChange: true,
   scrollToError: false,
   requireAsteriskPosition: 'left',
+  column: 1,
 }
 
 const skipFieldPropsKeys: Array<{ key: string, value: any }> = [

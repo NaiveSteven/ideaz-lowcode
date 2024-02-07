@@ -20,3 +20,15 @@
   outline: none;
   opacity: 100%;
 }
+
+.board {
+  .multiple-layout {
+    .form-item-schema-container {
+      display: inline-block;
+
+      .el-form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

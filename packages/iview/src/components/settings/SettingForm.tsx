@@ -33,6 +33,7 @@ export default defineComponent({
       validateOnRuleChange: true,
       scrollToError: false,
       requireAsteriskPosition: 'left',
+      column: 1,
     })
 
     const handleMiddleFormChange = (data: { value: any, field: any }) => {
