@@ -1,4 +1,4 @@
-import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import type { CSSProperties } from 'vue'
 import mitt from '../../event'
 import Helpers from './Helpers'
@@ -8,6 +8,7 @@ export default defineComponent({
   name: 'Selection',
   setup() {
     const { curOperateComponent, workspaceComponentList } = useWorkspaceComponent()
+    const { formConfig } = useWorkspaceForm()
 
     const position = ref<DOMRect>({} as DOMRect)
 
@@ -64,6 +65,11 @@ export default defineComponent({
       const index = workspaceComponentList.value.findIndex(
         item => curOperateComponent.value.id === item.id,
       )
+
+      // multiple column layout
+      if (formConfig.value.column > 1 && curOperateComponent.value.id)
+        return 'bottom'
+
       if (index === 0 || curOperateComponent.value.pid || curOperateComponent.value.name === 'tableForm')
         return 'bottom'
 
