@@ -9,12 +9,10 @@ import PadSimulatorWidget from '../../widgets/simulator-widget/PadSimulatorWidge
 import PcSimulatorWidget from '../../widgets/simulator-widget/PcSimulatorWidget'
 import ViewWidget from '../../widgets/view-widget'
 
-const simulatorType = ref<'pc' | 'mobile' | 'pad'>('pc')
-
 const { compositeArrowDirection, settingArrowDirection } = useGlobalSetting()
 const { clickAsideToggleWidget: clickSettingAsideToggle } = useAsideToggle('right', '300px', 300)
 const { clickAsideToggleWidget: clickCompositeAsideToggle } = useAsideToggle('left', '300px', 300)
-const { viewType, updateViewType } = useWorkspaceComponent()
+const { viewType, updateViewType, simulatorType, updateSimulatorType } = useWorkspaceComponent()
 
 function handleClickView(value: 'json' | 'design' | 'play') {
   updateViewType(value)
@@ -43,7 +41,7 @@ const simulatorWidget = computed(() => {
     <DesignToolsWidget
       :pixel-type="simulatorType"
       :view-type="viewType"
-      @click-pixel="(value: 'pc' | 'mobile') => simulatorType = value"
+      @click-pixel="(value: 'pc' | 'mobile' | 'pad') => updateSimulatorType(value)"
       @click-view="handleClickView"
     />
     <component :is="simulatorWidget">

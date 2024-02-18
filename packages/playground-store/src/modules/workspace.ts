@@ -13,9 +13,11 @@ interface WorkspaceState {
   boardHeight: number
   originBoardWidth: number
   originBoardHeight: number
+  simulatorType: SimulatorType
 }
 
 type ViewType = 'json' | 'design' | 'play'
+type SimulatorType = 'pc' | 'mobile' | 'pad'
 
 export const useWorkspaceStore = defineStore({
   id: 'workspace',
@@ -27,6 +29,7 @@ export const useWorkspaceStore = defineStore({
     boardHeight: 0,
     originBoardHeight: 0,
     originBoardWidth: 0,
+    simulatorType: 'pc',
   }),
   getters: {
     getWorkspaceComponentList(): WorkspaceComponentItem[] {
@@ -43,6 +46,9 @@ export const useWorkspaceStore = defineStore({
     },
     getBoardHeight(): number {
       return this.boardHeight
+    },
+    getSimulatorType(): SimulatorType {
+      return this.simulatorType
     },
   },
   actions: {
@@ -215,6 +221,9 @@ export const useWorkspaceStore = defineStore({
     updateOriginBoardWH(width: number, height: number) {
       this.originBoardHeight = height
       this.originBoardWidth = width
+    },
+    updateSimulatorType(type: SimulatorType) {
+      this.simulatorType = type
     },
   },
 })

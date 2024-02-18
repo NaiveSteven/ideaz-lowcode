@@ -10,6 +10,7 @@ export function useWorkspaceComponent() {
   const boardWidth = computed(() => workspaceStore.boardWidth)
   const originBoardHeight = computed(() => workspaceStore.originBoardHeight)
   const originBoardWidth = computed(() => workspaceStore.originBoardWidth)
+  const simulatorType = computed(() => workspaceStore.simulatorType)
 
   return {
     workspaceComponentList,
@@ -19,6 +20,7 @@ export function useWorkspaceComponent() {
     boardWidth,
     originBoardHeight,
     originBoardWidth,
+    simulatorType,
     pushComponentItem: workspaceStore.pushComponentItem,
     updateComponentItem: workspaceStore.updateComponentItem,
     deleteComponentItem: workspaceStore.deleteComponentItem,
@@ -29,5 +31,6 @@ export function useWorkspaceComponent() {
     updateViewType: workspaceStore.updateViewType,
     updateBoardWH: workspaceStore.updateBoardWH,
     updateOriginBoardWH: workspaceStore.updateOriginBoardWH,
+    updateSimulatorType: workspaceStore.updateSimulatorType,
   }
 }
