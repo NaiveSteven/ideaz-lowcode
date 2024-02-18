@@ -98,7 +98,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         }
       }
     })
-    Object.keys(formConfig).forEach((key) => {
+    Object.keys(formConfig.value).forEach((key) => {
       if (defaultSchemaForm[key] === formConfig.value[key])
         delete formConfig.value[key]
     })
