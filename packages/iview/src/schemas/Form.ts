@@ -6,6 +6,11 @@ export const formTemplateSchema = [
   },
   {
     component: 'select',
+    field: 'column',
+    label: '列数',
+  },
+  {
+    component: 'select',
     field: 'size',
     label: '尺寸',
   },
@@ -118,6 +123,20 @@ export const formTemplateOptionsConfig = {
     {
       label: 'right',
       value: 'right',
+    },
+  ],
+  column: [
+    {
+      label: '1',
+      value: 1,
+    },
+    {
+      label: '2',
+      value: 2,
+    },
+    {
+      label: '3',
+      value: 3,
     },
   ],
 }
