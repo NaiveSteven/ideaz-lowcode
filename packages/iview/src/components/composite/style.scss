@@ -1,35 +1,35 @@
 .list-item {
   position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  grid-column-start: span 1;
   align-items: center;
+  justify-content: center;
   min-height: 40px;
   color: #333;
+  cursor: grab;
+  user-select: none;
   background: #fff;
   transition: color 0.1s ease-out;
-  grid-column-start: span 1;
-  flex-direction: column;
-  cursor: -webkit-grab;
-  cursor: grab;
 
   &-icon {
     display: inline-block;
     margin: 12px 0;
-    text-align: center;
-    color: inherit;
     font-style: normal;
     line-height: 0;
+    color: inherit;
+    text-align: center;
     text-transform: none;
     vertical-align: -0.125 em;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   &-text {
     margin-bottom: 12px;
     font-size: 12px;
-    text-align: center;
     line-height: 1;
+    text-align: center;
   }
 
   &:hover {
