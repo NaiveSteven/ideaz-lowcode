@@ -45,6 +45,14 @@
       color: rgb(153, 153, 153);
     }
   }
+
+  .design-tools-end {
+    .el-button {
+      margin-left: -1px;
+      border: 1px solid transparent;
+      border-color: var(--el-button-border-color);
+    }
+  }
 }
 
 

@@ -2,8 +2,8 @@ import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playgrou
 import BoardWH from './BoardWH'
 import Clear from './Clear'
 import ScreenPixel from './ScreenPixel'
-import './style.scss'
 import View from './View'
+import './style.scss'
 
 export default defineComponent({
   name: 'DesignToolsWidget',
@@ -27,15 +27,17 @@ export default defineComponent({
           />
           {props.pixelType === 'pad' && <BoardWH />}
         </div>
-        <div>
+        <div class="flex">
           <View
             value={props.viewType}
             class="mr-2"
             onClickView={(value: 'json' | 'design' | 'play') => emit('clickView', value)}
           />
-          <CopySchemaCodeWidget />
-          <CopyPageCodeWidget />
-          <Clear />
+          <div class="design-tools-end">
+            <CopySchemaCodeWidget />
+            <CopyPageCodeWidget />
+            <Clear />
+          </div>
         </div>
       </div>
     )
