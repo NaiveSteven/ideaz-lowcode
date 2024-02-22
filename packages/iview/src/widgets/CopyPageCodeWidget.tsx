@@ -1,4 +1,5 @@
 import { copy } from '@ideal-schema/shared'
+import { ElMessage } from 'element-plus'
 import beautify from 'js-beautify'
 import { usePageCode } from '../hooks'
 
@@ -13,6 +14,7 @@ export default defineComponent({
           indent_size: 2,
         }),
       )
+      ElMessage.success('页面代码复制成功')
     }
 
     return () => {

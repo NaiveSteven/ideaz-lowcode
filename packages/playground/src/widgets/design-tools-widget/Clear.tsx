@@ -1,4 +1,6 @@
 import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { copy } from '@ideal-schema/shared'
+import { ElMessage } from 'element-plus'
 
 export default defineComponent({
   name: 'Clear',
@@ -7,9 +9,11 @@ export default defineComponent({
     const { updateCurOperateComponent, clearWorkspaceComponentList } = useWorkspaceComponent()
 
     const handleClearAll = () => {
+      copy('')
       clearWorkspaceComponentList()
       updateWorkspaceComponentType('form')
       updateCurOperateComponent({} as WorkspaceComponentItem)
+      ElMessage.success('清空成功')
     }
 
     return () => (

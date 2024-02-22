@@ -1,6 +1,7 @@
 import { getSchemaData } from '@ideal-schema/playground-demi'
 import { useGlobalSetting } from '@ideal-schema/playground-store'
 import { copy } from '@ideal-schema/shared'
+import { ElMessage } from 'element-plus'
 import beautify from 'js-beautify'
 
 export default defineComponent({
@@ -22,6 +23,7 @@ export default defineComponent({
           },
         ),
       )
+      ElMessage.success('JSON复制成功')
     }
 
     return () => (
