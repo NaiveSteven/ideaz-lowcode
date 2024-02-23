@@ -8,6 +8,7 @@ import { MultipleSelectTemplateComponent } from './MultipleSelect'
 import { RadioTemplateComponent } from './Radio'
 import { RateTemplateComponent } from './Rate'
 import { SelectTemplateComponent } from './Select'
+import { SliderTemplateComponent } from './Slider'
 import { SlotTemplateComponent } from './Slot'
 import { SwitchTemplateComponent } from './Switch'
 import { TextareaTemplateComponent } from './Textarea'
@@ -47,6 +48,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       DateTemplateComponent(),
       DateRangeTemplateComponent(),
       RateTemplateComponent(),
+      SliderTemplateComponent(),
       SlotTemplateComponent(),
     ],
   },
