@@ -5,11 +5,11 @@ export default defineConfig({
     presetAttributify(),
     presetUno(),
   ],
-  rules: [['uno-padding-20', { padding: '20px' }]],
+  rules: [['padding-20', { padding: '20px' }]],
   shortcuts: {
-    'uno-wh-full': 'w-full h-full',
-    'uno-flex-center': 'flex justify-center items-center',
-    'uno-flex-x-center': 'flex justify-center',
-    'uno-flex-y-center': 'flex items-center',
+    'wh-full': 'w-full h-full',
+    'flex-center': 'flex justify-center items-center',
+    'flex-x-center': 'flex justify-center',
+    'flex-y-center': 'flex items-center',
   },
 })
