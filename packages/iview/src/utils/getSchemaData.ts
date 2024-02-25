@@ -14,6 +14,7 @@ import {
   defaultSliderAttrs,
   defaultSwitchAttrs,
   defaultTextareaAttrs,
+  defaultTimeSelectAttrs,
   inputCrudFormData,
   tableColFormData,
 } from '../schemas'
@@ -29,6 +30,7 @@ const defaultComponentFormData: IndexType = {
   ...defaultTextareaAttrs,
   ...defaultRateAttrs,
   ...defaultSliderAttrs,
+  ...defaultTimeSelectAttrs,
 }
 
 const defaultSchemaForm: IndexType = {

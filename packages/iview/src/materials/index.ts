@@ -12,6 +12,7 @@ import { SliderTemplateComponent } from './Slider'
 import { SlotTemplateComponent } from './Slot'
 import { SwitchTemplateComponent } from './Switch'
 import { TextareaTemplateComponent } from './Textarea'
+import { TimeSelectTemplateComponent } from './TimeSelect'
 import { VirtualizedSelectTemplateComponent } from './VirtualizedSelect'
 
 export * from './Checkbox'
@@ -45,6 +46,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       SwitchTemplateComponent(),
       MultipleSelectTemplateComponent(),
       CheckboxTemplateComponent(),
+      TimeSelectTemplateComponent(),
       DateTemplateComponent(),
       DateRangeTemplateComponent(),
       RateTemplateComponent(),
