@@ -11,12 +11,16 @@
   .el-slider,
   .el-date-editor,
   .el-button,
+  .el-rate,
   .c-toggle__container,
   .el-pagination--small,
   .el-input-number__decrease,
   .el-select-v2,
-  .el-rate,
   .el-input-number__increase {
+    pointer-events: none !important;
+  }
+
+  .el-input__prefix-inner {
     pointer-events: none !important;
   }
 }
