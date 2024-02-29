@@ -1,4 +1,4 @@
-export const timePickerTemplateSchema = [
+export const timeRangePickerTemplateSchema = [
   {
     component: 'input',
     field: 'format',
@@ -11,8 +11,13 @@ export const timePickerTemplateSchema = [
   },
   {
     component: 'input',
-    field: 'placeholder',
-    label: '占位内容',
+    field: 'startPlaceholder',
+    label: '开始占位内容',
+  },
+  {
+    component: 'input',
+    field: 'endPlaceholder',
+    label: '结束占位内容',
   },
   {
     component: 'input',
@@ -46,12 +51,13 @@ export const timePickerTemplateSchema = [
   },
 ]
 
-export const timePickerTemplateOptionsConfig = {}
+export const timeRangePickerTemplateOptionsConfig = {}
 
-export const defaultTimePickerAttrs = {
+export const defaultTimeRangePickerAttrs = {
   clearable: true,
   disabled: false,
-  placeholder: '',
+  startPlaceholder: '开始时间',
+  endPlaceholder: '结束时间',
   format: 'HH:mm:ss',
   valueFormat: 'HH:mm:ss',
   arrowControl: false,

@@ -13,6 +13,7 @@ import { SlotTemplateComponent } from './Slot'
 import { SwitchTemplateComponent } from './Switch'
 import { TextareaTemplateComponent } from './Textarea'
 import { TimePickerTemplateComponent } from './TimePicker'
+import { TimeRangePickerTemplateComponent } from './TimeRangePicker'
 import { TimeSelectTemplateComponent } from './TimeSelect'
 import { VirtualizedSelectTemplateComponent } from './VirtualizedSelect'
 
@@ -51,6 +52,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       DateTemplateComponent(),
       DateRangeTemplateComponent(),
       TimePickerTemplateComponent(),
+      TimeRangePickerTemplateComponent(),
       RateTemplateComponent(),
       SliderTemplateComponent(),
       SlotTemplateComponent(),

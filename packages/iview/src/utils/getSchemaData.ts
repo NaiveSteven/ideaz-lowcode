@@ -15,6 +15,7 @@ import {
   defaultSwitchAttrs,
   defaultTextareaAttrs,
   defaultTimePickerAttrs,
+  defaultTimeRangePickerAttrs,
   defaultTimeSelectAttrs,
   inputCrudFormData,
   tableColFormData,
@@ -33,6 +34,7 @@ const defaultComponentFormData: IndexType = {
   ...defaultSliderAttrs,
   ...defaultTimeSelectAttrs,
   ...defaultTimePickerAttrs,
+  ...defaultTimeRangePickerAttrs,
 }
 
 const defaultSchemaForm: IndexType = {
@@ -62,6 +64,14 @@ const skipFieldPropsKeys: Array<{ key: string, value: any }> = [
   {
     key: 'multiple',
     value: true,
+  },
+  {
+    key: 'startPlaceholder',
+    value: '开始时间',
+  },
+  {
+    key: 'endPlaceholder',
+    value: '结束时间',
   },
 ]
 
