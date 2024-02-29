@@ -86,7 +86,8 @@ function delEmptyObject(data: any) {
 
 function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
   const { workspaceComponentList } = useWorkspaceComponent()
-  const { formConfig } = useWorkspaceForm()
+  const { formConfig: workspaceFormConfig } = useWorkspaceForm()
+  const formConfig = cloneDeep(workspaceFormConfig.value)
 
   if (type === 'form') {
     const formData: IndexType = {}
@@ -94,7 +95,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 
     const isRequired = workspaceComponentList.value.some(item => item.fieldFormData?.required)
     if (isRequired)
-      formConfig.value.rules = {}
+      formConfig.rules = {}
 
     workspaceComponentList.value.forEach((item) => {
       const field = item.fieldFormData?.field
@@ -114,13 +115,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         }
       }
     })
-    Object.keys(formConfig.value).forEach((key) => {
-      if (defaultSchemaForm[key] === formConfig.value[key])
-        delete formConfig.value[key]
+    Object.keys(formConfig).forEach((key) => {
+      if (defaultSchemaForm[key] === formConfig[key])
+        delete formConfig[key]
     })
 
-    delete formConfig.value.layout
-    delete formConfig.value.background
+    delete formConfig.layout
+    delete formConfig.background
     delEmptyObject(formConfig)
 
     return {
@@ -172,7 +173,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         return item.schema
       }),
       formData,
-      formConfig: formConfig.value,
+      formConfig,
       options,
     }
   }
