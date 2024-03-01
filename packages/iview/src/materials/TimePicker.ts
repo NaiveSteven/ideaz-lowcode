@@ -45,7 +45,7 @@ export function TimePickerTemplateComponent() {
       field,
       default: '',
     }),
-    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-picker', defaultProps: { valueFormat: 'HH:mm:ss', format: 'HH:mm:ss' } }),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-picker', defaultProps: { valueFormat: 'HH:mm:ss', format: 'HH:mm:ss', placeholder: '请选择默认时间' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],

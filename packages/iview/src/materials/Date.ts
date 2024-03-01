@@ -24,7 +24,7 @@ export function DateTemplateComponent() {
         clearable: true,
         disabled: false,
         placeholder: '',
-        valueFormat: 'yyyy-MM-dd',
+        valueFormat: 'YYYY-MM-DD',
       },
     },
     formItemFormData: reactive({
@@ -41,7 +41,7 @@ export function DateTemplateComponent() {
       field,
       default: '',
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-date-picker', defaultProps: { type: 'date', valueFormat: 'YYYY-MM-DD', placeholder: '请选择默认日期' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],

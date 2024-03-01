@@ -81,7 +81,7 @@ const skipFieldPropsKeys: Array<{ key: string, value?: any, component?: string }
   },
   {
     key: 'valueFormat',
-    value: 'HH:mm:ss',
+    value: ['HH:mm:ss', 'YYYY-MM-DD'],
   },
 ]
 

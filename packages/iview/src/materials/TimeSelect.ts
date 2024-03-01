@@ -48,7 +48,7 @@ export function TimeSelectTemplateComponent() {
       field,
       default: '',
     }),
-    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-select' }),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-select', defaultProps: { placeholder: '请选择默认时间' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],

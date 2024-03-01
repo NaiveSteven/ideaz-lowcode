@@ -38,7 +38,7 @@ export const dateCrudSchema = [
 
 export const dateCrudFormData = {
   placeholder: '',
-  valueFormat: 'yyyy-MM-dd',
+  valueFormat: 'YYYY-MM-DD',
 }
 
 export const defaultDateAttrs = {
@@ -46,5 +46,5 @@ export const defaultDateAttrs = {
   clearable: true,
   disabled: false,
   placeholder: '',
-  valueFormat: 'yyyy-MM-dd',
+  valueFormat: 'YYYY-MM-DD',
 }
