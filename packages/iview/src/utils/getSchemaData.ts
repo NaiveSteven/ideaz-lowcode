@@ -131,7 +131,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     delEmptyObject(formConfig)
 
     return {
-      columns: workspaceComponentList.value.map((item) => {
+      columns: cloneDeep(workspaceComponentList.value).map((item) => {
         if (
           item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
@@ -173,6 +173,14 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
               delete item.schema.fieldProps?.[key]
           }
         })
+
+        if (item.schema.fieldProps?.props?.label === 'label')
+          delete item.schema.fieldProps?.props.label
+        if (item.schema.fieldProps?.props?.disabled === 'disabled')
+          delete item.schema.fieldProps?.props.disabled
+        if (item.schema.fieldProps?.props?.children === 'children')
+          delete item.schema.fieldProps?.props.children
+
         delEmptyObject(fieldProps)
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))

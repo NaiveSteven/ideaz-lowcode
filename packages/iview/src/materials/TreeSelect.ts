@@ -6,7 +6,7 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   treeSelectTemplateOptionsConfig,
-  treeSelectTemplateSchema
+  treeSelectTemplateSchema,
 } from '../schemas'
 
 export function TreeSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
@@ -24,14 +24,13 @@ export function TreeSelectTemplateComponent(key = uid()): WorkspaceComponentItem
           { label: '标签2', value: '2', key: uid() },
         ],
         placeholder: '',
-        popperClass: '',
         clearable: true,
         disabled: false,
         filterable: true,
         showCheckbox: false,
         highlightCurrent: false,
         defaultExpandAll: false,
-        expandOnClickNode: false
+        expandOnClickNode: false,
       },
     },
     formItemFormData: reactive({
