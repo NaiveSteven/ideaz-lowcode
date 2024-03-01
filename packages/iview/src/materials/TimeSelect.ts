@@ -4,8 +4,9 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema, timeSelectTemplateOptionsConfig,
-  timeSelectTemplateSchema
+  formItemTemplateSchema,
+  timeSelectTemplateOptionsConfig,
+  timeSelectTemplateSchema,
 } from '../schemas'
 
 export function TimeSelectTemplateComponent() {
@@ -47,7 +48,7 @@ export function TimeSelectTemplateComponent() {
       field,
       default: '',
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-select' }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],
