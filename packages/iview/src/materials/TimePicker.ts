@@ -4,8 +4,9 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema, timePickerTemplateOptionsConfig,
-  timePickerTemplateSchema
+  formItemTemplateSchema,
+  timePickerTemplateOptionsConfig,
+  timePickerTemplateSchema,
 } from '../schemas'
 
 export function TimePickerTemplateComponent() {
@@ -44,7 +45,7 @@ export function TimePickerTemplateComponent() {
       field,
       default: '',
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-picker', defaultProps: { valueFormat: 'HH:mm:ss', format: 'HH:mm:ss' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],

@@ -79,6 +79,10 @@ const skipFieldPropsKeys: Array<{ key: string, value?: any, component?: string }
     key: 'data',
     component: 'el-tree-select',
   },
+  {
+    key: 'valueFormat',
+    value: 'HH:mm:ss',
+  },
 ]
 
 function delEmptyObject(data: any) {
