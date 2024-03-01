@@ -15,6 +15,7 @@ import { TextareaTemplateComponent } from './Textarea'
 import { TimePickerTemplateComponent } from './TimePicker'
 import { TimeRangePickerTemplateComponent } from './TimeRangePicker'
 import { TimeSelectTemplateComponent } from './TimeSelect'
+import { TreeSelectTemplateComponent } from './TreeSelect'
 import { VirtualizedSelectTemplateComponent } from './VirtualizedSelect'
 
 export * from './Checkbox'
@@ -48,6 +49,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
       SwitchTemplateComponent(),
       MultipleSelectTemplateComponent(),
       CheckboxTemplateComponent(),
+      TreeSelectTemplateComponent(),
       TimeSelectTemplateComponent(),
       DateTemplateComponent(),
       DateRangeTemplateComponent(),

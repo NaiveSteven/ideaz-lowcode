@@ -17,6 +17,7 @@ import {
   defaultTimePickerAttrs,
   defaultTimeRangePickerAttrs,
   defaultTimeSelectAttrs,
+  defaultTreeSelectAttrs,
   inputCrudFormData,
   tableColFormData,
 } from '../schemas'
@@ -35,6 +36,7 @@ const defaultComponentFormData: IndexType = {
   ...defaultTimeSelectAttrs,
   ...defaultTimePickerAttrs,
   ...defaultTimeRangePickerAttrs,
+  ...defaultTreeSelectAttrs,
 }
 
 const defaultSchemaForm: IndexType = {
@@ -52,7 +54,7 @@ const defaultSchemaForm: IndexType = {
   column: 1,
 }
 
-const skipFieldPropsKeys: Array<{ key: string, value: any }> = [
+const skipFieldPropsKeys: Array<{ key: string, value?: any, component?: string }> = [
   {
     key: 'controlsPosition',
     value: 'right',
@@ -72,6 +74,10 @@ const skipFieldPropsKeys: Array<{ key: string, value: any }> = [
   {
     key: 'endPlaceholder',
     value: '结束时间',
+  },
+  {
+    key: 'data',
+    component: 'el-tree-select',
   },
 ]
 
@@ -158,6 +164,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
             }
           }
           if (skipItem) {
+            if (skipItem.key === 'data' && skipItem.component === 'el-tree-select')
+              return
             const isEqual = Array.isArray(skipItem.value)
               ? skipItem.value.includes(item.schema.fieldProps?.[key])
               : skipItem.value === item.schema.fieldProps?.[key]
