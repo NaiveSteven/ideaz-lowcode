@@ -6,7 +6,7 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema
+  formItemTemplateSchema,
 } from '../schemas'
 
 export function DateRangeTemplateComponent(): WorkspaceComponentItem {
@@ -25,7 +25,7 @@ export function DateRangeTemplateComponent(): WorkspaceComponentItem {
         disabled: false,
         startPlaceholder: '开始日期',
         endPlaceholder: '结束日期',
-        valueFormat: 'yyyy-MM-dd',
+        valueFormat: 'YYYY-MM-DD',
       },
     },
     formItemFormData: reactive({
@@ -42,7 +42,7 @@ export function DateRangeTemplateComponent(): WorkspaceComponentItem {
       field,
       default: [],
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-date-picker', defaultProps: { type: 'daterange', valueFormat: 'YYYY-MM-DD', startPlaceholder: '开始日期', endPlaceholder: '结束日期' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],

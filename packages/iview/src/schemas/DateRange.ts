@@ -68,7 +68,7 @@ export const dateRangeCrudSchema = [
 export const dateRangeCrudFormData = {
   startPlaceholder: '开始时间',
   endPlaceholder: '结束时间',
-  valueFormat: 'yyyy-MM-dd',
+  valueFormat: 'YYYY-MM-DD',
 }
 
 export const defaultDateRangeAttrs = {
@@ -77,5 +77,5 @@ export const defaultDateRangeAttrs = {
   disabled: false,
   startPlaceholder: '开始日期',
   endPlaceholder: '结束日期',
-  valueFormat: 'yyyy-MM-dd',
+  valueFormat: 'YYYY-MM-DD',
 }
