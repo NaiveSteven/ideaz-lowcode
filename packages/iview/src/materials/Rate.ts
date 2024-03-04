@@ -35,7 +35,7 @@ export function RateTemplateComponent() {
       field,
       default: 0,
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input-number', defaultProps: { controlsPosition: 'right' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],
