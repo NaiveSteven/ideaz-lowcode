@@ -4,8 +4,9 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema, timeRangePickerTemplateOptionsConfig,
-  timeRangePickerTemplateSchema
+  formItemTemplateSchema,
+  timeRangePickerTemplateOptionsConfig,
+  timeRangePickerTemplateSchema,
 } from '../schemas'
 
 export function TimeRangePickerTemplateComponent() {
@@ -46,7 +47,7 @@ export function TimeRangePickerTemplateComponent() {
       field,
       default: [],
     }),
-    fieldSchema: fieldTemplateSchema(),
+    fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-time-picker', defaultProps: { isRange: true, startPlaceholder: '开始时间', endPlaceholder: '结束时间', valueFormat: 'HH:mm:ss' } }),
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],
