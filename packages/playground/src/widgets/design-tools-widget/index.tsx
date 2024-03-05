@@ -12,7 +12,7 @@ export default defineComponent({
       type: String as PropType<'pc' | 'mobile' | 'pad'>,
     },
     viewType: {
-      type: String as PropType<'json' | 'design' | 'play'>,
+      type: String as PropType<'json' | 'design' | 'play' | 'page' | 'tsx'>,
     },
   },
   emits: ['clickPixel', 'clickView'],
@@ -31,7 +31,7 @@ export default defineComponent({
           <View
             value={props.viewType}
             class="mr-2"
-            onClickView={(value: 'json' | 'design' | 'play') => emit('clickView', value)}
+            onClickView={(value: 'json' | 'design' | 'play' | 'page' | 'tsx') => emit('clickView', value)}
           />
           <div class="design-tools-end">
             <CopySchemaCodeWidget />

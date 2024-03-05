@@ -5,11 +5,6 @@ const VIEW_BUTTON_GROUPS = [
     tooltip: '画板',
   },
   {
-    icon: 'i-video-play',
-    type: 'play',
-    tooltip: '效果预览',
-  },
-  {
     icon: 'i-scale-to-original',
     type: 'json',
     tooltip: 'JSON预览',
@@ -19,13 +14,23 @@ const VIEW_BUTTON_GROUPS = [
     type: 'page',
     tooltip: '页面代码预览',
   },
-];
+  {
+    icon: 'i-tickets',
+    type: 'tsx',
+    tooltip: 'TSX代码预览',
+  },
+  {
+    icon: 'i-video-play',
+    type: 'play',
+    tooltip: '效果预览',
+  },
+]
 
 export default defineComponent({
   name: 'View',
   props: {
     value: {
-      type: String as PropType<'json' | 'design' | 'play' | 'page'>,
+      type: String as PropType<'json' | 'design' | 'play' | 'page' | 'tsx'>,
       default: 'design',
     },
   },
@@ -33,7 +38,7 @@ export default defineComponent({
   setup(props, { emit }) {
     return () => (
       <el-button-group size="small" type="default">
-        {VIEW_BUTTON_GROUPS.map((item) => (
+        {VIEW_BUTTON_GROUPS.map(item => (
           <el-button
             disabled={props.value === item.type}
             onClick={() => emit('clickView', item.type)}
@@ -44,6 +49,6 @@ export default defineComponent({
           </el-button>
         ))}
       </el-button-group>
-    );
+    )
   },
-});
+})
