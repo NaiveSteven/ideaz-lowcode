@@ -20,6 +20,7 @@ const CopySchemaCodeWidget = iview.CopySchemaCodeWidget
 const CopyPageCodeWidget = iview.CopyPageCodeWidget
 const getSchemaData = iview.getSchemaData
 const ViewPort = iview.ViewPort
+const TsxWidget = iview.TsxWidget
 
 export {
   getSchemaData,
@@ -31,4 +32,5 @@ export {
   CopySchemaCodeWidget,
   CopyPageCodeWidget,
   ViewPort,
+  TsxWidget,
 }

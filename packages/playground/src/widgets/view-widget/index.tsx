@@ -1,6 +1,6 @@
-import JsonWidget from './JsonWidget';
-import { PlayWidget, PageWidget } from '@ideal-schema/playground-demi';
-import './style.scss';
+import { PageWidget, PlayWidget, TsxWidget } from '@ideal-schema/playground-demi'
+import JsonWidget from './JsonWidget'
+import './style.scss'
 
 export default defineComponent({
   name: 'ViewWidget',
@@ -8,6 +8,7 @@ export default defineComponent({
     JsonWidget,
     PlayWidget,
     PageWidget,
+    TsxWidget,
   },
   props: {
     viewType: {
@@ -17,11 +18,15 @@ export default defineComponent({
   },
   setup(props) {
     const getComponent = (viewType: string) => {
-      if (viewType === 'json') return 'JsonWidget';
-      if (viewType === 'play') return 'PlayWidget';
-      return 'PageWidget';
-    };
+      if (viewType === 'json')
+        return 'JsonWidget'
+      if (viewType === 'play')
+        return 'PlayWidget'
+      if (viewType === 'tsx')
+        return 'TsxWidget'
+      return 'PageWidget'
+    }
 
-    return () => <div class="view-widget">{h(resolveComponent(getComponent(props.viewType)))}</div>;
+    return () => <div class="view-widget">{h(resolveComponent(getComponent(props.viewType)))}</div>
   },
-});
+})

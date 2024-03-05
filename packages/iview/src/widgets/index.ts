@@ -1,6 +1,7 @@
-import PlayWidget from './PlayWidget';
-import PageWidget from './PageWidget';
-import CopySchemaCodeWidget from './CopySchemaCodeWidget';
-import CopyPageCodeWidget from './CopyPageCodeWidget';
+import CopyPageCodeWidget from './CopyPageCodeWidget'
+import CopySchemaCodeWidget from './CopySchemaCodeWidget'
+import PageWidget from './PageWidget'
+import PlayWidget from './PlayWidget'
+import TsxWidget from './TsxWidget'
 
-export { PlayWidget, PageWidget, CopySchemaCodeWidget, CopyPageCodeWidget };
+export { PlayWidget, PageWidget, CopySchemaCodeWidget, CopyPageCodeWidget, TsxWidget }
