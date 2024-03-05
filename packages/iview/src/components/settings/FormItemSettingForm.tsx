@@ -1,5 +1,8 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
+import {
+  fieldTemplateSchema,
+} from '../../schemas'
 import './style.scss'
 
 export default defineComponent({
@@ -34,6 +37,20 @@ export default defineComponent({
               ...cloneObj.formData,
             },
           },
+        }
+        if (obj.field === 'multiple' && obj.value) {
+          item.fieldSchema = fieldTemplateSchema({ defaultComponent: 'select', required: true, defaultProps: { multiple: true } })
+          item.fieldFormData = reactive({
+            ...item.fieldFormData,
+            default: [],
+          })
+        }
+        if (obj.field === 'multiple' && !obj.value) {
+          item.fieldSchema = fieldTemplateSchema({ defaultComponent: 'select', required: true })
+          item.fieldFormData = reactive({
+            ...item.fieldFormData,
+            default: '',
+          })
         }
       }
       updateCurOperateComponent(item)
@@ -96,7 +113,7 @@ export default defineComponent({
               />
             </el-collapse-item>
             {curOperateComponent.value.componentSchema
-              && curOperateComponent.value.componentSchema?.length
+            && curOperateComponent.value.componentSchema?.length
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
@@ -108,21 +125,21 @@ export default defineComponent({
                     onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
-              )
+                )
               : null}
             {curOperateComponent.value.formItemTemplateSchema
-              && Array.isArray(curOperateComponent.value.formItemTemplateSchema) && (
-                <el-collapse-item title="容器属性" name="formItem">
-                  <z-form
-                    v-model={curOperateComponent.value.formItemFormData}
-                    {...formConfig}
-                    key={curOperateComponent.value.id}
-                    columns={curOperateComponent.value.formItemTemplateSchema}
-                    options={curOperateComponent.value.formItemOptionsConfig}
-                    onChange={handleFormItemFormDataChange}
-                  />
-                </el-collapse-item>
-              )}
+            && Array.isArray(curOperateComponent.value.formItemTemplateSchema) && (
+              <el-collapse-item title="容器属性" name="formItem">
+                <z-form
+                  v-model={curOperateComponent.value.formItemFormData}
+                  {...formConfig}
+                  key={curOperateComponent.value.id}
+                  columns={curOperateComponent.value.formItemTemplateSchema}
+                  options={curOperateComponent.value.formItemOptionsConfig}
+                  onChange={handleFormItemFormDataChange}
+                />
+              </el-collapse-item>
+            )}
           </el-collapse>
         </div>
       )

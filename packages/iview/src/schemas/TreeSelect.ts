@@ -32,6 +32,11 @@ export const treeSelectTemplateSchema = [
   },
   {
     component: 'el-switch',
+    field: 'multiple',
+    label: '开启多选',
+  },
+  {
+    component: 'el-switch',
     field: 'showCheckbox',
     label: '开启复选',
   },
@@ -102,6 +107,11 @@ export const treeSelectCrudSchema = [
   },
   {
     component: 'el-switch',
+    field: 'multiple',
+    label: '开启多选',
+  },
+  {
+    component: 'el-switch',
     field: 'showCheckbox',
     label: '开启复选',
   },
@@ -143,6 +153,7 @@ export const TreeSelectCrudFormData = {
   placeholder: '',
   clearable: true,
   disabled: false,
+  multiple: false,
   filterable: true,
   showCheckbox: false,
   highlightCurrent: false,
@@ -160,6 +171,7 @@ export const defaultTreeSelectAttrs = {
     children: 'children',
     disabled: 'disabled',
   },
+  multiple: false,
   placeholder: '',
   clearable: true,
   disabled: false,

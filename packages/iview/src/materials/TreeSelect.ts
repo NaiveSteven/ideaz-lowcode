@@ -25,6 +25,7 @@ export function TreeSelectTemplateComponent(key = uid()): WorkspaceComponentItem
         ],
         placeholder: '',
         clearable: true,
+        multiple: false,
         disabled: false,
         filterable: true,
         showCheckbox: false,
