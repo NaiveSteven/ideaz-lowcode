@@ -9,13 +9,13 @@ export default defineComponent({
     const { getTsxCode } = useTsxCode()
 
     const cmOptions = {
-      mode: 'text/javascript', // Language mode
-      theme: 'default', // Theme
-      lineNumbers: true, // Show line number
-      smartIndent: true, // Smart indent
-      indentUnit: 2, // The smart indent unit is 2 spaces in length
-      foldGutter: true, // Code folding
-      styleActiveLine: true, // Display the style of the selected row
+      mode: 'text/javascript',
+      theme: 'default',
+      lineNumbers: true,
+      smartIndent: true,
+      indentUnit: 2,
+      foldGutter: true,
+      styleActiveLine: true,
     }
 
     const ready = (val: any) => {
@@ -25,11 +25,10 @@ export default defineComponent({
     return () => {
       return (
         <Codemirror
-          value={beautify.html_beautify(getTsxCode(), {
+          value={beautify.js_beautify(getTsxCode(), {
             indent_size: 2,
           })}
           class="h-full"
-          language="html"
           options={cmOptions}
           onChange={(value: any) => console.log(value, 'value')}
           onReady={ready}

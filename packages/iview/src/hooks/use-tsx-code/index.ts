@@ -1,8 +1,11 @@
 import {
-  useGlobalSetting, useWorkspaceComponent, useWorkspaceForm
+  useGlobalSetting,
+  useWorkspaceComponent,
+  useWorkspaceForm,
 } from '@ideal-schema/playground-store'
+import { useFormPageCode } from './useFormPageCode'
 
-export const useTsxCode = () => {
+export function useTsxCode() {
   const { workspaceComponentList } = useWorkspaceComponent()
   const { formConfig } = useWorkspaceForm()
   const { workspaceComponentType } = useGlobalSetting()
@@ -15,11 +18,11 @@ export const useTsxCode = () => {
   })
 
   const getTsxCode = () => {
-    // if (workspaceComponentType.value === 'form') {
-    //   if (isDialog.value)
-    //     return useFormDialogCode()
-    //   return useFormPageCode()
-    // }
+    if (workspaceComponentType.value === 'form') {
+      // if (isDialog.value)
+      //   return useFormDialogCode()
+      return useFormPageCode()
+    }
     // const { code } = useCrudPageCode()
     // if (workspaceComponentType.value === 'crud') {
     //   if (isDialog.value)
