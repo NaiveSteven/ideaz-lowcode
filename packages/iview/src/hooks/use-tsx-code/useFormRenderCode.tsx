@@ -10,7 +10,7 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
 
   const getContainerCode = () => {
     if (type === 'page')
-      return ['<>', '</>']
+      return ['', '']
 
     return [
       `<el-dialog
@@ -37,6 +37,24 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
   }
 
   const getRenderCode = (columns: FormItemConfigItem[]) => {
+    if (type === 'page') {
+      return !isIncludesSlot(columns)
+        ? `<z-form
+          ref={formRef}
+          v-model={formData.value}
+          {...formConfig}
+          options={options}
+          columns={columns.value}
+        />`
+        : `<z-form
+        ref={formRef}
+        v-model={formData.value}
+        {...formConfig}
+        options={options}
+        columns={columns.value}
+        v-slots={${JSON.stringify(getFormSlotCode(columns))}}
+      />`
+    }
     return !isIncludesSlot(columns)
       ? `
     ${getContainerCode()[0]}

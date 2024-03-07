@@ -26,6 +26,7 @@ export default defineComponent({
       return (
         <Codemirror
           value={beautify.js_beautify(getTsxCode(), {
+            e4x: true,
             indent_size: 2,
           })}
           class="h-full"
