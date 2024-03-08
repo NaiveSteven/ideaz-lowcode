@@ -27,15 +27,17 @@ export default defineComponent({
         ...obj.formData,
       }
       if (obj.formData.type === 'slot') {
+        data.type = 'slot'
         data.componentSchema = (formData: IndexType) => [
           ...tableColTemplateSchema(formData),
           {
-            type: 'input',
-            prop: 'slot',
+            component: 'input',
+            field: 'slot',
             label: '插槽名',
             hide: () => formData.type !== 'slot',
           },
         ]
+        // console.log(data,'column')
       }
       else {
         data.componentFormData!.slot = ''

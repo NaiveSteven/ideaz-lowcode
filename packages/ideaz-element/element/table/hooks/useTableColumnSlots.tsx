@@ -1,10 +1,10 @@
 import { Operation, QuestionFilled } from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
-import { isBoolean, isEmptyObject, isFunction, isObject, isSlot, isString } from '../../../utils'
-import type { TableColumnProps } from '../src/props'
 import { useLocale, useNamespace } from '../../../hooks'
-import TableButton from '../src/TableButton'
+import { isBoolean, isEmptyObject, isFunction, isObject, isSlot, isString } from '../../../utils'
 import { SELECT_TYPES } from '../../form/hooks'
+import type { TableColumnProps } from '../src/props'
+import TableButton from '../src/TableButton'
 import { useTableColComponentName } from './useTableColComponentName'
 
 export function useTableColumnSlots(props: TableColumnProps, slots: any, emit: any) {
@@ -95,8 +95,8 @@ export function useTableColumnSlots(props: TableColumnProps, slots: any, emit: a
           if (column.type === 'expand' && isFunction(slots.expand))
             return slots.expand(scope)
 
-          if (column.slot && slots[column.slot])
-            return slots[column.slot](scope)
+          if ((column.slot && slots[column.slot]) || column.type === 'slot')
+            return slots[column.slot]?.(scope) || <span></span>
 
           if (column.type === 'sort' && isFunction(slots.sort))
             return <div class={ns.b('draggable')}>{slots.sort(scope)}</div>
