@@ -3,6 +3,7 @@ import {
   useWorkspaceComponent,
   useWorkspaceForm,
 } from '@ideal-schema/playground-store'
+import { useCrudPageCode } from './useCrudPageCode'
 import { useFormDialogCode } from './useFormDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
@@ -24,14 +25,12 @@ export function useTsxCode() {
         return useFormDialogCode()
       return useFormPageCode()
     }
-    // const { code } = useCrudPageCode()
-    // if (workspaceComponentType.value === 'crud') {
-    //   if (isDialog.value)
-    //     return useCrudDialogCode().code
-    //   return code
-    // }
-
-    return 'TsxWidget'
+    const { code } = useCrudPageCode()
+    if (workspaceComponentType.value === 'crud') {
+      // if (isDialog.value)
+      //   return useCrudDialogCode().code
+      return code
+    }
   }
 
   return { getTsxCode }
