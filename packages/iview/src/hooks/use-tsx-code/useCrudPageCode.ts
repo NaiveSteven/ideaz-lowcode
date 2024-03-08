@@ -5,7 +5,7 @@ import { useCrudRenderCode } from './useCrudRenderCode'
 export function useCrudPageCode() {
   const { getCrudRenderCode } = useCrudRenderCode()
 
-  const { config } = getSchemaData('code', 'crud')
+  const { config, columns } = getSchemaData('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
@@ -18,6 +18,7 @@ export function useCrudPageCode() {
           const config = reactive(${JSON.stringify(config)});
           const searchFormData = ref(${JSON.stringify(config.searchFormData)});
           const tableData = ${JSON.stringify(getTableData())};
+          const columns = ${JSON.stringify(columns)};
 
           const getTableData = async () => {
             config.loading = true;
