@@ -17,16 +17,7 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
           v-model={visible.value}
           title="标题"
           width="620px"
-          v-slots={{
-            footer: () => {
-              return <>
-                <el-button onClick={() => visible.value = false}" size="default">取 消</el-button>
-                <el-button type="primary"  size="default" loading={isConfirmBtnLoading.value} onClick={handleValidate}
-                  >确 定</el-button
-                >
-              </>
-            }
-          }}
+          v-slots={{ footer: renderFooter }}
         >`,
       `</el-dialog>`,
     ]

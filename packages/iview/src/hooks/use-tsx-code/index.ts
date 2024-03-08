@@ -3,6 +3,7 @@ import {
   useWorkspaceComponent,
   useWorkspaceForm,
 } from '@ideal-schema/playground-store'
+import { useFormDialogCode } from './useFormDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function useTsxCode() {
@@ -19,8 +20,8 @@ export function useTsxCode() {
 
   const getTsxCode = () => {
     if (workspaceComponentType.value === 'form') {
-      // if (isDialog.value)
-      //   return useFormDialogCode()
+      if (isDialog.value)
+        return useFormDialogCode()
       return useFormPageCode()
     }
     // const { code } = useCrudPageCode()
