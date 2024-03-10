@@ -185,6 +185,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         if (item.schema.fieldProps?.props?.children === 'children')
           delete item.schema.fieldProps?.props.children
 
+        if (item.schema.fieldProps?.alias?.label === 'label')
+          delete item.schema.fieldProps?.alias.label
+        if (item.schema.fieldProps?.alias?.disabled === 'disabled')
+          delete item.schema.fieldProps?.alias.disabled
+        if (item.schema.fieldProps?.alias?.value === 'value')
+          delete item.schema.fieldProps?.alias.value
+
         delEmptyObject(fieldProps)
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))

@@ -6,7 +6,7 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   selectTemplateOptionsConfig,
-  selectTemplateSchema
+  selectTemplateSchema,
 } from '../schemas'
 
 export function SelectTemplateComponent(key = uid()): WorkspaceComponentItem {
@@ -24,6 +24,11 @@ export function SelectTemplateComponent(key = uid()): WorkspaceComponentItem {
         clearable: true,
         disabled: false,
         filterable: true,
+        alias: {
+          value: 'value',
+          label: 'label',
+          disabled: 'disabled',
+        },
       },
     },
     formItemFormData: reactive({
