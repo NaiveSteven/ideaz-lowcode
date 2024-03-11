@@ -321,6 +321,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
             tableCol.searchFormItem = { slot: searchFormItem.fieldFormData?.slot }
         })
 
+        if (searchFormItem.fieldProps?.alias?.label === 'label')
+          delete searchFormItem.fieldProps?.alias.label
+        if (searchFormItem.fieldProps?.alias?.disabled === 'disabled')
+          delete searchFormItem.fieldProps?.alias.disabled
+        if (searchFormItem.fieldProps?.alias?.value === 'value')
+          delete searchFormItem.fieldProps?.alias.value
+
         delete searchFormItem.fieldProps?.options
         delete searchFormItem.formItemProps?.class
         delete searchFormItem.formItemProps?.id
