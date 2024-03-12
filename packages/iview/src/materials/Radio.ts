@@ -6,10 +6,10 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   radioTemplateOptionsConfig,
-  radioTemplateSchema
+  radioTemplateSchema,
 } from '../schemas'
 
-export const RadioTemplateComponent = (): WorkspaceComponentItem => {
+export function RadioTemplateComponent(): WorkspaceComponentItem {
   const field = uid()
   return {
     id: uid(),
@@ -23,6 +23,11 @@ export const RadioTemplateComponent = (): WorkspaceComponentItem => {
         textColor: '#ffffff',
         fill: '#409Eff',
         disabled: false,
+        alias: {
+          value: 'value',
+          label: 'label',
+          disabled: 'disabled',
+        },
       },
     },
     formItemFormData: reactive({
