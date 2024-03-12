@@ -279,7 +279,12 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
             && item.search.component !== 'placeholder-block'
           ) {
             config.options[item.search.fieldFormData?.field]
-              = item.search.fieldProps.options
+              = item.search.fieldProps.options.map((option: OptionsItem) => {
+                return {
+                  [item.search?.fieldProps?.alias.value]: option.value,
+                  [item.search?.fieldProps?.alias.label]: option.label,
+                }
+              })
           }
         }
       })

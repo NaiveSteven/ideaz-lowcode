@@ -3,12 +3,14 @@ import { uid } from '@ideal-schema/shared'
 import { cloneDeep, debounce } from 'lodash-es'
 import { FORM_COMPONENT_TYPE } from '../../materials'
 import {
+  SelectCrudFormData,
   dateRangeCrudFormData,
   dateRangeCrudSchema,
   inputCrudFormData,
   inputCrudSchema,
   multipleSelectCrudFormData,
-  multipleSelectCrudSchema, SelectCrudFormData, selectCrudSchema
+  multipleSelectCrudSchema,
+  selectCrudSchema,
 } from '../../schemas'
 import './style.scss'
 
@@ -275,6 +277,26 @@ export default defineComponent({
             ...obj.formData,
           },
         }
+        if (obj.field === 'alias.value') {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              ...item,
+              [obj.value]: item.value,
+            }
+          })
+          item.componentFormData!.options = [...options]
+          item.fieldProps!.options = [...options]
+        }
+        if (obj.field === 'alias.label') {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              ...item,
+              [obj.value]: item.label,
+            }
+          })
+          item.componentFormData!.options = [...options]
+          item.fieldProps!.options = [...options]
+        }
         const crud = workspaceComponentList.value[0]
         const schema = crud.schema
         updateData(item, schema, obj)
@@ -306,7 +328,7 @@ export default defineComponent({
               />
             </el-collapse-item>
             {curOperateComponent.value.componentSchema
-              && curOperateComponent.value.componentSchema!.length
+            && curOperateComponent.value.componentSchema!.length
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
@@ -318,10 +340,10 @@ export default defineComponent({
                     onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
-              )
+                )
               : null}
             {curOperateComponent.value.formItemTemplateSchema
-              && Array.isArray(curOperateComponent.value.formItemTemplateSchema)
+            && Array.isArray(curOperateComponent.value.formItemTemplateSchema)
               ? (
                 <el-collapse-item title="容器属性" name="formItem">
                   <z-form
@@ -333,7 +355,7 @@ export default defineComponent({
                     onChange={handleFormItemFormDataChange}
                   />
                 </el-collapse-item>
-              )
+                )
               : null}
           </el-collapse>
         </div>
