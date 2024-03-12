@@ -6,7 +6,7 @@ import {
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
-  formItemTemplateSchema
+  formItemTemplateSchema,
 } from '../schemas'
 
 export function CheckboxTemplateComponent(key = uid()): WorkspaceComponentItem {
@@ -24,6 +24,11 @@ export function CheckboxTemplateComponent(key = uid()): WorkspaceComponentItem {
         disabled: false,
         min: undefined,
         max: undefined,
+        alias: {
+          value: 'value',
+          label: 'label',
+          disabled: 'disabled',
+        },
       },
     },
     formItemFormData: reactive({
