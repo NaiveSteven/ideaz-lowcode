@@ -112,15 +112,15 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
       if (field) {
         formData[field] = item.fieldFormData!.default
         if (item.componentOptionsConfig?.[field]) {
-          options[field] = item.componentOptionsConfig?.[field].map((item: OptionsItem) => ({
-            label: item.label,
-            value: item.value,
+          options[field] = item.componentOptionsConfig?.[field].map((option: OptionsItem) => ({
+            [item.componentFormData?.alias.label]: option.label,
+            [item.componentFormData?.alias.value]: option.value,
           }))
         }
         if (Object.hasOwnProperty.call(item.componentFormData, 'options')) {
-          options[field] = item.componentFormData?.options.map((item: OptionsItem) => ({
-            label: item.label,
-            value: item.value,
+          options[field] = item.componentFormData?.options.map((option: OptionsItem) => ({
+            [item.componentFormData?.alias.label]: option.label,
+            [item.componentFormData?.alias.value]: option.value,
           }))
         }
       }

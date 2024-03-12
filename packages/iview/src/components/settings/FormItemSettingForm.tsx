@@ -38,6 +38,26 @@ export default defineComponent({
             },
           },
         }
+        if (obj.field === 'alias.value') {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              ...item,
+              [obj.value]: item.value,
+            }
+          })
+          item.componentFormData!.options = [...options]
+          item.schema.fieldProps!.options = [...options]
+        }
+        if (obj.field === 'alias.label') {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              ...item,
+              [obj.value]: item.label,
+            }
+          })
+          item.componentFormData!.options = [...options]
+          item.schema.fieldProps!.options = [...options]
+        }
         if (obj.field === 'multiple' && obj.value) {
           item.fieldSchema = fieldTemplateSchema({ defaultComponent: 'select', required: true, defaultProps: { multiple: true } })
           item.fieldFormData = reactive({
