@@ -2,10 +2,7 @@ import { isEmpty, isObject } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { useWorkspaceComponent, useWorkspaceForm } from '../../../playground-store/src'
 import {
-  SelectCrudFormData,
-  defaultCheckboxAttrs,
-  formItemFormData as defaultFormItemFormData,
-  defaultInputAttrs,
+  defaultCheckboxAttrs, defaultInputAttrs,
   defaultInputNumberAttrs,
   defaultMultipleSelectAttrs,
   defaultRadioAttrs,
@@ -17,9 +14,7 @@ import {
   defaultTimePickerAttrs,
   defaultTimeRangePickerAttrs,
   defaultTimeSelectAttrs,
-  defaultTreeSelectAttrs,
-  inputCrudFormData,
-  tableColFormData,
+  defaultTreeSelectAttrs, formItemFormData as defaultFormItemFormData, inputCrudFormData, SelectCrudFormData, tableColFormData
 } from '../schemas'
 
 const defaultComponentFormData: IndexType = {
@@ -192,6 +187,13 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         if (item.schema.fieldProps?.alias?.value === 'value')
           delete item.schema.fieldProps?.alias.value
 
+        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.min === undefined) {
+          delete item.schema.fieldProps?.min
+        }
+        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.max === undefined) {
+          delete item.schema.fieldProps?.max
+        }
+
         delEmptyObject(fieldProps)
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))
@@ -282,7 +284,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
               = item.search.fieldProps.options.map((option: OptionsItem) => {
                 return {
                   [item.search?.fieldProps?.alias.value]: option.value,
-                  [item.search?.fieldProps?.alias.label]: option.label,
+                  [item.search?.fieldProps?.alias.label]: option.label
                 }
               })
           }
@@ -413,3 +415,4 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 }
 
 export { getSchemaData }
+
