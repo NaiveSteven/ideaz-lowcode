@@ -1,12 +1,12 @@
 import { uid } from '@ideal-schema/shared'
 import {
+  VirtualizedSelectTemplateOptionsConfig,
+  VirtualizedSelectTemplateSchema,
   defaultVirtualizedSelectAttrs,
   fieldTemplateSchema,
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
-  VirtualizedSelectTemplateOptionsConfig,
-  VirtualizedSelectTemplateSchema
 } from '../schemas'
 
 export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
@@ -24,6 +24,11 @@ export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceCompon
         clearable: true,
         disabled: false,
         filterable: true,
+        alias: {
+          value: 'value',
+          label: 'label',
+          disabled: 'disabled',
+        },
       },
     },
     formItemFormData: reactive({
