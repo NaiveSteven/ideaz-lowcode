@@ -9,7 +9,3 @@
 7. `WorkspaceComponentItem`ts类型优化
 8. 虚拟化选择器支持多选配置
 9. `ZForm`支持关闭`draggable`功能
-
-## FIX
-
-1. `ZTable`的`toolBar`隐藏已选中的`checkbox`等，重新展示后未选中
