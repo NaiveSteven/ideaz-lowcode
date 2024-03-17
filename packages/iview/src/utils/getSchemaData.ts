@@ -2,7 +2,10 @@ import { isEmpty, isObject } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { useWorkspaceComponent, useWorkspaceForm } from '../../../playground-store/src'
 import {
-  defaultCheckboxAttrs, defaultInputAttrs,
+  SelectCrudFormData,
+  defaultCheckboxAttrs,
+  formItemFormData as defaultFormItemFormData,
+  defaultInputAttrs,
   defaultInputNumberAttrs,
   defaultMultipleSelectAttrs,
   defaultRadioAttrs,
@@ -14,7 +17,9 @@ import {
   defaultTimePickerAttrs,
   defaultTimeRangePickerAttrs,
   defaultTimeSelectAttrs,
-  defaultTreeSelectAttrs, formItemFormData as defaultFormItemFormData, inputCrudFormData, SelectCrudFormData, tableColFormData
+  defaultTreeSelectAttrs,
+  inputCrudFormData,
+  tableColFormData,
 } from '../schemas'
 
 const defaultComponentFormData: IndexType = {
@@ -108,14 +113,14 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         formData[field] = item.fieldFormData!.default
         if (item.componentOptionsConfig?.[field]) {
           options[field] = item.componentOptionsConfig?.[field].map((option: OptionsItem) => ({
-            [item.componentFormData?.alias?.label]: option.label,
-            [item.componentFormData?.alias?.value]: option.value,
+            [item.componentFormData?.alias?.label || 'label']: option.label,
+            [item.componentFormData?.alias?.value || 'value']: option.value,
           }))
         }
         if (Object.hasOwnProperty.call(item.componentFormData, 'options')) {
           options[field] = item.componentFormData?.options.map((option: OptionsItem) => ({
-            [item.componentFormData?.alias?.label]: option.label,
-            [item.componentFormData?.alias?.value]: option.value,
+            [item.componentFormData?.alias?.label || 'label']: option.label,
+            [item.componentFormData?.alias?.value || 'value']: option.value,
           }))
         }
       }
@@ -187,12 +192,11 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         if (item.schema.fieldProps?.alias?.value === 'value')
           delete item.schema.fieldProps?.alias.value
 
-        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.min === undefined) {
+        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.min === undefined)
           delete item.schema.fieldProps?.min
-        }
-        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.max === undefined) {
+
+        if (item.schema.component === 'checkbox' && item.schema.fieldProps?.max === undefined)
           delete item.schema.fieldProps?.max
-        }
 
         delEmptyObject(fieldProps)
         delete fieldProps?.options
@@ -283,8 +287,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
             config.options[item.search.fieldFormData?.field]
               = item.search.fieldProps.options.map((option: OptionsItem) => {
                 return {
-                  [item.search?.fieldProps?.alias.value]: option.value,
-                  [item.search?.fieldProps?.alias.label]: option.label
+                  [item.search?.fieldProps?.alias.value || 'value']: option.value,
+                  [item.search?.fieldProps?.alias.label || 'label']: option.label,
                 }
               })
           }
@@ -415,4 +419,3 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 }
 
 export { getSchemaData }
-
