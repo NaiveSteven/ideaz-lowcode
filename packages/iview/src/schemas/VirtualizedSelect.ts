@@ -9,19 +9,19 @@ export const VirtualizedSelectTemplateSchema = [
   },
   {
     component: 'input',
-    field: 'alias.value',
+    field: 'props.value',
     label: 'value字段名',
     tooltip: 'value自定义字段名',
   },
   {
     component: 'input',
-    field: 'alias.label',
+    field: 'props.label',
     label: 'label字段名',
     tooltip: 'label自定义字段名',
   },
   {
     component: 'input',
-    field: 'alias.disabled',
+    field: 'props.disabled',
     label: '禁用字段名',
     tooltip: 'disabled自定义字段名',
   },
@@ -111,7 +111,7 @@ export const defaultVirtualizedSelectAttrs = {
     { label: '标签1', value: '1', key: uid() },
     { label: '标签2', value: '2', key: uid() },
   ],
-  alias: {
+  props: {
     value: 'value',
     label: 'label',
     disabled: 'disabled',

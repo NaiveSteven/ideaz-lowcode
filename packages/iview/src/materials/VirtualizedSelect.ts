@@ -24,7 +24,7 @@ export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceCompon
         clearable: true,
         disabled: false,
         filterable: true,
-        alias: {
+        props: {
           value: 'value',
           label: 'label',
           disabled: 'disabled',

@@ -113,14 +113,14 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         formData[field] = item.fieldFormData!.default
         if (item.componentOptionsConfig?.[field]) {
           options[field] = item.componentOptionsConfig?.[field].map((option: OptionsItem) => ({
-            [item.componentFormData?.alias?.label || 'label']: option.label,
-            [item.componentFormData?.alias?.value || 'value']: option.value,
+            [item.componentFormData?.alias?.label || item.componentFormData?.props?.label || 'label']: option.label,
+            [item.componentFormData?.alias?.value || item.componentFormData?.props?.value || 'value']: option.value,
           }))
         }
         if (Object.hasOwnProperty.call(item.componentFormData, 'options')) {
           options[field] = item.componentFormData?.options.map((option: OptionsItem) => ({
-            [item.componentFormData?.alias?.label || 'label']: option.label,
-            [item.componentFormData?.alias?.value || 'value']: option.value,
+            [item.componentFormData?.alias?.label || item.componentFormData?.props?.label || 'label']: option.label,
+            [item.componentFormData?.alias?.value || item.componentFormData?.props?.value || 'value']: option.value,
           }))
         }
       }
@@ -287,8 +287,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
             config.options[item.search.fieldFormData?.field]
               = item.search.fieldProps.options.map((option: OptionsItem) => {
                 return {
-                  [item.search?.fieldProps?.alias.value || 'value']: option.value,
-                  [item.search?.fieldProps?.alias.label || 'label']: option.label,
+                  [item.search?.fieldProps?.alias.value || item.search?.fieldProps?.props.value || 'value']: option.value,
+                  [item.search?.fieldProps?.alias.label || item.search?.fieldProps?.props.label || 'label']: option.label,
                 }
               })
           }
