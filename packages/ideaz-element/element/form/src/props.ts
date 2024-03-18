@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { formProps as elFormProps } from 'element-plus'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { FormColumn } from '../../types'
 
 export const RowJustify = [
@@ -91,6 +91,11 @@ export const formProps = {
   footer: {
     type: [Boolean, Function] as PropType<boolean | (() => VNode)>,
   },
+  // remark draggable closeable
+  draggable: {
+    type: Boolean,
+    default: false
+  }
 }
 
 export const formItemProps = {

@@ -1,13 +1,13 @@
-import { get } from 'lodash-unified'
 import { ElFormItem } from 'element-plus'
-import { extractEvents, isFunction, isObject, isString } from '../../../utils'
-import { getContentByRenderAndSlot, resolveDynamicComponent } from '../../../shared'
-import { useFormSize, useNamespace } from '../../../hooks'
+import { get } from 'lodash-unified'
 import { vueRef as ref } from '../../../directives'
+import { useFormSize, useNamespace } from '../../../hooks'
+import { getContentByRenderAndSlot, resolveDynamicComponent } from '../../../shared'
+import { extractEvents, isFunction, isObject, isString } from '../../../utils'
 import {
   useFormItemComponent,
   useFormItemProps,
-  useFormItemSlots,
+  useFormItemSlots
 } from '../hooks'
 import { formItemProps, formItemProvideKey } from './props'
 
@@ -46,13 +46,14 @@ export default defineComponent({
     }
 
     return () => {
-      const { col, options } = props
+      const { col, options, formConfig } = props
 
       return (
         <ElFormItem
           ref="formItem"
           prop={col.field}
-          class={ns.b()}
+          // remark draggable closeable
+          class={[ns.b(), formConfig.draggable && ns.b('draggable')]}
           {...{ size: size.value, ...formItemProps.value }}
           v-slots={vSlots.value}
         >
