@@ -198,6 +198,15 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
         if (item.schema.component === 'checkbox' && item.schema.fieldProps?.max === undefined)
           delete item.schema.fieldProps?.max
 
+        if (item.schema.component === 'el-tree-select') {
+          item.schema.fieldProps!.data = item.schema.fieldProps?.data.map((option: OptionsItem) => {
+            return ({
+              [item.schema.fieldProps?.props?.label || 'label']: option.label,
+              value: option.value,
+            })
+          })
+        }
+
         delEmptyObject(fieldProps)
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))
