@@ -37,6 +37,45 @@ export const VirtualizedSelectTemplateSchema = [
   },
   {
     component: 'el-switch',
+    field: 'multiple',
+    label: '开启多选',
+  },
+  {
+    component: 'el-switch',
+    field: 'collapseTags',
+    label: '文字形式',
+    hide: (formData: IndexType) => formData.multiple === false,
+    tooltip: '多选时是否将选中值按文字的形式展示',
+  },
+  {
+    component: 'el-input-number',
+    field: 'multipleLimit',
+    label: '可选最大数',
+    hide: (formData: IndexType) => formData.multiple === false,
+    tooltip: '多选时可被选择的最大数目。 当被设置为0时，可被选择的数目不设限。',
+    fieldProps: {
+      controlsPosition: 'right',
+    },
+  },
+  {
+    component: 'el-input-number',
+    field: 'maxCollapseTags',
+    label: 'Tag显示数',
+    hide: (formData: IndexType) => formData.multiple === false,
+    tooltip: '需要显示的 Tag 的最大数量 只有当 collapse-tags 设置为 true 时才会生效。',
+    fieldProps: {
+      controlsPosition: 'right',
+    },
+  },
+  {
+    component: 'el-switch',
+    field: 'collapseTagsTooltip',
+    label: '悬停显示',
+    hide: (formData: IndexType) => formData.multiple === false,
+    tooltip: '当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签。 只有当 collapse-tags 设置为 true 时才会生效。',
+  },
+  {
+    component: 'el-switch',
     field: 'clearable',
     label: '清空',
   },
@@ -122,4 +161,9 @@ export const defaultVirtualizedSelectAttrs = {
   clearable: true,
   disabled: false,
   filterable: true,
+  multiple: false,
+  collapseTags: false,
+  multipleLimit: 0,
+  collapseTagsTooltip: false,
+  maxCollapseTags: 1,
 }

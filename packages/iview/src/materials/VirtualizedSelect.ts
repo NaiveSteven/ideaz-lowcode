@@ -24,6 +24,11 @@ export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceCompon
         clearable: true,
         disabled: false,
         filterable: true,
+        multiple: false,
+        collapseTags: false,
+        multipleLimit: 0,
+        collapseTagsTooltip: false,
+        maxCollapseTags: 1,
         props: {
           value: 'value',
           label: 'label',
