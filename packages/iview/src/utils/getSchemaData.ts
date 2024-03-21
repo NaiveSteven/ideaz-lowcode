@@ -18,6 +18,7 @@ import {
   defaultTimeRangePickerAttrs,
   defaultTimeSelectAttrs,
   defaultTreeSelectAttrs,
+  defaultVirtualizedSelectAttrs,
   inputCrudFormData,
   tableColFormData,
 } from '../schemas'
@@ -37,6 +38,7 @@ const defaultComponentFormData: IndexType = {
   ...defaultTimePickerAttrs,
   ...defaultTimeRangePickerAttrs,
   ...defaultTreeSelectAttrs,
+  ...defaultVirtualizedSelectAttrs,
 }
 
 const defaultSchemaForm: IndexType = {
@@ -180,6 +182,8 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 
         if (item.schema.fieldProps?.props?.label === 'label')
           delete item.schema.fieldProps?.props.label
+        if (item.schema.fieldProps?.props?.value === 'value')
+          delete item.schema.fieldProps?.props.value
         if (item.schema.fieldProps?.props?.disabled === 'disabled')
           delete item.schema.fieldProps?.props.disabled
         if (item.schema.fieldProps?.props?.children === 'children')
