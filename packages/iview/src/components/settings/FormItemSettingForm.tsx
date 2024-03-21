@@ -59,18 +59,34 @@ export default defineComponent({
           item.schema.fieldProps!.options = [...options]
         }
         if (obj.field === 'multiple' && obj.value) {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              [item.fieldProps?.alias?.label || item.fieldsProps?.props?.label || 'label']: item.label,
+              [item.fieldProps?.alias?.value || item.fieldsProps?.props?.value || 'value']: item.value,
+            }
+          })
           item.fieldSchema = fieldTemplateSchema({ defaultComponent: 'select', required: true, defaultProps: { multiple: true } })
           item.fieldFormData = reactive({
             ...item.fieldFormData,
             default: [],
           })
+          item.componentFormData!.options = [...options]
+          item.schema.fieldProps!.options = [...options]
         }
         if (obj.field === 'multiple' && !obj.value) {
+          const options = item.componentFormData?.options.map((item: OptionsItem) => {
+            return {
+              [item.fieldProps?.alias?.label || item.fieldsProps?.props?.label || 'label']: item.label,
+              [item.fieldProps?.alias?.value || item.fieldsProps?.props?.value || 'value']: item.value,
+            }
+          })
           item.fieldSchema = fieldTemplateSchema({ defaultComponent: 'select', required: true })
           item.fieldFormData = reactive({
             ...item.fieldFormData,
             default: '',
           })
+          item.componentFormData!.options = [...options]
+          item.schema.fieldProps!.options = [...options]
         }
       }
       updateCurOperateComponent(item)
