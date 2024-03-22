@@ -7,8 +7,9 @@
 5. 模板样式和项目整体图标优化
 6. 组件配置和属性配置两块支持悬浮
 7. `WorkspaceComponentItem`ts类型优化
-8. 虚拟化选择器支持多选配置
-9. `ZForm`支持关闭`draggable`功能
+8. ~~虚拟化选择器支持多选配置~~
+9. ~~`ZForm`支持关闭`draggable`功能~~
+10. `ZTablePlus`支持`pagination`位置配置
 
 ## FIX
 
