@@ -1,9 +1,10 @@
 import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playground-demi'
 import BoardWH from './BoardWH'
 import Clear from './Clear'
+import Commands from './Commands'
 import ScreenPixel from './ScreenPixel'
-import View from './View'
 import './style.scss'
+import View from './View'
 
 export default defineComponent({
   name: 'DesignToolsWidget',
@@ -20,6 +21,7 @@ export default defineComponent({
     return () => (
       <div class="design-tools">
         <div class="flex justify-between">
+          <Commands class="mr-2" />
           <ScreenPixel
             class="mr-5"
             value={props.pixelType}

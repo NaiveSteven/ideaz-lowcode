@@ -1,5 +1,5 @@
 export * from './useAsideToggle'
+export * from './useCommand'
 export * from './useDriver'
 export * from './useInElement'
 export * from './useShowDialog'
-
