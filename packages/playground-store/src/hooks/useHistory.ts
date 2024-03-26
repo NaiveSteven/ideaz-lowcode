@@ -1,6 +1,6 @@
 import { useHistoryStore } from '../modules/history'
 
-export const useGlobalSetting = ()=> {
+export function useHistory() {
   const historyStore = useHistoryStore()
 
   const queue = computed(() => historyStore.queue)
@@ -11,6 +11,6 @@ export const useGlobalSetting = ()=> {
     current,
     pushQueue: historyStore.pushQueue,
     updateCurrent: historyStore.updateCurrent,
-    updateQueue: historyStore.updateQueue
+    updateQueue: historyStore.updateQueue,
   }
 }

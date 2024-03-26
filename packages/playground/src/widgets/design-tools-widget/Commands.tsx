@@ -1,6 +1,6 @@
-import { useHistoryStore, useWorkspaceComponent } from '@ideal-schema/playground-store';
-import type { PropType } from 'vue';
-import { useCommand } from '../../hooks';
+import { useHistory, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import type { PropType } from 'vue'
+import { useCommand } from '../../hooks'
 
 export default defineComponent({
   name: 'Commands',
@@ -12,12 +12,9 @@ export default defineComponent({
   },
   emits: ['clickDo'],
   setup() {
-    const { commands } = useCommand();
-    const historyStory = useHistoryStore();
-    const { viewType } = useWorkspaceComponent();
-
-    const current = computed(() => historyStory.getCurrent);
-    const queue = computed(() => historyStory.getQueue);
+    const { commands } = useCommand()
+    const { current, queue } = useHistory()
+    const { viewType } = useWorkspaceComponent()
 
     return () => (
       <el-button-group size="small" type="default">
@@ -34,9 +31,9 @@ export default defineComponent({
         <el-button
           onClick={() => commands.redo()}
           disabled={
-            queue.value.length === 0 ||
-            current.value === queue.value.length - 1 ||
-            viewType.value !== 'design'
+            queue.value.length === 0
+            || current.value === queue.value.length - 1
+            || viewType.value !== 'design'
           }
         >
           <el-tooltip effect="light" content="前进" placement="top" showAfter={500}>
@@ -46,6 +43,6 @@ export default defineComponent({
           </el-tooltip>
         </el-button>
       </el-button-group>
-    );
+    )
   },
-});
+})

@@ -1,60 +1,59 @@
-import type { Queue } from '@ideal-schema/playground-store';
-import { useHistoryStore, useWorkspaceComponent } from '@ideal-schema/playground-store';
-import { cloneDeep } from 'lodash-es';
-import mitt from '../event';
-import { useHotKeys } from './useHotKeys';
+import type { Queue } from '@ideal-schema/playground-store'
+import { useHistoryStore, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { cloneDeep } from 'lodash-es'
+import mitt from '../../../iview/src/event'
+import { useHotKeys } from './useHotKeys'
 
-export type execute = () => {};
+export type execute = () => {}
 export interface ExecuteReturn {
-  before?: WorkspaceComponentItem[];
-  after?: WorkspaceComponentItem[];
-  historyType?: string;
-  redo: () => void;
-  undo?: () => void;
+  before?: WorkspaceComponentItem[]
+  after?: WorkspaceComponentItem[]
+  historyType?: string
+  redo: () => void
+  undo?: () => void
 }
 
 export interface Command {
-  name: string;
-  keyboard?: string;
-  pushQueue?: boolean;
-  init?: () => () => void;
-  execute: () => ExecuteReturn;
-  before?: WorkspaceComponentItem[] | null;
-  historyType?: string;
-  beforeAttribute?: WorkspaceComponentItem[] | null;
+  name: string
+  keyboard?: string
+  pushQueue?: boolean
+  init?: () => () => void
+  execute: () => ExecuteReturn
+  before?: WorkspaceComponentItem[] | null
+  historyType?: string
+  beforeAttribute?: WorkspaceComponentItem[] | null
 }
 export interface CommandState {
   commands: {
-    [propName: string]: () => void;
-  };
-  commandArray: Command[];
-  destroyArray: Array<() => void>;
+    [propName: string]: () => void
+  }
+  commandArray: Command[]
+  destroyArray: Array<() => void>
 }
 
 export function useCommand() {
-  const { updateComponentList, updateCurOperateComponent, workspaceComponentList } = useWorkspaceComponent();
-  const historyStore = useHistoryStore();
+  const { updateComponentList, updateCurOperateComponent, workspaceComponentList } = useWorkspaceComponent()
+  const historyStore = useHistoryStore()
 
-  const queue = computed(() => historyStore.getQueue);
-  const current = computed(() => historyStore.getCurrent);
+  const queue = computed(() => historyStore.getQueue)
+  const current = computed(() => historyStore.getCurrent)
 
   const state: CommandState = {
     commands: {},
     commandArray: [],
     destroyArray: [],
-  };
+  }
 
   const registry = (command: Command) => {
-    state.commandArray.push(command);
+    state.commandArray.push(command)
     state.commands[command.name] = () => {
-      const { redo, undo, historyType, before, after } = command.execute();
-      redo();
-      if (!command.pushQueue) return;
-      if (queue.value.length > 0) {
-        historyStore.updateQueue(queue.value.slice(0, current.value + 1));
-      }
+      const { redo, undo, historyType, before, after } = command.execute()
+      redo()
+      if (!command.pushQueue)
+        return
+      if (queue.value.length > 0)
+        historyStore.updateQueue(queue.value.slice(0, current.value + 1))
 
-      historyStore.updateCurrent(current.value + 1);
       historyStore.pushQueue({
         redo,
         undo,
@@ -63,9 +62,10 @@ export function useCommand() {
         before,
         after,
         current: current.value,
-      } as Queue);
-    };
-  };
+      } as Queue)
+      historyStore.updateCurrent(current.value + 1)
+    }
+  }
 
   registry({
     name: 'redo',
@@ -73,16 +73,16 @@ export function useCommand() {
     execute() {
       return {
         redo() {
-          const item = queue.value[current.value + 1];
+          const item = queue.value[current.value + 1]
           if (item) {
-            item.redo && item.redo();
-            historyStore.updateCurrent(current.value + 1);
+            item.redo && item.redo()
+            historyStore.updateCurrent(current.value + 1)
           }
-          updateCurOperateComponent({} as WorkspaceComponentItem);
+          updateCurOperateComponent({} as WorkspaceComponentItem)
         },
-      };
+      }
     },
-  });
+  })
 
   registry({
     name: 'undo',
@@ -90,99 +90,100 @@ export function useCommand() {
     execute() {
       return {
         redo() {
-          if (current.value === -1) return;
-          const item = queue.value[current.value];
+          if (current.value === -1)
+            return
+          const item = queue.value[current.value]
           if (item) {
-            item.undo && item.undo();
-            historyStore.updateCurrent(current.value - 1);
+            item.undo && item.undo()
+            historyStore.updateCurrent(current.value - 1)
           }
-          updateCurOperateComponent({} as WorkspaceComponentItem);
+          updateCurOperateComponent({} as WorkspaceComponentItem)
         },
-      };
+      }
     },
-  });
+  })
 
   registry({
     name: 'drag',
     pushQueue: true,
     init() {
-      this.before = null;
-      this.historyType = '';
+      this.before = null
+      this.historyType = ''
       const start = (type: string) => {
-        this.before = cloneDeep(workspaceComponentList.value);
-        this.historyType = type;
-      };
-      const end = () => state.commands.drag();
-      mitt.on('drag-start', start as (type: unknown) => void);
-      mitt.on('drag-end', end);
+        this.before = cloneDeep(workspaceComponentList.value)
+        this.historyType = type
+      }
+      const end = () => { state.commands.drag() }
+      mitt.on('drag-start', start as (type: unknown) => void)
+      mitt.on('drag-end', end)
       return () => {
-        mitt.off('drag-start', start as (type: unknown) => void);
-        mitt.off('drag-end', end);
-      };
+        mitt.off('drag-start', start as (type: unknown) => void)
+        mitt.off('drag-end', end)
+      }
     },
     execute() {
-      const before = cloneDeep(this.before) as WorkspaceComponentItem[];
-      const after = cloneDeep(workspaceComponentList.value);
+      const before = cloneDeep(this.before) as WorkspaceComponentItem[]
+      const after = cloneDeep(workspaceComponentList.value)
       return {
         before,
         after,
         historyType: this.historyType,
         redo: () => {
-          updateComponentList(after);
+          updateComponentList(after)
         },
         undo: () => {
-          updateComponentList(before);
+          updateComponentList(before)
         },
-      };
+      }
     },
-  });
+  })
 
   registry({
     name: 'attribute',
     pushQueue: true,
     init() {
-      this.beforeAttribute = null;
-      this.historyType = '';
-      const start = ({ data, type }: { data: WorkspaceComponentItem[]; type: string }) => {
-        this.beforeAttribute = cloneDeep(data);
-        this.historyType = type;
-      };
-      const end = () => state.commands.attribute();
-      mitt.on('attribute-start', start as (arg: unknown) => void);
-      mitt.on('attribute-end', end);
+      this.beforeAttribute = null
+      this.historyType = ''
+      const start = ({ data, type }: { data: WorkspaceComponentItem[], type: string }) => {
+        this.beforeAttribute = cloneDeep(data)
+        this.historyType = type
+      }
+      const end = () => state.commands.attribute()
+      mitt.on('attribute-start', start as (arg: unknown) => void)
+      mitt.on('attribute-end', end)
       return () => {
-        mitt.off('attribute-start', start as (arg: unknown) => void);
-        mitt.off('attribute-end', end);
-      };
+        mitt.off('attribute-start', start as (arg: unknown) => void)
+        mitt.off('attribute-end', end)
+      }
     },
     execute() {
-      const beforeAttribute = cloneDeep(this.beforeAttribute) as WorkspaceComponentItem[];
-      const afterAttribute = cloneDeep(workspaceComponentList.value);
+      const beforeAttribute = cloneDeep(this.beforeAttribute) as WorkspaceComponentItem[]
+      const afterAttribute = cloneDeep(workspaceComponentList.value)
 
       return {
         historyType: this.historyType,
         before: beforeAttribute,
         after: afterAttribute,
         redo() {
-          updateComponentList(afterAttribute);
+          updateComponentList(afterAttribute)
         },
         undo() {
-          updateComponentList(beforeAttribute);
+          updateComponentList(beforeAttribute)
         },
-      };
+      }
     },
-  });
+  })
 
   ~(() => {
     state.commandArray.forEach((command: Command) => {
-      command.init && state.destroyArray.push(command.init());
-      command.keyboard && useHotKeys(command.keyboard, state.commands[command.name]);
-    });
-  })();
+      command.init && state.destroyArray.push(command.init())
+      command.keyboard && useHotKeys(command.keyboard, state.commands[command.name])
+    })
+  })()
 
   onUnmounted(() => {
-    state.destroyArray.forEach((fn: () => void) => fn && fn());
-  });
+    state.destroyArray.forEach((fn: () => void) => fn && fn())
+  })
 
-  return state;
+  return state
 }
