@@ -1,5 +1,5 @@
 import type { Queue } from '@ideal-schema/playground-store'
-import { useHistoryStore, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useHistory, useHistoryStore, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
 import mitt from '../../../iview/src/event'
 import { useHotKeys } from './useHotKeys'
@@ -34,8 +34,8 @@ export interface CommandState {
 export function useCommand() {
   const { updateComponentList, updateCurOperateComponent, workspaceComponentList } = useWorkspaceComponent()
   const historyStore = useHistoryStore()
+  const { queue } = useHistory()
 
-  const queue = computed(() => historyStore.getQueue)
   const current = computed(() => historyStore.getCurrent)
 
   const state: CommandState = {
@@ -59,8 +59,8 @@ export function useCommand() {
         undo,
         time: new Date(),
         historyType,
-        before,
-        after,
+        before: cloneDeep(before),
+        after: cloneDeep(after),
         current: current.value,
       } as Queue)
       historyStore.updateCurrent(current.value + 1)
@@ -129,7 +129,7 @@ export function useCommand() {
         after,
         historyType: this.historyType,
         redo: () => {
-          updateComponentList(after)
+          updateComponentList(queue.value[current.value + 1]?.after || after)
         },
         undo: () => {
           updateComponentList(before)
@@ -174,6 +174,7 @@ export function useCommand() {
     },
   })
 
+  // eslint-disable-next-line no-unused-expressions
   ~(() => {
     state.commandArray.forEach((command: Command) => {
       command.init && state.destroyArray.push(command.init())

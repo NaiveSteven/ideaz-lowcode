@@ -1,4 +1,3 @@
-import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { Fragment } from 'vue'
@@ -21,8 +20,6 @@ export default defineComponent({
 
     const activeCollapseItems = ref(['基础组件', '高阶组件'])
 
-    const { workspaceComponentList } = useWorkspaceComponent()
-
     const log = (obj: { item: { innerText: string } }) => {
       props.componentList.forEach((item) => {
         item.components.forEach((cur) => {
@@ -35,14 +32,12 @@ export default defineComponent({
         })
       })
       mitt.emit('drag-start')
-      console.log('emit start')
     }
 
     const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
       if (obj.to !== obj.from) {
         emit('click-component-item', tempData, obj.newIndex, obj.to.id)
         mitt.emit('drag-end')
-        console.log('emit end')
       }
     }
 
