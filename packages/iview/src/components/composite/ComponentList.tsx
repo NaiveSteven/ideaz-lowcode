@@ -31,13 +31,13 @@ export default defineComponent({
           }
         })
       })
-      mitt.emit('drag-start')
     }
 
     const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
       if (obj.to !== obj.from) {
-        emit('click-component-item', tempData, obj.newIndex, obj.to.id)
+        mitt.emit('drag-start')
         mitt.emit('drag-end')
+        emit('click-component-item', tempData, obj.newIndex, obj.to.id)
       }
     }
 

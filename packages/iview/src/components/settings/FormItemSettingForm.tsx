@@ -19,6 +19,8 @@ export default defineComponent({
     })
 
     const handleFormDataChange = (obj: FormChangeData) => {
+      mitt.emit('attribute-start')
+      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let item = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
@@ -96,6 +98,7 @@ export default defineComponent({
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       mitt.emit('attribute-start')
+      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let item = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
@@ -110,10 +113,11 @@ export default defineComponent({
       }
       updateCurOperateComponent(item)
       updateComponentItem(item)
-      mitt.emit('attribute-end')
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
+      mitt.emit('attribute-start')
+      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let o = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {

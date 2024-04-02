@@ -6,8 +6,6 @@ import { useHotKeys } from './useHotKeys'
 
 export type execute = () => {}
 export interface ExecuteReturn {
-  before?: WorkspaceComponentItem[]
-  after?: WorkspaceComponentItem[]
   historyType?: string
   redo: () => void
   undo?: () => void
@@ -47,7 +45,7 @@ export function useCommand() {
   const registry = (command: Command) => {
     state.commandArray.push(command)
     state.commands[command.name] = () => {
-      const { redo, undo, historyType, before, after } = command.execute()
+      const { redo, undo, historyType } = command.execute()
       redo()
       if (!command.pushQueue)
         return
@@ -59,8 +57,6 @@ export function useCommand() {
         undo,
         time: new Date(),
         historyType,
-        before: cloneDeep(before),
-        after: cloneDeep(after),
         current: current.value,
       } as Queue)
       historyStore.updateCurrent(current.value + 1)
@@ -125,11 +121,9 @@ export function useCommand() {
       const before = cloneDeep(this.before) as WorkspaceComponentItem[]
       const after = cloneDeep(workspaceComponentList.value)
       return {
-        before: cloneDeep(before),
-        after: cloneDeep(after),
         historyType: this.historyType,
         redo: () => {
-          updateComponentList(queue.value[current.value + 1]?.after || after)
+          updateComponentList(after)
         },
         undo: () => {
           updateComponentList(before)
@@ -164,10 +158,8 @@ export function useCommand() {
 
       return {
         historyType: this.historyType,
-        before: cloneDeep(beforeAttribute),
-        after: cloneDeep(afterAttribute),
         redo() {
-          updateComponentList(queue.value[current.value + 1]?.after || afterAttribute)
+          updateComponentList(afterAttribute)
         },
         undo() {
           updateComponentList(beforeAttribute)
