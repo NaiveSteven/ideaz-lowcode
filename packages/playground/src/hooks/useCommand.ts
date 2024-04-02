@@ -125,8 +125,8 @@ export function useCommand() {
       const before = cloneDeep(this.before) as WorkspaceComponentItem[]
       const after = cloneDeep(workspaceComponentList.value)
       return {
-        before,
-        after,
+        before: cloneDeep(before),
+        after: cloneDeep(after),
         historyType: this.historyType,
         redo: () => {
           updateComponentList(queue.value[current.value + 1]?.after || after)
@@ -167,7 +167,7 @@ export function useCommand() {
         before: cloneDeep(beforeAttribute),
         after: cloneDeep(afterAttribute),
         redo() {
-          updateComponentList(afterAttribute)
+          updateComponentList(queue.value[current.value + 1]?.after || afterAttribute)
         },
         undo() {
           updateComponentList(beforeAttribute)
