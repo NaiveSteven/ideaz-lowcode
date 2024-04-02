@@ -144,9 +144,11 @@ export function useCommand() {
     init() {
       this.beforeAttribute = null
       this.historyType = ''
-      const start = ({ data, type }: { data: WorkspaceComponentItem[], type: string }) => {
-        this.beforeAttribute = cloneDeep(data)
-        this.historyType = type
+      const start = (
+        // { data, type }: { data: WorkspaceComponentItem[], type: string }
+      ) => {
+        this.beforeAttribute = cloneDeep(workspaceComponentList.value)
+        // this.historyType = type
       }
       const end = () => state.commands.attribute()
       mitt.on('attribute-start', start as (arg: unknown) => void)
@@ -162,8 +164,8 @@ export function useCommand() {
 
       return {
         historyType: this.historyType,
-        before: beforeAttribute,
-        after: afterAttribute,
+        before: cloneDeep(beforeAttribute),
+        after: cloneDeep(afterAttribute),
         redo() {
           updateComponentList(afterAttribute)
         },
