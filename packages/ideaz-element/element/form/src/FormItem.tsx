@@ -7,7 +7,7 @@ import { extractEvents, isFunction, isObject, isString } from '../../../utils'
 import {
   useFormItemComponent,
   useFormItemProps,
-  useFormItemSlots
+  useFormItemSlots,
 } from '../hooks'
 import { formItemProps, formItemProvideKey } from './props'
 
@@ -23,7 +23,6 @@ export default defineComponent({
     const { vSlots } = useFormItemSlots(props, slots)
     const size = useFormSize()
 
-    // remark
     provide(formItemProvideKey, computed(() => {
       return {
         ...toRefs(props),

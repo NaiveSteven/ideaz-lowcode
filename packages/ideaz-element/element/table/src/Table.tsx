@@ -1,5 +1,6 @@
-import { cloneDeep } from 'lodash-es'
 import { Plus } from '@element-plus/icons-vue'
+import { cloneDeep } from 'lodash-es'
+import { draggable } from '../../../directives'
 import { useExpose, useLocale, useNamespace } from '../../../hooks'
 import { isFunction, isObject, isString } from '../../../utils'
 import {
@@ -9,7 +10,6 @@ import {
   useTableMethods,
   useTableSlots,
 } from '../hooks'
-import { draggable } from '../../../directives'
 import TableColumn from './TableColumn'
 import ToolBar from './ToolBar'
 import { tableProps, tableProvideKey } from './props'
@@ -69,7 +69,6 @@ export default defineComponent({
     const { t } = useLocale()
     const size = ref(props.size)
 
-    // remark
     provide(tableProvideKey, computed(() => {
       return {
         ...toRefs(props),

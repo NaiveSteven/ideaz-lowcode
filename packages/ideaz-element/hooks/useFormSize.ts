@@ -1,12 +1,12 @@
-import { computed, ref, unref } from 'vue'
 import type { MaybeRef } from '@vueuse/core'
 import type { ComponentSize } from 'element-plus'
+import { computed, ref, unref } from 'vue'
+import { crudProvideKey } from '../element/crud/src/props'
 import { formItemProvideKey, formProvideKey } from '../element/form/src/props'
 import { tableProvideKey } from '../element/table/src/props'
-import { crudProvideKey } from '../element/crud/src/props'
+import { useAttr } from './useAttr'
 import { useGlobalSize } from './useGlobalSize'
 import { useProp } from './useProp'
-import { useAttr } from './useAttr'
 
 function getAttribute(key: string) {
   if (useAttr(key)?.value)
@@ -19,7 +19,6 @@ function getAttribute(key: string) {
 export function useFormSize(fallback?: MaybeRef<any | undefined>, ignore: Partial<Record<'prop' | 'form' | 'formItem' | 'global' | 'table' | 'crud', boolean>> = {}, test?: any) {
   const emptyRef = ref(undefined)
 
-  // remark
   const size = ignore.prop ? emptyRef : getAttribute('size')
   const globalConfig = ignore.global ? emptyRef : useGlobalSize()
   const form = ignore.form

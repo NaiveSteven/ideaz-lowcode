@@ -1,10 +1,10 @@
 import { cloneDeep, set } from 'lodash-unified'
 import { isFunction } from '../../../utils'
+import type { FormColumn } from '../../types'
 import {
   useCol,
   useFormSlots,
 } from '../hooks'
-import type { FormColumn } from '../../types'
 import FormItem from './FormItem'
 import type { FormProps } from './props'
 
@@ -63,7 +63,7 @@ export default defineComponent({
             onUpdate:modelValue={(val: any, field: string) => {
               const newVal = set(cloneDeep(modelValue), field, val)
               emit('update:modelValue', newVal)
-              // remark
+              // remark form change event
               emit('change', { value: val, field, formData: newVal })
             }}
           >
