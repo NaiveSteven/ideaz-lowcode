@@ -31,6 +31,7 @@ export default defineConfig({
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
       '@ideal-schema/playground-demi': resolve('../playground-demi/src'),
+      '@ideal-schema/playground-undo': resolve('../playground-undo/src'),
       '@ideal-schema/element': resolve('../element/src'),
     },
   },
