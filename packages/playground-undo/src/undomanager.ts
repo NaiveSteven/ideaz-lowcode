@@ -12,13 +12,14 @@ function removeFromTo(array: any, from: number, to: number) {
   return array.length
 }
 
-export const UndoManager = function () {
+const UndoManager = function () {
   const { commands: queue, index: currentIndex, updateCommands, updateIndex } = useUndo()
   const commands = computed({
     get() {
       return queue.value
     },
     set(val: any) {
+      debugger
       updateCommands(val)
     },
   })
@@ -69,7 +70,6 @@ export const UndoManager = function () {
 
       // if we are here after having called undo,
       // invalidate items higher on the stack
-
       commands.value.splice(index.value + 1, commands.value.length - index.value)
       commands.value.push(command)
 
@@ -174,7 +174,7 @@ export const UndoManager = function () {
      * @returns {Array}
      */
     getCommands(groupId: string) {
-      return groupId ? commands.value.filter((c: any) => c.groupId === groupId) : commands
+      return groupId ? commands.value.filter((c: any) => c.groupId === groupId) : commands.value
     },
 
     /**
@@ -194,3 +194,5 @@ export const UndoManager = function () {
     },
   }
 }
+
+export { UndoManager }

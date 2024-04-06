@@ -5,6 +5,7 @@ import idealUiV3 from '@ideal-schema/ideal-ui-v3'
 import '@ideal-schema/ideal-ui-v3/theme-chalk/src/index.scss'
 import CommonComponents from '@ideal-schema/playground-components'
 import { store } from '@ideal-schema/playground-store'
+import { UndoManager } from '@ideal-schema/playground-undo'
 import IdeazElement from '@ideaz/element/element'
 import zhCn from '@ideaz/element/locale/lang/zh-cn'
 import '@ideaz/element/theme-chalk/src/index.scss'
@@ -38,3 +39,6 @@ app
   .use(CommonComponents)
   .use(IdeazElement, { locale: zhCn, size: 'default' })
   .mount('#app')
+
+const undoManager = new UndoManager()
+export { undoManager }

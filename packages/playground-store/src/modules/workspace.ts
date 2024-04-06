@@ -2,6 +2,7 @@ import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { defineStore } from 'pinia'
 import mitt from '../../../iview/src/event'
+import { undoManager } from '../../../playground/src/main'
 import { changeDataId, getTreeDataItem } from '../utils/index'
 import { useGlobalSettingStore } from './globalSetting'
 
@@ -53,6 +54,7 @@ export const useWorkspaceStore = defineStore({
   },
   actions: {
     pushComponentItem(componentItem: WorkspaceComponentItem, index: number, toId: string) {
+      const lastComponentList = cloneDeep(this.workspaceComponentList)
       if (!toId) {
         this.workspaceComponentList.splice(index, 0, componentItem)
       }
@@ -60,8 +62,14 @@ export const useWorkspaceStore = defineStore({
         const item = getTreeDataItem(this.workspaceComponentList, toId)
         item.children.splice(index, 0, componentItem)
       }
+      const newComponentList = cloneDeep(this.workspaceComponentList)
+      undoManager.add({
+        undo: () => this.workspaceComponentList = lastComponentList,
+        redo: () => this.workspaceComponentList = newComponentList,
+      })
     },
     updateComponentItem(componentItem: WorkspaceComponentItem) {
+      const lastComponentList = cloneDeep(this.workspaceComponentList)
       let index = -1
       if (componentItem.pid) {
         const itemParent = getTreeDataItem(
@@ -79,6 +87,11 @@ export const useWorkspaceStore = defineStore({
         if (index > -1)
           this.workspaceComponentList.splice(index, 1, componentItem)
       }
+      const newComponentList = cloneDeep(this.workspaceComponentList)
+      undoManager.add({
+        undo: () => this.workspaceComponentList = lastComponentList,
+        redo: () => this.workspaceComponentList = newComponentList,
+      })
     },
     deleteComponentItem(componentItem: WorkspaceComponentItem) {
       let index = -1
@@ -203,7 +216,13 @@ export const useWorkspaceStore = defineStore({
       }
     },
     updateComponentList(components: WorkspaceComponentItem[]) {
+      const lastComponentList = cloneDeep(this.workspaceComponentList)
       this.workspaceComponentList = components
+      const newComponentList = cloneDeep(this.workspaceComponentList)
+      undoManager.add({
+        undo: () => this.workspaceComponentList = lastComponentList,
+        redo: () => this.workspaceComponentList = newComponentList,
+      })
     },
     clearWorkspaceComponentList() {
       this.workspaceComponentList = []

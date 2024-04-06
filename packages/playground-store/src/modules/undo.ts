@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export interface Command {
-  redo: () => void;
-  undo: () => void;
+  redo: () => void
+  undo: () => void
 }
 
 interface UndoState {
-  commands: Command[];
-  index: number;
+  commands: Command[]
+  index: number
 }
 
 export const useUndoStore = defineStore({
@@ -18,21 +18,21 @@ export const useUndoStore = defineStore({
   }),
   getters: {
     getCommands(): Command[] {
-      return this.getCommands;
+      return this.commands
     },
     getIndex(): number {
-      return this.getIndex;
+      return this.index
     },
   },
   actions: {
     pushCommands(item: Command) {
-      this.commands.push(item);
+      this.commands.push(item)
     },
     updateCommands(queue: Command[]) {
-      this.commands = queue;
+      this.commands = queue
     },
     updateIndex(current: number) {
-      this.index = current;
+      this.index = current
     },
   },
-});
+})
