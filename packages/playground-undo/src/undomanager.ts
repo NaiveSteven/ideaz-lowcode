@@ -1,4 +1,5 @@
 import { useUndo } from '@ideal-schema/playground-store'
+import { cloneDeep } from 'lodash-es'
 
 function removeFromTo(array: any, from: number, to: number) {
   array.splice(
@@ -19,7 +20,6 @@ const UndoManager = function () {
       return queue.value
     },
     set(val: any) {
-      debugger
       updateCommands(val)
     },
   })
@@ -70,12 +70,14 @@ const UndoManager = function () {
 
       // if we are here after having called undo,
       // invalidate items higher on the stack
-      commands.value.splice(index.value + 1, commands.value.length - index.value)
-      commands.value.push(command)
+      const data = cloneDeep(commands.value)
+      data.splice(index.value + 1, commands.value.length - index.value)
+      data.push(command)
+      commands.value = data
 
       // if limit is set, remove items from the start
       if (limit && commands.value.length > limit)
-        removeFromTo(commands, 0, -(limit + 1))
+        removeFromTo(commands.value, 0, -(limit + 1))
 
       // set the current index to the end
       index.value = commands.value.length - 1
