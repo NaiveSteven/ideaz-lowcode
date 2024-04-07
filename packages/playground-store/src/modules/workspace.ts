@@ -65,8 +65,8 @@ export const useWorkspaceStore = defineStore({
       const newComponentList = cloneDeep(this.workspaceComponentList)
 
       undoManager.add({
-        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
-        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     updateComponentItem(componentItem: WorkspaceComponentItem) {
@@ -90,8 +90,8 @@ export const useWorkspaceStore = defineStore({
       }
       const newComponentList = cloneDeep(this.workspaceComponentList)
       undoManager.add({
-        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
-        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     deleteComponentItem(componentItem: WorkspaceComponentItem) {
@@ -221,8 +221,8 @@ export const useWorkspaceStore = defineStore({
       this.workspaceComponentList = components
       const newComponentList = cloneDeep(this.workspaceComponentList)
       undoManager.add({
-        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
-        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     clearWorkspaceComponentList() {
