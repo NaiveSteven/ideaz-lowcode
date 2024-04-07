@@ -1,14 +1,12 @@
 import type { Ref } from 'vue'
-import { FormColumn } from '../../types'
+import type { FormColumn } from '../../types'
 
-export const useDraggable = (emit: any, columns: Ref<FormColumn[]>) => {
+export function useDraggable(emit: any, columns: Ref<FormColumn[]>) {
   const dragging = ref(false)
 
-  // remark draggable
   const draggableOptions = [
     {
       options: {
-        // remark draggable closeable
         draggable: '.z-form-item-draggable',
         animation: 200,
         ghostClass: 'ghost',

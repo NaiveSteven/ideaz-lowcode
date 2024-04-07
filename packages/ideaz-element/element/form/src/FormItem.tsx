@@ -51,7 +51,6 @@ export default defineComponent({
         <ElFormItem
           ref="formItem"
           prop={col.field}
-          // remark draggable closeable
           class={[ns.b(), formConfig.draggable && ns.b('draggable')]}
           {...{ size: size.value, ...formItemProps.value }}
           v-slots={vSlots.value}
