@@ -63,9 +63,10 @@ export const useWorkspaceStore = defineStore({
         item.children.splice(index, 0, componentItem)
       }
       const newComponentList = cloneDeep(this.workspaceComponentList)
+
       undoManager.add({
-        undo: () => this.workspaceComponentList = lastComponentList,
-        redo: () => this.workspaceComponentList = newComponentList,
+        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     updateComponentItem(componentItem: WorkspaceComponentItem) {
@@ -89,8 +90,8 @@ export const useWorkspaceStore = defineStore({
       }
       const newComponentList = cloneDeep(this.workspaceComponentList)
       undoManager.add({
-        undo: () => this.workspaceComponentList = lastComponentList,
-        redo: () => this.workspaceComponentList = newComponentList,
+        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     deleteComponentItem(componentItem: WorkspaceComponentItem) {
@@ -220,8 +221,8 @@ export const useWorkspaceStore = defineStore({
       this.workspaceComponentList = components
       const newComponentList = cloneDeep(this.workspaceComponentList)
       undoManager.add({
-        undo: () => this.workspaceComponentList = lastComponentList,
-        redo: () => this.workspaceComponentList = newComponentList,
+        undo: () => { this.workspaceComponentList = lastComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = newComponentList; this.curOperateComponent = {} as WorkspaceComponentItem },
       })
     },
     clearWorkspaceComponentList() {
