@@ -1,5 +1,7 @@
-import { useUndo } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
+
+const commands: any = ref([])
+const index = ref(-1)
 
 function removeFromTo(array: any, from: number, to: number) {
   array.splice(
@@ -14,25 +16,6 @@ function removeFromTo(array: any, from: number, to: number) {
 }
 
 const UndoManager = function () {
-  const { commands: queue, index: currentIndex, updateCommands, updateIndex } = useUndo()
-  const commands = computed({
-    get() {
-      return queue.value
-    },
-    set(val: any) {
-      updateCommands(val)
-    },
-  })
-
-  const index = computed({
-    get() {
-      return currentIndex.value
-    },
-    set(val) {
-      updateIndex(val)
-    },
-  })
-
   let limit = 0
   let isExecuting = false
   let callback: any
@@ -197,4 +180,4 @@ const UndoManager = function () {
   }
 }
 
-export { UndoManager }
+export { UndoManager, commands, index }

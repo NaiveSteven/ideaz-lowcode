@@ -1,8 +1,8 @@
+import { undoManager } from '@ideal-schema/playground-undo'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { defineStore } from 'pinia'
 import mitt from '../../../iview/src/event'
-import { undoManager } from '../../../playground/src/main'
 import { changeDataId, getTreeDataItem } from '../utils/index'
 import { useGlobalSettingStore } from './globalSetting'
 

@@ -1,6 +1,6 @@
-import { useUndo, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { commands, index as currentIndex, undoManager } from '@ideal-schema/playground-undo'
 import type { PropType } from 'vue'
-import { undoManager } from '../../../../playground/src/main'
 
 export default defineComponent({
   name: 'Commands',
@@ -13,7 +13,6 @@ export default defineComponent({
   emits: ['clickDo'],
   setup() {
     const { viewType } = useWorkspaceComponent()
-    const { commands, index: currentIndex } = useUndo()
 
     return () => {
       return (
