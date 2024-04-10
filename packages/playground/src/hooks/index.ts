@@ -1,5 +1,4 @@
 export * from './useAsideToggle'
-export * from './useCommand'
 export * from './useDriver'
 export * from './useHotKeys'
 export * from './useInElement'

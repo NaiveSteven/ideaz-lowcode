@@ -1,6 +1,5 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
-import mitt from '../../event'
 import './style.scss'
 
 export default defineComponent({
@@ -15,7 +14,6 @@ export default defineComponent({
     })
 
     const handleFormConfigChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
       const crud = workspaceComponentList.value[0]
       const schema = {
         ...crud.schema,
@@ -44,11 +42,9 @@ export default defineComponent({
           schema,
         },
       ])
-      mitt.emit('attribute-end')
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
       const crud = workspaceComponentList.value[0]
       const schema = cloneDeep(crud.schema)
       if (obj.formData.pagination === false) {
@@ -106,7 +102,6 @@ export default defineComponent({
           schema,
         },
       ])
-      mitt.emit('attribute-end')
     }
 
     return () => {

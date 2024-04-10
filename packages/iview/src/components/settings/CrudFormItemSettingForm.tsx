@@ -1,7 +1,6 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep, debounce } from 'lodash-es'
-import mitt from '../../event'
 import { FORM_COMPONENT_TYPE } from '../../materials'
 import {
   SelectCrudFormData,
@@ -32,7 +31,6 @@ export default defineComponent({
       schema: Schema,
       changeData: FormChangeData,
     ) => {
-      mitt.emit('attribute-start')
       const crud = workspaceComponentList.value[0]
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
@@ -64,9 +62,6 @@ export default defineComponent({
         updateWorkspaceComponentList()
       }
       updateCurOperateComponent(form)
-      setTimeout(() => {
-        mitt.emit('attribute-end')
-      }, 50)
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {

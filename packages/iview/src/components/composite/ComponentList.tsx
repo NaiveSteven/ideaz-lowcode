@@ -2,7 +2,6 @@ import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { Fragment } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import mitt from '../../event'
 import './style.scss'
 
 export default defineComponent({
@@ -34,10 +33,8 @@ export default defineComponent({
     }
 
     const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
-      if (obj.to !== obj.from) {
-        mitt.emit('drag-start')
+      if (obj.to !== obj.from)
         emit('click-component-item', tempData, obj.newIndex, obj.to.id)
-      }
     }
 
     const clone = () => { }

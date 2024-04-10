@@ -1,6 +1,5 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
-import mitt from '../../event'
 import {
   fieldTemplateSchema,
 } from '../../schemas'
@@ -19,8 +18,6 @@ export default defineComponent({
     })
 
     const handleFormDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
-      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let item = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
@@ -97,8 +94,6 @@ export default defineComponent({
     }
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
-      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let item = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {
@@ -116,8 +111,6 @@ export default defineComponent({
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
-      mitt.emit('attribute-end')
       const cloneObj = cloneDeep(obj)
       let o = {} as WorkspaceComponentItem
       if (curOperateComponent.value && curOperateComponent.value.id) {

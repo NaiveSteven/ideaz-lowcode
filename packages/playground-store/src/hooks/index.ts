@@ -1,5 +1,3 @@
 export * from './useGlobalSetting'
-export * from './useHistory'
-export * from './useUndo'
 export * from './useWorkspaceComponent'
 export * from './useWorkspaceForm'

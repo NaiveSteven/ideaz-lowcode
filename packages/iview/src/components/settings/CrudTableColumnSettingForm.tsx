@@ -1,6 +1,5 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { isFunction, uid } from '@ideal-schema/shared'
-import mitt from '../../event'
 import { tableColTemplateSchema } from '../../schemas'
 import './style.scss'
 
@@ -16,7 +15,6 @@ export default defineComponent({
     })
 
     const handleColumnDataChange = (obj: FormChangeData) => {
-      mitt.emit('attribute-start')
       const crud = workspaceComponentList.value[0]
       const schema = crud.schema
       let columns: TableCol[] = []
@@ -81,7 +79,6 @@ export default defineComponent({
         },
       ])
       updateCurOperateComponent(data)
-      mitt.emit('attribute-end')
     }
 
     return () => {

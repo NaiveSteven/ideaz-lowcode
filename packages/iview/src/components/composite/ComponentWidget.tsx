@@ -1,7 +1,6 @@
 import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
-import mitt from '../../event'
 import { DEFAULT_COMPONENT_TEMPLATES } from '../../materials'
 import ComponentList from './ComponentList'
 
@@ -26,7 +25,6 @@ export default defineComponent({
           },
         }
         updateComponentList([])
-        mitt.emit('drag-end')
         pushComponentItem(componentItem, index, toId)
         updateCurOperateComponent(componentItem)
         updateWorkspaceComponentType('crud')
@@ -50,7 +48,6 @@ export default defineComponent({
             ...expandComponentItem.schema,
           },
         }
-        mitt.emit('drag-end')
         pushComponentItem(componentItem, index, toId)
         updateCurOperateComponent(componentItem)
         // 模板
