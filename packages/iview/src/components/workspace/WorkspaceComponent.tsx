@@ -1,9 +1,8 @@
-import { getSchemaData } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
+import { useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import { useCol } from '@ideaz/element'
 import { cloneDeep } from 'lodash-es'
 import { VueDraggable } from 'vue-draggable-plus'
-// import { getSchemaData } from '@ideal-schema/playground-demi'
-import { useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import mitt from '../../event'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
 import './style.scss'
@@ -62,15 +61,13 @@ export default defineComponent({
     })
 
     watch(() => curOperateComponent.value, (val, old) => {
-      if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed) {
+      if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
         tableKey.value = new Date().valueOf()
-      }
     })
 
     const handleMouseEvent = (e: MouseEvent) => {
-      if (simulatorType.value === 'pad') {
+      if (simulatorType.value === 'pad')
         e.stopPropagation()
-      }
     }
 
     const clickItem = (e: MouseEvent, item: WorkspaceComponentItem) => {
@@ -86,11 +83,9 @@ export default defineComponent({
     }
 
     const end = (a: { to: { id: string }, newIndex: number }) => {
-      if (workspaceComponentType.value === 'form') {
+      if (workspaceComponentType.value === 'form')
         emit('on-update-cur-operate', tempData)
-      }
     }
-
 
     const setClassName = ({ columnIndex }: any) => {
       const columns
@@ -190,11 +185,11 @@ export default defineComponent({
     }
 
     return () => {
-      const { formData, options } = getSchemaData()
+      const { formData, options } = parseElementSchema()
       return (
         <VueDraggable
           modelValue={props.workspaceComponentList}
-          class={["dragArea list-group h-full w-full", formConfig.value.column > 1 && 'multiple-layout']}
+          class={['dragArea list-group h-full w-full', formConfig.value.column > 1 && 'multiple-layout']}
           animation={200}
           group="people"
           filter=".not-drag"
@@ -209,7 +204,7 @@ export default defineComponent({
               <div
                 id={`schema-field${formItem.id}`}
                 key={formItem.id}
-                class={["w-full", colKls.value, 'form-item-schema-container']}
+                class={['w-full', colKls.value, 'form-item-schema-container']}
                 style={{ ...colStyle.value, marginBottom: '22px' }}
                 onClick={(e: MouseEvent) => clickItem(e, formItem)}
                 onMousedown={handleMouseEvent}
@@ -232,7 +227,7 @@ export default defineComponent({
                         onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
                       />
                     </TableActionsWidget>
-                  )
+                    )
                   : (
                     <z-form-item
                       formConfig={formConfig.value}
@@ -244,7 +239,7 @@ export default defineComponent({
                       col={formItem.schema}
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
                     />
-                  )}
+                    )}
               </div>
             )
           })}

@@ -1,4 +1,4 @@
-import { getSchemaData } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useGlobalSetting } from '@ideal-schema/playground-store'
 
 export default defineComponent({
@@ -17,12 +17,12 @@ export default defineComponent({
 
     onMounted(() => {
       if (workspaceComponentType.value === 'form') {
-        const { formData: data, columns: formItems } = getSchemaData('preview')
+        const { formData: data, columns: formItems } = parseElementSchema('preview')
         formData.value = { ...data }
         columns.value = [...formItems]
       }
       else {
-        const { config, columns: cols } = getSchemaData('preview', 'crud')
+        const { config, columns: cols } = parseElementSchema('preview', 'crud')
         formData.value = { ...config.searchFormData }
         columns.value = [...cols]
         tableConfig.value = config
@@ -31,7 +31,7 @@ export default defineComponent({
 
     return () => {
       if (workspaceComponentType.value === 'form') {
-        const { formConfig, options } = getSchemaData('preview')
+        const { formConfig, options } = parseElementSchema('preview')
 
         return (
           <z-form

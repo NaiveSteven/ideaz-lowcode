@@ -23,14 +23,14 @@ const ViewPort = iview.ViewPort
 const TsxWidget = iview.TsxWidget
 
 export {
-  getSchemaData,
   ComponentWidget,
-  WorkspaceComponentList,
-  SettingForm,
-  PlayWidget,
-  PageWidget,
-  CopySchemaCodeWidget,
   CopyPageCodeWidget,
-  ViewPort,
+  CopySchemaCodeWidget,
+  PageWidget,
+  PlayWidget,
+  SettingForm,
   TsxWidget,
+  ViewPort,
+  WorkspaceComponentList,
+  getSchemaData,
 }

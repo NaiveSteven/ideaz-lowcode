@@ -96,7 +96,7 @@ function delEmptyObject(data: any) {
   }
 }
 
-function getElementParseCode(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
+function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
   const { workspaceComponentList } = useWorkspaceComponent()
   const { formConfig: workspaceFormConfig } = useWorkspaceForm()
   const formConfig = cloneDeep(workspaceFormConfig.value)
@@ -431,4 +431,4 @@ function getElementParseCode(mode: 'code' | 'preview' = 'code', type: 'form' | '
   }
 }
 
-export { getElementParseCode }
+export { parseElementSchema }

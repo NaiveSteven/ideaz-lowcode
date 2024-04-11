@@ -1,11 +1,11 @@
-import { getSchemaData } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useMockTableData } from '../use-page-code/useMockTableData'
 import { useCrudRenderCode } from './useCrudRenderCode'
 
 export function useCrudDialogCode() {
   const { getCrudRenderCode } = useCrudRenderCode()
 
-  const { config } = getSchemaData('code', 'crud')
+  const { config } = parseElementSchema('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {

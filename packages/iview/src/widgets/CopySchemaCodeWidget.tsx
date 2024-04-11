@@ -1,4 +1,4 @@
-import { getSchemaData } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useGlobalSetting } from '@ideal-schema/playground-store'
 import { copy } from '@ideal-schema/shared'
 import { ElMessage } from 'element-plus'
@@ -10,7 +10,7 @@ export default defineComponent({
     const { workspaceComponentType } = useGlobalSetting()
 
     const handleCopyJSON = () => {
-      const schema = getSchemaData('code', workspaceComponentType.value)
+      const schema = parseElementSchema('code', workspaceComponentType.value)
       copy(
         beautify.js_beautify(
           JSON.stringify(

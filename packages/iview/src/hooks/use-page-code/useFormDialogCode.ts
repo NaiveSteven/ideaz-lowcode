@@ -1,8 +1,8 @@
-import { getSchemaData } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useFormTemplateCode } from './useFormTemplateCode'
 
 export function useFormDialogCode() {
-  const { columns, options, formData, formConfig } = getSchemaData()
+  const { columns, options, formData, formConfig } = parseElementSchema()
   const { getTemplateCode } = useFormTemplateCode('dialog')
 
   return `
