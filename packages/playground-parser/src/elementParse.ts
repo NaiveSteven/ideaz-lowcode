@@ -1,3 +1,5 @@
+import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
+import { isEmpty, isObject } from '@ideal-schema/shared'
 import {
   SelectCrudFormData,
   defaultCheckboxAttrs,
@@ -18,9 +20,7 @@ import {
   defaultVirtualizedSelectAttrs,
   inputCrudFormData,
   tableColFormData,
-} from '@ideal-schema/iview'
-import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
-import { isEmpty, isObject } from '@ideal-schema/shared'
+} from '@ideaz/iview'
 import { cloneDeep } from 'lodash-es'
 
 const defaultComponentFormData: IndexType = {

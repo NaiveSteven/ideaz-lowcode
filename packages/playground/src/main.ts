@@ -1,8 +1,6 @@
 import * as ElIconModules from '@element-plus/icons-vue'
 import VueDragResizeRotate from '@gausszhou/vue3-drag-resize-rotate'
 import '@gausszhou/vue3-drag-resize-rotate/lib/bundle.esm.css'
-import idealUiV3 from '@ideal-schema/ideal-ui-v3'
-import '@ideal-schema/ideal-ui-v3/theme-chalk/src/index.scss'
 import CommonComponents from '@ideal-schema/playground-components'
 import { store } from '@ideal-schema/playground-store'
 import { undoManager } from '@ideal-schema/playground-undo'
@@ -30,8 +28,6 @@ Object.keys(ElIconModules).forEach((item: string) => {
   const cur = item as keyof typeof ElIconModules
   app.component(transElIconName(item), ElIconModules[cur])
 })
-
-app.use(idealUiV3)
 
 app
   .use(router)

@@ -21,7 +21,6 @@
     "codemirror-editor-vue3": "^2.4.1",
     "core-js": "^3.21.1",
     "element-plus": "^2.4.2",
-    "js-beautify": "^1.14.0",
     "mitt": "^3.0.0",
     "pinia": "^2.0.9",
     "vue": "^3.3.8",

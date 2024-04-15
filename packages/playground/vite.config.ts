@@ -27,13 +27,11 @@ export default defineConfig({
       '@ideaz/iview': resolve('../iview/src'),
       '@ideaz/element': resolve('../ideaz-element'),
       '@ideal-schema/shared': resolve('../shared/src'),
-      '@ideal-schema/ideal-ui-v3': resolve('../ideal-ui-v3/src'),
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
       '@ideal-schema/playground-store': resolve('../playground-store/src'),
       '@ideal-schema/playground-demi': resolve('../playground-demi/src'),
       '@ideal-schema/playground-undo': resolve('../playground-undo/src'),
       '@ideal-schema/playground-parser': resolve('../playground-parser/src'),
-      '@ideal-schema/element': resolve('../element/src'),
     },
   },
   build: {
