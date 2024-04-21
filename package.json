@@ -12,8 +12,6 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
     "@ideal-schema/element": "workspace:*",
-    "@ideal-schema/ideal-ui-v3": "workspace:*",
-    "@ideal-schema/iview": "workspace:*",
     "@ideal-schema/playground": "workspace:*",
     "@ideal-schema/playground-components": "workspace:*",
     "@ideal-schema/playground-demi": "workspace:*",

@@ -24,7 +24,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@ideaz/iview': resolve('../iview/src'),
+      '@ideal-schema/element': resolve('../element/src'),
       '@ideaz/element': resolve('../ideaz-element'),
       '@ideal-schema/shared': resolve('../shared/src'),
       '@ideal-schema/playground-components': resolve('../playground-components/src'),
