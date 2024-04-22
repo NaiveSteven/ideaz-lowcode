@@ -178,7 +178,7 @@ export default defineComponent({
               },
             },
           },
-        ])
+        ], '排序更改')
         updateCurOperateComponent(data)
         tableKey.value = new Date().valueOf()
       }
@@ -194,7 +194,7 @@ export default defineComponent({
           group="people"
           filter=".not-drag"
           item-key="id"
-          onUpdate:modelValue={(val: any) => updateComponentList(val)}
+          onUpdate:modelValue={(val: any) => updateComponentList(val, '排序更改')}
           onStart={start}
           onEnd={end}
         >

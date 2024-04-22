@@ -24,7 +24,7 @@ export default defineComponent({
             ...expandComponentItem.schema,
           },
         }
-        updateComponentList([])
+        updateComponentList([], '清空组件')
         pushComponentItem(componentItem, index, toId)
         updateCurOperateComponent(componentItem)
         updateWorkspaceComponentType('crud')
@@ -33,7 +33,7 @@ export default defineComponent({
       else {
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceComponentType.value === 'crud') {
-          updateComponentList([])
+          updateComponentList([], '清空组件')
           updateCurOperateComponent({} as WorkspaceComponentItem)
         }
         updateWorkspaceComponentType('form')
@@ -53,7 +53,7 @@ export default defineComponent({
         // 模板
       }
       else if (Array.isArray(expandComponentItem.templates)) {
-        updateComponentList(cloneDeep(expandComponentItem.templates!))
+        updateComponentList(cloneDeep(expandComponentItem.templates!), '添加组件')
         updateCurOperateComponent({} as WorkspaceComponentItem)
       }
     }

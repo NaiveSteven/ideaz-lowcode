@@ -3,7 +3,7 @@ import { uid } from '@ideal-schema/shared'
 import {
   tableColFormData,
   tableColTemplateOptionsConfig,
-  tableColTemplateSchema
+  tableColTemplateSchema,
 } from '../schemas'
 import { getInputFormItemTemplate } from '../utils'
 import './style.scss'
@@ -65,7 +65,7 @@ export default defineComponent({
                 columns,
               },
             },
-          ])
+          ], '添加组件')
         },
       },
       {
@@ -98,7 +98,7 @@ export default defineComponent({
                 // },
               },
             },
-          ])
+          ], '添加组件')
         },
       },
     ]
