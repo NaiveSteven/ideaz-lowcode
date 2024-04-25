@@ -1,6 +1,14 @@
 import { cloneDeep } from 'lodash-es'
 
-const commands: any = ref([])
+export interface Command {
+  undo: () => void
+  redo: () => void
+  groupId?: string
+  message?: string
+  time?: Date
+}
+
+const commands = ref<Command[]>([])
 const index = ref(-1)
 
 function removeFromTo(array: any, from: number, to: number) {
@@ -27,7 +35,7 @@ const UndoManager = function () {
    * @property {Function} command.redo - Redo function
    * @property {string} action         - "undo" or "redo"
    */
-  function execute(command: any, action: 'undo' | 'redo') {
+  function execute(command: Command, action: 'undo' | 'redo') {
     if (!command || typeof command[action] !== 'function')
       return this
 

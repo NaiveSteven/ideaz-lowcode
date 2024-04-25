@@ -11,8 +11,13 @@ export const COMPOSITE_TABS: CompositeTab[] = [
     key: 'component',
   },
   {
-    title: '目录',
+    title: '大纲树',
     icon: 'i-menu',
     key: 'menu',
+  },
+  {
+    title: '历史记录',
+    icon: 'i-clock',
+    key: 'history',
   },
 ]

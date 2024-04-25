@@ -4,11 +4,12 @@ import { promiseTimeout } from '@vueuse/core'
 import type { CompositeTab } from '../../constants'
 import { Drawer } from '../../containers'
 import ComponentTreeWidget from '../../widgets/component-tree-widget'
+import historyWidget from '../../widgets/history-widget'
 import './style.scss'
 
 export const CompositePanelTabContent = defineComponent({
   name: 'CompositePanelTabContent',
-  components: { ComponentWidget, ComponentTreeWidget },
+  components: { ComponentWidget, ComponentTreeWidget, historyWidget },
   props: {
     currentTabPane: {
       type: String as PropType<string>,
@@ -27,6 +28,9 @@ export const CompositePanelTabContent = defineComponent({
     const componentName = computed(() => {
       if (props.currentTabPane === 'component')
         return 'ComponentWidget'
+
+      if (props.currentTabPane === 'history')
+        return 'historyWidget'
 
       return 'ComponentTreeWidget'
     })
