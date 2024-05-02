@@ -1,10 +1,10 @@
 // import draggable from 'vuedraggable'
 import { Back, DCaret, FullScreen, Operation, Refresh, Right, VideoPause } from '@element-plus/icons-vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import { isFunction } from '../../../utils'
-import { useFixedTableCols, useToolBarTableCols } from '../hooks'
-import type { TableCol } from '../../types'
 import { useFormSize, useLocale, useNamespace } from '../../../hooks'
+import { isFunction } from '../../../utils'
+import type { TableCol } from '../../types'
+import { useFixedTableCols, useToolBarTableCols } from '../hooks'
 import { toolBarProps } from './props'
 
 function mergeArraysByUID(arr1: TableCol[], arr2: TableCol[]) {
@@ -53,7 +53,6 @@ export default defineComponent({
     } = useFixedTableCols(props, emit, checkedTableCols)
     const ns = useNamespace('table-tool-bar')
     const { t } = useLocale()
-    // remark size
     const size = useFormSize()
 
     const isIndeterminate = ref(getIsIndeterminate(leftCheckedTableColsUids.value, checkedTableCols.value, rightCheckedTableColsUids.value))

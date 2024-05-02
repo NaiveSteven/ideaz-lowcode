@@ -26,7 +26,6 @@ export function useDraggable(emit: any, tableData: Ref<any>, middleTableCols: Re
         },
       },
     },
-    // remark draggable
     {
       selector: '.el-table__header-wrapper tr',
       options: {

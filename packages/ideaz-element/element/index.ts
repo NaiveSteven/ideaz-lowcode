@@ -25,30 +25,27 @@ const components = [ZCheckbox, ZRadio, ZSelect, ZForm, ZInput, ZTable, ZFilterFo
 const installer = makeInstaller([...components])
 
 export default installer
-// remark useCol
 export * from './form/hooks'
 export * from './types'
 export {
-  ZRadio,
-  ZSelect,
-  ZCheckbox,
-  ZForm,
-  ZInput,
-  ZTable,
-  ZFilterForm,
-  ZTagSelect,
-  ZText,
-  ZWatermark,
   ZCheckCard,
   ZCheckCardItem,
-  ZDescription,
-  ZTagSelectItem,
-  ZTableCustomColumnContainer,
-  ZFullScreen,
+  ZCheckbox,
   ZCrud,
+  ZDescription,
   ZDialog,
   ZDialogTip,
+  ZFilterForm,
+  ZForm,
   ZFormItem,
+  ZFullScreen,
+  ZInput,
+  ZRadio,
+  ZSelect,
+  ZTable,
+  ZTableCustomColumnContainer,
+  ZTagSelect,
+  ZTagSelectItem,
+  ZText,
+  ZWatermark,
 }
-
-

@@ -85,7 +85,6 @@ export function useTableColumns(props: CrudProps, emit: any, getTableData: () =>
     }
   }
 
-  // remark tableColumns
   const tableColumns = computed(() => {
     const columns = props.columns?.filter((column: TableCol) => COLUMN_TYPE_FIELDS.some(key => column[key]))
     if (props.action) {

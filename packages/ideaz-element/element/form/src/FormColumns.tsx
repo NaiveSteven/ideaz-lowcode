@@ -63,7 +63,6 @@ export default defineComponent({
             onUpdate:modelValue={(val: any, field: string) => {
               const newVal = set(cloneDeep(modelValue), field, val)
               emit('update:modelValue', newVal)
-              // remark form change event
               emit('change', { value: val, field, formData: newVal })
             }}
           >
