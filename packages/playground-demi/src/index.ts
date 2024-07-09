@@ -1,4 +1,4 @@
-import * as iview from '@ideaz/iview'
+import * as el from '@ideal-schema/element'
 
 // const arr: (keyof typeof customs)[] = []
 // const obj: IndexType = {}
@@ -10,16 +10,16 @@ import * as iview from '@ideaz/iview'
 //   obj[key] = customs[key]
 // })
 
-const ComponentWidget = iview.ComponentWidget
-const WorkspaceComponentList = iview.WorkspaceComponent
-const SettingForm = iview.SettingForm
-const PlayWidget = iview.PlayWidget
-const PageWidget = iview.PageWidget
-const CopySchemaCodeWidget = iview.CopySchemaCodeWidget
-const CopyPageCodeWidget = iview.CopyPageCodeWidget
-const ViewPort = iview.ViewPort
-const TsxWidget = iview.TsxWidget
-const JSONWidget = iview.JSONWidget
+const ComponentWidget = el.ComponentWidget
+const WorkspaceComponentList = el.WorkspaceComponent
+const SettingForm = el.SettingForm
+const PlayWidget = el.PlayWidget
+const PageWidget = el.PageWidget
+const CopySchemaCodeWidget = el.CopySchemaCodeWidget
+const CopyPageCodeWidget = el.CopyPageCodeWidget
+const ViewPort = el.ViewPort
+const TsxWidget = el.TsxWidget
+const JSONWidget = el.JSONWidget
 
 export {
   ComponentWidget,

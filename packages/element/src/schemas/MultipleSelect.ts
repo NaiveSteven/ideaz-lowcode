@@ -13,6 +13,24 @@ export const multipleSelectTemplateSchema = [
     label: '尺寸',
   },
   {
+    component: 'input',
+    field: 'alias.value',
+    label: 'value字段名',
+    tooltip: 'value自定义字段名',
+  },
+  {
+    component: 'input',
+    field: 'alias.label',
+    label: 'label字段名',
+    tooltip: 'label自定义字段名',
+  },
+  {
+    component: 'input',
+    field: 'alias.disabled',
+    label: '禁用字段名',
+    tooltip: 'disabled自定义字段名',
+  },
+  {
     component: 'el-input-number',
     field: 'multipleLimit',
     label: '最多选择数',
@@ -102,4 +120,9 @@ export const defaultMultipleSelectAttrs = {
   filterable: true,
   collapseTags: false,
   multipleLimit: 0,
+  alias: {
+    value: 'value',
+    label: 'label',
+    disabled: 'disabled',
+  },
 }

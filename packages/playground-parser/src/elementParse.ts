@@ -20,7 +20,7 @@ import {
   defaultVirtualizedSelectAttrs,
   inputCrudFormData,
   tableColFormData,
-} from '@ideaz/iview'
+} from '@ideal-schema/element'
 import { cloneDeep } from 'lodash-es'
 
 const defaultComponentFormData: IndexType = {

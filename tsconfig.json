@@ -13,7 +13,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@ideal-schema/*": ["./packages/*/src"]
+      "@ideal-schema/*": ["./packages/*/src"],
+      "@ideaz/element": ["./packages/ideaz-element"]
     },
     "resolveJsonModule": true,
     "types": [
@@ -34,11 +35,6 @@
       "path": "./tsconfig.node.json"
     }
   ],
-  "paths": {
-    "@ideal-schema/*": ["./packages/*/src"],
-    "@ideaz/element": ["./packages/ideaz-element"],
-    "@ideaz/iview": ["./packages/iview/src"]
-  },
   "include": [
     "packages/playground/auto-imports.d.ts",
     "packages/**/*.vue",

@@ -1,128 +1,68 @@
+import { reactive } from 'vue'
 import { uid } from '@ideal-schema/shared'
+import {
+  defaultMultipleSelectAttrs,
+  fieldTemplateSchema,
+  formItemFormData,
+  formItemTemplateOptionsConfig,
+  formItemTemplateSchema,
+  multipleSelectTemplateOptionsConfig,
+  multipleSelectTemplateSchema,
+} from '../schemas'
 
-export const multipleSelectTemplateSchema = [
-  {
-    component: 'option-item-widget',
-    field: 'options',
-    label: '数据源',
-    formItemProps: { class: 'form-item-options__container' },
-  },
-  {
-    component: 'select',
-    field: 'size',
-    label: '尺寸',
-  },
-  {
-    component: 'input',
-    field: 'alias.value',
-    label: 'value字段名',
-    tooltip: 'value自定义字段名',
-  },
-  {
-    component: 'input',
-    field: 'alias.label',
-    label: 'label字段名',
-    tooltip: 'label自定义字段名',
-  },
-  {
-    component: 'input',
-    field: 'alias.disabled',
-    label: '禁用字段名',
-    tooltip: 'disabled自定义字段名',
-  },
-  {
-    component: 'el-input-number',
-    field: 'multipleLimit',
-    label: '最多选择数',
-    fieldProps: {
-      controlsPosition: 'right',
+export function MultipleSelectTemplateComponent() {
+  const field = uid()
+  return {
+    id: uid(),
+    formItemFormData: reactive({
+      ...formItemFormData,
+      label: '多选框',
+    }),
+    formItemTemplateSchema,
+    formItemOptionsConfig: formItemTemplateOptionsConfig,
+    icon: 'i-magic-stick',
+    title: '多选框',
+    schema: {
+      component: 'select',
+      field,
+      label: '多选框',
+      fieldProps: {
+        multiple: true,
+        placeholder: '',
+        popperClass: '',
+        clearable: true,
+        disabled: false,
+        filterable: true,
+        collapseTags: false,
+        multipleLimit: 0,
+        alias: {
+          value: 'value',
+          label: 'label',
+          disabled: 'disabled',
+        },
+      },
     },
-  },
-  {
-    component: 'input',
-    field: 'placeholder',
-    label: '占位文本',
-  },
-  {
-    component: 'input',
-    field: 'popperClass',
-    label: '下拉框类名',
-  },
-  {
-    component: 'el-switch',
-    field: 'clearable',
-    label: '清空',
-  },
-  {
-    component: 'el-switch',
-    field: 'disabled',
-    label: '禁用',
-  },
-  {
-    component: 'el-switch',
-    field: 'filterable',
-    label: '搜索',
-  },
-  {
-    component: 'el-switch',
-    field: 'collapseTags',
-    label: '多选值按文字展示',
-  },
-]
-
-export const multipleSelectTemplateOptionsConfig = {
-  size: [
-    {
-      label: 'large',
-      value: 'large',
+    componentFormData: reactive({ ...defaultMultipleSelectAttrs }),
+    componentSchema: multipleSelectTemplateSchema,
+    componentOptionsConfig: multipleSelectTemplateOptionsConfig,
+    fieldFormData: reactive({
+      field,
+      default: [],
+    }),
+    fieldSchema: fieldTemplateSchema({
+      defaultComponent: 'select',
+      defaultProps: { multiple: true },
+      required: true,
+    }),
+    fieldOptionsConfig: {
+      default: [
+        { label: '标签1', value: '1', key: uid() },
+        { label: '标签2', value: '2', key: uid() },
+      ],
     },
-    {
-      label: 'default',
-      value: 'default',
-    },
-    {
-      label: 'small',
-      value: 'small',
-    },
-  ],
-}
-
-export const multipleSelectCrudSchema = [
-  {
-    component: 'option-item-widget',
-    field: 'options',
-    label: '数据源',
-    formItemProps: { class: 'form-item-options__container' },
-  },
-  {
-    component: 'input',
-    field: 'placeholder',
-    label: '占位文本',
-  },
-]
-
-export const multipleSelectCrudFormData = {
-  options: [{ label: '标签', value: '1', key: uid() }],
-  placeholder: '',
-}
-
-export const defaultMultipleSelectAttrs = {
-  multipleSelect: [],
-  options: [
-    { label: '标签1', value: '1', key: uid() },
-    { label: '标签2', value: '2', key: uid() },
-  ],
-  multiple: true,
-  placeholder: '',
-  popperClass: '',
-  clearable: true,
-  disabled: false,
-  filterable: true,
-  collapseTags: false,
-  multipleLimit: 0,
-  alias: {
-    value: 'value',
-    label: 'label',
-    disabled: 'disabled',
-  },
+    allowCopy: true,
+    allowDelete: true,
+    activeCollapseItems: ['field', 'component', 'formItem'],
+    children: [],
+  }
 }
