@@ -18,8 +18,7 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client",
-      "vue/ref-macros"
+      "vite/client"
     ],
     "strict": true,
     "strictNullChecks": true,
@@ -36,13 +35,10 @@
     }
   ],
   "include": [
-    "packages/playground/auto-imports.d.ts",
+    "auto-imports.d.ts",
     "packages/**/*.vue",
     "packages/**/*.ts",
     "packages/**/*.d.ts",
     "packages/**/*.tsx"
-  ],
-  "vueCompilerOptions": {
-    "experimentalCompatMode": 2
-  }
+  ]
 }

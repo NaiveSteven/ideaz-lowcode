@@ -12,7 +12,7 @@ export default defineConfig({
     UnoCSS(),
     AutoImport({
       imports: ['vue', 'vue-router', 'vue/macros'],
-      dts: 'auto-imports.d.ts',
+      dts: '../../auto-imports.d.ts',
       vueTemplate: true,
     }),
   ],

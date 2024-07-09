@@ -58,11 +58,9 @@
     "@types/lodash-es": "latest",
     "@types/node": "latest",
     "@types/sortablejs": "^1.15.3",
-    "@vue/compiler-sfc": "^3.3.8",
     "element-plus": "^2.4.2",
     "element-resize-detector": "latest",
-    "sass": "^1.69.5",
-    "vue": "^3.3.8"
+    "sass": "^1.69.5"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
