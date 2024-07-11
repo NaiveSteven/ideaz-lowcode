@@ -159,10 +159,10 @@ importers:
     dependencies:
       '@vue/composition-api':
         specifier: '>=1'
-        version: https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3))
+        version: 1.7.2(vue@3.4.31(typescript@5.3.3))
       '@vueuse/core':
         specifier: latest
-        version: https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
+        version: https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
       lodash-es:
         specifier: latest
         version: https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz
@@ -174,14 +174,14 @@ importers:
         version: https://registry.npmmirror.com/sortablejs/-/sortablejs-1.15.1.tgz
       vue:
         specifier: 2||3
-        version: 3.4.5(typescript@5.3.3)
+        version: 3.4.31(typescript@5.3.3)
       vue-draggable-plus:
         specifier: ^0.2.4
-        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))
+        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
     devDependencies:
       '@element-plus/icons-vue':
         specifier: 2.3.1
-        version: https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.5(typescript@5.3.3))
+        version: https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.31(typescript@5.3.3))
       '@types/lodash-es':
         specifier: latest
         version: https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz
@@ -192,8 +192,8 @@ importers:
         specifier: ^1.15.3
         version: https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz
       element-plus:
-        specifier: ^2.4.2
-        version: https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
+        specifier: ^2.7.6
+        version: 2.7.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
       element-resize-detector:
         specifier: latest
         version: https://registry.npmmirror.com/element-resize-detector/-/element-resize-detector-1.2.4.tgz
@@ -225,8 +225,8 @@ importers:
         specifier: ^3.21.1
         version: https://registry.npmmirror.com/core-js/-/core-js-3.35.0.tgz
       element-plus:
-        specifier: ^2.4.2
-        version: https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+        specifier: ^2.7.6
+        version: 2.7.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
       mitt:
         specifier: ^3.0.0
         version: https://registry.npmmirror.com/mitt/-/mitt-3.0.1.tgz
@@ -783,6 +783,10 @@ packages:
     peerDependencies:
       postcss-selector-parser: ^6.0.13
 
+  '@ctrl/tinycolor@3.6.1':
+    resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
+    engines: {node: '>=10'}
+
   '@ctrl/tinycolor@https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz':
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==, tarball: https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz}
     version: 3.6.1
@@ -799,6 +803,11 @@ packages:
   '@dprint/toml@https://registry.npmmirror.com/@dprint/toml/-/toml-0.5.4.tgz':
     resolution: {integrity: sha512-d+5GwwzztZD0QixmOBhaO6nWVLsAeYsJ1HJYNxDoDRbASFCpza9BBVshG5ctBRXCkkIHhD9BO1SnbOoRQltUQw==, tarball: https://registry.npmmirror.com/@dprint/toml/-/toml-0.5.4.tgz}
     version: 0.5.4
+
+  '@element-plus/icons-vue@2.3.1':
+    resolution: {integrity: sha512-XxVUZv48RZAd87ucGS48jPf6pKu0yV5UCg9f4FFwtrYxXOwWuVJo6wOvSLKEoMQKjv8GsX/mhP6UsC1lRwbUWg==}
+    peerDependencies:
+      vue: ^3.2.0
 
   '@element-plus/icons-vue@https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz':
     resolution: {integrity: sha512-XxVUZv48RZAd87ucGS48jPf6pKu0yV5UCg9f4FFwtrYxXOwWuVJo6wOvSLKEoMQKjv8GsX/mhP6UsC1lRwbUWg==, tarball: https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz}
@@ -1122,17 +1131,18 @@ packages:
     version: 8.56.0
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@floating-ui/core@https://registry.npmmirror.com/@floating-ui/core/-/core-1.5.2.tgz':
-    resolution: {integrity: sha512-Ii3MrfY/GAIN3OhXNzpCKaLxHQfJF9qvwq/kEJYdqDxeIHa01K8sldugal6TmeeXl+WMvhv9cnVzUTaFFJF09A==, tarball: https://registry.npmmirror.com/@floating-ui/core/-/core-1.5.2.tgz}
-    version: 1.5.2
+  '@floating-ui/core@1.5.2':
+    resolution: {integrity: sha512-Ii3MrfY/GAIN3OhXNzpCKaLxHQfJF9qvwq/kEJYdqDxeIHa01K8sldugal6TmeeXl+WMvhv9cnVzUTaFFJF09A==}
+
+  '@floating-ui/dom@1.5.3':
+    resolution: {integrity: sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==}
 
   '@floating-ui/dom@https://registry.npmmirror.com/@floating-ui/dom/-/dom-1.5.3.tgz':
     resolution: {integrity: sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==, tarball: https://registry.npmmirror.com/@floating-ui/dom/-/dom-1.5.3.tgz}
     version: 1.5.3
 
-  '@floating-ui/utils@https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz':
-    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==, tarball: https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz}
-    version: 0.1.6
+  '@floating-ui/utils@0.1.6':
+    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
 
   '@gausszhou/vue3-drag-resize-rotate@https://registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate/-/vue3-drag-resize-rotate-3.0.2.tgz':
     resolution: {integrity: sha512-aIIMkk8OBy5TQ84OZzPSpWIApUq9nao8oLq/8yMHeI1TXevO71ZA8Lqt5Kl8D0ZD7InTGOx9U9tkv1kD/BT4tQ==, tarball: https://registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate/-/vue3-drag-resize-rotate-3.0.2.tgz}
@@ -1367,9 +1377,15 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz}
     version: 7.0.15
 
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+
   '@types/lodash-es@https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==, tarball: https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz}
     version: 4.17.12
+
+  '@types/lodash@4.14.202':
+    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
 
   '@types/lodash@https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz':
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz}
@@ -1412,6 +1428,9 @@ packages:
   '@types/unist@https://registry.npmmirror.com/@types/unist/-/unist-2.0.10.tgz':
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==, tarball: https://registry.npmmirror.com/@types/unist/-/unist-2.0.10.tgz}
     version: 2.0.10
+
+  '@types/web-bluetooth@0.0.16':
+    resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -1890,23 +1909,11 @@ packages:
   '@vue/compiler-sfc@3.4.31':
     resolution: {integrity: sha512-einJxqEw8IIJxzmnxmJBuK2usI+lJonl53foq+9etB2HAzlPjAS/wa7r0uUpXw5ByX3/0uswVSrjNb17vJm1kQ==}
 
-  '@vue/compiler-sfc@3.4.5':
-    resolution: {integrity: sha512-jauvkDuSSUbP0ebhfNqljhShA90YEfX/0wZ+w40oZF43IjGyWYjqYaJbvMJwGOd+9+vODW6eSvnk28f0SGV7OQ==}
-
   '@vue/compiler-ssr@3.4.31':
     resolution: {integrity: sha512-RtefmITAje3fJ8FSg1gwgDhdKhZVntIVbwupdyZDSifZTRMiWxWehAOTCc8/KZDnBOcYQ4/9VWxsTbd3wT0hAA==}
 
-  '@vue/compiler-ssr@3.4.5':
-    resolution: {integrity: sha512-DDdEcDzj2lWTMfUMMtEpLDhURai9LhM0zSZ219jCt7b2Vyl0/jy3keFgCPMitG0V1S1YG4Cmws3lWHWdxHQOpg==}
-
   '@vue/composition-api@1.7.2':
     resolution: {integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==}
-    peerDependencies:
-      vue: '>= 2.5 < 2.7'
-
-  '@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz':
-    resolution: {integrity: sha512-M8jm9J/laYrYT02665HkZ5l2fWTK4dcVg3BsDHm/pfz+MjDYwX+9FUaZyGwEyXEDonQYRCo0H7aLgdklcIELjw==, tarball: https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz}
-    version: 1.7.2
     peerDependencies:
       vue: '>= 2.5 < 2.7'
 
@@ -1926,31 +1933,17 @@ packages:
   '@vue/reactivity@3.4.31':
     resolution: {integrity: sha512-VGkTani8SOoVkZNds1PfJ/T1SlAIOf8E58PGAhIOUDYPC4GAmFA2u/E14TDAFcf3vVDKunc4QqCe/SHr8xC65Q==}
 
-  '@vue/reactivity@3.4.5':
-    resolution: {integrity: sha512-BcWkKvjdvqJwb7BhhFkXPLDCecX4d4a6GATvCduJQDLv21PkPowAE5GKuIE5p6RC07/Lp9FMkkq4AYCTVF5KlQ==}
-
   '@vue/runtime-core@3.4.31':
     resolution: {integrity: sha512-LDkztxeUPazxG/p8c5JDDKPfkCDBkkiNLVNf7XZIUnJ+66GVGkP+TIh34+8LtPisZ+HMWl2zqhIw0xN5MwU1cw==}
 
-  '@vue/runtime-core@3.4.5':
-    resolution: {integrity: sha512-wh9ELIOQKeWT9SaUPdLrsxRkZv14jp+SJm9aiQGWio+/MWNM3Lib0wE6CoKEqQ9+SCYyGjDBhTOTtO47kCgbkg==}
-
   '@vue/runtime-dom@3.4.31':
     resolution: {integrity: sha512-2Auws3mB7+lHhTFCg8E9ZWopA6Q6L455EcU7bzcQ4x6Dn4cCPuqj6S2oBZgN2a8vJRS/LSYYxwFFq2Hlx3Fsaw==}
-
-  '@vue/runtime-dom@3.4.5':
-    resolution: {integrity: sha512-n5ewvOjyG3IEpqGBahdPXODFSpVlSz3H4LF76Sx0XAqpIOqyJ5bIb2PrdYuH2ogBMAQPh+o5tnoH4nJpBr8U0Q==}
 
   '@vue/server-renderer@3.4.31':
     resolution: {integrity: sha512-D5BLbdvrlR9PE3by9GaUp1gQXlCNadIZytMIb8H2h3FMWJd4oUfkUTEH2wAr3qxoRz25uxbTcbqd3WKlm9EHQA==}
     version: 3.4.31
     peerDependencies:
       vue: 3.4.31
-
-  '@vue/server-renderer@3.4.5':
-    resolution: {integrity: sha512-jOFc/VE87yvifQpNju12VcqimH8pBLxdcT+t3xMeiED1K6DfH9SORyhFEoZlW5TG2Vwfn3Ul5KE+1aC99xnSBg==}
-    peerDependencies:
-      vue: 3.4.5
 
   '@vue/shared@3.4.31':
     resolution: {integrity: sha512-Yp3wtJk//8cO4NItOPpi3QkLExAr/aLBGZMmTtW9WpdwBCJpRM6zj9WgWktXAl8IDIozwNMByT45JP3tO3ACWA==}
@@ -1961,6 +1954,9 @@ packages:
   '@vueuse/core@10.7.1':
     resolution: {integrity: sha512-74mWHlaesJSWGp1ihg76vAnfVq9NTv1YT0SYhAQ6zwFNdBkkP+CKKJmVOEHcdSnLXCXYiL5e7MaewblfiYLP7g==}
     version: 10.7.1
+
+  '@vueuse/core@9.13.0':
+    resolution: {integrity: sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==}
 
   '@vueuse/core@https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz':
     resolution: {integrity: sha512-74mWHlaesJSWGp1ihg76vAnfVq9NTv1YT0SYhAQ6zwFNdBkkP+CKKJmVOEHcdSnLXCXYiL5e7MaewblfiYLP7g==, tarball: https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz}
@@ -1985,6 +1981,9 @@ packages:
   '@vueuse/metadata@10.7.1':
     resolution: {integrity: sha512-jX8MbX5UX067DYVsbtrmKn6eG6KMcXxLRLlurGkZku5ZYT3vxgBjui2zajvUZ18QLIjrgBkFRsu7CqTAg18QFw==}
 
+  '@vueuse/metadata@9.13.0':
+    resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
+
   '@vueuse/metadata@https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.7.1.tgz':
     resolution: {integrity: sha512-jX8MbX5UX067DYVsbtrmKn6eG6KMcXxLRLlurGkZku5ZYT3vxgBjui2zajvUZ18QLIjrgBkFRsu7CqTAg18QFw==, tarball: https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.7.1.tgz}
     version: 10.7.1
@@ -2000,6 +1999,9 @@ packages:
   '@vueuse/shared@10.7.1':
     resolution: {integrity: sha512-v0jbRR31LSgRY/C5i5X279A/WQjD6/JsMzGa+eqt658oJ75IvQXAeONmwvEMrvJQKnRElq/frzBR7fhmWY5uLw==}
     version: 10.7.1
+
+  '@vueuse/shared@9.13.0':
+    resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
 
   '@vueuse/shared@https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz':
     resolution: {integrity: sha512-v0jbRR31LSgRY/C5i5X279A/WQjD6/JsMzGa+eqt658oJ75IvQXAeONmwvEMrvJQKnRElq/frzBR7fhmWY5uLw==, tarball: https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz}
@@ -2149,6 +2151,9 @@ packages:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==, tarball: https://registry.npmmirror.com/astral-regex/-/astral-regex-2.0.0.tgz}
     version: 2.0.0
     engines: {node: '>=8'}
+
+  async-validator@4.2.5:
+    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
 
   async-validator@https://registry.npmmirror.com/async-validator/-/async-validator-4.2.5.tgz:
     resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==, tarball: https://registry.npmmirror.com/async-validator/-/async-validator-4.2.5.tgz}
@@ -2486,6 +2491,9 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
+  dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+
   dayjs@https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz:
     resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz}
     version: 1.11.10
@@ -2593,6 +2601,11 @@ packages:
     resolution: {integrity: sha512-a2fcSHOHrqBJsPNXtf6ZCEZpXrFCcbK1FBxfX3txoqWzNgtEDG1f3M59M98iwxhRW4iMKESnSjbJ310/rkrp0g==, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.620.tgz}
     version: 1.4.620
 
+  element-plus@2.7.6:
+    resolution: {integrity: sha512-36sw1K23hYjgeooR10U6CiCaCp2wvOqwoFurADZVlekeQ9v5U1FhJCFGEXO6i/kZBBMwsE1c9fxjLs9LENw2Rg==}
+    peerDependencies:
+      vue: ^3.2.0
+
   element-plus@https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz:
     resolution: {integrity: sha512-TlKubXJgxwhER0dw+8ULn9hr9kZjraV4R6Q/eidwWUwCKxwXYPBGmMKsZ/85tlxlhMYbcLZd/YZh6G3QkHX4fg==, tarball: https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz}
     version: 2.4.4
@@ -2648,6 +2661,9 @@ packages:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==, tarball: https://registry.npmmirror.com/escalade/-/escalade-3.1.1.tgz}
     version: 3.1.1
     engines: {node: '>=6'}
+
+  escape-html@1.0.3:
+    resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
 
   escape-html@https://registry.npmmirror.com/escape-html/-/escape-html-1.0.3.tgz:
     resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==, tarball: https://registry.npmmirror.com/escape-html/-/escape-html-1.0.3.tgz}
@@ -3506,9 +3522,19 @@ packages:
     version: 6.0.0
     engines: {node: '>=10'}
 
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
   lodash-es@https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, tarball: https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz}
     version: 4.17.21
+
+  lodash-unified@1.0.3:
+    resolution: {integrity: sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==}
+    peerDependencies:
+      '@types/lodash-es': '*'
+      lodash: '*'
+      lodash-es: '*'
 
   lodash-unified@https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.3.tgz:
     resolution: {integrity: sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==, tarball: https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.3.tgz}
@@ -3592,6 +3618,9 @@ packages:
   mdn-data@https://registry.npmmirror.com/mdn-data/-/mdn-data-2.0.30.tgz:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==, tarball: https://registry.npmmirror.com/mdn-data/-/mdn-data-2.0.30.tgz}
     version: 2.0.30
+
+  memoize-one@6.0.0:
+    resolution: {integrity: sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw==}
 
   memoize-one@https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz:
     resolution: {integrity: sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw==, tarball: https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz}
@@ -3745,6 +3774,9 @@ packages:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==, tarball: https://registry.npmmirror.com/normalize-range/-/normalize-range-0.1.2.tgz}
     version: 0.1.2
     engines: {node: '>=0.10.0'}
+
+  normalize-wheel-es@1.2.0:
+    resolution: {integrity: sha512-Wj7+EJQ8mSuXr2iWfnujrimU35R2W4FAErEyTmJoJ7ucwTn2hOUSsRehMb5RSYkxXGTM7Y9QpvPmp++w5ftoJw==}
 
   normalize-wheel-es@https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz:
     resolution: {integrity: sha512-Wj7+EJQ8mSuXr2iWfnujrimU35R2W4FAErEyTmJoJ7ucwTn2hOUSsRehMb5RSYkxXGTM7Y9QpvPmp++w5ftoJw==, tarball: https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz}
@@ -5027,14 +5059,6 @@ packages:
       typescript:
         optional: true
 
-  vue@3.4.5:
-    resolution: {integrity: sha512-VH6nHFhLPjgu2oh5vEBXoNZxsGHuZNr3qf4PHClwJWw6IDqw6B3x+4J+ABdoZ0aJuT8Zi0zf3GpGlLQCrGWHrw==}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
   webidl-conversions@https://registry.npmmirror.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==, tarball: https://registry.npmmirror.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz}
     version: 4.0.2
@@ -5635,6 +5659,8 @@ snapshots:
     dependencies:
       postcss-selector-parser: https://registry.npmmirror.com/postcss-selector-parser/-/postcss-selector-parser-6.0.15.tgz
 
+  '@ctrl/tinycolor@3.6.1': {}
+
   '@ctrl/tinycolor@https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz': {}
 
   '@dprint/formatter@https://registry.npmmirror.com/@dprint/formatter/-/formatter-0.2.1.tgz': {}
@@ -5643,13 +5669,13 @@ snapshots:
 
   '@dprint/toml@https://registry.npmmirror.com/@dprint/toml/-/toml-0.5.4.tgz': {}
 
-  '@element-plus/icons-vue@https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.31(typescript@5.3.3))':
+  '@element-plus/icons-vue@2.3.1(vue@3.4.31(typescript@5.3.3))':
     dependencies:
       vue: 3.4.31(typescript@5.3.3)
 
-  '@element-plus/icons-vue@https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.5(typescript@5.3.3))':
+  '@element-plus/icons-vue@https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.31(typescript@5.3.3))':
     dependencies:
-      vue: 3.4.5(typescript@5.3.3)
+      vue: 3.4.31(typescript@5.3.3)
 
   '@es-joy/jsdoccomment@https://registry.npmmirror.com/@es-joy/jsdoccomment/-/jsdoccomment-0.41.0.tgz':
     dependencies:
@@ -5827,16 +5853,21 @@ snapshots:
 
   '@eslint/js@https://registry.npmmirror.com/@eslint/js/-/js-8.56.0.tgz': {}
 
-  '@floating-ui/core@https://registry.npmmirror.com/@floating-ui/core/-/core-1.5.2.tgz':
+  '@floating-ui/core@1.5.2':
     dependencies:
-      '@floating-ui/utils': https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz
+      '@floating-ui/utils': 0.1.6
+
+  '@floating-ui/dom@1.5.3':
+    dependencies:
+      '@floating-ui/core': 1.5.2
+      '@floating-ui/utils': 0.1.6
 
   '@floating-ui/dom@https://registry.npmmirror.com/@floating-ui/dom/-/dom-1.5.3.tgz':
     dependencies:
-      '@floating-ui/core': https://registry.npmmirror.com/@floating-ui/core/-/core-1.5.2.tgz
-      '@floating-ui/utils': https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz
+      '@floating-ui/core': 1.5.2
+      '@floating-ui/utils': 0.1.6
 
-  '@floating-ui/utils@https://registry.npmmirror.com/@floating-ui/utils/-/utils-0.1.6.tgz': {}
+  '@floating-ui/utils@0.1.6': {}
 
   '@gausszhou/vue3-drag-resize-rotate@https://registry.npmmirror.com/@gausszhou/vue3-drag-resize-rotate/-/vue3-drag-resize-rotate-3.0.2.tgz(vue@3.4.31(typescript@5.3.3))':
     dependencies:
@@ -6035,9 +6066,15 @@ snapshots:
 
   '@types/json-schema@https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz': {}
 
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.14.202
+
   '@types/lodash-es@https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz':
     dependencies:
       '@types/lodash': https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz
+
+  '@types/lodash@4.14.202': {}
 
   '@types/lodash@https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz': {}
 
@@ -6065,6 +6102,8 @@ snapshots:
   '@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz': {}
 
   '@types/unist@https://registry.npmmirror.com/@types/unist/-/unist-2.0.10.tgz': {}
+
+  '@types/web-bluetooth@0.0.16': {}
 
   '@types/web-bluetooth@0.0.20':
     optional: true
@@ -6266,7 +6305,7 @@ snapshots:
       '@typescript-eslint/utils': 6.17.0(eslint@https://registry.npmmirror.com/eslint/-/eslint-8.56.0.tgz)(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)
       '@unocss/config': 0.58.3
       '@unocss/core': 0.58.3
-      magic-string: 0.30.5
+      magic-string: 0.30.10
       synckit: 0.8.8
     transitivePeerDependencies:
       - eslint
@@ -6735,36 +6774,14 @@ snapshots:
       postcss: 8.4.39
       source-map-js: 1.2.0
 
-  '@vue/compiler-sfc@3.4.5':
-    dependencies:
-      '@babel/parser': 7.23.6
-      '@vue/compiler-core': 3.4.5
-      '@vue/compiler-dom': 3.4.5
-      '@vue/compiler-ssr': 3.4.5
-      '@vue/shared': 3.4.5
-      estree-walker: 2.0.2
-      magic-string: 0.30.5
-      postcss: 8.4.32
-      source-map-js: 1.0.2
-
   '@vue/compiler-ssr@3.4.31':
     dependencies:
       '@vue/compiler-dom': 3.4.31
       '@vue/shared': 3.4.31
 
-  '@vue/compiler-ssr@3.4.5':
-    dependencies:
-      '@vue/compiler-dom': 3.4.5
-      '@vue/shared': 3.4.5
-
   '@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))':
     dependencies:
       vue: 3.4.31(typescript@5.3.3)
-    optional: true
-
-  '@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3))':
-    dependencies:
-      vue: 3.4.5(typescript@5.3.3)
 
   '@vue/devtools-api@https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.5.1.tgz': {}
 
@@ -6786,31 +6803,16 @@ snapshots:
     dependencies:
       '@vue/shared': 3.4.31
 
-  '@vue/reactivity@3.4.5':
-    dependencies:
-      '@vue/shared': 3.4.5
-
   '@vue/runtime-core@3.4.31':
     dependencies:
       '@vue/reactivity': 3.4.31
       '@vue/shared': 3.4.31
-
-  '@vue/runtime-core@3.4.5':
-    dependencies:
-      '@vue/reactivity': 3.4.5
-      '@vue/shared': 3.4.5
 
   '@vue/runtime-dom@3.4.31':
     dependencies:
       '@vue/reactivity': 3.4.31
       '@vue/runtime-core': 3.4.31
       '@vue/shared': 3.4.31
-      csstype: 3.1.3
-
-  '@vue/runtime-dom@3.4.5':
-    dependencies:
-      '@vue/runtime-core': 3.4.5
-      '@vue/shared': 3.4.5
       csstype: 3.1.3
 
   '@vue/server-renderer@3.4.31(vue@3.4.31(typescript@5.3.3))':
@@ -6824,12 +6826,6 @@ snapshots:
       '@vue/compiler-ssr': 3.4.31
       '@vue/shared': 3.4.31
       vue: 3.4.31(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)
-
-  '@vue/server-renderer@3.4.5(vue@3.4.5(typescript@5.3.3))':
-    dependencies:
-      '@vue/compiler-ssr': 3.4.5
-      '@vue/shared': 3.4.5
-      vue: 3.4.5(typescript@5.3.3)
 
   '@vue/shared@3.4.31': {}
 
@@ -6846,12 +6842,22 @@ snapshots:
       - vue
     optional: true
 
-  '@vueuse/core@https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))':
+  '@vueuse/core@9.13.0(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.16
+      '@vueuse/metadata': 9.13.0
+      '@vueuse/shared': 9.13.0(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+      vue-demi: 0.14.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  '@vueuse/core@https://registry.npmmirror.com/@vueuse/core/-/core-10.7.1.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))':
     dependencies:
       '@types/web-bluetooth': https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz
       '@vueuse/metadata': https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.7.1.tgz
-      '@vueuse/shared': https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
-      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
+      '@vueuse/shared': https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -6876,18 +6882,10 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/core@https://registry.npmmirror.com/@vueuse/core/-/core-9.13.0.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))':
-    dependencies:
-      '@types/web-bluetooth': https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz
-      '@vueuse/metadata': https://registry.npmmirror.com/@vueuse/metadata/-/metadata-9.13.0.tgz
-      '@vueuse/shared': https://registry.npmmirror.com/@vueuse/shared/-/shared-9.13.0.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
-      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
   '@vueuse/metadata@10.7.1':
     optional: true
+
+  '@vueuse/metadata@9.13.0': {}
 
   '@vueuse/metadata@https://registry.npmmirror.com/@vueuse/metadata/-/metadata-10.7.1.tgz': {}
 
@@ -6903,9 +6901,16 @@ snapshots:
       - vue
     optional: true
 
-  '@vueuse/shared@https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))':
+  '@vueuse/shared@9.13.0(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))':
     dependencies:
-      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
+      vue-demi: 0.14.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+
+  '@vueuse/shared@https://registry.npmmirror.com/@vueuse/shared/-/shared-10.7.1.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))':
+    dependencies:
+      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -6920,13 +6925,6 @@ snapshots:
   '@vueuse/shared@https://registry.npmmirror.com/@vueuse/shared/-/shared-9.13.0.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))':
     dependencies:
       vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
-
-  '@vueuse/shared@https://registry.npmmirror.com/@vueuse/shared/-/shared-9.13.0.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))':
-    dependencies:
-      vue-demi: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -7033,6 +7031,8 @@ snapshots:
       - rollup
 
   astral-regex@https://registry.npmmirror.com/astral-regex/-/astral-regex-2.0.0.tgz: {}
+
+  async-validator@4.2.5: {}
 
   async-validator@https://registry.npmmirror.com/async-validator/-/async-validator-4.2.5.tgz: {}
 
@@ -7305,6 +7305,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  dayjs@1.11.10: {}
+
   dayjs@https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz: {}
 
   de-indent@https://registry.npmmirror.com/de-indent/-/de-indent-1.0.2.tgz: {}
@@ -7381,6 +7383,27 @@ snapshots:
 
   electron-to-chromium@https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.620.tgz: {}
 
+  element-plus@2.7.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3)):
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+      '@element-plus/icons-vue': 2.3.1(vue@3.4.31(typescript@5.3.3))
+      '@floating-ui/dom': 1.5.3
+      '@popperjs/core': '@sxzz/popperjs-es@2.11.7'
+      '@types/lodash': 4.14.202
+      '@types/lodash-es': 4.17.12
+      '@vueuse/core': 9.13.0(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3))
+      async-validator: 4.2.5
+      dayjs: 1.11.10
+      escape-html: 1.0.3
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21)
+      memoize-one: 6.0.0
+      normalize-wheel-es: 1.2.0
+      vue: 3.4.31(typescript@5.3.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
   element-plus@https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3)):
     dependencies:
       '@ctrl/tinycolor': https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz
@@ -7399,27 +7422,6 @@ snapshots:
       memoize-one: https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz
       normalize-wheel-es: https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz
       vue: 3.4.31(typescript@5.3.3)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-
-  element-plus@https://registry.npmmirror.com/element-plus/-/element-plus-2.4.4.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3)):
-    dependencies:
-      '@ctrl/tinycolor': https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz
-      '@element-plus/icons-vue': https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz(vue@3.4.5(typescript@5.3.3))
-      '@floating-ui/dom': https://registry.npmmirror.com/@floating-ui/dom/-/dom-1.5.3.tgz
-      '@popperjs/core': '@sxzz/popperjs-es@2.11.7'
-      '@types/lodash': https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz
-      '@types/lodash-es': https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz
-      '@vueuse/core': https://registry.npmmirror.com/@vueuse/core/-/core-9.13.0.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3))
-      async-validator: https://registry.npmmirror.com/async-validator/-/async-validator-4.2.5.tgz
-      dayjs: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.10.tgz
-      escape-html: https://registry.npmmirror.com/escape-html/-/escape-html-1.0.3.tgz
-      lodash: https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz
-      lodash-es: https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz
-      lodash-unified: https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.3.tgz(@types/lodash-es@https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz)(lodash-es@https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz)(lodash@https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz)
-      memoize-one: https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz
-      normalize-wheel-es: https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz
-      vue: 3.4.5(typescript@5.3.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
 
@@ -7498,6 +7500,8 @@ snapshots:
       '@esbuild/win32-x64': 0.19.11
 
   escalade@https://registry.npmmirror.com/escalade/-/escalade-3.1.1.tgz: {}
+
+  escape-html@1.0.3: {}
 
   escape-html@https://registry.npmmirror.com/escape-html/-/escape-html-1.0.3.tgz: {}
 
@@ -8259,7 +8263,15 @@ snapshots:
     dependencies:
       p-locate: https://registry.npmmirror.com/p-locate/-/p-locate-5.0.0.tgz
 
+  lodash-es@4.17.21: {}
+
   lodash-es@https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz: {}
+
+  lodash-unified@1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21):
+    dependencies:
+      '@types/lodash-es': 4.17.12
+      lodash: 4.17.21
+      lodash-es: 4.17.21
 
   lodash-unified@https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.3.tgz(@types/lodash-es@https://registry.npmmirror.com/@types/lodash-es/-/lodash-es-4.17.12.tgz)(lodash-es@https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz)(lodash@4.17.21):
     dependencies:
@@ -8336,6 +8348,8 @@ snapshots:
   mdast-util-to-string@https://registry.npmmirror.com/mdast-util-to-string/-/mdast-util-to-string-2.0.0.tgz: {}
 
   mdn-data@https://registry.npmmirror.com/mdn-data/-/mdn-data-2.0.30.tgz: {}
+
+  memoize-one@6.0.0: {}
 
   memoize-one@https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz: {}
 
@@ -8452,6 +8466,8 @@ snapshots:
   normalize-path@https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz: {}
 
   normalize-range@https://registry.npmmirror.com/normalize-range/-/normalize-range-0.1.2.tgz: {}
+
+  normalize-wheel-es@1.2.0: {}
 
   normalize-wheel-es@https://registry.npmmirror.com/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz: {}
 
@@ -9020,7 +9036,7 @@ snapshots:
     dependencies:
       chokidar: 3.5.3
       immutable: 4.3.4
-      source-map-js: 1.0.2
+      source-map-js: 1.2.0
     optional: true
 
   sass@https://registry.npmmirror.com/sass/-/sass-1.69.7.tgz:
@@ -9597,6 +9613,12 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.69.7
 
+  vue-demi@0.14.6(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(vue@3.4.31(typescript@5.3.3)):
+    dependencies:
+      vue: 3.4.31(typescript@5.3.3)
+    optionalDependencies:
+      '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
+
   vue-demi@0.14.6(vue@3.4.31(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)):
     dependencies:
       vue: 3.4.31(typescript@https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz)
@@ -9608,23 +9630,17 @@ snapshots:
     optionalDependencies:
       '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
 
-  vue-demi@https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3)))(vue@3.4.5(typescript@5.3.3)):
-    dependencies:
-      vue: 3.4.5(typescript@5.3.3)
-    optionalDependencies:
-      '@vue/composition-api': https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3))
-
   vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
     dependencies:
       '@types/sortablejs': 1.15.7
     optionalDependencies:
       '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
 
-  vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3))):
+  vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
     dependencies:
       '@types/sortablejs': https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz
     optionalDependencies:
-      '@vue/composition-api': https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.7.2.tgz(vue@3.4.5(typescript@5.3.3))
+      '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
 
   vue-eslint-parser@https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-9.3.2.tgz(eslint@https://registry.npmmirror.com/eslint/-/eslint-8.56.0.tgz):
     dependencies:
@@ -9676,16 +9692,6 @@ snapshots:
     optionalDependencies:
       typescript: https://registry.npmmirror.com/typescript/-/typescript-5.3.3.tgz
 
-  vue@3.4.5(typescript@5.3.3):
-    dependencies:
-      '@vue/compiler-dom': 3.4.5
-      '@vue/compiler-sfc': 3.4.5
-      '@vue/runtime-dom': 3.4.5
-      '@vue/server-renderer': 3.4.5(vue@3.4.5(typescript@5.3.3))
-      '@vue/shared': 3.4.5
-    optionalDependencies:
-      typescript: 5.3.3
-
   webidl-conversions@https://registry.npmmirror.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz: {}
 
   webpack-sources@https://registry.npmmirror.com/webpack-sources/-/webpack-sources-3.2.3.tgz: {}
@@ -9714,9 +9720,9 @@ snapshots:
 
   wrap-ansi@https://registry.npmmirror.com/wrap-ansi/-/wrap-ansi-6.2.0.tgz:
     dependencies:
-      ansi-styles: https://registry.npmmirror.com/ansi-styles/-/ansi-styles-4.3.0.tgz
-      string-width: https://registry.npmmirror.com/string-width/-/string-width-4.2.3.tgz
-      strip-ansi: https://registry.npmmirror.com/strip-ansi/-/strip-ansi-6.0.1.tgz
+      ansi-styles: 4.3.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
 
   wrap-ansi@https://registry.npmmirror.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz:
     dependencies:
