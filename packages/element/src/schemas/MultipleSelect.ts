@@ -66,7 +66,7 @@ export const multipleSelectTemplateSchema = [
   {
     component: 'el-switch',
     field: 'collapseTags',
-    label: '多选值按文字展示',
+    label: '值按文字展示',
   },
 ]
 

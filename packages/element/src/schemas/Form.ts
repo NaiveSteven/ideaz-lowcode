@@ -2,7 +2,7 @@ export const formTemplateSchema = [
   {
     component: 'select',
     field: 'background',
-    label: '背景',
+    label: '使用场景',
   },
   {
     component: 'select',
