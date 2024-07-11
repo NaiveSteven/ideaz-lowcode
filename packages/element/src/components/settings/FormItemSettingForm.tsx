@@ -121,7 +121,7 @@ export default defineComponent({
           }),
           componentFormData: reactive({
             ...curOperateComponent.value.componentFormData,
-            [cloneObj.formData.field]: cloneObj.formData.default,
+            // [cloneObj.formData.field]: cloneObj.formData.default,
           }),
           schema: {
             ...curOperateComponent.value.schema,
