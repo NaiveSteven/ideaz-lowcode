@@ -5,25 +5,10 @@ import { formatTime } from '@ideal-schema/shared'
 import { ElMessage } from 'element-plus'
 import './style.scss'
 
-const time = new Date()
 export default defineComponent({
   name: 'HistoryWidget',
   setup() {
-    const { viewType, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
-
-    const historyList = computed<Command[]>(() => {
-      const lack: Command[] = [
-        {
-          message: '缺省态',
-          time,
-          redo: () => {
-            updateComponentList([])
-          },
-          undo: () => {},
-        },
-      ]
-      return lack.concat(commands.value)
-    })
+    const { viewType, updateCurOperateComponent } = useWorkspaceComponent()
 
     const handleClick = (current: number, data: Command) => {
       if (viewType.value !== 'design') {
@@ -40,10 +25,10 @@ export default defineComponent({
 
     return () => (
       <div class="history">
-        {historyList.value.map((item, index) => (
+        {commands.value.map((item, index) => (
           <div
-            class={['history__item', index === currentIndex.value + 1 && 'history__item--active']}
-            onClick={() => handleClick(index - 1, item)}
+            class={['history__item', index === currentIndex.value && 'history__item--active']}
+            onClick={() => handleClick(index, item)}
           >
             <div class="history__item--title">{item.message}</div>
             <div class="history__item--timestamp">{formatTime(item.time?.valueOf(), 'ymd hms')}</div>

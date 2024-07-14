@@ -21,6 +21,7 @@ export function useWorkspaceComponent() {
     originBoardHeight,
     originBoardWidth,
     simulatorType,
+    addHistory: workspaceStore.addHistory,
     pushComponentItem: workspaceStore.pushComponentItem,
     updateComponentItem: workspaceStore.updateComponentItem,
     deleteComponentItem: workspaceStore.deleteComponentItem,

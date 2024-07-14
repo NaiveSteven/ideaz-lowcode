@@ -19,7 +19,7 @@ export default defineComponent({
         <el-button-group size="small" type="default">
           <el-button
             onClick={() => { undoManager.undo() }}
-            disabled={commands.value.length === 0 || currentIndex.value === -1 || viewType.value !== 'design'}
+            disabled={commands.value.length === 0 || currentIndex.value === 0 || viewType.value !== 'design'}
           >
             <el-tooltip effect="light" content="后退" placement="top" showAfter={500}>
               <el-icon>
