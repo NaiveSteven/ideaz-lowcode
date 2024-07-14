@@ -1,40 +1,42 @@
-import { useWorkspaceStore } from '@ideal-schema/playground-store';
-import { Command, commands, index as currentIndex } from '@ideal-schema/playground-undo';
-import { formatTime } from '@ideal-schema/shared';
-import { ElMessage } from 'element-plus';
-import './style.scss';
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import type { Command } from '@ideal-schema/playground-undo'
+import { commands, index as currentIndex } from '@ideal-schema/playground-undo'
+import { formatTime } from '@ideal-schema/shared'
+import { ElMessage } from 'element-plus'
+import './style.scss'
 
-const time = new Date();
+const time = new Date()
 export default defineComponent({
   name: 'HistoryWidget',
   setup() {
-    const workspaceStore = useWorkspaceStore();
+    const { viewType, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
 
-    const viewType = computed(() => workspaceStore.getViewType);
     const historyList = computed<Command[]>(() => {
       const lack: Command[] = [
         {
           message: '缺省态',
           time,
-          redo: () => {},
+          redo: () => {
+            updateComponentList([])
+          },
           undo: () => {},
         },
       ]
-      return lack.concat(commands.value);
-    });
+      return lack.concat(commands.value)
+    })
 
     const handleClick = (current: number, data: Command) => {
       if (viewType.value !== 'design') {
         ElMessage({
           type: 'warning',
           message: '请在画布处执行该操作',
-        });
-        return;
+        })
+        return
       }
       currentIndex.value = current
-      data.redo();
-      workspaceStore.updateCurOperateComponent({} as WorkspaceComponentItem);
-    };
+      data.redo()
+      updateCurOperateComponent({} as WorkspaceComponentItem)
+    }
 
     return () => (
       <div class="history">
@@ -48,6 +50,6 @@ export default defineComponent({
           </div>
         ))}
       </div>
-    );
+    )
   },
-});
+})
