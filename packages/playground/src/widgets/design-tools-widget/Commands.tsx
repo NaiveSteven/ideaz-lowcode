@@ -10,7 +10,6 @@ export default defineComponent({
       default: 'undo',
     },
   },
-  emits: ['clickDo'],
   setup() {
     const { viewType } = useWorkspaceComponent()
 

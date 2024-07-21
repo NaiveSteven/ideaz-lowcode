@@ -4,13 +4,12 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Login',
-    component: () => import('../views/login.vue'),
+    redirect: 'editor',
   },
   {
     path: '/editor',
     name: 'editor',
-    component: () => import('../views/editor.vue'),
+    component: () => import('../views/editor'),
   },
 ]
 
