@@ -43,8 +43,8 @@ export default defineComponent({
           <DesignToolsWidget
             pixel-type={simulatorType.value}
             view-type={viewType.value}
-            onClick-pixel={(value: 'pc' | 'mobile' | 'pad') => updateSimulatorType(value)}
-            onClick-view={handleClickView}
+            onClickPixel={(value: 'pc' | 'mobile' | 'pad') => updateSimulatorType(value)}
+            onClickView={handleClickView}
           />
           <simulatorWidget.value>
             {viewType.value === 'design' && <Selection />}
