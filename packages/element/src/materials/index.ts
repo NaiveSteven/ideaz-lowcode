@@ -17,6 +17,7 @@ import { TimeRangePickerTemplateComponent } from './TimeRangePicker'
 import { TimeSelectTemplateComponent } from './TimeSelect'
 import { TreeSelectTemplateComponent } from './TreeSelect'
 import { VirtualizedSelectTemplateComponent } from './VirtualizedSelect'
+import { ArrayFormTemplateComponent } from './ArrayForm'
 
 export * from './Checkbox'
 export * from './Input'
@@ -27,6 +28,7 @@ export * from './Select'
 export * from './Slot'
 export * from './Switch'
 export * from './Textarea'
+export * from './ArrayForm'
 
 export const FORM_COMPONENT_TYPE = [
   { label: '输入框', value: 'input' },
@@ -62,7 +64,7 @@ export const DEFAULT_COMPONENT_TEMPLATES: ExpandTemplateItem[] = [
   },
   {
     collapseTitle: '高阶组件',
-    components: [CrudTemplate()],
+    components: [CrudTemplate(), ArrayFormTemplateComponent()],
   },
   // {
   //   collapseTitle: '组件模板',
