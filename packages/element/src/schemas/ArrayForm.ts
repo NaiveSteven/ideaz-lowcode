@@ -15,6 +15,6 @@ export const arrayFormTemplateSchema = [
 ]
 
 export const defaultArrayFormAttrs = {
-  action: true,
+  action: false,
   max: undefined,
 }

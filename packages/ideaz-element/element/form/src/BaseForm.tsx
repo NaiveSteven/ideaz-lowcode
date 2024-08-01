@@ -134,7 +134,7 @@ export default defineComponent({
     }
 
     const renderContent = () => {
-      const { type, contentPosition, borderStyle, activeCollapse, accordion, modelValue, options, finishStatus, processStatus, simple, max, footer } = props
+      const { type, contentPosition, borderStyle, activeCollapse, accordion, modelValue, options, finishStatus, processStatus, simple, max, action } = props
       const isChildren = formatFormItems.value.some(column => column.children)
 
       if (isFunction(slots.default))
@@ -197,7 +197,8 @@ export default defineComponent({
                     model.splice(index, 1)
                     emit('update:modelValue', model)
                   }}
-                  addVisible={modelValue.length !== max}
+                  showAdd={modelValue.length !== max}
+                  action={action}
                 >
                   <ElForm {...{ labelWidth: formConfig.value.labelWidth, formProps }} model={data} ref={`arrayForm${index}`}>
                     <FormColumns
@@ -246,7 +247,8 @@ export default defineComponent({
                           model[field].splice(index, 1)
                           emit('update:modelValue', model)
                         }}
-                        addVisible={modelValue[field].length !== maxLength}
+                        showAdd={modelValue[field].length !== maxLength}
+                        action={action}
                       >
                         <ElForm {...{ labelWidth: formConfig.value.labelWidth, ...formProps }} model={data} ref={`arrayForm${index}${field}`}>
                           <FormColumns

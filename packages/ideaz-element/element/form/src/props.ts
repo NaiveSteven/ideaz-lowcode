@@ -36,6 +36,10 @@ export const formProps = {
     type: Boolean,
     default: false,
   },
+  action: {
+    type: Boolean,
+    default: true,
+  },
   gutter: {
     type: Number,
     default: 0,

@@ -18,7 +18,7 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
       field: key,
       label: '数组表单',
       fieldProps: {
-        action: true,
+        action: false,
         type: 'array',
         max: undefined,
         style: {
