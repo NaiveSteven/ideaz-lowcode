@@ -51,7 +51,7 @@
     "lodash-es": "latest",
     "lodash-unified": "latest",
     "sortablejs": "^1.15.0",
-    "vue-draggable-plus": "^0.2.4"
+    "vue-draggable-plus": "^0.5.3"
   },
   "devDependencies": {
     "@element-plus/icons-vue": "2.3.1",

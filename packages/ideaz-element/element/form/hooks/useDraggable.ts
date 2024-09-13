@@ -8,8 +8,11 @@ export function useDraggable(emit: any, columns: Ref<FormColumn[]>) {
     {
       options: {
         draggable: '.z-form-item-draggable',
-        animation: 200,
         ghostClass: 'ghost',
+        group: 'people',
+        animation: 150,
+        fallbackOnBody: true,
+        swapThreshold: 0.65,
         onStart: () => {
           dragging.value = true
         },
@@ -18,9 +21,10 @@ export function useDraggable(emit: any, columns: Ref<FormColumn[]>) {
           const { oldIndex, newIndex } = evt
           const newArr = [...columns.value]
           const objToMove = newArr[oldIndex]
-          newArr.splice(oldIndex, 1)
-          newArr.splice(newIndex, 0, objToMove)
-          emit('update:columns', { columns: newArr, dragEvent: evt })
+          console.log(evt, 'evtevt', objToMove)
+          // newArr.splice(oldIndex, 1)
+          // newArr.splice(newIndex, 0, objToMove)
+          // emit('update:columns', { columns: newArr, dragEvent: evt })
         },
       },
     },

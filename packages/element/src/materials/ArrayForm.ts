@@ -8,6 +8,112 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
+const formColumn1 = {
+  id: uid(),
+  draggable: true,
+  name: 'tableForm',
+  component: 'input',
+  title: '表单项',
+  field: 'name',
+  label: '通知单名称1',
+  templateFormData: reactive({
+    componentType: 'input',
+  }),
+  templateSchema: [
+    {
+      component: 'select',
+      field: 'componentType',
+      label: '组件类别',
+    },
+  ],
+  templateOptionsConfig: {
+  },
+  fieldFormData: reactive({
+    field: 'name',
+    default: '',
+  }),
+  fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
+  formItemFormData: reactive({
+    label: '通知单名称1',
+    tooltip: '',
+    extra: '',
+  }),
+  formItemTemplateSchema: [
+    {
+      component: 'input',
+      filed: 'label',
+      label: '标签',
+    },
+    {
+      component: 'input',
+      filed: 'tooltip',
+      label: '提示',
+    },
+    {
+      component: 'input',
+      filed: 'extra',
+      label: '额外信息',
+    },
+  ],
+  formItemOptionsConfig: formItemTemplateOptionsConfig,
+  activeCollapseItems: ['field', 'component', 'formItem'],
+  allowCopy: true,
+  allowDelete: true,
+}
+
+const formColumn2 = {
+  id: uid(),
+  draggable: true,
+  name: 'tableForm',
+  component: 'input',
+  title: '表单项',
+  field: 'name',
+  label: '通知单名称2',
+  templateFormData: reactive({
+    componentType: 'input',
+  }),
+  templateSchema: [
+    {
+      component: 'select',
+      field: 'componentType',
+      label: '组件类别',
+    },
+  ],
+  templateOptionsConfig: {
+  },
+  fieldFormData: reactive({
+    field: 'name',
+    default: '',
+  }),
+  fieldSchema: fieldTemplateSchema({ defaultComponent: 'el-input' }),
+  formItemFormData: reactive({
+    label: '通知单名称2',
+    tooltip: '',
+    extra: '',
+  }),
+  formItemTemplateSchema: [
+    {
+      component: 'input',
+      filed: 'label',
+      label: '标签',
+    },
+    {
+      component: 'input',
+      filed: 'tooltip',
+      label: '提示',
+    },
+    {
+      component: 'input',
+      filed: 'extra',
+      label: '额外信息',
+    },
+  ],
+  formItemOptionsConfig: formItemTemplateOptionsConfig,
+  activeCollapseItems: ['field', 'component', 'formItem'],
+  allowCopy: true,
+  allowDelete: true,
+}
+
 export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
@@ -21,18 +127,13 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
         action: false,
         type: 'array',
         max: undefined,
+        draggable: true,
         style: {
           width: '100%',
         },
         columns: [
-          {
-            component: 'input',
-            field: 'a',
-          },
-          {
-            component: 'select',
-            field: 'b',
-          },
+          formColumn1,
+          formColumn2,
         ],
       },
     },
@@ -64,6 +165,5 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],
-    children: [],
   }
 }

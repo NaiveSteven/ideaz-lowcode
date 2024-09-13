@@ -79,6 +79,7 @@ export default defineComponent({
     }
 
     const start = (a: { oldIndex: number }) => {
+      console.log(a, 'aaaaa')
       tempData = props.workspaceComponentList[a.oldIndex]
     }
 
@@ -184,6 +185,10 @@ export default defineComponent({
       }
     }
 
+    const handleFormItemClick = (data) => {
+      updateCurOperateComponent(data)
+    }
+
     return () => {
       const { formData, options } = parseElementSchema()
       return (
@@ -238,6 +243,8 @@ export default defineComponent({
                       style={{ zIndex: 1 }}
                       col={formItem.schema}
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
+                      onForm-item-click={handleFormItemClick}
+                      onForm-item-mousedown={handleFormItemClick}
                     />
                     )}
               </div>

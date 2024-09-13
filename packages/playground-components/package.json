@@ -15,6 +15,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vue-draggable-plus": "^0.2.6"
+    "vue-draggable-plus": "^0.5.3"
   }
 }

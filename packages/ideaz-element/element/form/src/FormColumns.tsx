@@ -41,7 +41,7 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  emits: ['update:modelValue', 'change'],
+  emits: ['update:modelValue', 'change', 'form-item-click', 'form-item-mousedown'],
   setup(props, { slots, emit }) {
     return () => {
       const { columns, formProps, options, modelValue } = props
@@ -50,6 +50,7 @@ export default defineComponent({
         const { colKls, colStyle } = useCol(formProps, col)
         return (
           <FormItem
+            id={`schema-field${col.id}`}
             key={col.__key}
             ref={`formItem${colIndex}`}
             col={col}
@@ -58,12 +59,23 @@ export default defineComponent({
             options={options}
             class={colKls.value}
             style={colStyle.value}
+            isFormColumn={true}
             v-slots={{ ...slots, ...scopedSlots }}
             v-show={isFunction(col.hideUseVShow) ? !col.hideUseVShow(modelValue) : true}
             onUpdate:modelValue={(val: any, field: string) => {
               const newVal = set(cloneDeep(modelValue), field, val)
               emit('update:modelValue', newVal)
               emit('change', { value: val, field, formData: newVal })
+            }}
+            onClick={(e: Event) => {
+              e.preventDefault()
+              e.stopPropagation()
+              emit('form-item-click', col)
+            }}
+            onMousedown={(e: Event) => {
+              // e.preventDefault()
+              // e.stopPropagation()
+              emit('form-item-mousedown', col)
             }}
           >
             {(isFunction(col.render) || col.slot) ? renderContent(col, slots) : null}

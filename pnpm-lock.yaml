@@ -142,8 +142,8 @@ importers:
         specifier: ^2.0.9
         version: https://registry.npmmirror.com/pinia/-/pinia-2.1.7.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(typescript@5.3.3)(vue@3.4.31(typescript@5.3.3))
       vue-draggable-plus:
-        specifier: ^0.2.6
-        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
+        specifier: ^0.5.3
+        version: 0.5.3(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
       vue-router:
         specifier: '4'
         version: https://registry.npmmirror.com/vue-router/-/vue-router-4.2.5.tgz(vue@3.4.31(typescript@5.3.3))
@@ -176,8 +176,8 @@ importers:
         specifier: 2||3
         version: 3.4.31(typescript@5.3.3)
       vue-draggable-plus:
-        specifier: ^0.2.4
-        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
+        specifier: ^0.5.3
+        version: 0.5.3(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
     devDependencies:
       '@element-plus/icons-vue':
         specifier: 2.3.1
@@ -234,8 +234,8 @@ importers:
         specifier: ^2.0.9
         version: https://registry.npmmirror.com/pinia/-/pinia-2.1.7.tgz(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))(typescript@5.3.3)(vue@3.4.31(typescript@5.3.3))
       vue-draggable-plus:
-        specifier: ^0.2.6
-        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
+        specifier: ^0.5.3
+        version: 0.5.3(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
       vue-router:
         specifier: '4'
         version: https://registry.npmmirror.com/vue-router/-/vue-router-4.2.5.tgz(vue@3.4.31(typescript@5.3.3))
@@ -250,8 +250,8 @@ importers:
   packages/playground-components:
     dependencies:
       vue-draggable-plus:
-        specifier: ^0.2.6
-        version: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
+        specifier: ^0.5.3
+        version: 0.5.3(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3)))
 
   packages/playground-demi: {}
 
@@ -5016,9 +5016,8 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz:
-    resolution: {integrity: sha512-asNQ4OxTQtN91+m45lh8QEwscXhVveaLvPAzaRXHD8JIk1+SOg7NWPQ9EmUTeNhSP3SGkJ2Agvp5WRDt7vXM8w==, tarball: https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz}
-    version: 0.2.7
+  vue-draggable-plus@0.5.3:
+    resolution: {integrity: sha512-dwKDzZ8io3y7k2iuIwVwiGrdiq5C0S7Et7nt5Gz5KjpBS9MtZGFP+L4FJPWGSLYleOT8HmVuCXTZYjGet7wC0g==}
     peerDependencies:
       '@types/sortablejs': ^1.15.0
       '@vue/composition-api': '*'
@@ -9630,13 +9629,13 @@ snapshots:
     optionalDependencies:
       '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
 
-  vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
+  vue-draggable-plus@0.5.3(@types/sortablejs@1.15.7)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
     dependencies:
       '@types/sortablejs': 1.15.7
     optionalDependencies:
       '@vue/composition-api': 1.7.2(vue@3.4.31(typescript@5.3.3))
 
-  vue-draggable-plus@https://registry.npmmirror.com/vue-draggable-plus/-/vue-draggable-plus-0.2.7.tgz(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
+  vue-draggable-plus@0.5.3(@types/sortablejs@https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz)(@vue/composition-api@1.7.2(vue@3.4.31(typescript@5.3.3))):
     dependencies:
       '@types/sortablejs': https://registry.npmmirror.com/@types/sortablejs/-/sortablejs-1.15.7.tgz
     optionalDependencies:

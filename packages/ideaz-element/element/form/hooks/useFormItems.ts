@@ -8,6 +8,7 @@ export const SELECT_TYPES = ['cascader', 'select', 'datepicker', 'picker', 'chec
 
 export function useFormItems(props: FormProps) {
   const { t } = useLocale()
+  const formatFormItems = ref<FormColumn[]>([])
 
   const setDefaultPlaceholder = (formItem: FormColumn) => {
     const label = formItem.label || formItem.formItemProps?.label || ''
@@ -24,7 +25,7 @@ export function useFormItems(props: FormProps) {
     return isFunction(item.hide) ? item.hide(props.modelValue) : item.hide
   }
 
-  const formatFormItems = computed<FormColumn[]>(() => {
+  watch(() => props.columns, () => {
     const _schema = cloneDeep(props.columns).map((item: FormColumn) => ({
       ...item,
       __key: item.key || item.field || item.slot || uid(),
@@ -50,7 +51,7 @@ export function useFormItems(props: FormProps) {
         })
         : undefined,
     }))
-    return _schema
+    formatFormItems.value = _schema
       .filter((item: FormColumn) => !isHide(item))
       .map((item: FormColumn) => ({
         ...item,
@@ -61,7 +62,7 @@ export function useFormItems(props: FormProps) {
           ...item?.fieldProps,
         },
       }))
-  })
+  }, { deep: true, immediate: true })
 
   return { formatFormItems }
 }

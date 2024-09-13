@@ -4,13 +4,16 @@ import type { CollapseModelValue } from 'element-plus'
 import { ElButton, ElCollapse, ElCollapseItem, ElDivider, ElForm, ElFormItem, ElStep, ElSteps } from 'element-plus'
 import { cloneDeep, omit } from 'lodash-unified'
 import type { ComponentInternalInstance } from 'vue'
-import { draggable } from '../../../directives'
+
+// import { draggable } from '../../../directives'
+
+import { useDraggable, vDraggable } from 'vue-draggable-plus'
 import { useExpose, useLocale, useNamespace } from '../../../hooks'
 import { getContentByRenderAndSlot } from '../../../shared'
 import { isFunction, isString } from '../../../utils'
 import type { FormColumn } from '../../types'
 import {
-  useDraggable,
+  // useDraggable,
   useFormConfig,
   useFormItems,
   useFormMethods,
@@ -24,8 +27,8 @@ export default defineComponent({
   name: 'ZForm',
   components: { FormColumns, OperationCard },
   props: formProps,
-  directives: { draggable },
-  emits: ['input', 'update:modelValue', 'change', 'update:activeCollapse', 'collapse-change', 'next-step', 'previous-step', 'update:activeStep', 'submit', 'update:columns'],
+  directives: { draggable: vDraggable },
+  emits: ['input', 'update:modelValue', 'change', 'update:activeCollapse', 'collapse-change', 'next-step', 'previous-step', 'update:activeStep', 'submit', 'update:columns', 'form-item-click', 'form-item-mousedown'],
   setup(props, { emit, slots }) {
     const { formatFormItems } = useFormItems(props)
     const { rowStyle, rowKls } = useRow(props)
@@ -37,9 +40,12 @@ export default defineComponent({
       clearValidate,
       scrollToField,
     } = useFormMethods(props)
-    const { draggableOptions } = useDraggable(emit, formatFormItems)
+    // const { draggableOptions } = useDraggable(emit, formatFormItems)
     const ns = useNamespace('form')
     const { t } = useLocale()
+
+    const formRef = ref()
+    const arrayFormRef = ref()
 
     const { proxy: ctx } = getCurrentInstance() as ComponentInternalInstance
     const activeStep = computed({
@@ -191,37 +197,21 @@ export default defineComponent({
             {modelValue.map((data: any, index: number) => {
               const formProps = omit(props, FORM_FILTER_KEYS)
               return (
-                <OperationCard
-                  onAdd={() => { emit('update:modelValue', [...model, {}]) }}
-                  onDelete={() => {
-                    model.splice(index, 1)
+                <FormColumns
+                  modelValue={data}
+                  options={options}
+                  columns={formatFormItems.value}
+                  v-slots={slots}
+                  onUpdate:modelValue={(val: any) => {
+                    model.splice(index, 1, val)
                     emit('update:modelValue', model)
                   }}
-                  showAdd={modelValue.length !== max}
-                  action={action}
-                >
-                  <ElForm {...{ labelWidth: formConfig.value.labelWidth, formProps }} model={data} ref={`arrayForm${index}`}>
-                    <FormColumns
-                      modelValue={data}
-                      options={options}
-                      columns={formatFormItems.value}
-                      v-slots={slots}
-                      onUpdate:modelValue={(val: any) => {
-                        model.splice(index, 1, val)
-                        emit('update:modelValue', model)
-                      }}
-                      onChange={(...args) => { emit('change', ...args) }}
-                    />
-                  </ElForm>
-                </OperationCard>
+                  onChange={(...args) => { emit('change', ...args) }}
+                  onForm-item-click={(...args) => { emit('form-item-click', ...args) }}
+                  onForm-item-mousedown={(...args) => { emit('form-item-mousedown', ...args) }}
+                />
               )
             })}
-            {modelValue.length !== max
-            && (
-              <ElButton class={ns.be('array', 'add')} onClick={() => { emit('update:modelValue', [...model, {}]) }} icon={Plus}>
-                {t('form.add')}
-              </ElButton>
-            )}
           </>
         )
       }
@@ -322,14 +312,27 @@ export default defineComponent({
       }
     }
 
+    if (props.type === 'array') {
+      useDraggable(formRef, formatFormItems.value, {
+        group: 'people',
+        animation: 200,
+        ghostClass: 'ghost',
+        onUpdate: () => {
+          console.log('onUpdate')
+        },
+        onEnd: (a) => {
+          console.log(a, 'onEnd')
+        },
+      })
+    }
+
     return () => {
       const { modelValue } = props
 
       return (
         <ElForm
-          {...{ ...formConfig.value, model: modelValue }}
-          ref="formRef"
-          v-draggable={draggableOptions}
+          {...{ ...formConfig.value, model: modelValue, class: `${props.type}-form` }}
+          ref={formRef}
           class={[rowKls.value, ns.b('')]}
           style={rowStyle.value}
         // onSubmit={withModifiers(function () { }, ['prevent'])}

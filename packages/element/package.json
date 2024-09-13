@@ -23,7 +23,7 @@
     "js-beautify": "^1.14.0",
     "mitt": "^3.0.0",
     "pinia": "^2.0.9",
-    "vue-draggable-plus": "^0.2.6",
+    "vue-draggable-plus": "^0.5.3",
     "vue-router": "4"
   },
   "devDependencies": {

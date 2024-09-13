@@ -97,7 +97,7 @@ export const formProps = {
   },
   draggable: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 }
 
@@ -117,6 +117,9 @@ export const formItemProps = {
   col: {
     type: Object as PropType<FormColumn>,
     default: () => ({ }),
+  },
+  isFormColumn: {
+    type: Boolean,
   },
 }
 
