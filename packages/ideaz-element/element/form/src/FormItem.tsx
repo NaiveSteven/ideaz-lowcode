@@ -15,7 +15,7 @@ export default defineComponent({
   name: 'ZFormItem',
   directives: { ref },
   props: formItemProps,
-  emits: ['change', 'update:modelValue', 'form-item-click', 'form-item-mousedown'],
+  emits: ['change', 'update:modelValue', 'form-item-click', 'form-item-mousedown', 'array-form-draggable-end'],
   setup(props, { slots, emit }) {
     const ns = useNamespace('form-item')
     const { componentName: ComponentName } = useFormItemComponent(props)
@@ -51,12 +51,14 @@ export default defineComponent({
         <ElFormItem
           ref="formItem"
           prop={col.field}
-          class={[ns.b(), (formConfig.draggable || col.draggable) && ns.b('draggable'), `z-form-${formConfig.type}`]}
+          class={[ns.b(), (formConfig.draggable || col.draggable) && ns.b('draggable'), `z-form-${formConfig.type}`, `schema-field-${col.id}`]}
           {...{ size: size.value, ...formItemProps.value }}
           v-slots={vSlots.value}
           onMousedown={() => {
-            if (props.isFormColumn)
+            if (props.isFormColumn) {
+              //
               emit('form-item-mousedown', col)
+            }
           }}
         >
           {(isFunction(col.render) || col.slot)
@@ -82,7 +84,8 @@ export default defineComponent({
                 },
                 'onUpdate:modelValue': (val: any) => modify(val),
                 'onForm-item-click': (...args) => { emit('form-item-click', ...args) },
-                'onForm-item-mousedown': (...args) => { emit('form-item-mousedown', ...args) },
+                'onForm-item-mousedown': (...args) => { debugger; emit('form-item-mousedown', ...args) },
+                'onArray-form-draggable-end': (...args) => { emit('array-form-draggable-end', ...args) },
                 ...extractEvents(col),
               },
             }))}

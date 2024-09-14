@@ -1,7 +1,7 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
+import { cloneDeep, get, set } from 'lodash-es'
 import { useCol } from '@ideaz/element'
-import { cloneDeep } from 'lodash-es'
 import { VueDraggable } from 'vue-draggable-plus'
 import mitt from '../../event'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
@@ -185,8 +185,65 @@ export default defineComponent({
       }
     }
 
+    const changeColumnSort = (data, key, oldIndex, newIndex) => {
+      const parent = get(data, key)
+      const newCol = { ...parent[oldIndex] }
+      const oldCol = { ...parent[newIndex] }
+      parent[newIndex] = newCol
+      parent[oldIndex] = oldCol
+    }
+
     const handleFormItemClick = (data) => {
+      console.log(data, 'datahandleFormItemClick')
       updateCurOperateComponent(data)
+    }
+
+    const getCurrentItem = (key) => {
+      let data = null
+      workspaceComponentList.value.forEach((item) => {
+        if (item.id === key)
+          data = item
+
+        if (item.schema.fieldProps?.columns?.length && !data) {
+          item.schema.fieldProps?.columns.forEach((item) => {
+            if (item.id === key)
+              data = item
+          })
+        }
+      })
+      return data
+    }
+
+    const getKey = (classList) => {
+      const str = classList.find(item => item.includes('schema-field'))
+      return str.split('-')[2]
+    }
+
+    const handleArrayFormEnd = (formItem: any, draggableEvent: any, columns) => {
+      const list = [...workspaceComponentList.value]
+      // array form to array form
+      if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
+        const index = list.findIndex(item => item.id === formItem.id)
+        list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', columns))
+        updateComponentList(list)
+      }
+      // changeColumnSort()
+      console.log(draggableEvent, 'asdfsf')
+      // array from to normal form
+      if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
+        const key = getKey(Array.from(draggableEvent.item.classList))
+        const item = getCurrentItem(key)
+        const index = list.findIndex(item => item.id === formItem.id)
+        const cols = [...formItem.schema.fieldProps?.columns]
+        const colIndex = cols.findIndex(item => item.id === key)
+        cols.splice(colIndex, 1)
+        list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
+        // updateComponentList(list)
+        // list.splice(draggableEvent.newIndex, 0, item!)
+        updateComponentList(list)
+        tableKey.value = new Date().valueOf()
+        console.log(columns, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
+      }
     }
 
     return () => {
@@ -202,6 +259,7 @@ export default defineComponent({
           onUpdate:modelValue={(val: any) => updateComponentList(val, '排序更改')}
           onStart={start}
           onEnd={end}
+          key={tableKey.value}
         >
           {props.workspaceComponentList.map((formItem: WorkspaceComponentItem) => {
             const { colKls, colStyle } = useCol(formConfig.value as any, formItem.schema as any)
@@ -245,6 +303,7 @@ export default defineComponent({
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
                       onForm-item-click={handleFormItemClick}
                       onForm-item-mousedown={handleFormItemClick}
+                      onArray-form-draggable-end={(...args) => handleArrayFormEnd(formItem, ...args)}
                     />
                     )}
               </div>

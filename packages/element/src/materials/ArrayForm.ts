@@ -7,6 +7,7 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
 } from '../schemas'
+import { InputTemplateComponent } from './Input'
 
 const formColumn1 = {
   id: uid(),
@@ -115,6 +116,8 @@ const formColumn2 = {
 }
 
 export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem {
+  const arrayFormId = uid()
+  const arrayFormId2 = uid()
   return {
     id: uid(),
     icon: 'i-lightning',
@@ -132,8 +135,10 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
           width: '100%',
         },
         columns: [
-          formColumn1,
-          formColumn2,
+          { ...InputTemplateComponent(), component: 'input', label: '通知单1' },
+          { ...InputTemplateComponent(), component: 'input', label: '通知单2' },
+          // formColumn1,
+          // formColumn2,
         ],
       },
     },

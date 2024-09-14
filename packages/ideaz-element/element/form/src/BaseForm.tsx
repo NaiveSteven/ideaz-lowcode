@@ -28,7 +28,7 @@ export default defineComponent({
   components: { FormColumns, OperationCard },
   props: formProps,
   directives: { draggable: vDraggable },
-  emits: ['input', 'update:modelValue', 'change', 'update:activeCollapse', 'collapse-change', 'next-step', 'previous-step', 'update:activeStep', 'submit', 'update:columns', 'form-item-click', 'form-item-mousedown'],
+  emits: ['input', 'update:modelValue', 'change', 'update:activeCollapse', 'collapse-change', 'next-step', 'previous-step', 'update:activeStep', 'submit', 'update:columns', 'form-item-click', 'form-item-mousedown', 'array-form-draggable-end'],
   setup(props, { emit, slots }) {
     const { formatFormItems } = useFormItems(props)
     const { rowStyle, rowKls } = useRow(props)
@@ -208,7 +208,7 @@ export default defineComponent({
                   }}
                   onChange={(...args) => { emit('change', ...args) }}
                   onForm-item-click={(...args) => { emit('form-item-click', ...args) }}
-                  onForm-item-mousedown={(...args) => { emit('form-item-mousedown', ...args) }}
+                  onForm-item-mousedown={(...args) => { debugger; emit('form-item-mousedown', ...args) }}
                 />
               )
             })}
@@ -320,8 +320,9 @@ export default defineComponent({
         onUpdate: () => {
           console.log('onUpdate')
         },
-        onEnd: (a) => {
-          console.log(a, 'onEnd')
+        onEnd: async (a) => {
+          // await nextTick()
+          emit('array-form-draggable-end', a, props.columns)
         },
       })
     }
