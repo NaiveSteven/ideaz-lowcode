@@ -254,11 +254,9 @@ export default defineComponent({
         const colIndex = cols.findIndex(item => item.id === key)
         cols.splice(colIndex, 1)
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
-        // updateComponentList(list)
-        // list.splice(draggableEvent.newIndex, 0, item!)
+        updateComponentList(list)
         tableKey.value = new Date().valueOf()
       }
-      updateComponentList(list)
     }
 
     return () => {
