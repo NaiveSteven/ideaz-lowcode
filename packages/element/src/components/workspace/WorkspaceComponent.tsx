@@ -83,7 +83,22 @@ export default defineComponent({
       tempData = props.workspaceComponentList[a.oldIndex]
     }
 
-    const end = (a: { to: { id: string }, newIndex: number }) => {
+    const end = (draggableEvent: { to: { id: string }, newIndex: number }) => {
+      const list = [...workspaceComponentList.value]
+      // normal form to array form
+      if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
+        const key = getKey(Array.from(draggableEvent.to.classList))
+        const normalItemIndex = list.findIndex(item => item.id === tempData.id)
+        const arrayItem = getArrayItem(key)
+        // console.log(workspaceComponentList.value, 'workspaceComponentList')
+        // debugger
+        const cols = arrayItem.schema.fieldProps?.columns
+        // list.splice(normalItemIndex, 1)
+        cols.splice(draggableEvent.newIndex, 0, { ...tempData, ...tempData.schema })
+        updateComponentList(list)
+        console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
+        tableKey.value = new Date().valueOf()
+      }
       if (workspaceComponentType.value === 'form')
         emit('on-update-cur-operate', tempData)
     }
@@ -198,7 +213,7 @@ export default defineComponent({
       updateCurOperateComponent(data)
     }
 
-    const getCurrentItem = (key) => {
+    function getArrayItem(key) {
       let data = null
       workspaceComponentList.value.forEach((item) => {
         if (item.id === key)
@@ -214,12 +229,13 @@ export default defineComponent({
       return data
     }
 
-    const getKey = (classList) => {
+    function getKey(classList) {
       const str = classList.find(item => item.includes('schema-field'))
       return str.split('-')[2]
     }
 
     const handleArrayFormEnd = (formItem: any, draggableEvent: any, columns) => {
+      console.log(draggableEvent, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
       const list = [...workspaceComponentList.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
@@ -232,7 +248,7 @@ export default defineComponent({
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.item.classList))
-        const item = getCurrentItem(key)
+        const item = getArrayItem(key)
         const index = list.findIndex(item => item.id === formItem.id)
         const cols = [...formItem.schema.fieldProps?.columns]
         const colIndex = cols.findIndex(item => item.id === key)
@@ -240,10 +256,9 @@ export default defineComponent({
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
         // updateComponentList(list)
         // list.splice(draggableEvent.newIndex, 0, item!)
-        updateComponentList(list)
         tableKey.value = new Date().valueOf()
-        console.log(columns, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
       }
+      updateComponentList(list)
     }
 
     return () => {
@@ -297,6 +312,7 @@ export default defineComponent({
                       id={formItem.id}
                       key={formItem.schema.id}
                       modelValue={formData}
+                      draggableId={formItem.id}
                       options={options}
                       style={{ zIndex: 1 }}
                       col={formItem.schema}

@@ -75,7 +75,6 @@ export default defineComponent({
             onForm-item-mousedown={(e: Event) => {
               // e.preventDefault()
               // e.stopPropagation()
-              debugger
               emit('form-item-mousedown', col)
             }}
           >

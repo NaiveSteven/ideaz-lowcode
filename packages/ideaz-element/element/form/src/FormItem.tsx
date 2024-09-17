@@ -46,7 +46,6 @@ export default defineComponent({
 
     return () => {
       const { col, options, formConfig } = props
-
       return (
         <ElFormItem
           ref="formItem"
@@ -74,7 +73,7 @@ export default defineComponent({
                   ? (options[col.field!] || (col.fieldProps && col.fieldProps.options))
                   : {},
                 'size': size.value,
-                'class': col.class,
+                'class': [col.class, props.draggableId ? `schema-field-${props.draggableId}` : ''],
                 'style': col.style,
                 ...col.fieldProps,
                 'directives': {
@@ -84,7 +83,7 @@ export default defineComponent({
                 },
                 'onUpdate:modelValue': (val: any) => modify(val),
                 'onForm-item-click': (...args) => { emit('form-item-click', ...args) },
-                'onForm-item-mousedown': (...args) => { debugger; emit('form-item-mousedown', ...args) },
+                'onForm-item-mousedown': (...args) => { emit('form-item-mousedown', ...args) },
                 'onArray-form-draggable-end': (...args) => { emit('array-form-draggable-end', ...args) },
                 ...extractEvents(col),
               },

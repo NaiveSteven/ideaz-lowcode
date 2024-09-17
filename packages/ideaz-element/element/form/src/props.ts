@@ -121,6 +121,9 @@ export const formItemProps = {
   isFormColumn: {
     type: Boolean,
   },
+  draggableId: {
+    type: String,
+  },
 }
 
 export const filterFormProps = {
