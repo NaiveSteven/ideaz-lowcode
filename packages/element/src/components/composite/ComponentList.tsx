@@ -1,5 +1,6 @@
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { Fragment } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import './style.scss'
@@ -15,6 +16,8 @@ export default defineComponent({
   },
   emits: ['click-component-item'],
   setup(props, { emit }) {
+    const { workspaceComponentList, updateComponentList } = useWorkspaceComponent()
+
     let tempData: any = null
 
     const activeCollapseItems = ref(['基础组件', '高阶组件'])
@@ -33,8 +36,39 @@ export default defineComponent({
     }
 
     const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
-      if (obj.to !== obj.from)
-        emit('click-component-item', tempData, obj.newIndex, obj.to.id)
+      if (obj.to !== obj.from) {
+        if (Array.from(obj.to.classList).includes('array-form')) {
+          const key = getKey(Array.from(obj.to.classList))
+          const arrayItem = getArrayItem(key)
+          const cols = arrayItem.schema.fieldProps?.columns
+          cols.splice(obj.newIndex, 0, { ...tempData, ...tempData.schema, id: uid() })
+          // updateComponentList(workspaceComponentList.value)
+        }
+        else {
+          emit('click-component-item', tempData, obj.newIndex, obj.to.id)
+        }
+      }
+    }
+
+    function getArrayItem(key) {
+      let data = null
+      workspaceComponentList.value.forEach((item) => {
+        if (item.id === key)
+          data = item
+
+        if (item.schema.fieldProps?.columns?.length && !data) {
+          item.schema.fieldProps?.columns.forEach((item) => {
+            if (item.id === key)
+              data = item
+          })
+        }
+      })
+      return data
+    }
+
+    function getKey(classList) {
+      const str = classList.find(item => item.includes('schema-field'))
+      return str.split('-')[2]
     }
 
     const clone = () => { }

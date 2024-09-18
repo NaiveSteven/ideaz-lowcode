@@ -61,8 +61,8 @@ export default defineComponent({
     })
 
     watch(() => curOperateComponent.value, (val, old) => {
-      if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
-        tableKey.value = new Date().valueOf()
+      // if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
+      tableKey.value = new Date().valueOf()
     })
 
     const handleMouseEvent = (e: MouseEvent) => {
@@ -79,7 +79,7 @@ export default defineComponent({
     }
 
     const start = (a: { oldIndex: number }) => {
-      console.log(a, 'aaaaa')
+      // console.log(a, 'aaaaa')
       tempData = props.workspaceComponentList[a.oldIndex]
     }
 
@@ -234,7 +234,7 @@ export default defineComponent({
     }
 
     const handleArrayFormEnd = (formItem: any, draggableEvent: any, columns) => {
-      console.log(draggableEvent, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
+      console.log(draggableEvent, columns, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
       const list = [...workspaceComponentList.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
