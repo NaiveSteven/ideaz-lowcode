@@ -209,7 +209,6 @@ export default defineComponent({
     }
 
     const handleFormItemClick = (data) => {
-      console.log(data, 'datahandleFormItemClick')
       updateCurOperateComponent(data)
     }
 
@@ -244,7 +243,6 @@ export default defineComponent({
         updateComponentList(list)
       }
       // changeColumnSort()
-      console.log(draggableEvent, 'asdfsf')
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.item.classList))
