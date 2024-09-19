@@ -142,7 +142,6 @@ export default defineComponent({
     const renderContent = () => {
       const { type, contentPosition, borderStyle, activeCollapse, accordion, modelValue, options, finishStatus, processStatus, simple, max, action } = props
       const isChildren = formatFormItems.value.some(column => column.children)
-
       if (isFunction(slots.default))
         return slots.default()
 
@@ -207,8 +206,8 @@ export default defineComponent({
                     emit('update:modelValue', model)
                   }}
                   onChange={(...args) => { emit('change', ...args) }}
-                  onForm-item-click={(...args) => { emit('form-item-click', ...args) }}
-                  onForm-item-mousedown={(...args) => { debugger; emit('form-item-mousedown', ...args) }}
+                  onForm-item-click={(...args) => { console.log('333'); emit('form-item-click', ...args) }}
+                  onForm-item-mousedown={(...args) => { emit('form-item-mousedown', ...args) }}
                 />
               )
             })}
@@ -329,7 +328,6 @@ export default defineComponent({
 
     return () => {
       const { modelValue } = props
-
       return (
         <ElForm
           {...{ ...formConfig.value, model: modelValue, class: `${props.type}-form` }}

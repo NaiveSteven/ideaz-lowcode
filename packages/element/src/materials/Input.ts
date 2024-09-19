@@ -6,7 +6,7 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   inputTemplateOptionsConfig,
-  inputTemplateSchema
+  inputTemplateSchema,
 } from '../schemas'
 
 export function InputTemplateComponent(key = uid()): WorkspaceComponentItem {
@@ -49,6 +49,5 @@ export function InputTemplateComponent(key = uid()): WorkspaceComponentItem {
     allowCopy: true,
     allowDelete: true,
     activeCollapseItems: ['field', 'component', 'formItem'],
-    children: [],
   }
 }
