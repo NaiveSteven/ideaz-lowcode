@@ -38,6 +38,7 @@ export default defineComponent({
     const { formConfig } = useWorkspaceForm()
 
     let tempData: any = null
+    let isUpdateKey = true
 
     const tableKey = ref(new Date().valueOf())
 
@@ -62,7 +63,10 @@ export default defineComponent({
 
     watch(() => curOperateComponent.value, (val, old) => {
       // if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
-      tableKey.value = new Date().valueOf()
+      if (isUpdateKey)
+        tableKey.value = new Date().valueOf()
+
+      isUpdateKey = true
     })
 
     const handleMouseEvent = (e: MouseEvent) => {
@@ -212,6 +216,11 @@ export default defineComponent({
       updateCurOperateComponent(data)
     }
 
+    const handleFormItemMousedown = (data) => {
+      isUpdateKey = false
+      updateCurOperateComponent(data)
+    }
+
     function getArrayItem(key) {
       let data = null
       workspaceComponentList.value.forEach((item) => {
@@ -314,7 +323,7 @@ export default defineComponent({
                       col={formItem.schema}
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
                       onForm-item-click={handleFormItemClick}
-                      onForm-item-mousedown={handleFormItemClick}
+                      onForm-item-mousedown={handleFormItemMousedown}
                       onArray-form-draggable-end={(...args) => handleArrayFormEnd(formItem, ...args)}
                     />
                     )}

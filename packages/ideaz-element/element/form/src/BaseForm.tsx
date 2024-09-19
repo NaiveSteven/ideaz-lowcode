@@ -206,7 +206,7 @@ export default defineComponent({
                     emit('update:modelValue', model)
                   }}
                   onChange={(...args) => { emit('change', ...args) }}
-                  onForm-item-click={(...args) => { console.log('333'); emit('form-item-click', ...args) }}
+                  onForm-item-click={(...args) => { emit('form-item-click', ...args) }}
                   onForm-item-mousedown={(...args) => { emit('form-item-mousedown', ...args) }}
                 />
               )

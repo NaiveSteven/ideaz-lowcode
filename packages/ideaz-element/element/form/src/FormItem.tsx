@@ -53,12 +53,12 @@ export default defineComponent({
           class={[ns.b(), (formConfig.draggable || col.draggable) && ns.b('draggable'), `z-form-${formConfig.type}`, `schema-field-${col.id}`]}
           {...{ size: size.value, ...formItemProps.value }}
           v-slots={vSlots.value}
-          onMousedown={() => {
-            if (props.isFormColumn) {
-              //
-              emit('form-item-mousedown', col)
-            }
-          }}
+          // onMousedown={() => {
+          //   if (props.isFormColumn) {
+          //     //
+          //     emit('form-item-mousedown', col)
+          //   }
+          // }}
         >
           {(isFunction(col.render) || col.slot)
             ? slots.default?.()
