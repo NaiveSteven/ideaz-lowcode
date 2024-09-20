@@ -267,8 +267,8 @@ export default defineComponent({
         cols.splice(colIndex, 1)
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
         updateComponentList(list)
-        tableKey.value = new Date().valueOf()
       }
+      tableKey.value = new Date().valueOf()
     }
 
     return () => {
