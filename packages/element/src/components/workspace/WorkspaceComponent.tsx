@@ -243,12 +243,18 @@ export default defineComponent({
     }
 
     const handleArrayFormEnd = (formItem: any, draggableEvent: any, columns) => {
-      console.log(draggableEvent, columns, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
+      // console.log(draggableEvent, columns, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
       const list = [...workspaceComponentList.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
+        // const key = getKey(Array.from(draggableEvent.item.classList))
+        // const item = getArrayItem(key)
+        const cols = [...formItem.schema.fieldProps?.columns]
+        const item = cols[draggableEvent.oldIndex]
+        cols.splice(draggableEvent.oldIndex, 1)
+        cols.splice(draggableEvent.newIndex, 0, item)
         const index = list.findIndex(item => item.id === formItem.id)
-        list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', columns))
+        list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
         updateComponentList(list)
       }
       // array from to normal form
