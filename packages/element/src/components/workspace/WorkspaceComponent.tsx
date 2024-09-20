@@ -204,13 +204,13 @@ export default defineComponent({
       }
     }
 
-    const changeColumnSort = (data, key, oldIndex, newIndex) => {
-      const parent = get(data, key)
-      const newCol = { ...parent[oldIndex] }
-      const oldCol = { ...parent[newIndex] }
-      parent[newIndex] = newCol
-      parent[oldIndex] = oldCol
-    }
+    // const changeColumnSort = (data, key, oldIndex, newIndex) => {
+    //   const parent = get(data, key)
+    //   const newCol = { ...parent[oldIndex] }
+    //   const oldCol = { ...parent[newIndex] }
+    //   parent[newIndex] = newCol
+    //   parent[oldIndex] = oldCol
+    // }
 
     const handleFormItemClick = (data) => {
       updateCurOperateComponent(data)
@@ -251,7 +251,6 @@ export default defineComponent({
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', columns))
         updateComponentList(list)
       }
-      // changeColumnSort()
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.item.classList))

@@ -316,9 +316,6 @@ export default defineComponent({
         group: 'people',
         animation: 200,
         ghostClass: 'ghost',
-        onUpdate: () => {
-          console.log('onUpdate')
-        },
         onEnd: async (a) => {
           // await nextTick()
           emit('array-form-draggable-end', a, props.columns)
