@@ -141,7 +141,7 @@ export default defineComponent({
 
     const renderContent = () => {
       const { type, contentPosition, borderStyle, activeCollapse, accordion, modelValue, options, finishStatus, processStatus, simple, max, action } = props
-      const isChildren = formatFormItems.value.some(column => column.children)
+      const isChildren = formatFormItems.value.some(column => column.children?.length)
       if (isFunction(slots.default))
         return slots.default()
 
