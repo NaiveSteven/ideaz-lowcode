@@ -3,7 +3,7 @@ import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
 import { defineStore } from 'pinia'
 import mitt from '../../../element/src/event'
-import { changeDataId, getTreeDataItem } from '../utils/index'
+import { changeDataId, getComponentListItem, getTreeDataItem } from '../utils/index'
 import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
@@ -80,8 +80,19 @@ export const useWorkspaceStore = defineStore({
         }
         else {
           index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
-          if (index > -1)
+          if (index > -1) {
             this.workspaceComponentList.splice(index, 1, componentItem)
+          }
+          else {
+            // array form
+            const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+            const cols = [...parentData.schema?.fieldProps?.columns]
+            const colsIndex = cols.findIndex(item => item.id === componentItem.id)
+            if (colsIndex > -1) {
+              parentData.schema?.fieldProps?.columns.splice(colsIndex, 1, componentItem)
+              this.updateComponentItem(parentData)
+            }
+          }
         }
       }, { message: '属性更改', time: new Date() })
     },
