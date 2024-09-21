@@ -98,7 +98,7 @@ export default defineComponent({
         // debugger
         const cols = arrayItem.schema.fieldProps?.columns
         // list.splice(normalItemIndex, 1)
-        cols.splice(draggableEvent.newIndex, 0, { ...tempData, ...tempData.schema })
+        cols.splice(draggableEvent.newIndex, 0, tempData)
         updateComponentList(list)
         console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()

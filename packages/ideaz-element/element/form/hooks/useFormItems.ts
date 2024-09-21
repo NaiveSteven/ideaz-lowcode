@@ -26,42 +26,48 @@ export function useFormItems(props: FormProps) {
   }
 
   watch(() => props.columns, () => {
-    const _schema = cloneDeep(props.columns).map((item: FormColumn) => ({
-      ...item,
-      __key: item.key || item.field || item.slot || uid(),
-      children: item.children
-        ? item.children.map((child) => {
-          const isPlaceholder = Object.keys(child.fieldProps || {}).some(key => key.includes('placeholder') || key.includes('Placeholder'))
-          const fieldProps = !isPlaceholder
-            ? {
-                placeholder: setDefaultPlaceholder(child),
-                clearable: true,
-                filterable: true,
-                ...child?.fieldProps,
-              }
-            : {
-                clearable: true,
-                filterable: true,
-                ...child?.fieldProps,
-              }
-          return {
-            ...child,
-            fieldProps,
-          }
-        })
-        : undefined,
-    }))
-    formatFormItems.value = _schema
-      .filter((item: FormColumn) => !isHide(item))
-      .map((item: FormColumn) => ({
+    const _schema = cloneDeep(props.columns).map((cur: any) => {
+      const item = cur.schema ? { ...cur, ...cur.schema } : cur
+      return {
         ...item,
-        fieldProps: {
-          placeholder: setDefaultPlaceholder(item),
-          clearable: true,
-          filterable: true,
-          ...item?.fieldProps,
-        },
-      }))
+        __key: item.key || item.field || item.slot || uid(),
+        children: item.children
+          ? item.children.map((child) => {
+            const isPlaceholder = Object.keys(child.fieldProps || {}).some(key => key.includes('placeholder') || key.includes('Placeholder'))
+            const fieldProps = !isPlaceholder
+              ? {
+                  placeholder: setDefaultPlaceholder(child),
+                  clearable: true,
+                  filterable: true,
+                  ...child?.fieldProps,
+                }
+              : {
+                  clearable: true,
+                  filterable: true,
+                  ...child?.fieldProps,
+                }
+            return {
+              ...child,
+              fieldProps,
+            }
+          })
+          : undefined,
+      }
+    })
+    formatFormItems.value = _schema
+      .filter((item: any) => !isHide(item.schema ? { ...item, ...item.schema } : item))
+      .map((cur: any) => {
+        const item = cur.schema ? { ...cur, ...cur.schema } : cur
+        return {
+          ...item,
+          fieldProps: {
+            placeholder: setDefaultPlaceholder(item),
+            clearable: true,
+            filterable: true,
+            ...item?.fieldProps,
+          },
+        }
+      })
   }, { deep: true, immediate: true })
 
   return { formatFormItems }

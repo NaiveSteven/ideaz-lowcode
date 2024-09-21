@@ -41,7 +41,7 @@ export default defineComponent({
           const key = getKey(Array.from(obj.to.classList))
           const arrayItem = getArrayItem(key)
           const cols = arrayItem.schema.fieldProps?.columns
-          const item = { ...tempData, ...tempData.schema, id: uid() }
+          const item = { ...tempData, id: uid() }
           cols.splice(obj.newIndex, 0, item)
           updateCurOperateComponent(item)
           // updateComponentList(workspaceComponentList.value)
