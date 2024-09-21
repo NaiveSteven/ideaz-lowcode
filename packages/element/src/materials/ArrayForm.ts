@@ -116,8 +116,8 @@ const formColumn2 = {
 }
 
 export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem {
-  const arrayFormId = uid()
-  const arrayFormId2 = uid()
+  // const arrayFormId = uid()
+  // const arrayFormId2 = uid()
   return {
     id: uid(),
     icon: 'i-lightning',

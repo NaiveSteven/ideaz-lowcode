@@ -92,7 +92,7 @@ export default defineComponent({
       // normal form to array form
       if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.to.classList))
-        const normalItemIndex = list.findIndex(item => item.id === tempData.id)
+        // const normalItemIndex = list.findIndex(item => item.id === tempData.id)
         const arrayItem = getArrayItem(key)
         // console.log(workspaceComponentList.value, 'workspaceComponentList')
         // debugger
@@ -260,7 +260,7 @@ export default defineComponent({
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.item.classList))
-        const item = getArrayItem(key)
+        // const item = getArrayItem(key)
         const index = list.findIndex(item => item.id === formItem.id)
         const cols = [...formItem.schema.fieldProps?.columns]
         const colIndex = cols.findIndex(item => item.id === key)
