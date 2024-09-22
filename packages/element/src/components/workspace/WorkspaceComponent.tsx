@@ -212,23 +212,23 @@ export default defineComponent({
     //   parent[oldIndex] = oldCol
     // }
 
-    const handleFormItemClick = (data) => {
+    const handleFormItemClick = (data: WorkspaceComponentItem) => {
       updateCurOperateComponent(data)
     }
 
-    const handleFormItemMousedown = (data) => {
+    const handleFormItemMousedown = (data: WorkspaceComponentItem) => {
       isUpdateKey = false
       updateCurOperateComponent(data)
     }
 
-    function getArrayItem(key) {
-      let data = null
+    function getArrayItem(key: string) {
+      let data: WorkspaceComponentItem = {} as WorkspaceComponentItem
       workspaceComponentList.value.forEach((item) => {
         if (item.id === key)
           data = item
 
         if (item.schema.fieldProps?.columns?.length && !data) {
-          item.schema.fieldProps?.columns.forEach((item) => {
+          item.schema.fieldProps?.columns.forEach((item: WorkspaceComponentItem) => {
             if (item.id === key)
               data = item
           })
@@ -237,8 +237,8 @@ export default defineComponent({
       return data
     }
 
-    function getKey(classList) {
-      const str = classList.find(item => item.includes('schema-field'))
+    function getKey(classList: string[]) {
+      const str = classList.find(item => item.includes('schema-field')) || ''
       return str.split('-')[2]
     }
 
@@ -260,7 +260,6 @@ export default defineComponent({
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.item.classList))
-        // const item = getArrayItem(key)
         const index = list.findIndex(item => item.id === formItem.id)
         const cols = [...formItem.schema.fieldProps?.columns]
         const colIndex = cols.findIndex(item => item.id === key)
