@@ -135,10 +135,16 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
           width: '100%',
         },
         columns: [
-          { ...InputTemplateComponent(), schema: { ...InputTemplateComponent().schema, label: '通知单1' } },
-          { ...InputTemplateComponent(), schema: { ...InputTemplateComponent().schema, label: '通知单2' } },
-          // formColumn1,
-          // formColumn2,
+          {
+            ...InputTemplateComponent(),
+            schema: { ...InputTemplateComponent().schema, label: '通知单1' },
+            formItemFormData: { ...InputTemplateComponent().schema, label: '通知单1' },
+          },
+          {
+            ...InputTemplateComponent(),
+            schema: { ...InputTemplateComponent().schema, label: '通知单2' },
+            formItemFormData: { ...InputTemplateComponent().schema, label: '通知单2' },
+          },
         ],
       },
     },
