@@ -165,9 +165,22 @@ export const useWorkspaceStore = defineStore({
           const workspaceComponentType = globalSettingStore.getWorkspaceComponentType
           // 表单部分
           if (workspaceComponentType === 'form') {
-            this.workspaceComponentList.push(newComponentItem[0])
-            // 表单表格
+            const index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
+            if (index > -1) {
+              this.workspaceComponentList.push(newComponentItem[0])
+            }
+            else {
+              // array form
+              const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+              const cols = [...parentData.schema?.fieldProps?.columns, newComponentItem[0]]
+              const colsIndex = cols.findIndex(item => item.id === componentItem.id)
+              if (colsIndex > -1) {
+                parentData.schema.fieldProps!.columns = cols
+                this.updateComponentItem(parentData)
+              }
+            }
           }
+          // 表单表格
           else {
             // 表单项
             if (componentItem.name === 'tableForm') {
