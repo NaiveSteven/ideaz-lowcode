@@ -34,6 +34,22 @@
   outline-width: 0;
 }
 
+.table-col__ghost {
+  box-sizing: border-box;
+  height: 3px;
+  padding: 0;
+  overflow: hidden;
+  font-size: 0;
+  content: '';
+  background: #409eff;
+  border: 3px solid #409eff;
+  border-left: 0;
+  outline-width: 0;
+}
+
+.chosen {
+  border: 0;
+}
 
 .array-form {
   padding: 20px;

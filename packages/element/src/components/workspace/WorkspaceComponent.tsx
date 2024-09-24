@@ -271,7 +271,7 @@ export default defineComponent({
           animation={200}
           group="people"
           filter=".not-drag"
-          ghostClass="ghost"
+          ghostClass={workspaceComponentType.value !== 'crud' && 'ghost'}
           item-key="id"
           onUpdate:modelValue={(val: any) => updateComponentList(val, '排序更改')}
           onStart={start}

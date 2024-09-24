@@ -10,7 +10,7 @@ export function useDraggable(emit: any, tableData: Ref<any>, middleTableCols: Re
         animation: 200,
         handle: '.z-table-column-draggable',
         ghostClass: 'ghost',
-        dragClass: 'drag-class',
+        dragClass: 'table-col__ghost',
         onStart: () => {
           dragging.value = true
         },
