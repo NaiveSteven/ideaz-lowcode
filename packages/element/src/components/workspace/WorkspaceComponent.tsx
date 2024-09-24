@@ -100,7 +100,7 @@ export default defineComponent({
         // list.splice(normalItemIndex, 1)
         cols.splice(draggableEvent.newIndex, 0, tempData)
         updateComponentList(list)
-        console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
+        // console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
       if (workspaceComponentType.value === 'form')
@@ -203,14 +203,6 @@ export default defineComponent({
         tableKey.value = new Date().valueOf()
       }
     }
-
-    // const changeColumnSort = (data, key, oldIndex, newIndex) => {
-    //   const parent = get(data, key)
-    //   const newCol = { ...parent[oldIndex] }
-    //   const oldCol = { ...parent[newIndex] }
-    //   parent[newIndex] = newCol
-    //   parent[oldIndex] = oldCol
-    // }
 
     const handleFormItemClick = (data: WorkspaceComponentItem) => {
       updateCurOperateComponent(data)
