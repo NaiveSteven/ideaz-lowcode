@@ -116,11 +116,22 @@ export const useWorkspaceStore = defineStore({
           // 表单部分
           if (workspaceComponentType === 'form') {
             index = this.workspaceComponentList.findIndex(item => item.id === componentItem.id)
-            if (index > -1)
+            if (index > -1) {
               this.workspaceComponentList.splice(index, 1)
-
-            // 表单表格
+            }
+            else {
+              // array form
+              const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+              const cols = [...parentData.schema?.fieldProps?.columns]
+              const colsIndex = cols.findIndex(item => item.id === componentItem.id)
+              cols.splice(colsIndex, 1)
+              if (colsIndex > -1) {
+                parentData.schema.fieldProps!.columns = cols
+                this.updateComponentItem(parentData)
+              }
+            }
           }
+          // 表单表格
           else {
             // 表单项
             const columns = this.workspaceComponentList[0].schema.columns || []
