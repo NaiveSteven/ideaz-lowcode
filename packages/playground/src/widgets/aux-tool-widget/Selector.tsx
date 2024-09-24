@@ -1,4 +1,4 @@
-import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { getComponentListItem, useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { useInElement } from '../../hooks'
 import { getPids, getTreeDataItem } from '../../utils/index'
 
@@ -10,7 +10,8 @@ export default defineComponent({
     const { isOutside, changeBtnStatus } = useInElement('selector-btn')
 
     const selectors = computed(() => {
-      return getPids(workspaceComponentList.value, curOperateComponent.value)
+      const { parentData } = getComponentListItem(curOperateComponent.value.id, workspaceComponentList.value)
+      return parentData ? [...getPids(workspaceComponentList.value, curOperateComponent.value), parentData] : getPids(workspaceComponentList.value, curOperateComponent.value)
     })
 
     const tableProSelectors = computed(() => {
@@ -25,6 +26,7 @@ export default defineComponent({
           },
         ]
       }
+
       return []
     })
 

@@ -6,4 +6,5 @@ export * from './hooks'
 export * from './modules/globalSetting'
 export * from './modules/middleForm'
 export * from './modules/workspace'
+export * from './utils'
 export { store }
