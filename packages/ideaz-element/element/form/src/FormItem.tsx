@@ -50,8 +50,8 @@ export default defineComponent({
       if (options && !isEmpty(options))
         return (options[col.field!] || (col.fieldProps && col.fieldProps.options))
 
-      if (col.fieldOptionsConfig && col.fieldOptionsConfig[col.field])
-        return col.fieldOptionsConfig[col.field]
+      if (col.fieldOptionsConfig && col.fieldOptionsConfig.default)
+        return col.fieldOptionsConfig.default
 
       return {}
     }
