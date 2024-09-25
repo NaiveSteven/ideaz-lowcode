@@ -41,38 +41,37 @@ export default defineComponent({
     }
 
     return () => {
-      return null
-      // if (!curOperateComponent.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
-      //   return null
+      if (!curOperateComponent.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
+        return null
 
-      // if (!curOperateComponent.value.id) {
-      //   return (
-      //     <div class="form-content">
-      //       <z-form
-      //         options={formTemplateOptionsConfig}
-      //         v-model={formTemplateModel.value}
-      //         {...formConfig}
-      //         columns={formTemplateSchema}
-      //         onChange={handleMiddleFormChange}
-      //       />
-      //     </div>
-      //   )
-      // }
+      if (!curOperateComponent.value.id) {
+        return (
+          <div class="form-content">
+            <z-form
+              options={formTemplateOptionsConfig}
+              v-model={formTemplateModel.value}
+              {...formConfig}
+              columns={formTemplateSchema}
+              onChange={handleMiddleFormChange}
+            />
+          </div>
+        )
+      }
 
-      // if (curOperateComponent.value.name === 'tableCol')
-      //   return <CrudTableColumnSettingForm />
+      if (curOperateComponent.value.name === 'tableCol')
+        return <CrudTableColumnSettingForm />
 
-      // if (curOperateComponent.value.name === 'crud')
-      //   return <CrudSettingForm />
+      if (curOperateComponent.value.name === 'crud')
+        return <CrudSettingForm />
 
-      // if (
-      //   workspaceComponentList.value
-      //   && workspaceComponentList.value.length
-      //   && workspaceComponentList.value[0].name === 'crud'
-      // )
-      //   return <CrudFormItemSettingForm />
+      if (
+        workspaceComponentList.value
+        && workspaceComponentList.value.length
+        && workspaceComponentList.value[0].name === 'crud'
+      )
+        return <CrudFormItemSettingForm />
 
-      // return <FormItemSettingForm />
+      return <FormItemSettingForm />
     }
   },
 })

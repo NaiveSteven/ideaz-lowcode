@@ -46,18 +46,17 @@ export default defineComponent({
 
     const getOptions = () => {
       const { col, options } = props
-      console.log(col, options, 'colcolcol')
       if (options && !isEmpty(options))
         return (options[col.field!] || (col.fieldProps && col.fieldProps.options))
 
-      if (col.fieldOptionsConfig && col.fieldOptionsConfig.default)
-        return col.fieldOptionsConfig.default
+      if (col.fieldOptionsConfig && col.fieldOptionsConfig?.default)
+        return col.fieldOptionsConfig?.default
 
       return {}
     }
 
     return () => {
-      const { col, options, formConfig } = props
+      const { col, formConfig } = props
       return (
         <ElFormItem
           ref="formItem"
