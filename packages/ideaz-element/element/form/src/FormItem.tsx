@@ -55,6 +55,17 @@ export default defineComponent({
       return {}
     }
 
+    const getModelValue = () => {
+      const { col } = props
+      if (isFunction(col.fieldProps && col.fieldProps.format))
+        return col.fieldProps?.format(get(props.modelValue, col.field!))
+
+      if (isObject(col.fieldFormData))
+        return col.fieldFormData?.default
+
+      return get(props.modelValue, col.field!)
+    }
+
     return () => {
       const { col, formConfig } = props
       return (
@@ -70,9 +81,7 @@ export default defineComponent({
             : h(resolveDynamicComponent({
               name: ComponentName.value,
               attrs: {
-                'modelValue': isFunction(col.fieldProps && col.fieldProps.format)
-                  ? col.fieldProps?.format(get(props.modelValue, col.field!))
-                  : get(props.modelValue, col.field!),
+                'modelValue': getModelValue(),
                 'prop': col.field,
                 'options': getOptions(),
                 'size': size.value,
