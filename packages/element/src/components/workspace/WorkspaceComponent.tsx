@@ -88,6 +88,7 @@ export default defineComponent({
     }
 
     const end = (draggableEvent: { to: { id: string }, newIndex: number }) => {
+      console.log(workspaceComponentList.value, 'workspaceComponentListworkspaceComponentListworkspaceComponentList')
       const list = [...workspaceComponentList.value]
       // normal form to array form
       if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {

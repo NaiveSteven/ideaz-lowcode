@@ -3,7 +3,7 @@ import { get } from 'lodash-unified'
 import { vueRef as ref } from '../../../directives'
 import { useFormSize, useNamespace } from '../../../hooks'
 import { getContentByRenderAndSlot, resolveDynamicComponent } from '../../../shared'
-import { extractEvents, isFunction, isObject, isString } from '../../../utils'
+import { extractEvents, isEmpty, isFunction, isObject, isString } from '../../../utils'
 import {
   useFormItemComponent,
   useFormItemProps,
@@ -44,6 +44,18 @@ export default defineComponent({
       }
     }
 
+    const getOptions = () => {
+      const { col, options } = props
+      console.log(col, options, 'colcolcol')
+      if (options && !isEmpty(options))
+        return (options[col.field!] || (col.fieldProps && col.fieldProps.options))
+
+      if (col.fieldOptionsConfig && col.fieldOptionsConfig[col.field])
+        return col.fieldOptionsConfig[col.field]
+
+      return {}
+    }
+
     return () => {
       const { col, options, formConfig } = props
       return (
@@ -63,9 +75,7 @@ export default defineComponent({
                   ? col.fieldProps?.format(get(props.modelValue, col.field!))
                   : get(props.modelValue, col.field!),
                 'prop': col.field,
-                'options': options
-                  ? (options[col.field!] || (col.fieldProps && col.fieldProps.options))
-                  : {},
+                'options': getOptions(),
                 'size': size.value,
                 'class': [col.class, props.draggableId ? `schema-field-${props.draggableId}` : ''],
                 'style': col.style,
