@@ -5,18 +5,18 @@ import { ElButton, ElCollapse, ElCollapseItem, ElDivider, ElForm, ElFormItem, El
 import { cloneDeep, omit } from 'lodash-unified'
 import type { ComponentInternalInstance } from 'vue'
 
-// import { draggable } from '../../../directives'
+import { useDraggable } from 'vue-draggable-plus'
+import { draggable } from '../../../directives'
 
-import { useDraggable, vDraggable } from 'vue-draggable-plus'
 import { useExpose, useLocale, useNamespace } from '../../../hooks'
 import { getContentByRenderAndSlot } from '../../../shared'
 import { isFunction, isString } from '../../../utils'
 import type { FormColumn } from '../../types'
 import {
-  // useDraggable,
   useFormConfig,
   useFormItems,
   useFormMethods,
+  useDraggable as useInsideDraggable,
   useRow,
 } from '../hooks'
 import FormColumns from './FormColumns'
@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'ZForm',
   components: { FormColumns, OperationCard },
   props: formProps,
-  directives: { draggable: vDraggable },
+  directives: { draggable },
   emits: ['input', 'update:modelValue', 'change', 'update:activeCollapse', 'collapse-change', 'next-step', 'previous-step', 'update:activeStep', 'submit', 'update:columns', 'form-item-click', 'form-item-mousedown', 'array-form-draggable-end'],
   setup(props, { emit, slots }) {
     const { formatFormItems } = useFormItems(props)
@@ -40,7 +40,7 @@ export default defineComponent({
       clearValidate,
       scrollToField,
     } = useFormMethods(props)
-    // const { draggableOptions } = useDraggable(emit, formatFormItems)
+    const { draggableOptions } = useInsideDraggable(emit, formatFormItems)
     const ns = useNamespace('form')
     const { t } = useLocale()
 
@@ -331,6 +331,7 @@ export default defineComponent({
           ref={formRef}
           class={[rowKls.value, ns.b('')]}
           style={rowStyle.value}
+          v-draggable={draggableOptions}
         // onSubmit={withModifiers(function () { }, ['prevent'])}
         >
           {renderContent()}
