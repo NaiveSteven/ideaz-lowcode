@@ -100,7 +100,7 @@ export default defineComponent({
         const cols = arrayItem.schema.fieldProps?.columns
         // list.splice(normalItemIndex, 1)
         cols.splice(draggableEvent.newIndex, 0, tempData)
-        updateComponentList(list)
+        updateComponentList(list, '排序更改')
         // console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
@@ -248,7 +248,7 @@ export default defineComponent({
         cols.splice(draggableEvent.newIndex, 0, item)
         const index = list.findIndex(item => item.id === formItem.id)
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
-        updateComponentList(list)
+        updateComponentList(list, '排序更改')
       }
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
@@ -258,7 +258,7 @@ export default defineComponent({
         const colIndex = cols.findIndex(item => item.id === key)
         cols.splice(colIndex, 1)
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
-        updateComponentList(list)
+        updateComponentList(list, '排序更改')
       }
       tableKey.value = new Date().valueOf()
     }
