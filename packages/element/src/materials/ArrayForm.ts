@@ -48,8 +48,15 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
     }),
     formItemTemplateSchema,
     formItemOptionsConfig: formItemTemplateOptionsConfig,
-    componentFormData: reactive({ ...defaultArrayFormAttrs }),
-    componentSchema: arrayFormTemplateSchema,
+    componentFormData: reactive({ ...defaultArrayFormAttrs, labelWidth: '100px' }),
+    componentSchema: [
+      ...arrayFormTemplateSchema,
+      {
+        component: 'input',
+        field: 'labelWidth',
+        label: '标签宽度',
+      },
+    ],
     // componentOptionsConfig: checkboxTemplateOptionsConfig,
     fieldFormData: reactive({
       field: key,
