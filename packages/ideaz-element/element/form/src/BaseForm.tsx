@@ -142,6 +142,7 @@ export default defineComponent({
     const renderContent = () => {
       const { type, contentPosition, borderStyle, activeCollapse, accordion, modelValue, options, finishStatus, processStatus, simple, max, action } = props
       const isChildren = formatFormItems.value.some(column => column.children?.length)
+
       if (isFunction(slots.default))
         return slots.default()
 
@@ -214,7 +215,7 @@ export default defineComponent({
           </>
         )
       }
-      else if (type === 'array' && isChildren) {
+      else if (isChildren) {
         return formatFormItems.value.map((column, i) => {
           if (column.label && column.children && column.children.length) {
             const field = column.field!

@@ -96,20 +96,21 @@ function delEmptyObject(data: any) {
   }
 }
 
-function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
+function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form', list?: WorkspaceComponentItem[]) {
   const { workspaceComponentList } = useWorkspaceComponent()
   const { formConfig: workspaceFormConfig } = useWorkspaceForm()
   const formConfig = cloneDeep(workspaceFormConfig.value)
+  const listData = list || workspaceComponentList.value
 
   if (type === 'form') {
     const formData: IndexType = {}
     const options: IndexType = {}
 
-    const isRequired = workspaceComponentList.value.some(item => item.fieldFormData?.required)
+    const isRequired = listData.some(item => item.fieldFormData?.required)
     if (isRequired)
       formConfig.rules = {}
 
-    workspaceComponentList.value.forEach((item) => {
+    listData.forEach((item) => {
       const field = item.fieldFormData?.field
       if (field) {
         formData[field] = item.fieldFormData!.default
@@ -137,7 +138,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     delEmptyObject(formConfig)
 
     return {
-      columns: cloneDeep(workspaceComponentList.value).map((item) => {
+      columns: cloneDeep(listData).map((item) => {
         if (
           item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
@@ -215,6 +216,14 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         delete fieldProps?.options
         if (isObject(fieldProps) && isEmpty(fieldProps))
           delete item.schema.fieldProps
+
+        // array form item
+        if (item.schema.fieldProps?.columns && item.schema.fieldProps?.columns[0].schema) {
+          const { columns: arrayFormItemColumns, formData: data } = parseElementSchema(mode, 'form', item.schema.fieldProps?.columns)
+          item.schema = { label: item.schema.label, field: item.schema.field, ...item.schema.fieldProps, columns: undefined, style: undefined, action: undefined, draggable: undefined }
+          // item.schema.fieldProps.columns = undefined
+          item.schema.children = arrayFormItemColumns
+        }
 
         return item.schema
       }),
