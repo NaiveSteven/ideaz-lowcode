@@ -112,8 +112,19 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
 
     listData.forEach((item) => {
       const field = item.fieldFormData?.field
+      const arrayFormColumns = item.schema.fieldProps?.columns
       if (field) {
-        formData[field] = item.fieldFormData!.default
+        formData[field] = cloneDeep(item.fieldFormData!.default)
+        // array form
+        if (arrayFormColumns) {
+          item.fieldFormData!.default.forEach(({}, index) => {
+            const arrayFormData: IndexType = {}
+            arrayFormColumns.forEach((cur) => {
+              arrayFormData[cur.fieldFormData.field] = cur.fieldFormData!.default
+            })
+            formData[field][index] = arrayFormData
+          })
+        }
         if (item.componentOptionsConfig?.[field]) {
           options[field] = item.componentOptionsConfig?.[field].map((option: OptionsItem) => ({
             [item.componentFormData?.alias?.label || item.componentFormData?.props?.label || 'label']: option.label,
