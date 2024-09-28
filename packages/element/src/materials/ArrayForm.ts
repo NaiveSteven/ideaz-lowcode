@@ -25,6 +25,7 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
         type: 'array',
         max: undefined,
         draggable: true,
+        labelWidth: '100px',
         style: {
           width: '100%',
         },
