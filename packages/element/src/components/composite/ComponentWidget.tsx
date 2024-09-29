@@ -40,12 +40,17 @@ export default defineComponent({
       }
       // 表单
       if (!expandComponentItem.templates || !Array.isArray(expandComponentItem.templates)) {
+        const arrayFormColumns = expandComponentItem.schema?.fieldProps?.columns
         const componentItem = {
           ...expandComponentItem,
           id: uid(),
           pid: toId,
           schema: {
             ...expandComponentItem.schema,
+            fieldProps: {
+              ...expandComponentItem.schema?.fieldProps,
+              columns: arrayFormColumns ? arrayFormColumns.map((item: WorkspaceComponentItem) => ({ ...item, id: uid() })) : undefined,
+            },
           },
         }
         pushComponentItem(componentItem, index, toId)
