@@ -97,7 +97,7 @@ export const formProps = {
   },
   draggable: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 }
 
