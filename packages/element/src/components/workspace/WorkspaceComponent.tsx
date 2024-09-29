@@ -137,14 +137,14 @@ export default defineComponent({
       // }
       const config = workspaceComponentList.value[0]
       const schema = config.schema
-      let cols: TableCol[] = []
+      // let cols: TableCol[] = []
       if (schema.columns && schema.columns.length) {
         const newArr = [...schema.columns]
         const newFormItem = { ...schema.columns[oldIndex].search }
         const oldFormItem = { ...schema.columns[newIndex].search }
         newArr[newIndex].search = newFormItem
         newArr[oldIndex].search = oldFormItem
-        cols = newArr
+        // cols = newArr
         // updateComponentList([
         //   {
         //     ...config,

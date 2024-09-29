@@ -318,7 +318,6 @@ export default defineComponent({
         animation: 200,
         ghostClass: 'ghost',
         onEnd: async (a) => {
-          // await nextTick()
           emit('array-form-draggable-end', a, props.columns)
         },
       })
