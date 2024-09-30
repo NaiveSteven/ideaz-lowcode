@@ -1,5 +1,5 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
-import { useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
+import { getComponentListItem, useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import { cloneDeep, get, set } from 'lodash-es'
 import { useCol } from '@ideaz/element'
 import { VueDraggable } from 'vue-draggable-plus'
@@ -240,14 +240,27 @@ export default defineComponent({
       const list = [...workspaceComponentList.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
-        // const key = getKey(Array.from(draggableEvent.item.classList))
-        // const item = getArrayItem(key)
-        const cols = [...formItem.schema.fieldProps?.columns]
-        const item = cols[draggableEvent.oldIndex]
-        cols.splice(draggableEvent.oldIndex, 1)
-        cols.splice(draggableEvent.newIndex, 0, item)
-        const index = list.findIndex(item => item.id === formItem.id)
-        list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
+        const toKey = getKey(Array.from(draggableEvent.to.classList))
+        const fromKey = getKey(Array.from(draggableEvent.from.classList))
+        const { data: toData, parentData: toParentData } = getComponentListItem(toKey, workspaceComponentList.value)
+        const { data: fromData, parentData: fromParentData } = getComponentListItem(fromKey, workspaceComponentList.value)
+        const toFormItem = toParentData || toData
+        const fromFormItem = fromParentData || fromData
+        const toCols = [...toFormItem.schema.fieldProps?.columns]
+        const fromCols = [...fromFormItem.schema.fieldProps?.columns]
+        const item = fromCols[draggableEvent.oldIndex]
+        fromCols.splice(draggableEvent.oldIndex, 1)
+        // inline array form drag
+        if (fromKey === toKey) {
+          fromCols.splice(draggableEvent.newIndex, 0, item)
+        }
+        else {
+          toCols.splice(draggableEvent.newIndex, 0, item)
+          const toIndex = list.findIndex(item => item.id === toFormItem.id)
+          list.splice(toIndex, 1, set(toFormItem, 'schema.fieldProps.columns', toCols))
+        }
+        const fromIndex = list.findIndex(item => item.id === fromFormItem.id)
+        list.splice(fromIndex, 1, set(fromFormItem, 'schema.fieldProps.columns', fromCols))
         updateComponentList(list, '排序更改')
       }
       // array from to normal form
