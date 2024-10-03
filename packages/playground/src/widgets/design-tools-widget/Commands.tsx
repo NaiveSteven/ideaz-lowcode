@@ -21,9 +21,7 @@ export default defineComponent({
             disabled={commands.value.length === 0 || currentIndex.value === 0 || viewType.value !== 'design'}
           >
             <el-tooltip effect="light" content="后退" placement="top" showAfter={500}>
-              <el-icon>
-                <i-back />
-              </el-icon>
+              <el-icon size="20"><i class={['icon-zhixiang-houtui', 'iconfont']}></i></el-icon>
             </el-tooltip>
           </el-button>
           <el-button
@@ -31,9 +29,7 @@ export default defineComponent({
             disabled={commands.value.length === 0 || currentIndex.value === commands.value.length - 1 || viewType.value !== 'design'}
           >
             <el-tooltip effect="light" content="前进" placement="top" showAfter={500}>
-              <el-icon>
-                <i-right />
-              </el-icon>
+              <el-icon size="20"><i class={['icon-zhixiang-qianjin', 'iconfont']}></i></el-icon>
             </el-tooltip>
           </el-button>
         </el-button-group>
