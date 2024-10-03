@@ -97,7 +97,7 @@ export default defineComponent({
                     return (
                       <div class="list-item">
                         <span class="list-item-icon">
-                          <el-icon size="20">{h(resolveComponent(element.icon))}</el-icon>
+                          {element.icon.startsWith('i-') ? <el-icon size="20">{h(resolveComponent(element.icon))}</el-icon> : <el-icon size="20"><i class={[element.icon, 'iconfont']}></i></el-icon>}
                         </span>
                         <span class="list-item-text">{element.title}</span>
                       </div>

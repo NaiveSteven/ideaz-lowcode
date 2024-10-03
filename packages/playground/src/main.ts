@@ -17,6 +17,7 @@ import App from './App.vue'
 import './design/index.scss'
 import { useHotKeys } from './hooks'
 import router from './router/index'
+import './assets/iconfont.css'
 
 function transElIconName(iconName: string) {
   return `i${iconName.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)}`

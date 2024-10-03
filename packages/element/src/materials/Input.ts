@@ -12,7 +12,7 @@ import {
 export function InputTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-lightning',
+    icon: 'icon-danhangshurukuang',
     title: '输入框',
     schema: {
       component: 'input',
