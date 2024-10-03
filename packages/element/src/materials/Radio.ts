@@ -13,7 +13,7 @@ export function RadioTemplateComponent(): WorkspaceComponentItem {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-ice-cream-square',
+    icon: 'icon-danxuan',
     title: '单选框',
     schema: {
       component: 'radio',

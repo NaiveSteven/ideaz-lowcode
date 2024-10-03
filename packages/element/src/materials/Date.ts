@@ -13,7 +13,7 @@ export function DateTemplateComponent() {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-calendar',
+    icon: 'icon-riqi',
     title: '日期选择',
     schema: {
       component: 'datepicker',

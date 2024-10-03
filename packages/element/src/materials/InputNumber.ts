@@ -6,14 +6,14 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   inputNumberTemplateOptionsConfig,
-  inputNumberTemplateSchema
+  inputNumberTemplateSchema,
 } from '../schemas'
 
-export const InputNumberTemplateComponent = (): WorkspaceComponentItem => {
+export function InputNumberTemplateComponent(): WorkspaceComponentItem {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-cherry',
+    icon: 'icon-fuhao-shuzishurukuang',
     title: '数字输入',
     schema: {
       component: 'el-input-number',

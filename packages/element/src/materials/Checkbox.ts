@@ -12,7 +12,7 @@ import {
 export function CheckboxTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-lightning',
+    icon: 'icon-duoxuan',
     title: '复选框',
     schema: {
       component: 'checkbox',

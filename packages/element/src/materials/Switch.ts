@@ -5,13 +5,13 @@ import {
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
-  switchTemplateSchema
+  switchTemplateSchema,
 } from '../schemas'
 
 export function SwitchTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-cpu',
+    icon: 'icon-kaiguan',
     title: '开关',
     schema: {
       component: 'el-switch',

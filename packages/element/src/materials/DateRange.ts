@@ -13,7 +13,7 @@ export function DateRangeTemplateComponent(): WorkspaceComponentItem {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-calendar',
+    icon: 'icon-riqiqujian',
     title: '日期范围',
     schema: {
       component: 'datepicker',

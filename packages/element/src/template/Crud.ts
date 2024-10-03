@@ -10,7 +10,7 @@ import {
   inputCrudSchema,
   tableColFormData,
   tableColTemplateOptionsConfig,
-  tableColTemplateSchema
+  tableColTemplateSchema,
 } from '../schemas'
 
 const FORM_COMPONENT_TYPE = [
@@ -283,7 +283,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
   return {
     id: uid(),
     name: 'crud',
-    icon: 'i-list',
+    icon: 'icon-biaoge',
     title: '增删改查',
     schema: {
       action: false,

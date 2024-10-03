@@ -12,7 +12,7 @@ import {
 export function SelectTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-bicycle',
+    icon: 'icon-xialadanxuan',
     title: '选择框',
     schema: {
       component: 'select',

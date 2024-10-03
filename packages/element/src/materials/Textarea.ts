@@ -5,13 +5,13 @@ import {
   formItemFormData,
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
-  textareaTemplateSchema
+  textareaTemplateSchema,
 } from '../schemas'
 
 export function TextareaTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-coin',
+    icon: 'icon-duohangshurukuang',
     title: '多行输入',
     schema: {
       component: 'input',
