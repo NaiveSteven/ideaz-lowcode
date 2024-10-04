@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4701476 */
-  src: url('iconfont.woff2?t=1727962963835') format('woff2'),
-       url('iconfont.woff?t=1727962963835') format('woff'),
-       url('iconfont.ttf?t=1727962963835') format('truetype');
+  src: url('iconfont.woff2?t=1728028365056') format('woff2'),
+       url('iconfont.woff?t=1728028365056') format('woff'),
+       url('iconfont.ttf?t=1728028365056') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,54 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-huakuai:before {
+  content: "\e627";
+}
+
+.icon-shebei-PC:before {
+  content: "\e674";
+}
+
+.icon-bijibendiannao:before {
+  content: "\e6f9";
+}
+
+.icon-android:before {
+  content: "\e6fc";
+}
+
+.icon-shijianxuanzekuang:before {
+  content: "\e648";
+}
+
+.icon-shijianxuanze:before {
+  content: "\e764";
+}
+
+.icon-shijianxuanze1:before {
+  content: "\e62c";
+}
+
+.icon-shuzubiaodan:before {
+  content: "\e603";
+}
+
+.icon-shuxuanzeqi:before {
+  content: "\e69b";
+}
+
+.icon-html:before {
+  content: "\e6a0";
+}
+
+.icon-JSX:before {
+  content: "\e6a1";
+}
+
+.icon-caozuo-pingxingline:before {
+  content: "\e6b4";
 }
 
 .icon-biaoge:before {
