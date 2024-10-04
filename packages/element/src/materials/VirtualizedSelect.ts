@@ -12,7 +12,7 @@ import {
 export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-camera',
+    icon: 'icon-shuxingkongjian',
     title: '虚拟化选择器',
     schema: {
       component: 'el-select-v2',

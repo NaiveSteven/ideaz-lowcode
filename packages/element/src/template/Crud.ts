@@ -283,7 +283,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
   return {
     id: uid(),
     name: 'crud',
-    icon: 'icon-biaoge',
+    icon: 'icon-bushu',
     title: '增删改查',
     schema: {
       action: false,
