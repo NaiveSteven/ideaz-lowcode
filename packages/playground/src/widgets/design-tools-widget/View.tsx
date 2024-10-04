@@ -1,26 +1,26 @@
 const VIEW_BUTTON_GROUPS = [
   {
-    icon: 'i-brush',
+    icon: 'icon-huaban',
     type: 'design',
     tooltip: '画板',
   },
   {
-    icon: 'i-scale-to-original',
+    icon: 'icon-var',
     type: 'json',
     tooltip: 'JSON预览',
   },
   {
-    icon: 'i-tickets',
+    icon: 'icon-html',
     type: 'page',
     tooltip: '页面代码预览',
   },
   {
-    icon: 'i-tickets',
+    icon: 'icon-JSX',
     type: 'tsx',
     tooltip: 'TSX代码预览',
   },
   {
-    icon: 'i-video-play',
+    icon: 'icon-shipin',
     type: 'play',
     tooltip: '效果预览',
   },
@@ -44,7 +44,9 @@ export default defineComponent({
             onClick={() => emit('clickView', item.type)}
           >
             <el-tooltip effect="light" content={item.tooltip} placement="top" showAfter={500}>
-              <el-icon>{h(resolveComponent(item.icon))}</el-icon>
+              <el-icon>
+                <i class={[item.icon, 'iconfont']}></i>
+              </el-icon>
             </el-tooltip>
           </el-button>
         ))}
