@@ -13,21 +13,21 @@ export default defineComponent({
         <el-button disabled={props.value === 'pc'} onClick={() => emit('clickPixel', 'pc')}>
           <el-tooltip effect="light" content="客户端" placement="top" showAfter={500}>
             <el-icon>
-              <i-data-board />
+              <i class={['icon-bijibendiannao', 'iconfont']}></i>
             </el-icon>
           </el-tooltip>
         </el-button>
         <el-button disabled={props.value === 'mobile'} onClick={() => emit('clickPixel', 'mobile')}>
           <el-tooltip effect="light" content="移动端" placement="top" showAfter={500}>
             <el-icon>
-              <i-iphone />
+              <i class={['icon-android', 'iconfont']}></i>
             </el-icon>
           </el-tooltip>
         </el-button>
         <el-button disabled={props.value === 'pad'} onClick={() => emit('clickPixel', 'pad')}>
           <el-tooltip effect="light" content="平板端" placement="top" showAfter={500}>
             <el-icon>
-              <i-monitor />
+              <i class={['icon-shebei-PC', 'iconfont']}></i>
             </el-icon>
           </el-tooltip>
         </el-button>
