@@ -13,7 +13,7 @@ export function RateTemplateComponent() {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-calendar',
+    icon: 'icon-caozuo-pingxingline',
     title: '评分',
     schema: {
       component: 'el-rate',

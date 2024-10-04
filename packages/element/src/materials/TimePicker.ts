@@ -13,7 +13,7 @@ export function TimePickerTemplateComponent() {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-calendar',
+    icon: 'icon-shijianxuanze1',
     title: '时间选择器',
     schema: {
       component: 'el-time-picker',

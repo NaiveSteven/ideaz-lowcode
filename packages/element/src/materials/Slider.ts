@@ -6,14 +6,14 @@ import {
   formItemTemplateOptionsConfig,
   formItemTemplateSchema,
   sliderTemplateOptionsConfig,
-  sliderTemplateSchema
+  sliderTemplateSchema,
 } from '../schemas'
 
-export const SliderTemplateComponent = (): WorkspaceComponentItem => {
+export function SliderTemplateComponent(): WorkspaceComponentItem {
   const field = uid()
   return {
     id: uid(),
-    icon: 'i-semi-select',
+    icon: 'icon-huakuai',
     title: '滑块',
     schema: {
       component: 'el-slider',
@@ -25,7 +25,7 @@ export const SliderTemplateComponent = (): WorkspaceComponentItem => {
         step: 1,
         showStops: false,
         showTooltip: true,
-        validateEvent: true
+        validateEvent: true,
       },
     },
     formItemFormData: reactive({

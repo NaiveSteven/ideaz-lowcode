@@ -14,7 +14,7 @@ export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem 
   // const arrayFormId2 = uid()
   return {
     id: uid(),
-    icon: 'i-lightning',
+    icon: 'icon-shuzubiaodan',
     title: '数组表单',
     schema: {
       component: 'z-form',
