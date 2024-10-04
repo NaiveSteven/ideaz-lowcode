@@ -12,7 +12,7 @@ import {
 export function TreeSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'i-bicycle',
+    icon: 'icon-shuxuanzeqi',
     title: '树形选择',
     schema: {
       component: 'el-tree-select',
