@@ -13,7 +13,7 @@ export function TimeSelectTemplateComponent() {
   const field = uid()
   return {
     id: uid(),
-    icon: 'icon-shijianxuanzekuang',
+    icon: 'icon-shijianxuanze2',
     title: '时间选择',
     schema: {
       component: 'el-time-select',

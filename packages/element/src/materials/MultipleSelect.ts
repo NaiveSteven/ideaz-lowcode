@@ -20,7 +20,7 @@ export function MultipleSelectTemplateComponent() {
     }),
     formItemTemplateSchema,
     formItemOptionsConfig: formItemTemplateOptionsConfig,
-    icon: 'i-magic-stick',
+    icon: 'icon-duoxuanxialaliebiao',
     title: '多选框',
     schema: {
       component: 'select',
