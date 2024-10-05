@@ -23,6 +23,7 @@ export default defineComponent({
           {
             id: workspaceComponentList.value[0].id,
             title: '增删改查',
+            icon: workspaceComponentList.value[0].icon,
           },
         ]
       }
@@ -50,7 +51,7 @@ export default defineComponent({
         onClick={() => handleClickTitle(curOperateComponent.value)}
       >
         <el-icon>
-          <i-setting />
+          <i class={[curOperateComponent.value.icon, 'iconfont']}></i>
         </el-icon>
         <span>{curOperateComponent.value.title}</span>
       </el-button>
@@ -88,7 +89,7 @@ export default defineComponent({
                       onClick={() => handleClickTitle(item)}
                     >
                       <el-icon>
-                        <i-setting />
+                        <i class={[item.icon, 'iconfont']}></i>
                       </el-icon>
                       <span>{item.title}</span>
                     </el-button>
