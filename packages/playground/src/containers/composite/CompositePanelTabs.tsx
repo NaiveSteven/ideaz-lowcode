@@ -31,7 +31,7 @@ export const CompositePanelTabs = defineComponent({
               ]}
               onClick={() => clickTabPane(item)}
             >
-              {h(resolveComponent(item.icon), { width: '20px', height: '20px' })}
+              <el-icon size="20"><i class={[item.icon, 'iconfont']}></i></el-icon>
             </div>
           </el-tooltip>
         ))}

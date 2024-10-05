@@ -7,17 +7,17 @@ export interface CompositeTab {
 export const COMPOSITE_TABS: CompositeTab[] = [
   {
     title: '组件',
-    icon: 'i-setting',
+    icon: 'icon-shezhi',
     key: 'component',
   },
   {
-    title: '大纲树',
-    icon: 'i-menu',
+    title: '目录',
+    icon: 'icon-fuhao-tuceng',
     key: 'menu',
   },
   {
-    title: '历史记录',
-    icon: 'i-clock',
+    title: '操作记录',
+    icon: 'icon-shijianzhou',
     key: 'history',
   },
 ]
