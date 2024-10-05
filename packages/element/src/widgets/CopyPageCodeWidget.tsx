@@ -21,9 +21,7 @@ export default defineComponent({
       return (
         <el-tooltip effect="light" content="页面代码复制" placement="top" showAfter={500}>
           <el-button onClick={handleCopyJSON}>
-            <el-icon>
-              <i-document-copy />
-            </el-icon>
+            <el-icon size="20"><i class={['icon-fuzhi', 'iconfont']}></i></el-icon>
           </el-button>
         </el-tooltip>
       )

@@ -3,7 +3,7 @@ import { uid } from '@ideal-schema/shared'
 export function SlotTemplateComponent(): WorkspaceComponentItem {
   return {
     id: uid(),
-    icon: 'icon-xuxian',
+    icon: 'icon-rongqi',
     title: '插槽',
     schema: {
       component: 'placeholder-block',

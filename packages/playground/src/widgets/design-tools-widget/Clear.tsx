@@ -13,15 +13,13 @@ export default defineComponent({
       clearWorkspaceComponentList()
       updateWorkspaceComponentType('form')
       updateCurOperateComponent({} as WorkspaceComponentItem)
-      ElMessage.success('清空成功')
+      // ElMessage.success('清空成功')
     }
 
     return () => (
       <el-tooltip effect="light" content="清空" placement="top" showAfter={500}>
         <el-button onClick={handleClearAll}>
-          <el-icon>
-            <i-delete />
-          </el-icon>
+          <el-icon size="20"><i class={['icon-shanchu', 'iconfont']}></i></el-icon>
         </el-button>
       </el-tooltip>
     )
