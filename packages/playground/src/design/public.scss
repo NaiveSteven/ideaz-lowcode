@@ -65,10 +65,20 @@
   }
 }
 
-.iconfont {
-  font-size: 24px !important;
+.drawer__body, .composite-panel-tabs {
+  .iconfont {
+    font-size: 24px !important;
+  }
+
+  .icon-shijianxuanze2 {
+    font-size: 18px !important;
+  }
 }
 
-.icon-shijianxuanze2 {
-  font-size: 18px !important;
-}
+
+
+// .dragArea {
+//   .iconfont {
+//     font-size: 12px !important;
+//   }
+// }
