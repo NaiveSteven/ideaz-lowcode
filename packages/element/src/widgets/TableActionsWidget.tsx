@@ -32,6 +32,7 @@ export default defineComponent({
               field: prop,
               label: 'title',
             }),
+            icon: 'icon-biaoge-lie',
             activeCollapseItems: ['column'],
             allowCopy: true,
             allowDelete: true,
