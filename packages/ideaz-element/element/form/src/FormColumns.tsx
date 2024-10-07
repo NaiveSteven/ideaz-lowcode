@@ -68,7 +68,7 @@ export default defineComponent({
               emit('change', { value: val, field, formData: newVal })
             }}
             onClick={(e: Event) => {
-              e.preventDefault()
+              // e.preventDefault()
               e.stopPropagation()
               emit('form-item-click', col)
             }}
