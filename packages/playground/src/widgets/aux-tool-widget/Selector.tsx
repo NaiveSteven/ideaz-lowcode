@@ -104,7 +104,7 @@ export default defineComponent({
                     onClick={() => handleClickTitle(item)}
                   >
                     <el-icon>
-                      <i-setting />
+                      <i class={[item.icon, 'iconfont']}></i>
                     </el-icon>
                     <span>{item.title}</span>
                   </el-button>
