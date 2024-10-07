@@ -63,7 +63,7 @@ export default defineComponent({
           {condition && (
             <el-button type="primary" size="small" class={cls} onClick={handleClickForm}>
               <el-icon>
-                <i-setting />
+                <i class={['icon-biaodan', 'iconfont']}></i>
               </el-icon>
               <span>{workspaceComponentType.value === 'form' ? '表单' : '页面'}</span>
             </el-button>

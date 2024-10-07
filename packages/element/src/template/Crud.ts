@@ -30,6 +30,7 @@ function getColumns() {
       prop: 'name',
       label: '姓名',
       title: '表格项',
+      icon: 'icon-biaoge-lie',
       id: uid(),
       search: {
         id: mockNameId,
@@ -42,6 +43,7 @@ function getColumns() {
         title: '表单项',
         field: mockNameId,
         label: '表单项1',
+        icon: 'icon-biaodanxiang',
         componentFormData: reactive({
           ...inputCrudFormData,
           componentType: 'input',
@@ -117,6 +119,7 @@ function getColumns() {
       prop: 'address',
       label: '地址',
       title: '表格项',
+      icon: 'icon-biaoge-lie',
       id: uid(),
       search: {
         id: mockAddressId,
@@ -129,6 +132,7 @@ function getColumns() {
         title: '表单项',
         field: mockAddressId,
         label: '表单项2',
+        icon: 'icon-biaodanxiang',
         componentFormData: reactive({
           ...inputCrudFormData,
           componentType: 'input',
@@ -204,6 +208,7 @@ function getColumns() {
       id: uid(),
       title: '表格项',
       prop: 'phone',
+      icon: 'icon-biaoge-lie',
       label: '手机号',
       componentSchema: tableColTemplateSchema,
       componentOptionsConfig: tableColTemplateOptionsConfig,
@@ -234,6 +239,7 @@ function getColumns() {
       title: '表格项',
       prop: 'operation',
       label: '操作',
+      icon: 'icon-biaoge-lie',
       type: 'button',
       buttons: [
         {
