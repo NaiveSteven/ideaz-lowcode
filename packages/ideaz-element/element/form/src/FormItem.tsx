@@ -94,9 +94,9 @@ export default defineComponent({
                     : () => { },
                 },
                 'onUpdate:modelValue': (val: any) => modify(val),
-                'onForm-item-click': (...args) => { emit('form-item-click', ...args) },
-                'onForm-item-mousedown': (...args) => { emit('form-item-mousedown', ...args) },
-                'onArray-form-draggable-end': (...args) => { emit('array-form-draggable-end', ...args) },
+                'onForm-item-click': (...args: any) => { emit('form-item-click', ...args) },
+                'onForm-item-mousedown': (...args: any) => { emit('form-item-mousedown', ...args) },
+                'onArray-form-draggable-end': (...args: any) => { emit('array-form-draggable-end', ...args) },
                 ...extractEvents(col),
               },
             }))}

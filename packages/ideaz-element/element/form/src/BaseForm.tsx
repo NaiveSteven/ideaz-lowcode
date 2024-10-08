@@ -45,7 +45,6 @@ export default defineComponent({
     const { t } = useLocale()
 
     const formRef = ref()
-    const arrayFormRef = ref()
 
     const { proxy: ctx } = getCurrentInstance() as ComponentInternalInstance
     const activeStep = computed({
@@ -195,7 +194,7 @@ export default defineComponent({
         return (
           <>
             {modelValue.map((data: any, index: number) => {
-              const formProps = omit(props, FORM_FILTER_KEYS)
+              // const formProps = omit(props, FORM_FILTER_KEYS)
               return (
                 <FormColumns
                   modelValue={data}

@@ -58,4 +58,8 @@ export interface FormColumn {
   // group
   contentPosition?: 'left' | 'right' | 'center'
   borderStyle?: 'none' | 'solid' | 'hidden' | 'dashed' | ''
+  // Schema
+  draggable?: boolean
+  fieldOptionsConfig?: any
+  fieldFormData?: any
 }

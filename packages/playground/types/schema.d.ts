@@ -43,4 +43,5 @@ declare interface Schema {
   headerRowClassName?: string
   draggable?: boolean
   size?: 'default' | 'small' | 'large'
+  children?: Schema[]
 }

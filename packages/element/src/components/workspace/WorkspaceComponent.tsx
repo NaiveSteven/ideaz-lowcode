@@ -1,6 +1,6 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { getComponentListItem, useGlobalSetting, useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
-import { cloneDeep, get, set } from 'lodash-es'
+import { cloneDeep, set } from 'lodash-es'
 import { useCol } from '@ideaz/element'
 import { VueDraggable } from 'vue-draggable-plus'
 import mitt from '../../event'
@@ -48,7 +48,7 @@ export default defineComponent({
         event?.preventDefault()
         if (props.curOperateComponent.id === id)
           return
-        let item: any = {}
+        let item: WorkspaceComponentItem = {} as WorkspaceComponentItem
         workspaceComponentList.value[0]?.schema?.columns?.forEach((col) => {
           if (col.search?.formItemProps?.id === `schema-field${id}`)
             item = { ...col.search }
@@ -61,7 +61,7 @@ export default defineComponent({
       mitt.off('form-item-click')
     })
 
-    watch(() => curOperateComponent.value, (val, old) => {
+    watch(() => curOperateComponent.value, () => {
       // if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
       if (isUpdateKey)
         tableKey.value = new Date().valueOf()
@@ -82,13 +82,12 @@ export default defineComponent({
       emit('on-update-cur-operate', item)
     }
 
-    const start = (a: { oldIndex: number }) => {
+    const start = (a: any) => {
       // console.log(a, 'aaaaa')
       tempData = props.workspaceComponentList[a.oldIndex]
     }
 
-    const end = (draggableEvent: { to: { id: string }, newIndex: number }) => {
-      console.log(workspaceComponentList.value, 'workspaceComponentListworkspaceComponentListworkspaceComponentList')
+    const end = (draggableEvent: any) => {
       const list = [...workspaceComponentList.value]
       // normal form to array form
       if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
@@ -235,7 +234,7 @@ export default defineComponent({
       return str.split('-')[2]
     }
 
-    const handleArrayFormEnd = (formItem: any, draggableEvent: any, columns) => {
+    const handleArrayFormEnd = (formItem: WorkspaceComponentItem, draggableEvent: any) => {
       // console.log(draggableEvent, columns, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
       const list = [...workspaceComponentList.value]
       // array form to array form
@@ -335,7 +334,7 @@ export default defineComponent({
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
                       onForm-item-click={handleFormItemClick}
                       onForm-item-mousedown={handleFormItemMousedown}
-                      onArray-form-draggable-end={(...args) => handleArrayFormEnd(formItem, ...args)}
+                      onArray-form-draggable-end={(formItem: WorkspaceComponentItem, draggableEvent: any) => handleArrayFormEnd(formItem, draggableEvent)}
                     />
                     )}
               </div>

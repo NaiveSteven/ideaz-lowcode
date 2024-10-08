@@ -230,7 +230,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
 
         // array form item
         if (item.schema.fieldProps?.columns && item.schema.fieldProps?.columns[0].schema) {
-          const { columns: arrayFormItemColumns, formData: data, options: arrayFormOptions } = parseElementSchema(mode, 'form', item.schema.fieldProps?.columns)
+          const { columns: arrayFormItemColumns, options: arrayFormOptions } = parseElementSchema(mode, 'form', item.schema.fieldProps?.columns)
           item.schema = { label: item.schema.label, field: item.schema.field, ...item.schema.fieldProps, columns: undefined, style: undefined, action: undefined, draggable: undefined }
           item.schema.children = arrayFormItemColumns
           options = { ...options, ...arrayFormOptions }
