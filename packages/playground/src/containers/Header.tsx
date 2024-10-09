@@ -5,7 +5,8 @@ export const Header = defineComponent({
   setup() {
     return () => (
       <div class="header">
-        <div></div>
+        <div class="logo">
+        </div>
         <div class="header--actions">
           <notify />
         </div>
