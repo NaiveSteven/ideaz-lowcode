@@ -51,12 +51,22 @@
 
     // justify-self: end;
     margin-right: 10px;
+
+    .text {
+      margin-left: 2px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 85%);
+    }
   }
 
   .logo {
     width: 285px;
     height: 21px;
     background-image: url('../assets/logo.png');
+  }
+
+  .iconfont {
+    font-size: 14px;
   }
 }
 
