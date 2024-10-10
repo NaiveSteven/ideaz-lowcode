@@ -13,7 +13,6 @@ export default defineComponent({
     const { workspaceComponentType } = useGlobalSetting()
     const formData = ref({})
     const columns = ref<any>([])
-    const tableConfig = ref({})
 
     onMounted(() => {
       if (workspaceComponentType.value === 'form') {
@@ -22,10 +21,8 @@ export default defineComponent({
         columns.value = [...formItems]
       }
       else {
-        const { config, columns: cols } = parseElementSchema('preview', 'crud')
+        const { config } = parseElementSchema('preview', 'crud')
         formData.value = { ...config.searchFormData }
-        columns.value = [...cols]
-        tableConfig.value = config
       }
     })
 
@@ -42,7 +39,8 @@ export default defineComponent({
           />
         )
       }
-      return <z-crud class="crud__preview" columns={columns.value} {...tableConfig.value} v-model:formData={formData.value} />
+      const { config, columns: cols } = parseElementSchema('preview', 'crud')
+      return <z-crud class="crud__preview" columns={cols} {...config} v-model:formData={formData.value} />
     }
   },
 })
