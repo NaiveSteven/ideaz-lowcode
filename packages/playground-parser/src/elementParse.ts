@@ -225,8 +225,6 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
 
         delEmptyObject(fieldProps)
         delete fieldProps?.options
-        if (isObject(fieldProps) && isEmpty(fieldProps))
-          delete item.schema.fieldProps
 
         // array form item
         if (item.schema.fieldProps?.columns && item.schema.fieldProps?.columns[0].schema) {
@@ -234,6 +232,15 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
           item.schema = { label: item.schema.label, field: item.schema.field, ...item.schema.fieldProps, columns: undefined, style: undefined, action: undefined, draggable: undefined }
           item.schema.children = arrayFormItemColumns
           options = { ...options, ...arrayFormOptions }
+        }
+
+        if (isObject(fieldProps) && isEmpty(fieldProps))
+          delete item.schema.fieldProps
+
+        if (isObject(fieldProps)) {
+          const vals = Object.keys(fieldProps).map(key => fieldProps[key])
+          if (!vals.some(val => val !== undefined))
+            delete item.schema.fieldProps
         }
 
         return item.schema
