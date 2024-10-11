@@ -43,13 +43,14 @@ export default defineComponent({
             animation={200}
             filter=".not-drag"
             ghost-class="ghost"
+            handle=".option-handle"
             item-key="key"
             onUpdate:modelValue={(val: OptionsItem[]) => emit('update:modelValue', val)}
           >
             {props.modelValue.map((element, index) => {
               return (
                 <div class={['flex', 'items-center', index !== 0 && 'mt-1']} key={element.value}>
-                  <el-icon class="mr-1 flex cursor-pointer items-center">
+                  <el-icon class="option-handle mr-1 flex cursor-pointer items-center">
                     <i-rank />
                   </el-icon>
                   <el-input
