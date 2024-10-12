@@ -334,7 +334,7 @@ export default defineComponent({
                       class={formItem.schema.title === 'Col' ? ['not-drag'] : ''}
                       onForm-item-click={handleFormItemClick}
                       onForm-item-mousedown={handleFormItemMousedown}
-                      onArray-form-draggable-end={(formItem: WorkspaceComponentItem, draggableEvent: any) => handleArrayFormEnd(formItem, draggableEvent)}
+                      onArray-form-draggable-end={(draggableEvent: any) => handleArrayFormEnd(formItem, draggableEvent)}
                     />
                     )}
               </div>
