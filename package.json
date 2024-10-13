@@ -1,11 +1,10 @@
 {
-  "name": "root",
+  "name": "ideaz-lowcode",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@7.30.0",
   "scripts": {
     "start": "pnpm -C packages/playground dev",
-    "build": "build",
     "lint": "eslint .",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\""
   },
