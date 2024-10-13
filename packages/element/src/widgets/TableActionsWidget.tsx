@@ -29,6 +29,7 @@ export default defineComponent({
             componentOptionsConfig: tableColTemplateOptionsConfig,
             componentFormData: reactive({
               ...tableColFormData,
+              prop,
               field: prop,
               label: 'title',
             }),
