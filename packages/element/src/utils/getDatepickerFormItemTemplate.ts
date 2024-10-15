@@ -6,18 +6,23 @@ import {
   fieldTemplateSchema,
   formItemTemplateOptionsConfig,
 } from '../schemas'
+import mitt from '../event'
 
 export function getDatepickerFormItemTemplate() {
   const prop = uid()
+  const datepickerId = uid()
   const newFormItem = {
     id: uid(),
     name: 'tableForm',
     component: 'datepicker',
     title: '表单项',
     field: prop,
-    icon: '',
-    schema: {},
+    icon: 'icon-riqiqujian',
     label: '标签',
+    formItemProps: {
+      id: `schema-field${datepickerId}`,
+      onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: datepickerId }) },
+    },
     componentFormData: reactive({
       ...dateRangeCrudFormData,
       componentType: 'datepicker',
