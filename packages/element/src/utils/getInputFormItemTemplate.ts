@@ -18,7 +18,6 @@ export function getInputFormItemTemplate() {
     title: '表单项',
     field: prop,
     icon: 'icon-biaodanxiang',
-    schema: {},
     label: '标签',
     formItemProps: {
       id: `schema-field${inputId}`,

@@ -311,16 +311,16 @@ export default defineComponent({
       }
     }
 
-    if (props.type === 'array') {
-      useDraggable(formRef, formatFormItems.value, {
-        group: 'people',
-        animation: 200,
-        ghostClass: 'ghost',
-        onEnd: async (a) => {
-          emit('array-form-draggable-end', a, props.columns)
-        },
-      })
-    }
+    // if (props.type === 'array') {
+    useDraggable(formRef, formatFormItems.value, {
+      group: 'people',
+      animation: 200,
+      ghostClass: 'ghost',
+      onEnd: async (a) => {
+        emit('array-form-draggable-end', a, props.columns)
+      },
+    })
+    // }
 
     return () => {
       const { modelValue } = props
@@ -330,7 +330,7 @@ export default defineComponent({
           ref={formRef}
           class={[rowKls.value, ns.b('')]}
           style={rowStyle.value}
-          v-draggable={draggableOptions}
+          // v-draggable={draggableOptions}
         // onSubmit={withModifiers(function () { }, ['prevent'])}
         >
           {renderContent()}
