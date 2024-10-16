@@ -316,8 +316,18 @@ export default defineComponent({
       group: 'people',
       animation: 200,
       ghostClass: 'ghost',
-      onEnd: async (a) => {
-        emit('array-form-draggable-end', a, props.columns)
+      onEnd: async (evt) => {
+        if (props.type === 'array') {
+          emit('array-form-draggable-end', evt, props.columns)
+        }
+        else {
+          const { oldIndex, newIndex } = evt
+          const newArr = [...formatFormItems.value]
+          const objToMove = newArr[oldIndex!]
+          newArr.splice(oldIndex!, 1)
+          newArr.splice(newIndex!, 0, objToMove)
+          emit('update:columns', { columns: newArr, dragEvent: evt })
+        }
       },
     })
     // }
