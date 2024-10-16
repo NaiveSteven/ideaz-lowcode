@@ -126,6 +126,7 @@ export default defineComponent({
     }
 
     const handleUpdateFormItem = ({ columns, dragEvent }: { columns: WorkspaceComponentItem[], dragEvent: any }) => {
+      console.log(columns, dragEvent, 'columns')
       const oldIndex = dragEvent.oldIndex
       const newIndex = dragEvent.newIndex
       const data = columns[newIndex]
@@ -335,6 +336,7 @@ export default defineComponent({
                       onForm-item-click={handleFormItemClick}
                       onForm-item-mousedown={handleFormItemMousedown}
                       onArray-form-draggable-end={(draggableEvent: any) => handleArrayFormEnd(formItem, draggableEvent)}
+                      onUpdate:columns={handleUpdateFormItem}
                     />
                     )}
               </div>
