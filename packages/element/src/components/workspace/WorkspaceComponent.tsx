@@ -325,7 +325,7 @@ export default defineComponent({
                     )
                   : (
                     <z-form-item
-                      formConfig={formConfig.value}
+                      formConfig={{ ...formConfig.value, draggable: false }}
                       id={formItem.id}
                       key={formItem.schema.id}
                       modelValue={formData}

@@ -311,27 +311,27 @@ export default defineComponent({
       }
     }
 
-    // if (props.type === 'array') {
-    useDraggable(formRef, formatFormItems.value, {
-      group: 'people',
-      animation: 200,
-      ghostClass: 'ghost',
-      onEnd: async (evt) => {
-        if (props.type === 'array') {
-          emit('array-form-draggable-end', evt, props.columns)
-        }
-        else {
+    if (props.draggable || props.type === 'array') {
+      useDraggable(formRef, formatFormItems.value, {
+        group: 'people',
+        animation: 200,
+        ghostClass: 'ghost',
+        onEnd: async (evt) => {
+          if (props.type === 'array') {
+            emit('array-form-draggable-end', evt, props.columns)
+          }
+          else {
           // const { oldIndex, newIndex } = evt
           // const newArr = [...formatFormItems.value]
           // const objToMove = newArr[oldIndex!]
           // newArr.splice(oldIndex!, 1)
           // newArr.splice(newIndex!, 0, objToMove)
           // console.log(formatFormItems.value, newArr, 'useDraggableuseDraggableuseDraggable')
-          emit('update:columns', { columns: formatFormItems.value, dragEvent: evt })
-        }
-      },
-    })
-    // }
+            emit('update:columns', { columns: formatFormItems.value, dragEvent: evt })
+          }
+        },
+      })
+    }
 
     return () => {
       const { modelValue } = props
