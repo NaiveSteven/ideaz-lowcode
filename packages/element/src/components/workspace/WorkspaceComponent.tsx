@@ -209,7 +209,8 @@ export default defineComponent({
       updateCurOperateComponent(data)
     }
 
-    const handleFormItemMousedown = (data: WorkspaceComponentItem) => {
+    const handleFormItemMousedown = async (data: WorkspaceComponentItem) => {
+      console.log(data, 'handleFormItemMousedownhandleFormItemMousedown')
       isUpdateKey = false
       updateCurOperateComponent(data)
     }
