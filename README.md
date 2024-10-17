@@ -1,4 +1,4 @@
-# ideaz-lowcode project
+# ideaz-lowcode
 
 ## pnpm
 
