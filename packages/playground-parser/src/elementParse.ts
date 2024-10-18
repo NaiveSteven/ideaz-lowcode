@@ -341,7 +341,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     columns = schema.columns?.map((item: TableCol) => {
       const tableCol = cloneDeep(item)
       if (tableCol.search) {
-        tableCol.search.fieldProps = {}
+        // tableCol.search.fieldProps = {}
         const searchFormItem = tableCol.search
         const component = tableCol.search.component
         Object.keys(searchFormItem.componentFormData).forEach((key) => {
@@ -380,6 +380,8 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
           delete searchFormItem.fieldProps?.alias.value
 
         delete searchFormItem.fieldProps?.options
+        delete searchFormItem?.fieldProps?.componentType
+        delete searchFormItem?.fieldProps?.component
         delete searchFormItem.formItemProps?.class
         delete searchFormItem.formItemProps?.id
         delete searchFormItem.formItemProps?.onClick
