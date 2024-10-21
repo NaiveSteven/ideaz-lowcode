@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import type { TableColumnCtx } from 'element-plus'
+import { isEqual } from 'lodash-es'
 import { isFunction, isObject, uid } from '../../../utils'
 import { useLocale } from '../../../hooks'
 import DialogTip from '../../dialog/src/dialog'
@@ -127,10 +128,15 @@ export function useEditableColumns(props: ITableProps, emit: any, tableData: Ref
     }
   }
 
-  watchEffect(() => {
-    const cols = props.columns.map((item) => {
+  watch(() => props.columns, (newVal, oldVal) => {
+    // Avoid excessive update problems caused by reference address changes
+    if (isEqual(newVal, oldVal))
+      return
+    const cols = props.columns.map((item: TableCol) => {
       if (item.type === 'sort')
         return { width: 48, ...item, __uid: uid() }
+      if (isObject(item.component))
+        return { ...item, __uid: uid(), component: markRaw(item.component) }
       return { ...item, __uid: uid() }
     }) as TableCol[]
     if (props.editable && cols.length > 0 && cols[cols.length - 1]?.type !== 'button') {
@@ -147,7 +153,7 @@ export function useEditableColumns(props: ITableProps, emit: any, tableData: Ref
       } as TableCol)
     }
     else if (props.editable && cols.length > 0 && cols[cols.length - 1]?.type === 'button') {
-      columns.value = cols.map((item: any) => {
+      columns.value = cols.map((item: TableCol) => {
         if (item.type === 'button') {
           if (isFunction(item.buttons))
             item.buttons = item.buttons({ renderEdit: renderEdit(), renderSave: renderSave(), renderCancel: renderCancel(), renderDelete: renderDelete() }, tableData)
@@ -158,7 +164,7 @@ export function useEditableColumns(props: ITableProps, emit: any, tableData: Ref
     else {
       columns.value = cols
     }
-  })
+  }, { immediate: true, deep: true })
 
   return { columns, zTableFormRef }
 }
