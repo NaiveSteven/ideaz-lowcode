@@ -273,6 +273,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
       'formItemFormData',
       'formItemTemplateSchema',
       'formItemOptionsConfig',
+      'icon',
       '__uid',
     ]
 
