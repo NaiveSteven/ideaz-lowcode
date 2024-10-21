@@ -51,7 +51,7 @@
     flex-direction: column;
 
     &--active {
-      color: #1890ff;
+      color: #2254f4;
 
       &::after {
         position: absolute;
@@ -61,7 +61,7 @@
         content: '';
         width: 3px;
         height: 100%;
-        background-color: #1890ff;
+        background-color: #2254f4;
       }
     }
   }
