@@ -66,6 +66,7 @@ export function useTableColumnSlots(props: TableColumnProps, slots: any, emit: a
         !['index', 'selection', 'radio', undefined].includes(column.type)
         || column.slot
         || column.render
+        || column.component
       ) {
         scopedSlots.value.default = (scope: any) => {
           const renderCustomComponent = () => {
