@@ -10,14 +10,6 @@ export const Settings = defineComponent({
   setup() {
     const { settingArrowDirection, clickAsideToggleWidget } = useAsideToggle('right', '300px', 300)
 
-    // mitt.on('right-aside-toggle', ((val: 'show' | 'hide') => {
-    //   arrowDirection.value = val && val === 'show' ? 'right' : 'left'
-    // }) as () => void)
-
-    // onBeforeUnmount(() => {
-    //   mitt.off('right-aside-toggle')
-    // })
-
     return () => (
       <div id="settings-panel" ref="content" class="settings-panel">
         <AsideToggleWidget
