@@ -77,7 +77,7 @@ export function useTableColumnSlots(props: TableColumnProps, slots: any, emit: a
                 list.splice(scope.$index, 1, rowData)
                 emit('update:data', list)
               },
-              'componentName': getDynamicComponentName(column.type!),
+              'componentName': getDynamicComponentName(column.type! || column.component),
               'on': column.on,
               'rowData': scope.row,
               size,
