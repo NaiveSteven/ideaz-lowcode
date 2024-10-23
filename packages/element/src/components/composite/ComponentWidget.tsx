@@ -7,7 +7,7 @@ import {
   getDatepickerFormItemTemplate,
   getInputFormItemTemplate,
   getMultipleSelectFormItemTemplate,
-  // getSelectFormItemTemplate,
+  getSelectFormItemTemplate,
   getSlotFormItemTemplate,
 } from '../../utils'
 import ComponentList from './ComponentList'
@@ -20,7 +20,7 @@ export default defineComponent({
 
     const templateObj = {
       输入框: getInputFormItemTemplate,
-      // 选择框: getSelectFormItemTemplate,
+      选择框: getSelectFormItemTemplate,
       多选框: getMultipleSelectFormItemTemplate,
       日期范围: getDatepickerFormItemTemplate,
       插槽: getSlotFormItemTemplate,
