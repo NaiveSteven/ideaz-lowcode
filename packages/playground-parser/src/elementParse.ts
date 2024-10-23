@@ -354,6 +354,13 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
             searchFormItem.fieldProps[key] = searchFormItem.componentFormData![key]
 
           if (
+            defaultAttrs[component as keyof typeof defaultAttrs][key]
+            === searchFormItem.componentFormData![key]
+            && key !== 'componentType'
+          )
+            delete searchFormItem.fieldProps?.[key]
+
+          if (
             key === 'componentType'
             && searchFormItem.componentFormData?.componentType === 'multipleSelect'
           )
@@ -386,6 +393,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         delete searchFormItem.formItemProps?.class
         delete searchFormItem.formItemProps?.id
         delete searchFormItem.formItemProps?.onClick
+        delete searchFormItem.formItemProps?.label
         delete searchFormItem.schema
         delete searchFormItem.icon
 
