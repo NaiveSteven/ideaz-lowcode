@@ -306,7 +306,7 @@ export default defineComponent({
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const item = {
         ...curOperateComponent.value,
-        formItemProps: { ...curOperateComponent.value.formItemProps, ...obj.formData },
+        ...obj.formData,
       }
       const crud = workspaceComponentList.value[0]
       const schema = crud.schema
