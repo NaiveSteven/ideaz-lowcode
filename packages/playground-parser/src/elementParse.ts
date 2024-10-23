@@ -404,7 +404,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
           delete searchFormItem.formItemProps
 
         deleteTableColKeys.forEach((key) => {
-          delete searchFormItem[key as keyof typeof tableCol.searchFormItem]
+          delete searchFormItem[key]
         })
       }
       if (tableCol.type === 'slot') {
