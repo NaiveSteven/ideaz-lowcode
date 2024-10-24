@@ -328,8 +328,8 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
             config.options[item.search.fieldFormData?.field]
               = item.search.fieldProps.options.map((option: OptionsItem) => {
                 return {
-                  [item.search?.fieldProps?.alias.value || item.search?.fieldProps?.props.value || 'value']: option.value,
-                  [item.search?.fieldProps?.alias.label || item.search?.fieldProps?.props.label || 'label']: option.label,
+                  [item.search?.fieldProps?.alias?.value || item.search?.fieldProps?.props?.value || 'value']: option.value,
+                  [item.search?.fieldProps?.alias?.label || item.search?.fieldProps?.props?.label || 'label']: option.label,
                 }
               })
           }
