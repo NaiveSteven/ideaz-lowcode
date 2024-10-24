@@ -122,6 +122,12 @@ export default defineComponent({
               ...multipleSelectCrudFormData,
               multiple: true,
             },
+            fieldOptionsConfig: {
+              default: [
+                { label: '标签1', value: '1', key: uid() },
+                { label: '标签2', value: '2', key: uid() },
+              ],
+            },
             componentSchema: [
               {
                 component: 'select',
