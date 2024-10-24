@@ -34,7 +34,7 @@ export default defineComponent({
       const crud = workspaceComponentList.value[0]
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
-        columns = schema.columns.map((cur: TableCol) => {
+        columns = schema.columns.map((cur: TableCol, index) => {
           if (cur.search && cur.search.id === form.id) {
             return {
               ...cur,
@@ -272,6 +272,12 @@ export default defineComponent({
       else {
         const item = {
           ...curOperateComponent.value,
+          fieldOptionsConfig: {
+            default:
+              obj.field === 'options'
+                ? obj.formData.options
+                : curOperateComponent.value.fieldOptionsConfig?.default || [],
+          },
           fieldProps: {
             ...curOperateComponent.value.fieldProps,
             ...obj.formData,

@@ -102,7 +102,7 @@ export const multipleSelectCrudSchema = [
 ]
 
 export const multipleSelectCrudFormData = {
-  options: [{ label: '标签', value: '1', key: uid() }],
+  options: [{ label: '标签1', value: '1', key: uid() }, { label: '标签2', value: '2', key: uid() }],
   placeholder: '',
 }
 

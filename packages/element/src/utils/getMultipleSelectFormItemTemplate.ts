@@ -39,9 +39,19 @@ export function getMultipleSelectFormItemTemplate() {
     },
     fieldFormData: reactive({
       field: prop,
-      default: '',
+      default: [],
     }),
-    fieldSchema: fieldTemplateSchema({ defaultComponent: 'input' }),
+    fieldSchema: fieldTemplateSchema({
+      defaultComponent: 'select',
+      defaultProps: { multiple: true },
+      required: true,
+    }),
+    fieldOptionsConfig: {
+      default: [
+        { label: '标签1', value: '1', key: uid() },
+        { label: '标签2', value: '2', key: uid() },
+      ],
+    },
     formItemFormData: reactive({
       label: '标签',
       tooltip: '',
