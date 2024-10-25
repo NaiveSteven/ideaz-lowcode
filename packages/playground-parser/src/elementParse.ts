@@ -444,7 +444,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
       else {
         delete tableCol.buttons
       }
-      if (tableCol.type && !['sort', 'expand', 'index', 'radio'].includes(tableCol.type)) {
+      if (tableCol.type && !['sort', 'expand', 'index', 'radio', 'button'].includes(tableCol.type)) {
         tableCol.component = tableCol.type
         delete tableCol.type
       }
