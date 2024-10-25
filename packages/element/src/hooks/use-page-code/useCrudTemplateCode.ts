@@ -42,13 +42,22 @@ export function useCrudTemplateCode() {
   const getCrudTemplateCode = (tableCols: TableCol[]) => {
     return !isCrudIncludesSlot(tableCols)
       ? `<z-crud
-        :columns="columns"
+        v-bind="config"
+        v-model:formData="config.searchFormData"
+        v-model:data="config.data"
+        v-model:pagination="config.pagination"
         @reset="handleSearch"
         @search="handleSearch"
         @refresh="handlePaginationChange"
       />`
       : `<z-crud
-          :columns="columns"
+          v-bind="config"
+          v-model:formData="config.searchFormData"
+          v-model:data="config.data"
+          v-model:pagination="config.pagination"
+          @reset="handleSearch"
+          @search="handleSearch"
+          @refresh="handlePaginationChange"
         >
       ${getCrudSlotCode(tableCols)}
     </z-crud>`

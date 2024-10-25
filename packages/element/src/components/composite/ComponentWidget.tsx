@@ -84,7 +84,7 @@ export default defineComponent({
           }
         }
         else {
-          ElMessage.warning('不支持的表单项类型')
+          ElMessage.warning('暂不支持的表单项类型')
         }
         return
       }

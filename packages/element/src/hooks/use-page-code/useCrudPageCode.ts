@@ -5,20 +5,19 @@ import { useMockTableData } from './useMockTableData'
 export function useCrudPageCode() {
   const { getCrudTemplateCode } = useCrudTemplateCode()
 
-  const { config } = parseElementSchema('code', 'crud')
+  const { config, columns } = parseElementSchema('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
     code: `
       <template>
-        ${getCrudTemplateCode(config.columns)}
+        ${getCrudTemplateCode(columns)}
       </template>
 
       <script lang='ts' setup>
         import { reactive, ref } from 'vue';
 
-        const config = reactive(${JSON.stringify(config)});
-        const searchFormData = ref(${JSON.stringify(config.searchFormData)});
+        const config = reactive(${JSON.stringify({ ...config, columns })});
         const tableData = ${JSON.stringify(getTableData())};
 
         const getTableData = async () => {
@@ -26,7 +25,7 @@ export function useCrudPageCode() {
           try {
             const params = {
               ...config.pagination,
-              ...searchFormData.value,
+              ...config.searchFormData,
             }
             await delay(200);
             config.data = tableData;

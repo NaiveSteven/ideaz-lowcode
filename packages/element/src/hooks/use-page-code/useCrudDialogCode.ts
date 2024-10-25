@@ -5,7 +5,7 @@ import { useMockTableData } from './useMockTableData'
 export function useCrudDialogCode() {
   const { getCrudTemplateCode } = useCrudTemplateCode()
 
-  const { config } = parseElementSchema('code', 'crud')
+  const { config, columns } = parseElementSchema('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
@@ -40,8 +40,8 @@ export function useCrudDialogCode() {
           formDecorator: { name: 'div' },
           tableDecorator: { name: 'div' },
           ...config,
+          columns,
         })});
-        const searchFormData = ref(${JSON.stringify(config.searchFormData)});
         const tableData = ${JSON.stringify(getTableData())};
 
         watch(
@@ -73,7 +73,7 @@ export function useCrudDialogCode() {
           try {
             const params = {
               ...config.pagination,
-              ...searchFormData.value,
+              ...config.searchFormData,
             }
             await delay(200);
             config.data = tableData;
