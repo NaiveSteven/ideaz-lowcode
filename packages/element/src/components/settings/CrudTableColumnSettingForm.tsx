@@ -37,7 +37,6 @@ export default defineComponent({
             hide: () => formData.type !== 'slot',
           },
         ]
-        // console.log(data,'column')
       }
       else {
         data.componentFormData!.slot = ''
