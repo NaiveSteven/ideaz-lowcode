@@ -316,6 +316,7 @@ export default defineComponent({
         group: 'people',
         animation: 200,
         ghostClass: 'ghost',
+        filter: '.z-form-item-button__col',
         onEnd: async (evt) => {
           if (props.type === 'array') {
             emit('array-form-draggable-end', evt, props.columns)
