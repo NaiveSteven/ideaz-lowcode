@@ -117,13 +117,15 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         formData[field] = cloneDeep(item.fieldFormData!.default)
         // array form
         if (arrayFormColumns) {
-          item.fieldFormData!.default.forEach(({}, index) => {
+          item.fieldFormData!.default.forEach(({}, index: number) => {
             const arrayFormData: IndexType = {}
-            arrayFormColumns.forEach((cur) => {
-              arrayFormData[cur.fieldFormData.field] = cur.fieldFormData!.default
+            arrayFormColumns.forEach((cur: WorkspaceComponentItem) => {
+              arrayFormData[cur.fieldFormData?.field] = cur.fieldFormData!.default
             })
             formData[field][index] = arrayFormData
           })
+          if (item.schema?.fieldProps?.type === 'array')
+            formConfig.type = 'array'
         }
         if (item.componentOptionsConfig?.[field]) {
           options[field] = item.componentOptionsConfig?.[field].map((option: OptionsItem) => ({
