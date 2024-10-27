@@ -25,7 +25,7 @@ export function useFormTemplateCode(type: 'page' | 'dialog') {
 
     return [
       `<template>
-        <el-dialog v-model="visible" title="标题" width="620px">`,
+        <el-dialog v-model="visible" title="标题" width="720px">`,
       `<template #footer>
             <el-button @click="visible = false" size="default">取 消</el-button>
             <el-button type="primary"  size="default" :loading="isConfirmBtnLoading" @click="handleValidate"
@@ -38,7 +38,6 @@ export function useFormTemplateCode(type: 'page' | 'dialog') {
   }
 
   const isIncludesSlot = (columns: FormItemConfigItem[]) => {
-    console.log(columns, 'columns')
     return columns.some((item: FormItemConfigItem) => item.slot)
   }
 
