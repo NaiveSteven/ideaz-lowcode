@@ -45,7 +45,7 @@ export default defineComponent({
                   size: size.value,
                   ...option,
                   border: isValid(option.border) ? option.border : props.border,
-                  label: get(option, props.alias?.value || 'value', ''),
+                  value: get(option, props.alias?.value || 'value', ''),
                   disabled: get(option, props.alias?.disabled || 'disabled', false),
                   key: get(option, props.alias?.value || 'value', ''),
                 },
