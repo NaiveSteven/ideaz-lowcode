@@ -94,7 +94,7 @@ export function useTableColumns(props: CrudProps, emit: any, getTableData: () =>
           type: 'button',
           label: t('table.action'),
           fixed: 'right',
-          width: buttons.length * 60,
+          width: buttons.length * 80,
           buttons,
         },
       ])

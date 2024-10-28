@@ -233,54 +233,54 @@ function getColumns() {
       allowCopy: true,
       allowDelete: true,
     },
-    {
-      name: 'tableCol',
-      id: uid(),
-      title: '表格项',
-      prop: 'operation',
-      label: '操作',
-      icon: 'icon-biaoge-lie',
-      type: 'button',
-      buttons: [
-        {
-          key: uid(),
-          type: 'primary',
-          link: true,
-          label: '添加',
-        },
-        {
-          type: 'primary',
-          link: true,
-          label: '删除',
-          key: uid(),
-        },
-      ],
-      componentSchema: tableColTemplateSchema,
-      componentOptionsConfig: tableColTemplateOptionsConfig,
-      componentFormData: reactive({
-        ...tableColFormData,
-        type: 'button',
-        prop: 'operation',
-        label: '操作',
-        buttons: [
-          {
-            type: 'primary',
-            key: uid(),
-            link: true,
-            label: '编辑',
-          },
-          {
-            type: 'primary',
-            link: true,
-            label: '删除',
-            key: uid(),
-          },
-        ],
-      }),
-      activeCollapseItems: ['column'],
-      allowCopy: true,
-      allowDelete: true,
-    },
+    // {
+    //   name: 'tableCol',
+    //   id: uid(),
+    //   title: '表格项',
+    //   prop: 'operation',
+    //   label: '操作',
+    //   icon: 'icon-biaoge-lie',
+    //   type: 'button',
+    //   buttons: [
+    //     {
+    //       key: uid(),
+    //       type: 'primary',
+    //       link: true,
+    //       label: '添加',
+    //     },
+    //     {
+    //       type: 'primary',
+    //       link: true,
+    //       label: '删除',
+    //       key: uid(),
+    //     },
+    //   ],
+    //   componentSchema: tableColTemplateSchema,
+    //   componentOptionsConfig: tableColTemplateOptionsConfig,
+    //   componentFormData: reactive({
+    //     ...tableColFormData,
+    //     type: 'button',
+    //     prop: 'operation',
+    //     label: '操作',
+    //     buttons: [
+    //       {
+    //         type: 'primary',
+    //         key: uid(),
+    //         link: true,
+    //         label: '编辑',
+    //       },
+    //       {
+    //         type: 'primary',
+    //         link: true,
+    //         label: '删除',
+    //         key: uid(),
+    //       },
+    //     ],
+    //   }),
+    //   activeCollapseItems: ['column'],
+    //   allowCopy: true,
+    //   allowDelete: true,
+    // },
   ]
 }
 
@@ -292,7 +292,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
     icon: 'icon-bushu',
     title: '增删改查',
     schema: {
-      action: false,
+      action: true,
       headerRowClassName: 'crudHeader',
       cellClassName: ({ columnIndex }: { columnIndex: number }) => {
         if (columns[columnIndex])
@@ -333,6 +333,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
       tableDecorator: 'el-card',
       pagination: true,
       background: 'page',
+      action: true,
     }),
     componentSchema: crudTableTemplateSchema,
     componentOptionsConfig: crudTableOptionsConfig,

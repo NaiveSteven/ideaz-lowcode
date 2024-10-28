@@ -40,7 +40,7 @@ export default defineComponent({
         )
       }
       const { config, columns: cols } = parseElementSchema('preview', 'crud')
-      return <z-crud class="crud__preview" {...config} columns={cols} action={false} v-model:formData={formData.value} />
+      return <z-crud class="crud__preview" {...config} columns={cols} v-model:formData={formData.value} />
     }
   },
 })

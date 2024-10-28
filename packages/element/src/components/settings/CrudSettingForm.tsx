@@ -58,6 +58,12 @@ export default defineComponent({
         }
       }
 
+      if (obj.formData.action)
+        schema.action = true
+
+      else
+        schema.action = false
+
       if (obj.formData.tableDecorator !== 'el-card') {
         schema.tableDecorator = {
           name: obj.value,
