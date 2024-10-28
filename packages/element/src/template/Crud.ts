@@ -100,12 +100,14 @@ function getColumns() {
         buttons: [
           {
             key: uid(),
-            type: 'text',
+            type: 'primary',
+            link: true,
             label: '编辑',
           },
           {
-            type: 'text',
+            type: 'primary',
             label: '删除',
+            link: true,
             key: uid(),
           },
         ],
@@ -189,12 +191,14 @@ function getColumns() {
         buttons: [
           {
             key: uid(),
-            type: 'text',
+            type: 'primary',
+            link: true,
             label: '编辑',
           },
           {
-            type: 'text',
+            type: 'primary',
             label: '删除',
+            link: true,
             key: uid(),
           },
         ],
@@ -219,12 +223,14 @@ function getColumns() {
         buttons: [
           {
             key: uid(),
-            type: 'text',
+            type: 'primary',
             label: '编辑',
+            link: true,
           },
           {
-            type: 'text',
+            type: 'primary',
             label: '删除',
+            link: true,
             key: uid(),
           },
         ],
