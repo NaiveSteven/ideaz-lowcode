@@ -95,6 +95,8 @@ export function useTableColumns(props: CrudProps, emit: any, getTableData: () =>
           label: t('table.action'),
           fixed: 'right',
           width: buttons.length * 80,
+          className: 'inline-column-operation',
+          labelClassName: 'inline-column-operation',
           buttons,
         },
       ])

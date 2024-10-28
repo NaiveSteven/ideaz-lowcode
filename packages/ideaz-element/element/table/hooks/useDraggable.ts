@@ -10,6 +10,7 @@ export function useDraggable(emit: any, tableData: Ref<any>, middleTableCols: Re
         animation: 150,
         delay: 0,
         ghostClass: 'table-col__ghost',
+        filter: '.inline-column-operation',
         onEnd: (evt: any) => {
           const { newIndex, oldIndex } = evt
           const arr = [...middleTableCols.value]
@@ -34,6 +35,7 @@ export function useDraggable(emit: any, tableData: Ref<any>, middleTableCols: Re
         animation: 150,
         delay: 0,
         ghostClass: 'table-col__ghost',
+        filter: '.inline-column-operation',
         onEnd: (evt: any) => {
           const { newIndex, oldIndex } = evt
           const arr = [...middleTableCols.value]
