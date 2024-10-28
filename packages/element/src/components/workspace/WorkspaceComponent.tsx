@@ -117,6 +117,8 @@ export default defineComponent({
     const handleTableColClick = (column: any, event: MouseEvent) => {
       event.preventDefault()
       event.stopPropagation()
+      if (column.className === 'inline-column-operation')
+        return
       const columnIndex = column.getColumnIndex()
       const columns
         = workspaceComponentList.value[0].schema.columns?.filter(item => item.prop)
