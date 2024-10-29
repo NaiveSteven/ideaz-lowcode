@@ -311,6 +311,14 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     if (!componentFormData?.action)
       config.action = false
 
+    if (componentFormData?.request) {
+      config.request = {
+        searchApi: 'getTableData',
+        deleteApi: 'commonApi',
+        submitApi: 'commonApi',
+      }
+    }
+
     const isSearch = schema.columns?.some((item: TableCol) => item.search)
 
     if (isSearch) {

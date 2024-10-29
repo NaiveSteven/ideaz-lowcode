@@ -12,7 +12,7 @@ export function useCrudDialogCode() {
     code: `
       <template>
         <el-dialog v-model="visible" title="标题" width="620px">
-          ${getCrudTemplateCode(config.tableCols)}
+          ${getCrudTemplateCode(config.tableCols, config)}
           <template #footer>
             <el-button size="default" @click="visible = false">取 消</el-button>
             <el-button type="primary" size="default" @click="visible = false"

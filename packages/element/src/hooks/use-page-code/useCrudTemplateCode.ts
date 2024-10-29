@@ -39,13 +39,23 @@ export function useCrudTemplateCode() {
     return str
   }
 
-  const getCrudTemplateCode = (tableCols: TableCol[]) => {
+  const getCrudTemplateCode = (tableCols: TableCol[], config: any) => {
+    if (config.request) {
+      return `<z-crud
+      v-bind="config"
+      v-model:formData="config.searchFormData"
+      v-model:data="config.data"
+      v-model:pagination="config.pagination"
+      v-model:loading="config.loading"
+    />`
+    }
     return !isCrudIncludesSlot(tableCols)
       ? `<z-crud
         v-bind="config"
         v-model:formData="config.searchFormData"
         v-model:data="config.data"
         v-model:pagination="config.pagination"
+        v-model:loading="config.loading"
         @reset="handleSearch"
         @search="handleSearch"
         @refresh="handlePaginationChange"
@@ -55,6 +65,7 @@ export function useCrudTemplateCode() {
           v-model:formData="config.searchFormData"
           v-model:data="config.data"
           v-model:pagination="config.pagination"
+          v-model:loading="config.loading"
           @reset="handleSearch"
           @search="handleSearch"
           @refresh="handlePaginationChange"
