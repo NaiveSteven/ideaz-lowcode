@@ -340,6 +340,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
       pagination: true,
       background: 'page',
       action: true,
+      request: true,
     }),
     componentSchema: crudTableTemplateSchema,
     componentOptionsConfig: crudTableOptionsConfig,
