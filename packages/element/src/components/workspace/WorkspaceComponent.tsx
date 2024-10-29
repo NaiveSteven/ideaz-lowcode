@@ -83,7 +83,6 @@ export default defineComponent({
     }
 
     const start = (a: any) => {
-      // console.log(a, 'aaaaa')
       tempData = props.workspaceComponentList[a.oldIndex]
     }
 
