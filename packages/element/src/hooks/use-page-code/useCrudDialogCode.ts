@@ -40,6 +40,7 @@ export function useCrudDialogCode() {
         const config = reactive(${JSON.stringify({
           formDecorator: { name: 'div' },
           tableDecorator: { name: 'div' },
+          loading: false,
           ...config,
           columns,
         })});

@@ -21,9 +21,9 @@ export function useCrudPageCode() {
         import { reactive, ref } from 'vue';
 
         ${config.request
-          ? `const config = reactive(${JSON.stringify({ ...config, columns, searchApi: getTableData, deleteApi: commonApi, submitApi: commonApi })});`
+          ? `const config = reactive(${JSON.stringify({ loading: false, ...config, columns, searchApi: getTableData, deleteApi: commonApi, submitApi: commonApi })});`
           : `
-          const config = reactive(${JSON.stringify({ ...config, columns })});
+          const config = reactive(${JSON.stringify({ loading: false, ...config, columns })});
           const tableData = ${JSON.stringify(getTableData())};
           `
         }
