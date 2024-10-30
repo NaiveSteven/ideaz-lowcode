@@ -1,16 +1,12 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useMockTableData } from './useMockTableData'
 
-function commonApi() {}
-
 export function useCrudLogicCode() {
   const { config, columns } = parseElementSchema('code', 'crud')
   const { getTableData } = useMockTableData()
 
   if (config.request) {
     return `
-    const config = reactive(${JSON.stringify({ ...config, columns, searchApi: getTableData, deleteApi: commonApi, submitApi: commonApi })});
-
     function getTableData(params: any) {
       console.log(params, 'getTableData params')
       return new Promise((resolve) => {
@@ -72,9 +68,6 @@ export function useCrudLogicCode() {
     `
   }
   return `
-  const config = reactive(${JSON.stringify({ ...config, columns })});
-  const tableData = ${JSON.stringify(getTableData())};
-
   const getTableData = async () => {
     config.loading = true;
     try {

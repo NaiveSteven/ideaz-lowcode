@@ -3,6 +3,8 @@ import { useCrudTemplateCode } from './useCrudTemplateCode'
 import { useMockTableData } from './useMockTableData'
 import { useCrudLogicCode } from './useCrudLogicCode'
 
+function commonApi() {}
+
 export function useCrudPageCode() {
   const { getCrudTemplateCode } = useCrudTemplateCode()
 
@@ -17,6 +19,14 @@ export function useCrudPageCode() {
 
       <script lang='ts' setup>
         import { reactive, ref } from 'vue';
+
+        ${config.request
+          ? `const config = reactive(${JSON.stringify({ ...config, columns, searchApi: getTableData, deleteApi: commonApi, submitApi: commonApi })});`
+          : `
+          const config = reactive(${JSON.stringify({ ...config, columns })});
+          const tableData = ${JSON.stringify(getTableData())};
+          `
+        }
 
         ${useCrudLogicCode()}
       </script>`,

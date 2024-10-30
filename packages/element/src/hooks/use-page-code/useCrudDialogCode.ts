@@ -1,6 +1,7 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useCrudTemplateCode } from './useCrudTemplateCode'
 import { useMockTableData } from './useMockTableData'
+import { useCrudLogicCode } from './useCrudLogicCode'
 
 export function useCrudDialogCode() {
   const { getCrudTemplateCode } = useCrudTemplateCode()
@@ -11,7 +12,7 @@ export function useCrudDialogCode() {
   return {
     code: `
       <template>
-        <el-dialog v-model="visible" title="标题" width="620px">
+        <el-dialog v-model="visible" title="标题" width="720px">
           ${getCrudTemplateCode(config.tableCols, config)}
           <template #footer>
             <el-button size="default" @click="visible = false">取 消</el-button>
@@ -42,7 +43,7 @@ export function useCrudDialogCode() {
           ...config,
           columns,
         })});
-        const tableData = ${JSON.stringify(getTableData())};
+        ${!config.request ? `const tableData = ${JSON.stringify(getTableData())};` : ''}
 
         watch(
           () => props.modelValue,
@@ -62,43 +63,13 @@ export function useCrudDialogCode() {
             }
             config.data = []
           } else {
-            getTableData()
+            ${!config.request ? `getTableData()` : ''}
           }
           emit('update:modelValue', newValue);
         }, { immediate: true });
 
 
-        const getTableData = async () => {
-          config.loading = true;
-          try {
-            const params = {
-              ...config.pagination,
-              ...config.searchFormData,
-            }
-            await delay(200);
-            config.data = tableData;
-          } catch (error) {
-            console.log(error, 'getTableData error');
-          }
-          config.loading = false;
-        }
-
-        const handlePaginationChange = (val) => {
-          config.pagination.page = val.page;
-          config.pagination.pageSize = val.pageSize;
-          getTableData();
-        }
-
-        const handleSearch = () => {
-          config.pagination.page = 1;
-          getTableData();
-        }
-
-        function delay(time: number) {
-          return new Promise(function (resolve) {
-            setTimeout(resolve, time);
-          });
-        }
+        ${useCrudLogicCode()}
       </script>`,
     getCrudTemplateCode,
   }
