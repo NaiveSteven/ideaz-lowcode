@@ -6,6 +6,7 @@ import {
   inputCrudFormData,
   inputCrudSchema,
 } from '../schemas'
+import { COMPONENT_SELECT } from '../template'
 import mitt from '../event'
 
 export function getInputFormItemTemplate() {
@@ -28,11 +29,7 @@ export function getInputFormItemTemplate() {
       componentType: 'input',
     }),
     componentSchema: [
-      {
-        component: 'select',
-        field: 'componentType',
-        label: '组件类别',
-      },
+      COMPONENT_SELECT,
       ...inputCrudSchema,
     ],
     componentOptionsConfig: {

@@ -21,6 +21,15 @@ const FORM_COMPONENT_TYPE = [
   { label: '插槽', value: 'slot' },
 ]
 
+export const COMPONENT_SELECT = {
+  component: 'select',
+  field: 'componentType',
+  label: '组件类别',
+  fieldProps: {
+    clearable: false,
+  },
+}
+
 function getColumns() {
   const mockNameId = uid()
   const mockAddressId = uid()
@@ -49,11 +58,7 @@ function getColumns() {
           componentType: 'input',
         }),
         componentSchema: [
-          {
-            component: 'select',
-            field: 'componentType',
-            label: '组件类别',
-          },
+          COMPONENT_SELECT,
           ...inputCrudSchema,
         ],
         componentOptionsConfig: {
@@ -140,11 +145,7 @@ function getColumns() {
           componentType: 'input',
         }),
         componentSchema: [
-          {
-            component: 'select',
-            field: 'componentType',
-            label: '组件类别',
-          },
+          COMPONENT_SELECT,
           ...inputCrudSchema,
         ],
         componentOptionsConfig: {
