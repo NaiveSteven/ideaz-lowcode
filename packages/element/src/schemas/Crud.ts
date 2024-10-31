@@ -16,11 +16,17 @@ export const crudTableTemplateSchema = [
     field: 'background',
     label: '场景',
     tooltip: '代码生成会按照不同的场景生成适配的代码',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'select',
     field: 'size',
     label: '尺寸',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'input',
