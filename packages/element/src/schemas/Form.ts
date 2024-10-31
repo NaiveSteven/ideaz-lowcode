@@ -3,21 +3,33 @@ export const formTemplateSchema = [
     component: 'select',
     field: 'background',
     label: '使用场景',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'select',
     field: 'column',
     label: '列数',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'select',
     field: 'size',
     label: '尺寸',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'select',
     field: 'labelPosition',
     label: '标签位置',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'input',
@@ -33,6 +45,9 @@ export const formTemplateSchema = [
     component: 'select',
     field: 'requireAsteriskPosition',
     label: '必填星号位置',
+    fieldProps: {
+      clearable: false,
+    },
   },
   {
     component: 'el-switch',
