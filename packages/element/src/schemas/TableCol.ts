@@ -4,6 +4,9 @@ export function tableColTemplateSchema(formData: any) {
       component: 'select',
       field: 'type',
       label: '类型',
+      fieldProps: {
+        clearable: false,
+      },
     },
     {
       component: 'input',
@@ -45,6 +48,14 @@ export const tableColTemplateOptionsConfig = {
       value: 'default',
     },
     {
+      label: '按钮',
+      value: 'button',
+    },
+    {
+      label: '插槽',
+      value: 'slot',
+    },
+    {
       label: '多选框',
       value: 'selection',
     },
@@ -67,14 +78,6 @@ export const tableColTemplateOptionsConfig = {
     {
       label: '输入框',
       value: 'input',
-    },
-    {
-      label: '按钮',
-      value: 'button',
-    },
-    {
-      label: '插槽',
-      value: 'slot',
     },
   ],
 }
