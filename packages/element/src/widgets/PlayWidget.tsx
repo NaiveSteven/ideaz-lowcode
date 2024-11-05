@@ -33,7 +33,7 @@ export default defineComponent({
         return (
           <z-form
             v-model={formData.value}
-            {...formConfig}
+            {...{ ...formConfig, type: 'normal' }}
             options={options}
             columns={columns.value}
           />
