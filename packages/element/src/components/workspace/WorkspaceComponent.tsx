@@ -211,7 +211,6 @@ export default defineComponent({
     }
 
     const handleFormItemMousedown = async (data: WorkspaceComponentItem) => {
-      console.log(data, 'handleFormItemMousedownhandleFormItemMousedown')
       isUpdateKey = false
       updateCurOperateComponent(data)
     }
@@ -238,7 +237,6 @@ export default defineComponent({
     }
 
     const handleArrayFormEnd = (formItem: WorkspaceComponentItem, draggableEvent: any) => {
-      // console.log(draggableEvent, columns, 'handleArrayFormEndhandleArrayFormEndhandleArrayFormEnd')
       const list = [...workspaceComponentList.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
