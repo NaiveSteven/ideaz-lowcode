@@ -3,6 +3,7 @@ import { getComponentListItem, useGlobalSetting, useWorkspaceComponent, useWorks
 import { cloneDeep, set } from 'lodash-es'
 import { useCol } from '@ideaz/element'
 import { VueDraggable } from 'vue-draggable-plus'
+import { ElMessage } from 'element-plus'
 import mitt from '../../event'
 import TableActionsWidget from '../../widgets/TableActionsWidget'
 import './style.scss'
@@ -116,8 +117,10 @@ export default defineComponent({
     const handleTableColClick = (column: any, event: MouseEvent) => {
       event.preventDefault()
       event.stopPropagation()
-      if (column.className === 'inline-column-operation')
+      if (column.className === 'inline-column-operation') {
+        ElMessage.warning('内置操作列暂无法被拖拽排序')
         return
+      }
       const columnIndex = column.getColumnIndex()
       const columns
         = workspaceComponentList.value[0].schema.columns?.filter(item => item.prop)
