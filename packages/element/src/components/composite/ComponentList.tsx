@@ -26,6 +26,7 @@ export default defineComponent({
     const log = (obj: { item: { innerText: string } }) => {
       props.componentList.forEach((item) => {
         item.components.forEach((cur) => {
+          // eslint-disable-next-line unicorn/prefer-dom-node-text-content
           if (cur.title === obj.item.innerText) {
             tempData = {
               ...cloneDeep(cur),
@@ -36,7 +37,7 @@ export default defineComponent({
       })
     }
 
-    const onEnd = (obj: { to: { id: string }, from: {}, newIndex: number }) => {
+    const onEnd = (obj: any) => {
       if (obj.to !== obj.from) {
         if (Array.from(obj.to.classList).includes('array-form')) {
           const key = getKey(Array.from(obj.to.classList))
@@ -53,14 +54,14 @@ export default defineComponent({
       }
     }
 
-    function getArrayItem(key) {
-      let data = null
+    function getArrayItem(key: string) {
+      let data: WorkspaceComponentItem | null = null
       workspaceComponentList.value.forEach((item) => {
         if (item.id === key)
           data = item
 
         if (item.schema.fieldProps?.columns?.length && !data) {
-          item.schema.fieldProps?.columns.forEach((item) => {
+          item.schema.fieldProps?.columns.forEach((item: WorkspaceComponentItem) => {
             if (item.id === key)
               data = item
           })
@@ -69,8 +70,8 @@ export default defineComponent({
       return data
     }
 
-    function getKey(classList) {
-      const str = classList.find(item => item.includes('schema-field'))
+    function getKey(classList: string[]) {
+      const str = classList.find(item => item.includes('schema-field'))!
       return str.split('-')[2]
     }
 
