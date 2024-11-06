@@ -1,6 +1,6 @@
 import { uid } from '@ideal-schema/shared'
 import { cloneDeep } from 'lodash-es'
-import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { Fragment } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import './style.scss'
@@ -16,7 +16,8 @@ export default defineComponent({
   },
   emits: ['click-component-item'],
   setup(props, { emit }) {
-    const { workspaceComponentList, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { workspaceComponentType } = useGlobalSetting()
 
     let tempData: any = null
 
@@ -80,6 +81,7 @@ export default defineComponent({
         {props.componentList.map(component => (
           <Fragment>
             <el-collapse-item title={component.collapseTitle} name={component.collapseTitle}>
+              {component.collapseTitle === '基础组件' && workspaceComponentType.value === 'crud' && <el-alert title="表单筛选暂时只支持输入框、单选框、多选框、日期范围和插槽拖拽" type="warning" />}
               <div class="content-wrapper">
                 <VueDraggable
                   class="dragArea"
