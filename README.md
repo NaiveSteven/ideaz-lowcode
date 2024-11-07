@@ -1,26 +1,34 @@
-# ideaz-lowcode
+<p align="center">
+  <a href="https://github.com/NaiveSteven/ideaz-lowcode" target="_blank" rel="noopener noreferrer">
+    <img src="./packages/playground/src/assets/logo.png" alt="ideaz-lowcode" width="285" height="31" style="width: 285px;height: 31px" />
+  </a>
+</p>
 
-1. 开启关闭自定义操作项
-2. 表单筛选操作禁止拖拽
-3. 手动配置接口处理
-4. 可拖拽筛选表单提示
+<p align="center">
+  Based on <a href="https://github.com/NaiveSteven/ideaz-element" target="_blank" rel="noopener noreferrer">Ideaz Element</a>, Low code tool for middle and background
+</p>
 
-##
+<p align="center">
+  If you have created any awesome thing with Ideaz LowCode and would like to showcase it on the official website, you can contact me. If you would like to contribute code, you are very welcome!
+</p>
 
-## pnpm
+**English** | [中文](./README.zh-CN.md)
 
-因此，如果想给 pkg1 安装一个依赖包，比如 axios，可以进行如下操作：
+If you are worrying about something builder, Such as form builder/table builder etc. Ideaz LowCode is your perfect choice.
 
-`pnpm add axios --filter pkg1`
+## Features
 
-执行 pkg1 下的 scripts 脚本
+- ⚡ High performance, Smooth and beautiful drag and drop experience
+- 🔨 Full scene coverage
+- 💪 Strong scalability
+- 🎨 Support Low Code
+- 👀 Close to business code arrangement, low source code reading threshold
+- 🩹 It is suitable for middle - and back-office services
 
-`pnpm build --filter pkg1`
+## Documentation
 
-执行所有 package 下的 build 命令
+[Here](https://naivesteven.github.io/ideaz-lowcode/) you can view the online document.
 
-`pnpm build --filter "./packages/**"`
+## Help
 
-在 pkg1 中引用 pkg2
-
-`pnpm install pkg2 -r --filter pkg2`
+Open a [issue](https://github.com/NaiveSteven/ideaz-lowcode/issues) to request help.
