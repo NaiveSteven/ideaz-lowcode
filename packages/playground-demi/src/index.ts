@@ -1,15 +1,5 @@
 import * as el from '@ideal-schema/element'
 
-// const arr: (keyof typeof customs)[] = []
-// const obj: IndexType = {}
-
-// Object.keys(customs).forEach((key: any) => {
-//   arr.push(key)
-// })
-// arr.forEach((key: keyof typeof customs) => {
-//   obj[key] = customs[key]
-// })
-
 const ComponentWidget = el.ComponentWidget
 const WorkspaceComponentList = el.WorkspaceComponent
 const SettingForm = el.SettingForm
