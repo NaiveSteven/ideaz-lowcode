@@ -36,3 +36,7 @@ If you are worrying about something builder, Such as form builder/table builder 
 ## Help
 
 Open a [issue](https://github.com/NaiveSteven/ideaz-lowcode/issues) to request help.
+
+## License
+
+All in [MIT](./LICENSE.md) license.
