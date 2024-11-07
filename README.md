@@ -16,6 +16,10 @@
 
 If you are worrying about something builder, Such as form builder/table builder etc. Ideaz LowCode is your perfect choice.
 
+## Screenshot
+
+<img src="./packages/playground/src/assets/screenshot.png" alt="ideaz-lowcode" />
+
 ## Features
 
 - ⚡ High performance, Smooth and beautiful drag and drop experience
