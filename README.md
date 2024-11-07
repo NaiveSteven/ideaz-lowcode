@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/NaiveSteven/ideaz-lowcode" target="_blank" rel="noopener noreferrer">
-    <img src="./packages/playground/src/assets/github.png" alt="ideaz-lowcode" width="399" height="35" style="width: 399px;height: 35px;margin-top: 30px;margin-bottom: 30px;" />
+  <a href="https://github.com/NaiveSteven/ideaz-lowcode" target="_blank" rel="noopener noreferrer" style="margin-top: 30px;margin-bottom: 40px;">
+    <img src="./packages/playground/src/assets/github.png" alt="ideaz-lowcode" width="399" height="35" style="width: 399px;height: 35px;" />
   </a>
 </p>
 
