@@ -252,7 +252,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     const defaultAttrs: IndexType = {
       'input': inputCrudFormData,
       'select': SelectCrudFormData,
-      'datepicker': {},
+      'el-date-picker': {},
       'placeholder-block': {},
     }
 
@@ -333,7 +333,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
 
           if (
             key === 'componentType'
-            && searchFormItem.componentFormData?.componentType === 'datepicker'
+            && searchFormItem.componentFormData?.componentType === 'el-date-picker'
           )
             searchFormItem.fieldProps.component = 'daterange'
 

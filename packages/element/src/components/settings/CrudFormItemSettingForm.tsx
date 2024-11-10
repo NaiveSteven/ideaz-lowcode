@@ -188,10 +188,10 @@ export default defineComponent({
           const schema = crud.schema
           updateData(item, schema, obj)
         }
-        if (obj.value === 'datepicker') {
+        if (obj.value === 'el-date-picker') {
           const item = {
             ...curOperateComponent.value,
-            component: 'datepicker',
+            component: 'el-date-picker',
             fieldProps: reactive({
               ...dateRangeCrudFormData,
               type: 'daterange',
@@ -206,7 +206,7 @@ export default defineComponent({
             ],
             componentFormData: reactive({
               ...dateRangeCrudFormData,
-              componentType: 'datepicker',
+              componentType: 'el-date-picker',
             }),
             fieldFormData: reactive({
               ...curOperateComponent.value.fieldFormData,

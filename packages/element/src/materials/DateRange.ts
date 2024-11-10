@@ -16,7 +16,7 @@ export function DateRangeTemplateComponent(): WorkspaceComponentItem {
     icon: 'icon-riqiqujian',
     title: '日期范围',
     schema: {
-      component: 'datepicker',
+      component: 'el-date-picker',
       field,
       label: '日期范围',
       fieldProps: {

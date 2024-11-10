@@ -16,7 +16,7 @@ export function DateTemplateComponent() {
     icon: 'icon-riqi',
     title: '日期选择',
     schema: {
-      component: 'datepicker',
+      component: 'el-date-picker',
       field,
       label: '日期选择',
       fieldProps: {

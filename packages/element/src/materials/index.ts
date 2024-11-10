@@ -34,7 +34,7 @@ export const FORM_COMPONENT_TYPE = [
   { label: '输入框', value: 'input' },
   { label: '单选框', value: 'select' },
   { label: '多选框', value: 'multipleSelect' },
-  { label: '日期选择', value: 'datepicker' },
+  { label: '日期选择', value: 'el-date-picker' },
   { label: '插槽', value: 'slot' },
 ]
 

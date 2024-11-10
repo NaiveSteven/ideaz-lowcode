@@ -14,7 +14,7 @@ export function getDatepickerFormItemTemplate() {
   const newFormItem = {
     id: uid(),
     name: 'tableForm',
-    component: 'datepicker',
+    component: 'el-date-picker',
     title: '表单项',
     field: prop,
     icon: 'icon-riqiqujian',
@@ -25,7 +25,7 @@ export function getDatepickerFormItemTemplate() {
     },
     componentFormData: reactive({
       ...dateRangeCrudFormData,
-      componentType: 'datepicker',
+      componentType: 'el-date-picker',
     }),
     componentSchema: [
       {
