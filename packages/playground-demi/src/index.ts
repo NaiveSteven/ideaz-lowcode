@@ -10,6 +10,7 @@ const CopyPageCodeWidget = el.CopyPageCodeWidget
 const ViewPort = el.ViewPort
 const TsxWidget = el.TsxWidget
 const JSONWidget = el.JSONWidget
+const CopyTsxCodeWidget = el.CopyTsxCodeWidget
 
 export {
   ComponentWidget,
@@ -22,4 +23,5 @@ export {
   TsxWidget,
   ViewPort,
   WorkspaceComponentList,
+  CopyTsxCodeWidget,
 }

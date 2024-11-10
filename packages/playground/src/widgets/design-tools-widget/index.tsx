@@ -1,4 +1,4 @@
-import { CopyPageCodeWidget, CopySchemaCodeWidget } from '@ideal-schema/playground-demi'
+import { CopyPageCodeWidget, CopySchemaCodeWidget, CopyTsxCodeWidget } from '@ideal-schema/playground-demi'
 import BoardWH from './BoardWH'
 import Clear from './Clear'
 import Commands from './Commands'
@@ -37,6 +37,7 @@ export default defineComponent({
           />
           <div class="design-tools-end">
             <CopySchemaCodeWidget />
+            <CopyTsxCodeWidget />
             <CopyPageCodeWidget />
             <Clear />
           </div>
