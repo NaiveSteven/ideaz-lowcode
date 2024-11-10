@@ -10,14 +10,14 @@ const VIEW_BUTTON_GROUPS = [
     tooltip: 'JSON预览',
   },
   {
-    icon: 'icon-html',
-    type: 'page',
-    tooltip: 'Template代码预览',
-  },
-  {
     icon: 'icon-JSX',
     type: 'tsx',
     tooltip: 'TSX代码预览',
+  },
+  {
+    icon: 'icon-html',
+    type: 'page',
+    tooltip: 'Template代码预览',
   },
   {
     icon: 'icon-shipin',

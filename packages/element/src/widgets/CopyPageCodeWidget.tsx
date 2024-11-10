@@ -14,12 +14,12 @@ export default defineComponent({
           indent_size: 2,
         }),
       )
-      ElMessage.success('页面代码复制成功')
+      ElMessage.success('Template代码复制成功')
     }
 
     return () => {
       return (
-        <el-tooltip effect="light" content="页面代码复制" placement="top" showAfter={500}>
+        <el-tooltip effect="light" content="Template代码复制" placement="top" showAfter={500}>
           <el-button onClick={handleCopyJSON}>
             <el-icon size="20"><i class={['icon-fuzhi', 'iconfont']}></i></el-icon>
           </el-button>
