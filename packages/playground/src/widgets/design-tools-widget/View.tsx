@@ -12,7 +12,7 @@ const VIEW_BUTTON_GROUPS = [
   {
     icon: 'icon-html',
     type: 'page',
-    tooltip: '页面代码预览',
+    tooltip: 'Template代码预览',
   },
   {
     icon: 'icon-JSX',
