@@ -1,12 +1,12 @@
 export const crudTableTemplateSchema = [
   {
-    component: 'switch',
+    component: 'el-switch',
     field: 'request',
     label: '内置接口处理',
     tooltip: '表格数据等接口组件内部处理，否则需要手动处理调用',
   },
   {
-    component: 'switch',
+    component: 'el-switch',
     field: 'action',
     label: '内置操作',
     tooltip: '增删改查操作内置处理，否则需要手动处理，结合request使用风味更佳',
