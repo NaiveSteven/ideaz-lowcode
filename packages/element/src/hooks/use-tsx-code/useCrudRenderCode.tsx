@@ -41,7 +41,7 @@ export function useCrudRenderCode() {
           onRefresh={handlePaginationChange}
         >
       ${getCrudSlotCode(tableCols)}
-    </z-crud>`
+      </z-crud>`
   }
 
   return { getCrudRenderCode }

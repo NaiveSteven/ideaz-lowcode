@@ -1,11 +1,12 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useMockTableData } from '../use-page-code/useMockTableData'
+import { useCrudLogicCode } from '../use-page-code/useCrudLogicCode'
 import { useCrudRenderCode } from './useCrudRenderCode'
 
 export function useCrudDialogCode() {
   const { getCrudRenderCode } = useCrudRenderCode()
 
-  const { config } = parseElementSchema('code', 'crud')
+  const { config, columns } = parseElementSchema('code', 'crud')
   const { getTableData } = useMockTableData()
 
   return {
@@ -26,10 +27,11 @@ export function useCrudDialogCode() {
           const config = reactive(${JSON.stringify({
             formDecorator: { name: 'div' },
             tableDecorator: { name: 'div' },
+            loading: false,
             ...config,
+            columns,
           })});
-          const searchFormData = ref(${JSON.stringify(config.searchFormData)});
-          const tableData = ${JSON.stringify(getTableData())};
+          ${!config.request ? `const tableData = ${JSON.stringify(getTableData())};` : ''}
 
           watch(
             () => props.modelValue,
@@ -49,43 +51,13 @@ export function useCrudDialogCode() {
               }
               config.data = []
             } else {
-              getTableData()
+              ${!config.request ? `getTableData()` : ''}
             }
             emit('update:modelValue', newValue);
           }, { immediate: true });
 
+          ${useCrudLogicCode()}
 
-          const getTableData = async () => {
-            config.loading = true;
-            try {
-              const params = {
-                ...config.pagination,
-                ...searchFormData.value,
-              }
-              await delay(200);
-              config.data = tableData;
-            } catch (error) {
-              console.log(error, 'getTableData error');
-            }
-            config.loading = false;
-          }
-
-          const handlePaginationChange = (val) => {
-            config.pagination.page = val.page;
-            config.pagination.pageSize = val.pageSize;
-            getTableData();
-          }
-
-          const handleSearch = () => {
-            config.pagination.page = 1;
-            getTableData();
-          }
-
-          function delay(time: number) {
-            return new Promise(function (resolve) {
-              setTimeout(resolve, time);
-            });
-          }
           const renderFooter = () => {
             return <>
               <el-button size="default" onClick={() => visible.value = false}>取 消</el-button>
@@ -102,7 +74,7 @@ export function useCrudDialogCode() {
                 width="620px"
                 v-slots={{ footer: renderFooter }}
               >
-              ${getCrudRenderCode(config.tableCols)}
+              ${getCrudRenderCode(config.tableCols, config)}
             </el-dialog>
           }
         }
