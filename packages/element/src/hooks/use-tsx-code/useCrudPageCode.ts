@@ -1,6 +1,9 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
 import { useMockTableData } from '../use-page-code/useMockTableData'
+import { useCrudLogicCode } from '../use-page-code/useCrudLogicCode'
 import { useCrudRenderCode } from './useCrudRenderCode'
+
+function commonApi() {}
 
 export function useCrudPageCode() {
   const { getCrudRenderCode } = useCrudRenderCode()
@@ -15,47 +18,17 @@ export function useCrudPageCode() {
       export default defineComponent({
         name: 'MyComponent',
         setup() {
-          const config = reactive(${JSON.stringify(config)});
-          const searchFormData = ref(${JSON.stringify(config.searchFormData)});
-          const tableData = ${JSON.stringify(getTableData())};
-          const columns = ${JSON.stringify(columns)};
-
-          const getTableData = async () => {
-            config.loading = true;
-            try {
-              const params = {
-                ...config.pagination,
-                ...searchFormData.value,
-              }
-              await delay(200);
-              config.data = tableData;
-            } catch (error) {
-              console.log(error, 'getTableData error');
-            }
-            config.loading = false;
+          ${config.request
+            ? `const config = reactive(${JSON.stringify({ loading: false, ...config, columns, searchApi: getTableData, deleteApi: commonApi, submitApi: commonApi })});`
+            : `
+            const config = reactive(${JSON.stringify({ loading: false, ...config, columns })});
+            const tableData = ${JSON.stringify(getTableData())};
+            `
           }
 
-          const handlePaginationChange = (val) => {
-            config.pagination.page = val.page;
-            config.pagination.pageSize = val.pageSize;
-            getTableData();
-          }
-
-          const handleSearch = () => {
-            config.pagination.page = 1;
-            getTableData();
-          }
-
-          function delay(time: number) {
-            return new Promise(function (resolve) {
-              setTimeout(resolve, time);
-            });
-          }
-
-          getTableData();
-
+          ${useCrudLogicCode()}
           return () => {
-            return ${getCrudRenderCode(config.columns)}
+            return ${getCrudRenderCode(config.columns, config)}
           }
         }
       })`,

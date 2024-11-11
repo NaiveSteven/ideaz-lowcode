@@ -18,18 +18,27 @@ export function useCrudRenderCode() {
     return slots
   }
 
-  const getCrudRenderCode = (tableCols: TableCol[]) => {
+  const getCrudRenderCode = (tableCols: TableCol[], config) => {
+    if (config.request) {
+      return `<z-crud
+        v-model:searchFormData={config.searchFormData}
+        {...config}
+      />`
+    }
     return !isCrudIncludesSlot(tableCols)
       ? `<z-crud
-        v-model:searchFormData={searchFormData.value}
+        v-model:searchFormData={config.searchFormData}
         {...config}
-        columns={columns.value}
         onReset={handleSearch}
         onSearch={handleSearch}
         onRefresh={handlePaginationChange}
       />`
       : `<z-crud
-          columns={columns.value}
+          v-model:searchFormData={config.searchFormData}
+          {...config}
+          onReset={handleSearch}
+          onSearch={handleSearch}
+          onRefresh={handlePaginationChange}
         >
       ${getCrudSlotCode(tableCols)}
     </z-crud>`
