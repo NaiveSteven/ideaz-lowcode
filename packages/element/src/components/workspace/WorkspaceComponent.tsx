@@ -118,7 +118,7 @@ export default defineComponent({
       event.preventDefault()
       event.stopPropagation()
       if (column.className === 'inline-column-operation') {
-        ElMessage.warning('内置操作列暂无法被拖拽排序')
+        ElMessage.warning('内置操作列暂无法被拖拽排序，如想自定义操作列，请将配置项内置操作关闭')
         return
       }
       const columnIndex = column.getColumnIndex()
