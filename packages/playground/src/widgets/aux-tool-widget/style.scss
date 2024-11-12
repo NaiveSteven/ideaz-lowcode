@@ -1,24 +1,24 @@
 .aux-button {
   display: flex;
   align-items: center;
-  padding: 0 3px;
   height: 20px;
+  padding: 0 3px;
   font-size: 12px !important;
-  border-color: #2254f4; //#2254f4
   color: #fff; //#fff
   background: #2254f4; //#2254f4
+  border-color: #2254f4; //#2254f4
 
   &:hover,
   &:focus {
-    border-color: #40a9ff; //#40a9ff
     color: #fff; //#fff
     background: #40a9ff; //#40a9ff
+    border-color: #40a9ff; //#40a9ff
   }
 
   &:active {
-    border-color: #096dd9; //#096dd9
     color: #fff; //#fff
     background: #096dd9; //#096dd9
+    border-color: #096dd9; //#096dd9
   }
 
   .el-icon {
@@ -38,19 +38,25 @@
   margin-left: 0;
 }
 
+.inline-column-operation {
+  .el-button + .el-button {
+    margin-left: 12px !important;
+  }
+}
+
 @keyframes animate-slide-to-top {
   from {
+    opacity: 0%;
     transform: translateY(-10%);
-    opacity: 0;
   }
 
   to {
+    opacity: 80%;
     transform: translateY(0);
-    opacity: 0.8;
   }
 }
 
 .selector-menu {
+  opacity: 80%;
   animation: animate-slide-to-top 0.2s;
-  opacity: 0.8;
 }
