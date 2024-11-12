@@ -28,7 +28,7 @@ export function useCrudPageCode() {
 
           ${useCrudLogicCode()}
           return () => {
-            return ${getCrudRenderCode(config.columns, config)}
+            return (${getCrudRenderCode(config.columns, config)})
           }
         }
       })`,

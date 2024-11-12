@@ -22,7 +22,7 @@ export function useCrudDialogCode() {
           }
         },
         emits: ['update:modelValue'],
-        setup() {
+        setup(props, { emit }) {
           const visible = ref(false);
           const config = reactive(${JSON.stringify({
             formDecorator: { name: 'div' },
@@ -56,7 +56,7 @@ export function useCrudDialogCode() {
             emit('update:modelValue', newValue);
           }, { immediate: true });
 
-          ${useCrudLogicCode()}
+          ${useCrudLogicCode('dialog')}
 
           const renderFooter = () => {
             return <>
