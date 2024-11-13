@@ -37,7 +37,7 @@ export default defineComponent({
         class="h-full"
         language="json"
         options={cmOptions}
-        onChange={(value: any) => console.log(value, 'value')}
+        // onChange={(value: any) => console.log(value, 'value')}
         onReady={ready}
       />
     )
