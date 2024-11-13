@@ -30,6 +30,67 @@ export const COMPONENT_SELECT = {
   },
 }
 
+export const DEFAULT_CRUD_OPERATION_COLUMN = {
+  name: 'tableCol',
+  id: uid(),
+  title: '表格项',
+  prop: 'operation',
+  label: '操作',
+  icon: 'icon-biaoge-lie',
+  type: 'button',
+  buttons: [
+    {
+      key: uid(),
+      type: 'primary',
+      link: true,
+      label: '新增',
+    },
+    {
+      key: uid(),
+      type: 'primary',
+      link: true,
+      label: '编辑',
+    },
+    {
+      type: 'danger',
+      link: true,
+      label: '删除',
+      key: uid(),
+    },
+  ],
+  componentSchema: tableColTemplateSchema,
+  componentOptionsConfig: tableColTemplateOptionsConfig,
+  componentFormData: reactive({
+    ...tableColFormData,
+    type: 'button',
+    prop: 'operation',
+    label: '操作',
+    buttons: [
+      {
+        type: 'primary',
+        key: uid(),
+        link: true,
+        label: '新增',
+      },
+      {
+        key: uid(),
+        type: 'primary',
+        link: true,
+        label: '编辑',
+      },
+      {
+        type: 'danger',
+        link: true,
+        label: '删除',
+        key: uid(),
+      },
+    ],
+  }),
+  activeCollapseItems: ['column'],
+  allowCopy: true,
+  allowDelete: true,
+}
+
 function getColumns() {
   const mockNameId = uid()
   const mockAddressId = uid()
@@ -240,54 +301,6 @@ function getColumns() {
       allowCopy: true,
       allowDelete: true,
     },
-    // {
-    //   name: 'tableCol',
-    //   id: uid(),
-    //   title: '表格项',
-    //   prop: 'operation',
-    //   label: '操作',
-    //   icon: 'icon-biaoge-lie',
-    //   type: 'button',
-    //   buttons: [
-    //     {
-    //       key: uid(),
-    //       type: 'primary',
-    //       link: true,
-    //       label: '添加',
-    //     },
-    //     {
-    //       type: 'primary',
-    //       link: true,
-    //       label: '删除',
-    //       key: uid(),
-    //     },
-    //   ],
-    //   componentSchema: tableColTemplateSchema,
-    //   componentOptionsConfig: tableColTemplateOptionsConfig,
-    //   componentFormData: reactive({
-    //     ...tableColFormData,
-    //     type: 'button',
-    //     prop: 'operation',
-    //     label: '操作',
-    //     buttons: [
-    //       {
-    //         type: 'primary',
-    //         key: uid(),
-    //         link: true,
-    //         label: '编辑',
-    //       },
-    //       {
-    //         type: 'primary',
-    //         link: true,
-    //         label: '删除',
-    //         key: uid(),
-    //       },
-    //     ],
-    //   }),
-    //   activeCollapseItems: ['column'],
-    //   allowCopy: true,
-    //   allowDelete: true,
-    // },
   ]
 }
 

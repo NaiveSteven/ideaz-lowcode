@@ -1,5 +1,6 @@
 import { useWorkspaceComponent } from '@ideal-schema/playground-store'
 import { cloneDeep } from 'lodash-es'
+import { DEFAULT_CRUD_OPERATION_COLUMN } from '../../template'
 import './style.scss'
 
 export default defineComponent({
@@ -47,6 +48,7 @@ export default defineComponent({
     const handleTableConfigChange = (obj: FormChangeData) => {
       const crud = workspaceComponentList.value[0]
       const schema = cloneDeep(crud.schema)
+      let columns = []
       if (obj.formData.pagination === false) {
         delete schema.pagination
       }
@@ -58,12 +60,17 @@ export default defineComponent({
         }
       }
 
-      if (obj.formData.action)
+      if (obj.formData.action) {
         schema.action = true
-
-      else
+      }
+      else {
         schema.action = false
-
+        if (obj.field === 'action' && obj.value === false) {
+          const isOperation = schema.columns?.some(item => item.type === 'button')
+          if (!isOperation)
+            columns = [DEFAULT_CRUD_OPERATION_COLUMN] as any
+        }
+      }
       if (obj.formData.tableDecorator !== 'el-card') {
         schema.tableDecorator = {
           name: obj.value,
@@ -90,13 +97,17 @@ export default defineComponent({
       }
 
       schema.size = obj.formData.size
+      const cols = schema.columns?.concat(columns)
       updateCurOperateComponent({
         ...crud,
         componentFormData: {
           ...crud.componentFormData,
           ...obj.formData,
         },
-        schema,
+        schema: {
+          ...schema,
+          columns: cols,
+        },
       })
       updateComponentList([
         {
@@ -105,7 +116,10 @@ export default defineComponent({
             ...crud.componentFormData,
             ...obj.formData,
           },
-          schema,
+          schema: {
+            ...schema,
+            columns: cols,
+          },
         },
       ])
     }
