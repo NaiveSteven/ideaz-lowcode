@@ -98,7 +98,7 @@ export default defineComponent({
 
       schema.size = obj.formData.size
       const cols = schema.columns?.concat(columns)
-      updateCurOperateComponent({
+      const data = {
         ...crud,
         componentFormData: {
           ...crud.componentFormData,
@@ -108,20 +108,9 @@ export default defineComponent({
           ...schema,
           columns: cols,
         },
-      })
-      updateComponentList([
-        {
-          ...crud,
-          componentFormData: {
-            ...crud.componentFormData,
-            ...obj.formData,
-          },
-          schema: {
-            ...schema,
-            columns: cols,
-          },
-        },
-      ])
+      }
+      updateCurOperateComponent(data)
+      updateComponentList([data])
     }
 
     return () => {
