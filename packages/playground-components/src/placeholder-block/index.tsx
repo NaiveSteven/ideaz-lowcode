@@ -4,8 +4,7 @@ export default defineComponent({
     return () => (
       <div
         style={{
-          border: '1px dashed #aaa',
-          height: '60px',
+          height: '30px',
           width: '100%',
           backgroundColor: '#f0f0f0',
         }}
