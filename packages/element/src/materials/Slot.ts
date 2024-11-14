@@ -1,4 +1,9 @@
 import { uid } from '@ideal-schema/shared'
+import {
+  formItemFormData,
+  formItemTemplateOptionsConfig,
+  formItemTemplateSchema,
+} from '../schemas'
 
 export function SlotTemplateComponent(): WorkspaceComponentItem {
   return {
@@ -11,10 +16,11 @@ export function SlotTemplateComponent(): WorkspaceComponentItem {
       fieldProps: {},
     },
     formItemFormData: reactive({
+      ...formItemFormData,
       label: '插槽',
     }),
-    formItemTemplateSchema: {},
-    formItemOptionsConfig: {},
+    formItemTemplateSchema,
+    formItemOptionsConfig: formItemTemplateOptionsConfig,
     componentFormData: reactive({}),
     componentSchema: [],
     componentOptionsConfig: {},
