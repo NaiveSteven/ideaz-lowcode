@@ -75,7 +75,6 @@ export default defineComponent({
           componentProps: {
             multiple: true,
             options: props.arrayOptions,
-            // collapseTags: true,
             style: {
               minWidth: '83px',
             },

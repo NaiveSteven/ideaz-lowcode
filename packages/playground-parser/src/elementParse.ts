@@ -361,7 +361,6 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     columns = schema.columns?.map((item: TableCol) => {
       const tableCol = cloneDeep(item)
       if (tableCol.search) {
-        // tableCol.search.fieldProps = {}
         const searchFormItem = tableCol.search
         const component = tableCol.search.component
         Object.keys(searchFormItem.componentFormData).forEach((key) => {
