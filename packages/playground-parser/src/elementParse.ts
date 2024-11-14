@@ -159,6 +159,12 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         ) {
           return {
             slot: item.fieldFormData?.slot,
+            ...Object.entries(item.formItemFormData!).reduce((acc, [key, value]) => {
+              if (value)
+                acc[key] = value
+
+              return acc
+            }, {}),
           }
         }
 

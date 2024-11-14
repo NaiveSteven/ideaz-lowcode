@@ -17,6 +17,7 @@ export function SlotTemplateComponent(): WorkspaceComponentItem {
     },
     formItemFormData: reactive({
       ...formItemFormData,
+      showMessage: false,
       label: '插槽',
     }),
     formItemTemplateSchema,
