@@ -29,20 +29,16 @@ export default defineComponent({
       else
         schema.collapsed = false
 
-      updateCurOperateComponent({
+      const data = {
         ...crud,
         fieldFormData: reactive({
           ...curOperateComponent.value.fieldFormData,
           ...obj.formData,
         }),
         schema,
-      })
-      updateComponentList([
-        {
-          ...crud,
-          schema,
-        },
-      ])
+      }
+      updateCurOperateComponent(data)
+      updateComponentList([data])
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
