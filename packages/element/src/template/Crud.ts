@@ -30,6 +30,11 @@ export const COMPONENT_SELECT = {
   },
 }
 
+export const DEFAULT_CRUD_FIELD_FORM_DATA = {
+  labelWidth: '80px',
+  collapsed: true,
+}
+
 export const DEFAULT_CRUD_OPERATION_COLUMN = {
   name: 'tableCol',
   id: uid(),
@@ -359,10 +364,7 @@ export function CrudTemplate(): WorkspaceComponentItem {
     componentSchema: crudTableTemplateSchema,
     componentOptionsConfig: crudTableOptionsConfig,
     fieldSchema: crudFormTemplateSchema,
-    fieldFormData: reactive({
-      labelWidth: '80px',
-      collapsed: true,
-    }),
+    fieldFormData: reactive(DEFAULT_CRUD_FIELD_FORM_DATA),
     allowCopy: false,
     allowDelete: true,
     activeCollapseItems: ['table', 'form'],

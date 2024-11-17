@@ -1,6 +1,7 @@
 import { useWorkspaceComponent, useWorkspaceForm } from '@ideal-schema/playground-store'
 import { isEmpty, isObject } from '@ideal-schema/shared'
 import {
+  DEFAULT_CRUD_FIELD_FORM_DATA,
   SelectCrudFormData,
   defaultCheckboxAttrs,
   formItemFormData as defaultFormItemFormData,
@@ -302,9 +303,6 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     if (componentFormData?.rowKey && componentFormData.rowKey !== 'id')
       config.rowKey = componentFormData?.rowKey
 
-    if (component.fieldFormData?.collapsed === false)
-      config.collapsed = component.fieldFormData?.collapsed
-
     if (componentFormData?.pagination)
       config.pagination = schema.pagination
 
@@ -324,6 +322,17 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         submitApi: 'commonApi',
       }
     }
+
+    const componentFieldFormData = component.fieldFormData
+    const isCollapsed = componentFieldFormData?.collapsed !== DEFAULT_CRUD_FIELD_FORM_DATA.collapsed
+    const isLabelWidth = componentFieldFormData?.labelWidth !== DEFAULT_CRUD_FIELD_FORM_DATA.labelWidth
+    if ((isLabelWidth || isCollapsed) && !config.search)
+      config.search = {}
+
+    if (isCollapsed)
+      config.search.collapsed = componentFieldFormData?.collapsed
+    if (isLabelWidth)
+      config.search.labelWidth = componentFieldFormData?.labelWidth
 
     const isSearch = schema.columns?.some((item: TableCol) => item.search)
 
