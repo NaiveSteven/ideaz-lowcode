@@ -303,7 +303,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
       config.rowKey = componentFormData?.rowKey
 
     if (component.fieldFormData?.collapsed === false)
-      config.collapsed = componentFormData?.collapsed
+      config.collapsed = component.fieldFormData?.collapsed
 
     if (componentFormData?.pagination)
       config.pagination = schema.pagination
