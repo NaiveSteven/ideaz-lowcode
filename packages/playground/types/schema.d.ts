@@ -17,7 +17,7 @@ declare interface Schema {
     style?: any
     [propName: string]: any
   }
-  // table pro
+  // crud
   columns?: TableCol[]
   data?: any
   cellClassName?: string | ((obj: { columnIndex: number }) => void)
