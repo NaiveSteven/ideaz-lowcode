@@ -18,7 +18,7 @@ export function useFormDialogCode() {
         }
       },
       emits: ['update:modelValue'],
-      setup() {
+      setup(props, { emit }) {
         const formRef = ref();
         const isConfirmBtnLoading = ref(false);
         const visible = ref(false);
@@ -67,7 +67,7 @@ export function useFormDialogCode() {
 
         const renderFooter = () => {
           return <>
-            <el-button onClick={() => visible.value = false}" size="default">取 消</el-button>
+            <el-button onClick={() => visible.value = false} size="default">取 消</el-button>
             <el-button type="primary"  size="default" loading={isConfirmBtnLoading.value} onClick={handleValidate}
               >确 定</el-button
             >
@@ -75,7 +75,7 @@ export function useFormDialogCode() {
         };
 
         return () => {
-          return ${getRenderCode(columns)}
+          return (${getRenderCode(columns)})
         }
       }
     })`

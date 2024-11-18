@@ -19,7 +19,7 @@ export function useFormPageCode() {
         const formRef = ref()
 
         return () => {
-          return ${getRenderCode(columns)}
+          return (${getRenderCode(columns)})
         }
       }
     })`

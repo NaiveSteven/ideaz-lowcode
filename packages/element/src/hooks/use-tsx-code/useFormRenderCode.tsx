@@ -54,7 +54,7 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
         v-model={formData.value}
         {...formConfig}
         options={options}
-        columns={columns.value}
+        columns={columns}
       />
       ${getContainerCode()[1]}`
       : `${getContainerCode()[0]}
@@ -63,7 +63,7 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
       v-model={formData.value}
       {...formConfig}
       options={options}
-      columns={columns.value}
+      columns={columns}
       v-slots={${JSON.stringify(getFormSlotCode(columns))}}
     />
   ${getContainerCode()[1]}`
