@@ -16,6 +16,7 @@ export function useFormPageCode() {
         const formData = ref(${JSON.stringify(formData)})
         const formConfig = ${JSON.stringify(formConfig)}
         const options = ${JSON.stringify(options)}
+        const formRef = ref()
 
         return () => {
           return ${getRenderCode(columns)}
