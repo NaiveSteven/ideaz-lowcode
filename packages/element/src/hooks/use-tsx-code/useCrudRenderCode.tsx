@@ -23,7 +23,7 @@ export function useCrudRenderCode() {
       return `<z-crud
         v-model:formData={config.searchFormData}
         v-model:data={config.data}
-        v-model:pagination={config.pagination}
+        ${config.pagination ? 'v-model:pagination={config.pagination}' : ''}
         v-model:loading={config.loading}
         {...config}
       />`
@@ -32,22 +32,22 @@ export function useCrudRenderCode() {
       ? `<z-crud
         v-model:formData={config.searchFormData}
         v-model:data={config.data}
-        v-model:pagination={config.pagination}
+        ${config.pagination ? 'v-model:pagination={config.pagination}' : ''}
         v-model:loading={config.loading}
         {...config}
         onReset={handleSearch}
         onSearch={handleSearch}
-        onRefresh={handlePaginationChange}
+        ${config.pagination ? 'onRefresh={handlePaginationChange}' : ''}
       />`
       : `<z-crud
           v-model:formData={config.searchFormData}
           v-model:data={config.data}
-          v-model:pagination={config.pagination}
+          ${config.pagination ? 'v-model:pagination={config.pagination}' : ''}
           v-model:loading={config.loading}
           {...config}
           onReset={handleSearch}
           onSearch={handleSearch}
-          onRefresh={handlePaginationChange}
+          ${config.pagination ? 'onRefresh={handlePaginationChange}' : ''}
         >
       ${getCrudSlotCode(tableCols)}
       </z-crud>`

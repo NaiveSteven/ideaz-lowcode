@@ -47,7 +47,7 @@ export function useCrudLogicCode(type: 'dialog' | 'page' = 'page') {
               page: 1,
               pageSize: 2,
               total: 4,
-              list: data.slice((config.pagination.page - 1) * config.pagination.pageSize, config.pagination.page * config.pagination.pageSize),
+              list: ${config.pagination ? 'data.slice((config.pagination.page - 1) * config.pagination.pageSize, config.pagination.page * config.pagination.pageSize)' : 'data'},
             },
           })
         }, 100)
@@ -72,7 +72,7 @@ export function useCrudLogicCode(type: 'dialog' | 'page' = 'page') {
     config.loading = true;
     try {
       const params = {
-        ...config.pagination,
+        ${config.pagination ? '...config.pagination,' : ''}
         ...config.searchFormData,
       }
       await delay(200);
@@ -83,14 +83,16 @@ export function useCrudLogicCode(type: 'dialog' | 'page' = 'page') {
     config.loading = false;
   }
 
-  const handlePaginationChange = (val) => {
+  ${config.pagination
+     ? `const handlePaginationChange = (val) => {
     config.pagination.page = val.page;
     config.pagination.pageSize = val.pageSize;
     getTableData();
-  }
+  }`
+: ''}
 
   const handleSearch = () => {
-    config.pagination.page = 1;
+    ${config.pagination ? 'config.pagination.page = 1;' : ''}
     getTableData();
   }
 

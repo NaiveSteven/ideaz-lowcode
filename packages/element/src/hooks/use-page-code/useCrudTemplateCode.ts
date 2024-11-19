@@ -45,7 +45,7 @@ export function useCrudTemplateCode() {
       v-bind="config"
       v-model:formData="config.searchFormData"
       v-model:data="config.data"
-      v-model:pagination="config.pagination"
+      ${config.pagination ? 'v-model:pagination="config.pagination"' : ''}
       v-model:loading="config.loading"
     />`
     }
@@ -54,21 +54,21 @@ export function useCrudTemplateCode() {
         v-bind="config"
         v-model:formData="config.searchFormData"
         v-model:data="config.data"
-        v-model:pagination="config.pagination"
+        ${config.pagination ? 'v-model:pagination="config.pagination"' : ''}
         v-model:loading="config.loading"
         @reset="handleSearch"
         @search="handleSearch"
-        @refresh="handlePaginationChange"
+        ${config.pagination ? '@refresh="handlePaginationChange"' : ''}
       />`
       : `<z-crud
           v-bind="config"
           v-model:formData="config.searchFormData"
           v-model:data="config.data"
-          v-model:pagination="config.pagination"
+          ${config.pagination ? 'v-model:pagination="config.pagination"' : ''}
           v-model:loading="config.loading"
           @reset="handleSearch"
           @search="handleSearch"
-          @refresh="handlePaginationChange"
+          ${config.pagination ? '@refresh="handlePaginationChange"' : ''}
         >
       ${getCrudSlotCode(tableCols)}
     </z-crud>`
