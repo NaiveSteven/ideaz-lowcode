@@ -9,7 +9,7 @@ export const crudTableTemplateSchema = [
     component: 'el-switch',
     field: 'action',
     label: '内置操作',
-    tooltip: '增删改查操作内置处理，否则需要手动处理，结合request使用风味更佳',
+    tooltip: '增删改查操作内置处理，结合request使用风味更佳。否则建议手动配置操作列，自定义增删改查操作',
   },
   {
     component: 'select',
