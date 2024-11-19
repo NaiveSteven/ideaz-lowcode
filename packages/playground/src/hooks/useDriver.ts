@@ -6,7 +6,7 @@ const steps = [
     element: '.composite-panel-tabs',
     popover: {
       title: '最左侧菜单',
-      description: '组件、目录结构、历史记录都在这',
+      description: '组件、目录结构、操作记录',
       position: 'right',
     },
   },
@@ -14,7 +14,7 @@ const steps = [
     element: '.drawer',
     popover: {
       title: '组件物料',
-      description: '基础组件、高阶组件物料都在这',
+      description: '基础组件、高阶组件物料，拖拽配置表单和表格',
       position: 'right',
     },
   },
@@ -22,7 +22,7 @@ const steps = [
     element: '.board',
     popover: {
       title: '画板',
-      description: '我们可以在这边拼接组件',
+      description: '通过拖拽、选中、新增、复制、删除等操作组件',
       position: 'right',
     },
   },
@@ -30,7 +30,7 @@ const steps = [
     element: '.design-tools',
     popover: {
       title: '工具栏',
-      description: '切换屏幕大小、切换画板等操作都在这！',
+      description: '切换画板大小、切换画板代码预览、复制产出代码、清空画板',
       position: 'bottom-right',
     },
   },
@@ -38,7 +38,7 @@ const steps = [
     element: '.settings-panel',
     popover: {
       title: '组件属性配置',
-      description: '在这里配置表单和组件属性！',
+      description: '配置表单和组件属性',
       position: 'left',
     },
   },
