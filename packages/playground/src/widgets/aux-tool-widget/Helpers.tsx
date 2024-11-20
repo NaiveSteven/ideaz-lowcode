@@ -1,9 +1,9 @@
-import { useWorkspaceComponent } from '@ideal-schema/playground-store';
-import type { PropType } from 'vue';
-import { CSSProperties } from 'vue';
-import Copy from './Copy';
-import Delete from './Delete';
-import Selector from './Selector';
+import { useWorkspaceComponent } from '@ideal-schema/playground-store'
+import type { CSSProperties, PropType } from 'vue'
+
+import Copy from './Copy'
+import Delete from './Delete'
+import Selector from './Selector'
 
 export default defineComponent({
   name: 'Helpers',
@@ -14,15 +14,15 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceComponent();
+    const { curOperateComponent } = useWorkspaceComponent()
 
     const style = computed<CSSProperties>(() => {
-      const position: CSSProperties = {};
+      const position: CSSProperties = {}
       props.position === 'bottom'
         ? (position.top = '100%')
         : props.position === 'inner-top'
           ? ((position.top = '0'), (position.right = '1px'))
-          : (position.bottom = '100%');
+          : (position.bottom = '100%')
       return {
         position: 'absolute',
         right: 0,
@@ -31,8 +31,8 @@ export default defineComponent({
         userSelect: 'none',
         pointerEvents: 'all',
         ...position,
-      };
-    });
+      }
+    })
 
     return () => (
       <div style={unref(style)} class="flex">
@@ -40,6 +40,6 @@ export default defineComponent({
         {curOperateComponent.value.allowCopy && <Copy />}
         {curOperateComponent.value.allowDelete && <Delete />}
       </div>
-    );
+    )
   },
-});
+})

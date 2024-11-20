@@ -13,7 +13,6 @@ export default defineComponent({
       clearWorkspaceComponentList()
       updateWorkspaceComponentType('form')
       updateCurOperateComponent({} as WorkspaceComponentItem)
-      // ElMessage.success('清空成功')
     }
 
     return () => (
