@@ -16,7 +16,7 @@ export default defineComponent({
   },
   emits: ['click-component-item'],
   setup(props, { emit }) {
-    const { workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
 
     let tempData: any = null
@@ -45,7 +45,7 @@ export default defineComponent({
           const cols = arrayItem.schema.fieldProps?.columns
           const item = { ...tempData, id: uid() }
           cols.splice(obj.newIndex, 0, item)
-          updateCurOperateComponent(item)
+          updateActiveWidget(item)
           // updateComponentList(workspaceComponentList.value)
         }
         else {

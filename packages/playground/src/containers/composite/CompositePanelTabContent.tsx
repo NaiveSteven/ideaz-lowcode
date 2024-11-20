@@ -21,7 +21,7 @@ export const CompositePanelTabContent = defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceComponent()
+    const { activeWidget } = useWorkspaceComponent()
 
     const widgetKey = ref('key')
 
@@ -36,7 +36,7 @@ export const CompositePanelTabContent = defineComponent({
     })
 
     watch(
-      () => curOperateComponent.value,
+      () => activeWidget.value,
       async (newVal, oldVal) => {
         if (newVal.id !== oldVal.id) {
           await promiseTimeout(0)

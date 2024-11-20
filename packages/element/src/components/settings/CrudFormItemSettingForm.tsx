@@ -17,7 +17,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableProFormItemSettingForm',
   setup() {
-    const { curOperateComponent, workspaceComponentList, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateComponentList, updateActiveWidget } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -60,12 +60,12 @@ export default defineComponent({
 
         updateWorkspaceComponentList()
       }
-      updateCurOperateComponent(form)
+      updateActiveWidget(form)
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
       const item = {
-        ...curOperateComponent.value,
+        ...activeWidget.value,
         field: obj.formData.field,
         fieldFormData: obj.formData,
       }
@@ -75,10 +75,10 @@ export default defineComponent({
     }
 
     const handleFormDataChange = (obj: FormChangeData) => {
-      if (obj.field === 'componentType' && curOperateComponent.value.type !== obj.value) {
+      if (obj.field === 'componentType' && activeWidget.value.type !== obj.value) {
         if (obj.value === 'select') {
           const item = {
-            ...curOperateComponent.value,
+            ...activeWidget.value,
             component: 'select',
             fieldProps: {
               ...SelectCrudFormData,
@@ -115,7 +115,7 @@ export default defineComponent({
         }
         if (obj.value === 'multipleSelect') {
           const item = {
-            ...curOperateComponent.value,
+            ...activeWidget.value,
             component: 'select',
             fieldProps: {
               ...multipleSelectCrudFormData,
@@ -140,7 +140,7 @@ export default defineComponent({
               componentType: 'multipleSelect',
             }),
             fieldFormData: reactive({
-              ...curOperateComponent.value.fieldFormData,
+              ...activeWidget.value.fieldFormData,
               default: [],
             }),
             componentOptionsConfig: {
@@ -163,7 +163,7 @@ export default defineComponent({
         }
         if (obj.value === 'input') {
           const item = {
-            ...curOperateComponent.value,
+            ...activeWidget.value,
             component: 'input',
             fieldProps: reactive({
               ...inputCrudFormData,
@@ -190,7 +190,7 @@ export default defineComponent({
         }
         if (obj.value === 'el-date-picker') {
           const item = {
-            ...curOperateComponent.value,
+            ...activeWidget.value,
             component: 'el-date-picker',
             fieldProps: reactive({
               ...dateRangeCrudFormData,
@@ -209,7 +209,7 @@ export default defineComponent({
               componentType: 'el-date-picker',
             }),
             fieldFormData: reactive({
-              ...curOperateComponent.value.fieldFormData,
+              ...activeWidget.value.fieldFormData,
               default: [],
             }),
             componentOptionsConfig: {
@@ -228,7 +228,7 @@ export default defineComponent({
         }
         if (obj.value === 'slot') {
           const item = {
-            ...curOperateComponent.value,
+            ...activeWidget.value,
             component: 'placeholder-block',
             componentSchema: [
               {
@@ -276,15 +276,15 @@ export default defineComponent({
       }
       else {
         const item = {
-          ...curOperateComponent.value,
+          ...activeWidget.value,
           fieldOptionsConfig: {
             default:
               obj.field === 'options'
                 ? obj.formData.options
-                : curOperateComponent.value.fieldOptionsConfig?.default || [],
+                : activeWidget.value.fieldOptionsConfig?.default || [],
           },
           fieldProps: {
-            ...curOperateComponent.value.fieldProps,
+            ...activeWidget.value.fieldProps,
             ...obj.formData,
           },
         }
@@ -316,7 +316,7 @@ export default defineComponent({
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const item = {
-        ...curOperateComponent.value,
+        ...activeWidget.value,
         ...obj.formData,
       }
       const crud = workspaceComponentList.value[0]
@@ -327,42 +327,42 @@ export default defineComponent({
     return () => {
       return (
         <div class="form-content">
-          <el-collapse v-model={curOperateComponent.value.activeCollapseItems}>
+          <el-collapse v-model={activeWidget.value.activeCollapseItems}>
             <el-collapse-item title="字段属性" name="field">
               <z-form
-                v-model={curOperateComponent.value.fieldFormData}
+                v-model={activeWidget.value.fieldFormData}
                 {...formConfig}
-                key={curOperateComponent.value.id}
-                columns={curOperateComponent.value.fieldSchema}
-                options={curOperateComponent.value.fieldOptionsConfig}
+                key={activeWidget.value.id}
+                columns={activeWidget.value.fieldSchema}
+                options={activeWidget.value.fieldOptionsConfig}
                 onChange={handleFieldFormDataChange}
               />
             </el-collapse-item>
-            {curOperateComponent.value.componentSchema
-            && curOperateComponent.value.componentSchema!.length
+            {activeWidget.value.componentSchema
+            && activeWidget.value.componentSchema!.length
               ? (
                 <el-collapse-item title="组件属性" name="component">
                   <z-form
-                    v-model={curOperateComponent.value.componentFormData}
+                    v-model={activeWidget.value.componentFormData}
                     {...formConfig}
-                    key={curOperateComponent.value.id}
-                    columns={curOperateComponent.value.componentSchema}
-                    options={curOperateComponent.value.componentOptionsConfig}
+                    key={activeWidget.value.id}
+                    columns={activeWidget.value.componentSchema}
+                    options={activeWidget.value.componentOptionsConfig}
                     onChange={handleFormDataChange}
                   />
                 </el-collapse-item>
                 )
               : null}
-            {curOperateComponent.value.formItemTemplateSchema
-            && Array.isArray(curOperateComponent.value.formItemTemplateSchema)
+            {activeWidget.value.formItemTemplateSchema
+            && Array.isArray(activeWidget.value.formItemTemplateSchema)
               ? (
                 <el-collapse-item title="容器属性" name="formItem">
                   <z-form
-                    v-model={curOperateComponent.value.formItemFormData}
+                    v-model={activeWidget.value.formItemFormData}
                     {...formConfig}
-                    key={curOperateComponent.value.id}
-                    columns={curOperateComponent.value.formItemTemplateSchema}
-                    options={curOperateComponent.value.formItemOptionsConfig}
+                    key={activeWidget.value.id}
+                    columns={activeWidget.value.formItemTemplateSchema}
+                    options={activeWidget.value.formItemOptionsConfig}
                     onChange={handleFormItemFormDataChange}
                   />
                 </el-collapse-item>

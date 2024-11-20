@@ -14,7 +14,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { curOperateComponent } = useWorkspaceComponent()
+    const { activeWidget } = useWorkspaceComponent()
 
     const style = computed<CSSProperties>(() => {
       const position: CSSProperties = {}
@@ -37,8 +37,8 @@ export default defineComponent({
     return () => (
       <div style={unref(style)} class="flex">
         <Selector />
-        {curOperateComponent.value.allowCopy && <Copy />}
-        {curOperateComponent.value.allowDelete && <Delete />}
+        {activeWidget.value.allowCopy && <Copy />}
+        {activeWidget.value.allowDelete && <Delete />}
       </div>
     )
   },

@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudTableColumnSettingForm',
   setup() {
-    const { curOperateComponent, workspaceComponentList, updateComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateComponentList, updateActiveWidget } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -19,9 +19,9 @@ export default defineComponent({
       const schema = crud.schema
       let columns: TableCol[] = []
       const data: WorkspaceComponentItem = {
-        ...curOperateComponent.value,
+        ...activeWidget.value,
         componentFormData: {
-          ...curOperateComponent.value.componentFormData,
+          ...activeWidget.value.componentFormData,
           ...obj.formData,
         },
         ...obj.formData,
@@ -63,7 +63,7 @@ export default defineComponent({
         data.componentFormData!.buttons = data.buttons
       }
       columns = schema.columns?.map((item: TableCol) => {
-        if (item.id === curOperateComponent.value.id)
+        if (item.id === activeWidget.value.id)
           return data
 
         return item
@@ -77,26 +77,26 @@ export default defineComponent({
           },
         },
       ])
-      updateCurOperateComponent(data)
+      updateActiveWidget(data)
     }
 
     return () => {
       return (
         <div class="form-content">
-          <el-collapse v-model={curOperateComponent.value.activeCollapseItems}>
+          <el-collapse v-model={activeWidget.value.activeCollapseItems}>
             <el-collapse-item title="列属性" name="column">
               <z-form
-                v-model={curOperateComponent.value.componentFormData}
+                v-model={activeWidget.value.componentFormData}
                 {...formConfig}
-                key={curOperateComponent.value.id}
+                key={activeWidget.value.id}
                 columns={
-                  isFunction(curOperateComponent.value.componentSchema)
-                    ? curOperateComponent.value.componentSchema(
-                      curOperateComponent.value.componentFormData,
+                  isFunction(activeWidget.value.componentSchema)
+                    ? activeWidget.value.componentSchema(
+                      activeWidget.value.componentFormData,
                     )
-                    : curOperateComponent.value.componentSchema
+                    : activeWidget.value.componentSchema
                 }
-                options={curOperateComponent.value.componentOptionsConfig}
+                options={activeWidget.value.componentOptionsConfig}
                 onChange={handleColumnDataChange}
               />
             </el-collapse-item>

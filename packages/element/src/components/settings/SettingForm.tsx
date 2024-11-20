@@ -9,7 +9,7 @@ import './style.scss'
 export default defineComponent({
   name: 'SettingForm',
   setup() {
-    const { curOperateComponent, workspaceComponentList } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList } = useWorkspaceComponent()
     const { formConfig: workspaceFormConfig, setFormConfig } = useWorkspaceForm()
 
     const formConfig = reactive({
@@ -41,10 +41,10 @@ export default defineComponent({
     }
 
     return () => {
-      if (!curOperateComponent.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
+      if (!activeWidget.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
         return null
 
-      if (!curOperateComponent.value.id) {
+      if (!activeWidget.value.id) {
         return (
           <div class="form-content">
             <z-form
@@ -58,10 +58,10 @@ export default defineComponent({
         )
       }
 
-      if (curOperateComponent.value.name === 'tableCol')
+      if (activeWidget.value.name === 'tableCol')
         return <CrudTableColumnSettingForm />
 
-      if (curOperateComponent.value.name === 'crud')
+      if (activeWidget.value.name === 'crud')
         return <CrudSettingForm />
 
       if (

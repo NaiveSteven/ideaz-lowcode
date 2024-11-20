@@ -12,10 +12,10 @@ export default defineComponent({
   name: 'DesignToolsWidget',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
 
     const selectors = computed(() => {
-      return getPids(workspaceComponentList.value, curOperateComponent.value)
+      return getPids(workspaceComponentList.value, activeWidget.value)
     })
 
     const tableProSelectors = computed(() => {
@@ -23,14 +23,14 @@ export default defineComponent({
       const tableProTitle = pageTitle.concat([
         { title: '增删改查', id: workspaceComponentList?.value[0]?.id },
       ])
-      if (curOperateComponent.value.name === 'crud')
+      if (activeWidget.value.name === 'crud')
         return tableProTitle
 
-      if (curOperateComponent.value.name === 'tableCol')
-        return tableProTitle.concat([{ title: '表格项', id: curOperateComponent.value.id }])
+      if (activeWidget.value.name === 'tableCol')
+        return tableProTitle.concat([{ title: '表格项', id: activeWidget.value.id }])
 
-      if (curOperateComponent.value.name === 'tableForm')
-        return tableProTitle.concat([{ title: '表单项', id: curOperateComponent.value.id }])
+      if (activeWidget.value.name === 'tableForm')
+        return tableProTitle.concat([{ title: '表单项', id: activeWidget.value.id }])
 
       return pageTitle
     })
@@ -38,7 +38,7 @@ export default defineComponent({
     const titleList = computed<TitleItem[]>(() => {
       const formTitle: IndexType = [{ title: '表单' }]
       if (workspaceComponentType.value === 'form') {
-        if (curOperateComponent.value.id)
+        if (activeWidget.value.id)
           return formTitle.concat(cloneDeep(selectors.value).reverse())
 
         else
@@ -51,11 +51,11 @@ export default defineComponent({
 
     const handleClickTitle = (item: TitleItem) => {
       if (item.title === '表单') {
-        updateCurOperateComponent({} as WorkspaceComponentItem)
+        updateActiveWidget({} as WorkspaceComponentItem)
       }
       else {
         const cur = getTreeDataItem(workspaceComponentList.value, item.id as string)
-        updateCurOperateComponent(cur)
+        updateActiveWidget(cur)
       }
     }
 

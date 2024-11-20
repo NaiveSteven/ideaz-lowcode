@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudSettingForm',
   setup() {
-    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent, updateComponentList } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateActiveWidget, updateComponentList } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -32,12 +32,12 @@ export default defineComponent({
       const data = {
         ...crud,
         fieldFormData: reactive({
-          ...curOperateComponent.value.fieldFormData,
+          ...activeWidget.value.fieldFormData,
           ...obj.formData,
         }),
         schema,
       }
-      updateCurOperateComponent(data)
+      updateActiveWidget(data)
       updateComponentList([data])
     }
 
@@ -105,30 +105,30 @@ export default defineComponent({
           columns: cols,
         },
       }
-      updateCurOperateComponent(data)
+      updateActiveWidget(data)
       updateComponentList([data])
     }
 
     return () => {
       return (
         <div class="form-content">
-          <el-collapse v-model={curOperateComponent.value.activeCollapseItems}>
+          <el-collapse v-model={activeWidget.value.activeCollapseItems}>
             <el-collapse-item title="表单属性" name="form">
               <z-form
-                v-model={curOperateComponent.value.fieldFormData}
+                v-model={activeWidget.value.fieldFormData}
                 {...formConfig}
-                key={curOperateComponent.value.id}
-                columns={curOperateComponent.value.fieldSchema}
+                key={activeWidget.value.id}
+                columns={activeWidget.value.fieldSchema}
                 onChange={handleFormConfigChange}
               />
             </el-collapse-item>
             <el-collapse-item title="表格属性" name="table">
               <z-form
-                v-model={curOperateComponent.value.componentFormData}
+                v-model={activeWidget.value.componentFormData}
                 {...formConfig}
-                key={curOperateComponent.value.id}
-                columns={curOperateComponent.value.componentSchema}
-                options={curOperateComponent.value.componentOptionsConfig}
+                key={activeWidget.value.id}
+                columns={activeWidget.value.componentSchema}
+                options={activeWidget.value.componentOptionsConfig}
                 onChange={handleTableConfigChange}
               />
             </el-collapse-item>

@@ -15,7 +15,7 @@ import ComponentList from './ComponentList'
 export default defineComponent({
   name: 'ComponentWidget',
   setup() {
-    const { updateComponentList, pushComponentItem, updateCurOperateComponent, workspaceComponentList } = useWorkspaceComponent()
+    const { updateComponentList, pushComponentItem, updateActiveWidget, workspaceComponentList } = useWorkspaceComponent()
     const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const templateObj = {
@@ -80,7 +80,7 @@ export default defineComponent({
             updateComponentList([
               i,
             ])
-            updateCurOperateComponent(newFormItem)
+            updateActiveWidget(newFormItem)
           }
         }
         else {
@@ -99,7 +99,7 @@ export default defineComponent({
         }
         updateComponentList([], '清空组件')
         pushComponentItem(componentItem, index, toId)
-        updateCurOperateComponent(componentItem)
+        updateActiveWidget(componentItem)
         updateWorkspaceComponentType('crud')
         return
       }
@@ -107,7 +107,7 @@ export default defineComponent({
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceComponentType.value === 'crud') {
           updateComponentList([], '清空组件')
-          updateCurOperateComponent({} as WorkspaceComponentItem)
+          updateActiveWidget({} as WorkspaceComponentItem)
         }
         updateWorkspaceComponentType('form')
       }
@@ -127,12 +127,12 @@ export default defineComponent({
           },
         }
         pushComponentItem(componentItem, index, toId)
-        updateCurOperateComponent(componentItem)
+        updateActiveWidget(componentItem)
         // 模板
       }
       else if (Array.isArray(expandComponentItem.templates)) {
         updateComponentList(cloneDeep(expandComponentItem.templates!), '添加组件')
-        updateCurOperateComponent({} as WorkspaceComponentItem)
+        updateActiveWidget({} as WorkspaceComponentItem)
       }
     }
 

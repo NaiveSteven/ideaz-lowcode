@@ -16,7 +16,7 @@ export default defineComponent({
       type: Array as PropType<WorkspaceComponentItem[]>,
       default: () => [],
     },
-    curOperateComponent: {
+    activeWidget: {
       type: Object as PropType<WorkspaceComponentItem>,
       default: () => ({}),
     },
@@ -34,7 +34,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent, updateComponentList, simulatorType } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateActiveWidget, updateComponentList, simulatorType } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
     const { formConfig } = useWorkspaceForm()
 
@@ -47,7 +47,7 @@ export default defineComponent({
       mitt.on('form-item-click', (({ event, id }: { id: string, event: PointerEvent }) => {
         event?.stopPropagation()
         event?.preventDefault()
-        if (props.curOperateComponent.id === id)
+        if (props.activeWidget.id === id)
           return
         let item: WorkspaceComponentItem = {} as WorkspaceComponentItem
         workspaceComponentList.value[0]?.schema?.columns?.forEach((col) => {
@@ -62,7 +62,7 @@ export default defineComponent({
       mitt.off('form-item-click')
     })
 
-    watch(() => curOperateComponent.value, () => {
+    watch(() => activeWidget.value, () => {
       // if (val.name === 'crud' && old.name === 'crud' && val.schema.collapsed !== old.schema.collapsed)
       if (isUpdateKey)
         tableKey.value = new Date().valueOf()
@@ -78,7 +78,7 @@ export default defineComponent({
     const clickItem = (e: MouseEvent, item: WorkspaceComponentItem) => {
       e.preventDefault()
       e.stopPropagation()
-      if (props.curOperateComponent.id === item.id)
+      if (props.activeWidget.id === item.id)
         return
       emit('on-update-cur-operate', item)
     }
@@ -126,7 +126,7 @@ export default defineComponent({
         = workspaceComponentList.value[0].schema.columns?.filter(item => item.prop)
         || []
       const tableCol = columns[columnIndex]
-      updateCurOperateComponent(tableCol as WorkspaceComponentItem)
+      updateActiveWidget(tableCol as WorkspaceComponentItem)
     }
 
     const handleUpdateFormItem = ({ columns, dragEvent }: { columns: WorkspaceComponentItem[], dragEvent: any }) => {
@@ -158,7 +158,7 @@ export default defineComponent({
         //     },
         //   },
         // ])
-        updateCurOperateComponent(data)
+        updateActiveWidget(data)
       }
     }
 
@@ -204,18 +204,18 @@ export default defineComponent({
             },
           },
         ], '排序更改')
-        updateCurOperateComponent(data)
+        updateActiveWidget(data)
         tableKey.value = new Date().valueOf()
       }
     }
 
     const handleFormItemClick = (data: WorkspaceComponentItem) => {
-      updateCurOperateComponent(data)
+      updateActiveWidget(data)
     }
 
     const handleFormItemMousedown = async (data: WorkspaceComponentItem) => {
       isUpdateKey = false
-      updateCurOperateComponent(data)
+      updateActiveWidget(data)
     }
 
     function getArrayItem(key: string) {

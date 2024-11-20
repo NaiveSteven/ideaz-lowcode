@@ -6,13 +6,13 @@ export default defineComponent({
   name: 'Clear',
   setup() {
     const { updateWorkspaceComponentType } = useGlobalSetting()
-    const { updateCurOperateComponent, clearWorkspaceComponentList } = useWorkspaceComponent()
+    const { updateActiveWidget, clearWorkspaceComponentList } = useWorkspaceComponent()
 
     const handleClearAll = () => {
       copy('')
       clearWorkspaceComponentList()
       updateWorkspaceComponentType('form')
-      updateCurOperateComponent({} as WorkspaceComponentItem)
+      updateActiveWidget({} as WorkspaceComponentItem)
     }
 
     return () => (

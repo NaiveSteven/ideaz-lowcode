@@ -6,18 +6,18 @@ export default defineComponent({
   name: 'Selector',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { curOperateComponent, workspaceComponentList, updateCurOperateComponent } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
     const { isOutside, changeBtnStatus } = useInElement('selector-btn')
 
     const selectors = computed(() => {
-      const { parentData } = getComponentListItem(curOperateComponent.value.id, workspaceComponentList.value)
-      return parentData ? [...getPids(workspaceComponentList.value, curOperateComponent.value), parentData] : getPids(workspaceComponentList.value, curOperateComponent.value)
+      const { parentData } = getComponentListItem(activeWidget.value.id, workspaceComponentList.value)
+      return parentData ? [...getPids(workspaceComponentList.value, activeWidget.value), parentData] : getPids(workspaceComponentList.value, activeWidget.value)
     })
 
     const tableProSelectors = computed(() => {
       if (
-        curOperateComponent.value.name === 'tableCol'
-        || curOperateComponent.value.name === 'tableForm'
+        activeWidget.value.name === 'tableCol'
+        || activeWidget.value.name === 'tableForm'
       ) {
         return [
           {
@@ -34,26 +34,26 @@ export default defineComponent({
     const handleClickTitle = (item: { id: string, title: string }) => {
       changeBtnStatus(true)
       const clickData = getTreeDataItem(workspaceComponentList.value, item.id)
-      updateCurOperateComponent(clickData)
+      updateActiveWidget(clickData)
     }
 
     const handleClickForm = () => {
       changeBtnStatus(true)
-      updateCurOperateComponent({} as WorkspaceComponentItem)
+      updateActiveWidget({} as WorkspaceComponentItem)
     }
 
     const renderCurOperateSelector = () => (
       <el-button
         type="primary"
         size="small"
-        v-show={curOperateComponent.value.id}
+        v-show={activeWidget.value.id}
         class="aux-button w-full"
-        onClick={() => handleClickTitle(curOperateComponent.value)}
+        onClick={() => handleClickTitle(activeWidget.value)}
       >
         <el-icon>
-          <i class={[curOperateComponent.value.icon, 'iconfont']}></i>
+          <i class={[activeWidget.value.icon, 'iconfont']}></i>
         </el-icon>
-        <span>{curOperateComponent.value.title}</span>
+        <span>{activeWidget.value.title}</span>
       </el-button>
     )
 
@@ -112,11 +112,11 @@ export default defineComponent({
               })}
             {renderFormSelector(
               selectors.value.length ? 'aux-button selector-menu mt-1' : 'aux-button selector-menu',
-              !!curOperateComponent.value.id,
+              !!activeWidget.value.id,
             )}
           </div>
         )}
-        {renderFormSelector('aux-button', !curOperateComponent.value.id)}
+        {renderFormSelector('aux-button', !activeWidget.value.id)}
       </div>
     )
   },

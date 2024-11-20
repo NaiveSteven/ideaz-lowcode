@@ -5,7 +5,7 @@ export default defineComponent({
   name: 'ComponentTreeWidget',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { workspaceComponentList, curOperateComponent, updateCurOperateComponent } = useWorkspaceComponent()
+    const { workspaceComponentList, activeWidget, updateActiveWidget } = useWorkspaceComponent()
 
     const tree = ref<InstanceType<typeof ElTree>>()
 
@@ -47,22 +47,22 @@ export default defineComponent({
 
     onMounted(async () => {
       if (tree.value)
-        tree.value.setCurrentKey(curOperateComponent.value.id || 'form')
+        tree.value.setCurrentKey(activeWidget.value.id || 'form')
     })
 
     const handleClick = (item: WorkspaceComponentItem) => {
       if (item.id === workspaceComponentList.value[0].id) {
-        updateCurOperateComponent(workspaceComponentList.value[0])
+        updateActiveWidget(workspaceComponentList.value[0])
         return
       }
       if (item.title === '筛选表单' || item.title === '表格项')
         return
 
       if (item.id === 'form') {
-        updateCurOperateComponent({} as WorkspaceComponentItem)
+        updateActiveWidget({} as WorkspaceComponentItem)
         return
       }
-      updateCurOperateComponent(item)
+      updateActiveWidget(item)
     }
 
     const renderTreeDefault = ({ data }: { data: WorkspaceComponentItem }) => {

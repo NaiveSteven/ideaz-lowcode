@@ -3,12 +3,12 @@ import { useWorkspaceComponent } from '@ideal-schema/playground-store';
 export default defineComponent({
   name: 'Copy',
   setup() {
-    const { curOperateComponent, copyComponentItem } = useWorkspaceComponent();
+    const { activeWidget, copyComponentItem } = useWorkspaceComponent();
 
     const handleCopy = (e: MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      copyComponentItem(curOperateComponent.value);
+      copyComponentItem(activeWidget.value);
     };
 
     return () => (

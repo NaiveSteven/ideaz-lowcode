@@ -5,7 +5,7 @@ export default defineComponent({
   name: 'ViewPort',
   setup() {
     const { formData, formConfig } = useWorkspaceForm()
-    const { pushComponentItem, updateCurOperateComponent, workspaceComponentList: list, curOperateComponent } = useWorkspaceComponent()
+    const { pushComponentItem, updateActiveWidget, workspaceComponentList: list, activeWidget } = useWorkspaceComponent()
 
     const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {
       pushComponentItem(item, index, toId)
@@ -13,14 +13,14 @@ export default defineComponent({
 
     return () => {
       return (
-        <div id="view-port" class="view-port" onClick={() => updateCurOperateComponent({} as WorkspaceComponentItem)}>
-          {curOperateComponent.value.name === 'crud'
+        <div id="view-port" class="view-port" onClick={() => updateActiveWidget({} as WorkspaceComponentItem)}>
+          {activeWidget.value.name === 'crud'
             ? (
               <WorkspaceComponent
                 workspaceComponentList={list.value}
-                curOperateComponent={curOperateComponent.value}
+                activeWidget={activeWidget.value}
                 formData={formData.value}
-                onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateCurOperateComponent(item)}
+                onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
                 onOn-add-item={handleAddComponentItem}
               />
             )
@@ -28,9 +28,9 @@ export default defineComponent({
               <z-form class="h-full" modelValue={formData.value} {...formConfig.value}>
                 <WorkspaceComponent
                   workspaceComponentList={list.value}
-                  curOperateComponent={curOperateComponent.value}
+                  activeWidget={activeWidget.value}
                   formData={formData.value}
-                  onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateCurOperateComponent(item)}
+                  onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
                   onOn-add-item={handleAddComponentItem}
                 />
               </z-form>

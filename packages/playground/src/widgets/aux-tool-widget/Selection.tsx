@@ -7,7 +7,7 @@ import './style.scss'
 export default defineComponent({
   name: 'Selection',
   setup() {
-    const { curOperateComponent, workspaceComponentList } = useWorkspaceComponent()
+    const { activeWidget, workspaceComponentList } = useWorkspaceComponent()
     const { formConfig } = useWorkspaceForm()
 
     const position = ref<DOMRect>({} as DOMRect)
@@ -63,14 +63,14 @@ export default defineComponent({
 
     const selectorPosition = computed(() => {
       const index = workspaceComponentList.value.findIndex(
-        item => curOperateComponent.value.id === item.id,
+        item => activeWidget.value.id === item.id,
       )
 
       // multiple column layout
-      if (formConfig.value.column > 1 && curOperateComponent.value.id)
+      if (formConfig.value.column > 1 && activeWidget.value.id)
         return 'bottom'
 
-      if (index === 0 || curOperateComponent.value.pid || curOperateComponent.value.name === 'tableForm')
+      if (index === 0 || activeWidget.value.pid || activeWidget.value.name === 'tableForm')
         return 'bottom'
 
       if (index === -1)
@@ -81,8 +81,8 @@ export default defineComponent({
 
     onMounted(() => {
       mitt.on('selection-change', setPosition)
-      let ele = document.getElementById(curOperateComponent.value?.id || '')
-      if (!curOperateComponent.value.id)
+      let ele = document.getElementById(activeWidget.value?.id || '')
+      if (!activeWidget.value.id)
         ele = document.getElementById('view-port')
 
       if (!ele)
@@ -97,14 +97,14 @@ export default defineComponent({
       await nextTick()
       await nextTick()
       await delay(50)
-      let ele = document.getElementById(`schema-field${curOperateComponent.value?.id}`)
-      if (!curOperateComponent.value.id)
+      let ele = document.getElementById(`schema-field${activeWidget.value?.id}`)
+      if (!activeWidget.value.id)
         ele = document.getElementById('view-port')
-      if (curOperateComponent.value.name === 'tableCol') {
+      if (activeWidget.value.name === 'tableCol') {
         const schema = workspaceComponentList.value[0].schema
         const len = schema.data.length
         const bottomDom = document.getElementsByClassName(
-          `schema-field${curOperateComponent.value?.id}`,
+          `schema-field${activeWidget.value?.id}`,
         )[len - 1]
         const topDom = document.getElementsByClassName('crudHeader')[0]
         if (bottomDom && topDom) {

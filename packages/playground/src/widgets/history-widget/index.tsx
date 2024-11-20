@@ -8,7 +8,7 @@ import './style.scss'
 export default defineComponent({
   name: 'HistoryWidget',
   setup() {
-    const { viewType, updateCurOperateComponent } = useWorkspaceComponent()
+    const { viewType, updateActiveWidget } = useWorkspaceComponent()
 
     const handleClick = (current: number, data: Command) => {
       if (viewType.value !== 'design') {
@@ -20,7 +20,7 @@ export default defineComponent({
       }
       currentIndex.value = current
       data.redo()
-      updateCurOperateComponent({} as WorkspaceComponentItem)
+      updateActiveWidget({} as WorkspaceComponentItem)
     }
 
     return () => (

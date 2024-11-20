@@ -8,7 +8,7 @@ import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
   workspaceComponentList: WorkspaceComponentItem[]
-  curOperateComponent: WorkspaceComponentItem
+  activeWidget: WorkspaceComponentItem
   viewType: ViewType
   boardWidth: number
   boardHeight: number
@@ -24,7 +24,7 @@ export const useWorkspaceStore = defineStore({
   id: 'workspace',
   state: (): WorkspaceState => ({
     workspaceComponentList: [],
-    curOperateComponent: {} as WorkspaceComponentItem,
+    activeWidget: {} as WorkspaceComponentItem,
     viewType: 'design',
     boardWidth: 0,
     boardHeight: 0,
@@ -37,7 +37,7 @@ export const useWorkspaceStore = defineStore({
       return this.workspaceComponentList
     },
     getCurOperateComponent(): WorkspaceComponentItem {
-      return this.curOperateComponent
+      return this.activeWidget
     },
     getViewType(): ViewType {
       return this.viewType
@@ -219,7 +219,7 @@ export const useWorkspaceStore = defineStore({
               else {
                 columns[lastIndex + 1].search = newFormItem
               }
-              this.curOperateComponent = newFormItem
+              this.activeWidget = newFormItem
             }
             // 表格项
             if (componentItem.name === 'tableCol') {
@@ -240,7 +240,7 @@ export const useWorkspaceStore = defineStore({
                   },
                 },
               ]
-              this.curOperateComponent = newTableCol
+              this.activeWidget = newTableCol
             }
           }
         }
@@ -256,8 +256,8 @@ export const useWorkspaceStore = defineStore({
     clearWorkspaceComponentList() {
       this.addHistory(() => { this.workspaceComponentList = [] }, { message: '清空组件', time: new Date() })
     },
-    updateCurOperateComponent(curOperateComponent: WorkspaceComponentItem) {
-      this.curOperateComponent = curOperateComponent
+    updateActiveWidget(activeWidget: WorkspaceComponentItem) {
+      this.activeWidget = activeWidget
     },
     updateViewType(type: ViewType) {
       this.viewType = type
@@ -279,8 +279,8 @@ export const useWorkspaceStore = defineStore({
       const newComponentList = cloneDeep(this.workspaceComponentList)
       undoManager.add({
         ...props,
-        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
-        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.curOperateComponent = {} as WorkspaceComponentItem },
+        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.activeWidget = {} as WorkspaceComponentItem },
+        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.activeWidget = {} as WorkspaceComponentItem },
       })
     },
   },
