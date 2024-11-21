@@ -112,7 +112,7 @@ export const useWorkspaceStore = defineStore({
         }
         else {
           const globalSettingStore = useGlobalSettingStore()
-          const workspaceWidgetType = globalSettingStore.getWorkspaceComponentType
+          const workspaceWidgetType = globalSettingStore.getWorkspaceWidgetType
           // 表单部分
           if (workspaceWidgetType === 'form') {
             index = this.widgets.findIndex(item => item.id === componentItem.id)
@@ -173,7 +173,7 @@ export const useWorkspaceStore = defineStore({
         }
         else {
           const globalSettingStore = useGlobalSettingStore()
-          const workspaceWidgetType = globalSettingStore.getWorkspaceComponentType
+          const workspaceWidgetType = globalSettingStore.getWorkspaceWidgetType
           // 表单部分
           if (workspaceWidgetType === 'form') {
             const index = this.widgets.findIndex((item: any) => item.id === componentItem.id)

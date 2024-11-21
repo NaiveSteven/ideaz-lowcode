@@ -21,7 +21,7 @@ export const useGlobalSettingStore = defineStore({
     getVersion(): number {
       return this.version
     },
-    getWorkspaceComponentType(): 'form' | 'crud' {
+    getWorkspaceWidgetType(): 'form' | 'crud' {
       return this.workspaceWidgetType
     },
     getCompositeArrowDirection(): 'right' | 'left' {
