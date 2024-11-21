@@ -53,7 +53,7 @@ export const useWorkspaceStore = defineStore({
     },
   },
   actions: {
-    pushComponentItem(componentItem: WorkspaceComponentItem, index: number, toId: string) {
+    pushWidget(componentItem: WorkspaceComponentItem, index: number, toId: string) {
       this.addHistory(() => {
         if (!toId) {
           this.widgets.splice(index, 0, componentItem)
@@ -64,7 +64,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '添加组件', time: new Date() })
     },
-    updateComponentItem(componentItem: WorkspaceComponentItem) {
+    updateWidget(componentItem: WorkspaceComponentItem) {
       this.addHistory(() => {
         let index = -1
         if (componentItem.pid) {
@@ -90,13 +90,13 @@ export const useWorkspaceStore = defineStore({
             const colsIndex = cols.findIndex(item => item.id === componentItem.id)
             if (colsIndex > -1) {
               parentData.schema?.fieldProps?.columns.splice(colsIndex, 1, componentItem)
-              this.updateComponentItem(parentData)
+              this.updateWidget(parentData)
             }
           }
         }
       }, { message: '属性更改', time: new Date() })
     },
-    deleteComponentItem(componentItem: WorkspaceComponentItem) {
+    deleteWidget(componentItem: WorkspaceComponentItem) {
       this.addHistory(() => {
         let index = -1
         if (componentItem.pid) {
@@ -127,7 +127,7 @@ export const useWorkspaceStore = defineStore({
               cols.splice(colsIndex, 1)
               if (colsIndex > -1) {
                 parentData.schema.fieldProps!.columns = cols
-                this.updateComponentItem(parentData)
+                this.updateWidget(parentData)
               }
             }
           }
@@ -161,7 +161,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '删除组件', time: new Date() })
     },
-    copyComponentItem(componentItem: WorkspaceComponentItem) {
+    copyWidget(componentItem: WorkspaceComponentItem) {
       this.addHistory(() => {
         const newComponentItem = changeDataId([{ ...componentItem, id: uid() }])
         if (componentItem.pid) {
@@ -187,7 +187,7 @@ export const useWorkspaceStore = defineStore({
               const colsIndex = cols.findIndex(item => item.id === componentItem.id)
               if (colsIndex > -1) {
                 parentData.schema.fieldProps!.columns = cols
-                this.updateComponentItem(parentData)
+                this.updateWidget(parentData)
               }
             }
           }

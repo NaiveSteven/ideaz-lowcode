@@ -3,11 +3,11 @@ import { useGlobalSetting, useWorkspaceComponent } from '@ideal-schema/playgroun
 export default defineComponent({
   name: 'Delete',
   setup() {
-    const { activeWidget, deleteComponentItem, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, deleteWidget, updateActiveWidget } = useWorkspaceComponent()
     const { updateWorkspaceComponentType } = useGlobalSetting()
 
     const handleDelete = () => {
-      deleteComponentItem(activeWidget.value)
+      deleteWidget(activeWidget.value)
       if (activeWidget.value.name === 'crud')
         updateWorkspaceComponentType('form')
 

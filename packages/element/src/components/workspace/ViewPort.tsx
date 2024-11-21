@@ -5,10 +5,10 @@ export default defineComponent({
   name: 'ViewPort',
   setup() {
     const { formData, formConfig } = useWorkspaceForm()
-    const { pushComponentItem, updateActiveWidget, widgets: list, activeWidget } = useWorkspaceComponent()
+    const { pushWidget, updateActiveWidget, widgets: list, activeWidget } = useWorkspaceComponent()
 
     const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {
-      pushComponentItem(item, index, toId)
+      pushWidget(item, index, toId)
     }
 
     return () => {

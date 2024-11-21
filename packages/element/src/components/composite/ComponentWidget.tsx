@@ -15,7 +15,7 @@ import ComponentList from './ComponentList'
 export default defineComponent({
   name: 'ComponentWidget',
   setup() {
-    const { updateComponentList, pushComponentItem, updateActiveWidget, widgets } = useWorkspaceComponent()
+    const { updateComponentList, pushWidget, updateActiveWidget, widgets } = useWorkspaceComponent()
     const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const templateObj = {
@@ -98,7 +98,7 @@ export default defineComponent({
           },
         }
         updateComponentList([], '清空组件')
-        pushComponentItem(componentItem, index, toId)
+        pushWidget(componentItem, index, toId)
         updateActiveWidget(componentItem)
         updateWorkspaceComponentType('crud')
         return
@@ -126,7 +126,7 @@ export default defineComponent({
             },
           },
         }
-        pushComponentItem(componentItem, index, toId)
+        pushWidget(componentItem, index, toId)
         updateActiveWidget(componentItem)
         // 模板
       }

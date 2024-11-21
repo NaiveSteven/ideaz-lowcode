@@ -8,7 +8,7 @@ import './style.scss'
 export default defineComponent({
   name: 'FormItemSettingForm',
   setup() {
-    const { activeWidget, updateActiveWidget, updateComponentItem } = useWorkspaceComponent()
+    const { activeWidget, updateActiveWidget, updateWidget } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -90,7 +90,7 @@ export default defineComponent({
         }
       }
       updateActiveWidget(item)
-      updateComponentItem(item)
+      updateWidget(item)
     }
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
@@ -107,7 +107,7 @@ export default defineComponent({
         }
       }
       updateActiveWidget(item)
-      updateComponentItem(item)
+      updateWidget(item)
     }
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
@@ -131,7 +131,7 @@ export default defineComponent({
         }
       }
       updateActiveWidget(cloneDeep(o))
-      updateComponentItem(cloneDeep(o))
+      updateWidget(cloneDeep(o))
     }
 
     return () => {
