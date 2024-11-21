@@ -9,7 +9,7 @@ import './style.scss'
 export default defineComponent({
   name: 'SettingForm',
   setup() {
-    const { activeWidget, workspaceComponentList } = useWorkspaceComponent()
+    const { activeWidget, widgets } = useWorkspaceComponent()
     const { formConfig: workspaceFormConfig, setFormConfig } = useWorkspaceForm()
 
     const formConfig = reactive({
@@ -41,7 +41,7 @@ export default defineComponent({
     }
 
     return () => {
-      if (!activeWidget.value.id && workspaceComponentList.value?.[0]?.name === 'crud')
+      if (!activeWidget.value.id && widgets.value?.[0]?.name === 'crud')
         return null
 
       if (!activeWidget.value.id) {
@@ -65,9 +65,9 @@ export default defineComponent({
         return <CrudSettingForm />
 
       if (
-        workspaceComponentList.value
-        && workspaceComponentList.value.length
-        && workspaceComponentList.value[0].name === 'crud'
+        widgets.value
+        && widgets.value.length
+        && widgets.value[0].name === 'crud'
       )
         return <CrudFormItemSettingForm />
 

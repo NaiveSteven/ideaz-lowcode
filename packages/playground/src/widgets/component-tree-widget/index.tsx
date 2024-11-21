@@ -5,17 +5,17 @@ export default defineComponent({
   name: 'ComponentTreeWidget',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { workspaceComponentList, activeWidget, updateActiveWidget } = useWorkspaceComponent()
+    const { widgets, activeWidget, updateActiveWidget } = useWorkspaceComponent()
 
     const tree = ref<InstanceType<typeof ElTree>>()
 
     const treeData = computed(() => {
       if (workspaceComponentType.value === 'form')
-        return [{ title: '表单', id: 'form', children: workspaceComponentList.value }]
+        return [{ title: '表单', id: 'form', children: widgets.value }]
 
       const formItemTree: any = []
       const tableColTree: any = []
-      workspaceComponentList.value[0].schema.columns?.forEach((item) => {
+      widgets.value[0].schema.columns?.forEach((item) => {
         if (item.search) {
           formItemTree.push({
             ...item.search,
@@ -30,7 +30,7 @@ export default defineComponent({
       return [
         {
           title: '增删改查',
-          id: workspaceComponentList.value[0].id,
+          id: widgets.value[0].id,
           children: [
             {
               title: '筛选表单',
@@ -51,8 +51,8 @@ export default defineComponent({
     })
 
     const handleClick = (item: WorkspaceComponentItem) => {
-      if (item.id === workspaceComponentList.value[0].id) {
-        updateActiveWidget(workspaceComponentList.value[0])
+      if (item.id === widgets.value[0].id) {
+        updateActiveWidget(widgets.value[0])
         return
       }
       if (item.title === '筛选表单' || item.title === '表格项')

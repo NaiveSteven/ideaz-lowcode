@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'WorkspaceComponent',
   emits: ['on-add-item', 'on-update-cur-operate'],
   props: {
-    workspaceComponentList: {
+    widgets: {
       type: Array as PropType<WorkspaceComponentItem[]>,
       default: () => [],
     },
@@ -34,7 +34,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { activeWidget, workspaceComponentList, updateActiveWidget, updateComponentList, simulatorType } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget, updateComponentList, simulatorType } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
     const { formConfig } = useWorkspaceForm()
 
@@ -50,7 +50,7 @@ export default defineComponent({
         if (props.activeWidget.id === id)
           return
         let item: WorkspaceComponentItem = {} as WorkspaceComponentItem
-        workspaceComponentList.value[0]?.schema?.columns?.forEach((col) => {
+        widgets.value[0]?.schema?.columns?.forEach((col) => {
           if (col.search?.formItemProps?.id === `schema-field${id}`)
             item = { ...col.search }
         })
@@ -84,23 +84,23 @@ export default defineComponent({
     }
 
     const start = (a: any) => {
-      tempData = props.workspaceComponentList[a.oldIndex]
+      tempData = props.widgets[a.oldIndex]
     }
 
     const end = (draggableEvent: any) => {
-      const list = [...workspaceComponentList.value]
+      const list = [...widgets.value]
       // normal form to array form
       if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.to.classList))
         // const normalItemIndex = list.findIndex(item => item.id === tempData.id)
         const arrayItem = getArrayItem(key)
-        // console.log(workspaceComponentList.value, 'workspaceComponentList')
+        // console.log(widgets.value, 'widgets')
         // debugger
         const cols = arrayItem.schema.fieldProps?.columns
         // list.splice(normalItemIndex, 1)
         cols.splice(draggableEvent.newIndex, 0, tempData)
         updateComponentList(list, '排序更改')
-        // console.log(arrayItem, cols, list, workspaceComponentList.value, 'handleArrayFormEndhandleArrayFormEnd')
+        // console.log(arrayItem, cols, list, widgets.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
       if (workspaceComponentType.value === 'form')
@@ -109,7 +109,7 @@ export default defineComponent({
 
     const setClassName = ({ columnIndex }: any) => {
       const columns
-        = props.workspaceComponentList[0].schema.columns?.filter(item => item.prop) || []
+        = props.widgets[0].schema.columns?.filter(item => item.prop) || []
       if (columns[columnIndex])
         return `schema-field${columns[columnIndex].id}`
     }
@@ -123,7 +123,7 @@ export default defineComponent({
       }
       const columnIndex = column.getColumnIndex()
       const columns
-        = workspaceComponentList.value[0].schema.columns?.filter(item => item.prop)
+        = widgets.value[0].schema.columns?.filter(item => item.prop)
         || []
       const tableCol = columns[columnIndex]
       updateActiveWidget(tableCol as WorkspaceComponentItem)
@@ -139,7 +139,7 @@ export default defineComponent({
       //   emit('on-update-cur-operate', {})
       //   return
       // }
-      const config = workspaceComponentList.value[0]
+      const config = widgets.value[0]
       const schema = config.schema
       // let cols: TableCol[] = []
       if (schema.columns && schema.columns.length) {
@@ -167,7 +167,7 @@ export default defineComponent({
       newIndex: number,
       oldIndex: number,
     ) => {
-      const tableProConfig = workspaceComponentList.value[0]
+      const tableProConfig = widgets.value[0]
       const schema = tableProConfig.schema
       if (schema.columns && schema.columns.length) {
         const filterColumns = cloneDeep(schema.columns.filter(item => item.prop))
@@ -220,7 +220,7 @@ export default defineComponent({
 
     function getArrayItem(key: string) {
       let data: WorkspaceComponentItem = {} as WorkspaceComponentItem
-      workspaceComponentList.value.forEach((item) => {
+      widgets.value.forEach((item) => {
         if (item.id === key)
           data = item
 
@@ -240,13 +240,13 @@ export default defineComponent({
     }
 
     const handleArrayFormEnd = (formItem: WorkspaceComponentItem, draggableEvent: any) => {
-      const list = [...workspaceComponentList.value]
+      const list = [...widgets.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
         const toKey = getKey(Array.from(draggableEvent.to.classList))
         const fromKey = getKey(Array.from(draggableEvent.from.classList))
-        const { data: toData, parentData: toParentData } = getComponentListItem(toKey, workspaceComponentList.value)
-        const { data: fromData, parentData: fromParentData } = getComponentListItem(fromKey, workspaceComponentList.value)
+        const { data: toData, parentData: toParentData } = getComponentListItem(toKey, widgets.value)
+        const { data: fromData, parentData: fromParentData } = getComponentListItem(fromKey, widgets.value)
         const toFormItem = toParentData || toData
         const fromFormItem = fromParentData || fromData
         const toCols = [...toFormItem.schema.fieldProps?.columns]
@@ -283,7 +283,7 @@ export default defineComponent({
       const { formData, options } = parseElementSchema()
       return (
         <VueDraggable
-          modelValue={props.workspaceComponentList}
+          modelValue={props.widgets}
           class={['dragArea list-group h-full w-full', formConfig.value.column > 1 && 'multiple-layout']}
           animation={200}
           group="people"
@@ -295,7 +295,7 @@ export default defineComponent({
           onEnd={end}
           key={tableKey.value}
         >
-          {props.workspaceComponentList.map((formItem: WorkspaceComponentItem) => {
+          {props.widgets.map((formItem: WorkspaceComponentItem) => {
             const { colKls, colStyle } = useCol(formConfig.value as any, formItem.schema as any)
             return (
               <div

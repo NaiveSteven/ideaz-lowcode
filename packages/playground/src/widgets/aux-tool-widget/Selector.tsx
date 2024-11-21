@@ -6,12 +6,12 @@ export default defineComponent({
   name: 'Selector',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { activeWidget, workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget } = useWorkspaceComponent()
     const { isOutside, changeBtnStatus } = useInElement('selector-btn')
 
     const selectors = computed(() => {
-      const { parentData } = getComponentListItem(activeWidget.value.id, workspaceComponentList.value)
-      return parentData ? [...getPids(workspaceComponentList.value, activeWidget.value), parentData] : getPids(workspaceComponentList.value, activeWidget.value)
+      const { parentData } = getComponentListItem(activeWidget.value.id, widgets.value)
+      return parentData ? [...getPids(widgets.value, activeWidget.value), parentData] : getPids(widgets.value, activeWidget.value)
     })
 
     const tableProSelectors = computed(() => {
@@ -21,9 +21,9 @@ export default defineComponent({
       ) {
         return [
           {
-            id: workspaceComponentList.value[0].id,
+            id: widgets.value[0].id,
             title: '增删改查',
-            icon: workspaceComponentList.value[0].icon,
+            icon: widgets.value[0].icon,
           },
         ]
       }
@@ -33,7 +33,7 @@ export default defineComponent({
 
     const handleClickTitle = (item: { id: string, title: string }) => {
       changeBtnStatus(true)
-      const clickData = getTreeDataItem(workspaceComponentList.value, item.id)
+      const clickData = getTreeDataItem(widgets.value, item.id)
       updateActiveWidget(clickData)
     }
 

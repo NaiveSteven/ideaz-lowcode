@@ -15,7 +15,7 @@ import ComponentList from './ComponentList'
 export default defineComponent({
   name: 'ComponentWidget',
   setup() {
-    const { updateComponentList, pushComponentItem, updateActiveWidget, workspaceComponentList } = useWorkspaceComponent()
+    const { updateComponentList, pushComponentItem, updateActiveWidget, widgets } = useWorkspaceComponent()
     const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const templateObj = {
@@ -40,7 +40,7 @@ export default defineComponent({
           || expandComponentItem.title === '日期范围'
           || expandComponentItem.title === '插槽'
         ) {
-          const tableProConfig = workspaceComponentList.value[0]
+          const tableProConfig = widgets.value[0]
           const schema = tableProConfig.schema
           let tableCols: TableCol[] = []
           const formItems: FormItemConfigItem[] = []
@@ -70,7 +70,7 @@ export default defineComponent({
               schema: {
                 ...tableProConfig.schema,
                 formData: {
-                  ...workspaceComponentList.value[0].schema.formData,
+                  ...widgets.value[0].schema.formData,
                   [prop]: expandComponentItem.title === '日期范围' ? [] : '',
                 },
                 columns: tableCols,

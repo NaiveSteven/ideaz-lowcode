@@ -16,7 +16,7 @@ export default defineComponent({
   },
   emits: ['click-component-item'],
   setup(props, { emit }) {
-    const { workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
+    const { widgets, updateActiveWidget } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
 
     let tempData: any = null
@@ -46,7 +46,7 @@ export default defineComponent({
           const item = { ...tempData, id: uid() }
           cols.splice(obj.newIndex, 0, item)
           updateActiveWidget(item)
-          // updateComponentList(workspaceComponentList.value)
+          // updateComponentList(widgets.value)
         }
         else {
           emit('click-component-item', tempData, obj.newIndex, obj.to.id)
@@ -56,7 +56,7 @@ export default defineComponent({
 
     function getArrayItem(key: string) {
       let data: WorkspaceComponentItem | null = null
-      workspaceComponentList.value.forEach((item) => {
+      widgets.value.forEach((item) => {
         if (item.id === key)
           data = item
 

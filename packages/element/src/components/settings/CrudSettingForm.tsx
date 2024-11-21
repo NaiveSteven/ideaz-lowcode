@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudSettingForm',
   setup() {
-    const { activeWidget, workspaceComponentList, updateActiveWidget, updateComponentList } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget, updateComponentList } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -15,7 +15,7 @@ export default defineComponent({
     })
 
     const handleFormConfigChange = (obj: FormChangeData) => {
-      const crud = workspaceComponentList.value[0]
+      const crud = widgets.value[0]
       const schema = {
         ...crud.schema,
         search: {
@@ -42,7 +42,7 @@ export default defineComponent({
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
-      const crud = workspaceComponentList.value[0]
+      const crud = widgets.value[0]
       const schema = cloneDeep(crud.schema)
       let columns = []
       if (obj.formData.pagination === false) {

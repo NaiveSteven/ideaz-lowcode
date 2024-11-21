@@ -7,7 +7,7 @@ import { changeDataId, getComponentListItem, getTreeDataItem } from '../utils/in
 import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
-  workspaceComponentList: WorkspaceComponentItem[]
+  widgets: WorkspaceComponentItem[]
   activeWidget: WorkspaceComponentItem
   viewType: ViewType
   boardWidth: number
@@ -23,7 +23,7 @@ type SimulatorType = 'pc' | 'mobile' | 'pad'
 export const useWorkspaceStore = defineStore({
   id: 'workspace',
   state: (): WorkspaceState => ({
-    workspaceComponentList: [],
+    widgets: [],
     activeWidget: {} as WorkspaceComponentItem,
     viewType: 'design',
     boardWidth: 0,
@@ -34,7 +34,7 @@ export const useWorkspaceStore = defineStore({
   }),
   getters: {
     getWorkspaceComponentList(): WorkspaceComponentItem[] {
-      return this.workspaceComponentList
+      return this.widgets
     },
     getCurOperateComponent(): WorkspaceComponentItem {
       return this.activeWidget
@@ -56,10 +56,10 @@ export const useWorkspaceStore = defineStore({
     pushComponentItem(componentItem: WorkspaceComponentItem, index: number, toId: string) {
       this.addHistory(() => {
         if (!toId) {
-          this.workspaceComponentList.splice(index, 0, componentItem)
+          this.widgets.splice(index, 0, componentItem)
         }
         else {
-          const item = getTreeDataItem(this.workspaceComponentList, toId)
+          const item = getTreeDataItem(this.widgets, toId)
           item.children.splice(index, 0, componentItem)
         }
       }, { message: '添加组件', time: new Date() })
@@ -69,7 +69,7 @@ export const useWorkspaceStore = defineStore({
         let index = -1
         if (componentItem.pid) {
           const itemParent = getTreeDataItem(
-            this.workspaceComponentList,
+            this.widgets,
             componentItem.pid as string,
           )
           index = itemParent.children.findIndex(
@@ -79,13 +79,13 @@ export const useWorkspaceStore = defineStore({
             itemParent.children.splice(index, 1, componentItem)
         }
         else {
-          index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
+          index = this.widgets.findIndex((item: any) => item.id === componentItem.id)
           if (index > -1) {
-            this.workspaceComponentList.splice(index, 1, componentItem)
+            this.widgets.splice(index, 1, componentItem)
           }
           else {
             // array form
-            const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+            const { parentData } = getComponentListItem(componentItem.id, this.widgets)
             const cols = [...parentData.schema?.fieldProps?.columns]
             const colsIndex = cols.findIndex(item => item.id === componentItem.id)
             if (colsIndex > -1) {
@@ -101,7 +101,7 @@ export const useWorkspaceStore = defineStore({
         let index = -1
         if (componentItem.pid) {
           const itemParent = getTreeDataItem(
-            this.workspaceComponentList,
+            this.widgets,
             componentItem.pid as string,
           )
           index = itemParent.children.findIndex(
@@ -115,13 +115,13 @@ export const useWorkspaceStore = defineStore({
           const workspaceComponentType = globalSettingStore.getWorkspaceComponentType
           // 表单部分
           if (workspaceComponentType === 'form') {
-            index = this.workspaceComponentList.findIndex(item => item.id === componentItem.id)
+            index = this.widgets.findIndex(item => item.id === componentItem.id)
             if (index > -1) {
-              this.workspaceComponentList.splice(index, 1)
+              this.widgets.splice(index, 1)
             }
             else {
               // array form
-              const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+              const { parentData } = getComponentListItem(componentItem.id, this.widgets)
               const cols = [...parentData.schema?.fieldProps?.columns]
               const colsIndex = cols.findIndex(item => item.id === componentItem.id)
               cols.splice(colsIndex, 1)
@@ -134,7 +134,7 @@ export const useWorkspaceStore = defineStore({
           // 表单表格
           else {
             // 表单项
-            const columns = this.workspaceComponentList[0].schema.columns || []
+            const columns = this.widgets[0].schema.columns || []
             if (componentItem.name === 'tableForm') {
               columns.forEach((item) => {
                 if (item.search && item.search.id === componentItem.id)
@@ -142,7 +142,7 @@ export const useWorkspaceStore = defineStore({
               })
             }
             if (componentItem.name === 'crud')
-              this.workspaceComponentList = []
+              this.widgets = []
 
             if (componentItem.name === 'tableCol') {
               const index = columns.findIndex(item => item.id === componentItem.id)
@@ -155,7 +155,7 @@ export const useWorkspaceStore = defineStore({
               else {
                 columns.splice(index, 1)
               }
-              this.workspaceComponentList[0].schema.columns = columns
+              this.widgets[0].schema.columns = columns
             }
           }
         }
@@ -166,7 +166,7 @@ export const useWorkspaceStore = defineStore({
         const newComponentItem = changeDataId([{ ...componentItem, id: uid() }])
         if (componentItem.pid) {
           const itemParent = getTreeDataItem(
-            this.workspaceComponentList,
+            this.widgets,
             componentItem.pid as string,
           )
           itemParent.children.push(newComponentItem[0])
@@ -176,13 +176,13 @@ export const useWorkspaceStore = defineStore({
           const workspaceComponentType = globalSettingStore.getWorkspaceComponentType
           // 表单部分
           if (workspaceComponentType === 'form') {
-            const index = this.workspaceComponentList.findIndex((item: any) => item.id === componentItem.id)
+            const index = this.widgets.findIndex((item: any) => item.id === componentItem.id)
             if (index > -1) {
-              this.workspaceComponentList.push(newComponentItem[0])
+              this.widgets.push(newComponentItem[0])
             }
             else {
               // array form
-              const { parentData } = getComponentListItem(componentItem.id, this.workspaceComponentList)
+              const { parentData } = getComponentListItem(componentItem.id, this.widgets)
               const cols = [...parentData.schema?.fieldProps?.columns, newComponentItem[0]]
               const colsIndex = cols.findIndex(item => item.id === componentItem.id)
               if (colsIndex > -1) {
@@ -206,7 +206,7 @@ export const useWorkspaceStore = defineStore({
                   onClick: (e: PointerEvent) => { mitt.emit('form-item-click', { event: e, id: formItemId }) },
                 },
               }
-              const columns = this.workspaceComponentList[0].schema.columns || []
+              const columns = this.widgets[0].schema.columns || []
               columns.forEach((item, index: number) => {
                 if (item.search && lastIndex < index)
                   lastIndex = index
@@ -225,14 +225,14 @@ export const useWorkspaceStore = defineStore({
             if (componentItem.name === 'tableCol') {
               const newTableCol = { ...componentItem, id: uid() }
               delete newTableCol.search
-              const columns = this.workspaceComponentList[0].schema.columns?.concat([
+              const columns = this.widgets[0].schema.columns?.concat([
                 newTableCol,
               ])
-              this.workspaceComponentList = [
+              this.widgets = [
                 {
-                  ...this.workspaceComponentList[0],
+                  ...this.widgets[0],
                   schema: {
-                    ...this.workspaceComponentList[0].schema,
+                    ...this.widgets[0].schema,
                     columns,
                     cellClassName: ({ columnIndex }: any) => {
                       return `schema-field${columns?.[columnIndex].id}`
@@ -248,13 +248,13 @@ export const useWorkspaceStore = defineStore({
     },
     updateComponentList(components: WorkspaceComponentItem[], message = '属性更改', isRecord = true) {
       if (isRecord)
-        this.addHistory(() => { this.workspaceComponentList = components }, { message, time: new Date() })
+        this.addHistory(() => { this.widgets = components }, { message, time: new Date() })
 
       else
-        this.workspaceComponentList = components
+        this.widgets = components
     },
     clearWorkspaceComponentList() {
-      this.addHistory(() => { this.workspaceComponentList = [] }, { message: '清空组件', time: new Date() })
+      this.addHistory(() => { this.widgets = [] }, { message: '清空组件', time: new Date() })
     },
     updateActiveWidget(activeWidget: WorkspaceComponentItem) {
       this.activeWidget = activeWidget
@@ -274,13 +274,13 @@ export const useWorkspaceStore = defineStore({
       this.simulatorType = type
     },
     addHistory(callBack: () => void, props?: { message: string, time: Date }) {
-      const lastComponentList = cloneDeep(this.workspaceComponentList)
+      const lastComponentList = cloneDeep(this.widgets)
       callBack && callBack()
-      const newComponentList = cloneDeep(this.workspaceComponentList)
+      const newComponentList = cloneDeep(this.widgets)
       undoManager.add({
         ...props,
-        undo: () => { this.workspaceComponentList = cloneDeep(lastComponentList); this.activeWidget = {} as WorkspaceComponentItem },
-        redo: () => { this.workspaceComponentList = cloneDeep(newComponentList); this.activeWidget = {} as WorkspaceComponentItem },
+        undo: () => { this.widgets = cloneDeep(lastComponentList); this.activeWidget = {} as WorkspaceComponentItem },
+        redo: () => { this.widgets = cloneDeep(newComponentList); this.activeWidget = {} as WorkspaceComponentItem },
       })
     },
   },

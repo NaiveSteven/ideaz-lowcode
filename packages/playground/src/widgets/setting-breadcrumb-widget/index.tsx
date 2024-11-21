@@ -12,16 +12,16 @@ export default defineComponent({
   name: 'DesignToolsWidget',
   setup() {
     const { workspaceComponentType } = useGlobalSetting()
-    const { activeWidget, workspaceComponentList, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget } = useWorkspaceComponent()
 
     const selectors = computed(() => {
-      return getPids(workspaceComponentList.value, activeWidget.value)
+      return getPids(widgets.value, activeWidget.value)
     })
 
     const tableProSelectors = computed(() => {
       const pageTitle = [{ title: '页面', id: '' }]
       const tableProTitle = pageTitle.concat([
-        { title: '增删改查', id: workspaceComponentList?.value[0]?.id },
+        { title: '增删改查', id: widgets?.value[0]?.id },
       ])
       if (activeWidget.value.name === 'crud')
         return tableProTitle
@@ -54,7 +54,7 @@ export default defineComponent({
         updateActiveWidget({} as WorkspaceComponentItem)
       }
       else {
-        const cur = getTreeDataItem(workspaceComponentList.value, item.id as string)
+        const cur = getTreeDataItem(widgets.value, item.id as string)
         updateActiveWidget(cur)
       }
     }

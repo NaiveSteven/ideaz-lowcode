@@ -11,7 +11,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableActionsWidget',
   setup(props, { slots }) {
-    const { workspaceComponentList, updateComponentList } = useWorkspaceComponent()
+    const { widgets, updateComponentList } = useWorkspaceComponent()
 
     const ACTIONS = [
       {
@@ -39,7 +39,7 @@ export default defineComponent({
             allowDelete: true,
           }
           let lastIndex = 0
-          const columns = workspaceComponentList.value[0].schema.columns!
+          const columns = widgets.value[0].schema.columns!
           columns.forEach((item: TableCol, index: number) => {
             if (item.id && lastIndex < index)
               lastIndex = index
@@ -55,9 +55,9 @@ export default defineComponent({
           }
           updateComponentList([
             {
-              ...workspaceComponentList.value[0],
+              ...widgets.value[0],
               schema: {
-                ...workspaceComponentList.value[0].schema,
+                ...widgets.value[0].schema,
                 cellClassName: ({ columnIndex }: { columnIndex: number }) => {
                   if (columns[columnIndex])
                     return `schema-field${columns[columnIndex].id}`
@@ -76,7 +76,7 @@ export default defineComponent({
         click: () => {
           let lastIndex = 0
           const { newFormItem } = getInputFormItemTemplate()
-          const columns = workspaceComponentList.value[0].schema.columns!
+          const columns = widgets.value[0].schema.columns!
           columns.forEach((item: TableCol, index: number) => {
             if (item.search && lastIndex < index)
               lastIndex = index
@@ -91,11 +91,11 @@ export default defineComponent({
           }
           updateComponentList([
             {
-              ...workspaceComponentList.value[0],
+              ...widgets.value[0],
               schema: {
-                ...workspaceComponentList.value[0].schema,
+                ...widgets.value[0].schema,
                 // formModel: {
-                //   ...workspaceComponentList.value[0].schema.formModel,
+                //   ...widgets.value[0].schema.formModel,
                 //   [prop]: '',
                 // },
               },

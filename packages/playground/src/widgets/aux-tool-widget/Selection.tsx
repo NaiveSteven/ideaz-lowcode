@@ -7,7 +7,7 @@ import './style.scss'
 export default defineComponent({
   name: 'Selection',
   setup() {
-    const { activeWidget, workspaceComponentList } = useWorkspaceComponent()
+    const { activeWidget, widgets } = useWorkspaceComponent()
     const { formConfig } = useWorkspaceForm()
 
     const position = ref<DOMRect>({} as DOMRect)
@@ -62,7 +62,7 @@ export default defineComponent({
     })
 
     const selectorPosition = computed(() => {
-      const index = workspaceComponentList.value.findIndex(
+      const index = widgets.value.findIndex(
         item => activeWidget.value.id === item.id,
       )
 
@@ -101,7 +101,7 @@ export default defineComponent({
       if (!activeWidget.value.id)
         ele = document.getElementById('view-port')
       if (activeWidget.value.name === 'tableCol') {
-        const schema = workspaceComponentList.value[0].schema
+        const schema = widgets.value[0].schema
         const len = schema.data.length
         const bottomDom = document.getElementsByClassName(
           `schema-field${activeWidget.value?.id}`,

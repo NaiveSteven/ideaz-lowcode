@@ -98,10 +98,10 @@ function delEmptyObject(data: any) {
 }
 
 function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form', list?: WorkspaceComponentItem[]) {
-  const { workspaceComponentList } = useWorkspaceComponent()
+  const { widgets } = useWorkspaceComponent()
   const { formConfig: workspaceFormConfig } = useWorkspaceForm()
   const formConfig = cloneDeep(workspaceFormConfig.value)
-  const listData = list || workspaceComponentList.value
+  const listData = list || widgets.value
 
   if (type === 'form') {
     const formData: IndexType = {}
@@ -261,9 +261,9 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
   }
 
   if (type === 'crud') {
-    if (!workspaceComponentList.value[0])
+    if (!widgets.value[0])
       return { config: {} } as IndexType
-    const component = workspaceComponentList.value[0]
+    const component = widgets.value[0]
     const schema = component.schema
     const config: IndexType = {}
     let columns: Array<TableCol> = []

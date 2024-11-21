@@ -3,7 +3,7 @@ import { useWorkspaceStore } from '../modules/workspace'
 export function useWorkspaceComponent() {
   const workspaceStore = useWorkspaceStore()
 
-  const workspaceComponentList = computed(() => workspaceStore.workspaceComponentList)
+  const widgets = computed(() => workspaceStore.widgets)
   const activeWidget = computed(() => workspaceStore.activeWidget)
   const viewType = computed(() => workspaceStore.viewType)
   const boardHeight = computed(() => workspaceStore.boardHeight)
@@ -13,7 +13,7 @@ export function useWorkspaceComponent() {
   const simulatorType = computed(() => workspaceStore.simulatorType)
 
   return {
-    workspaceComponentList,
+    widgets,
     activeWidget,
     viewType,
     boardHeight,

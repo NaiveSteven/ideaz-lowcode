@@ -17,7 +17,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableProFormItemSettingForm',
   setup() {
-    const { activeWidget, workspaceComponentList, updateComponentList, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateComponentList, updateActiveWidget } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -30,7 +30,7 @@ export default defineComponent({
       schema: Schema,
       changeData: FormChangeData,
     ) => {
-      const crud = workspaceComponentList.value[0]
+      const crud = widgets.value[0]
       let columns: TableCol[] = []
       if (schema.columns && schema.columns.length) {
         columns = schema.columns.map((cur: TableCol, index) => {
@@ -42,7 +42,7 @@ export default defineComponent({
           }
           return cur
         })
-        const updateWorkspaceComponentList = debounce(() => {
+        const updateWidgets = debounce(() => {
           updateComponentList([
             {
               ...crud,
@@ -58,7 +58,7 @@ export default defineComponent({
           ])
         }, 50)
 
-        updateWorkspaceComponentList()
+        updateWidgets()
       }
       updateActiveWidget(form)
     }
@@ -69,7 +69,7 @@ export default defineComponent({
         field: obj.formData.field,
         fieldFormData: obj.formData,
       }
-      const crud = workspaceComponentList.value[0]
+      const crud = widgets.value[0]
       const schema = crud.schema
       updateData(item, schema, obj)
     }
@@ -99,7 +99,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceComponentList.value[0]
+          const crud = widgets.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -147,7 +147,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceComponentList.value[0]
+          const crud = widgets.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -184,7 +184,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceComponentList.value[0]
+          const crud = widgets.value[0]
           const schema = crud.schema
           updateData(item, schema, obj)
         }
@@ -216,7 +216,7 @@ export default defineComponent({
               componentType: FORM_COMPONENT_TYPE,
             },
           }
-          const crud = workspaceComponentList.value[0]
+          const crud = widgets.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -263,7 +263,7 @@ export default defineComponent({
               },
             ],
           }
-          const crud = workspaceComponentList.value[0]
+          const crud = widgets.value[0]
           const schema = {
             ...crud.schema,
             searchFormData: {
@@ -308,7 +308,7 @@ export default defineComponent({
           item.componentFormData!.options = [...options]
           item.fieldProps!.options = [...options]
         }
-        const crud = workspaceComponentList.value[0]
+        const crud = widgets.value[0]
         const schema = crud.schema
         updateData(item, schema, obj)
       }
@@ -319,7 +319,7 @@ export default defineComponent({
         ...activeWidget.value,
         ...obj.formData,
       }
-      const crud = workspaceComponentList.value[0]
+      const crud = widgets.value[0]
       const schema = crud.schema
       updateData(item, schema, obj)
     }

@@ -7,7 +7,7 @@ import { useFormDialogCode } from './useFormDialogCode'
 import { useFormPageCode } from './useFormPageCode'
 
 export function usePageCode() {
-  const { workspaceComponentList } = useWorkspaceComponent()
+  const { widgets } = useWorkspaceComponent()
   const { formConfig } = useWorkspaceForm()
   const { workspaceComponentType } = useGlobalSetting()
 
@@ -15,7 +15,7 @@ export function usePageCode() {
     if (workspaceComponentType.value === 'form')
       return formConfig.value.background === 'dialog'
 
-    return workspaceComponentList.value[0]?.componentFormData?.background === 'dialog'
+    return widgets.value[0]?.componentFormData?.background === 'dialog'
   })
 
   const getPageCode = () => {

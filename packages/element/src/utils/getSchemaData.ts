@@ -97,7 +97,7 @@ function delEmptyObject(data: any) {
 }
 
 function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form') {
-  const { workspaceComponentList } = useWorkspaceComponent()
+  const { widgets } = useWorkspaceComponent()
   const { formConfig: workspaceFormConfig } = useWorkspaceForm()
   const formConfig = cloneDeep(workspaceFormConfig.value)
 
@@ -105,11 +105,11 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     const formData: IndexType = {}
     const options: IndexType = {}
 
-    const isRequired = workspaceComponentList.value.some(item => item.fieldFormData?.required)
+    const isRequired = widgets.value.some(item => item.fieldFormData?.required)
     if (isRequired)
       formConfig.rules = {}
 
-    workspaceComponentList.value.forEach((item) => {
+    widgets.value.forEach((item) => {
       const field = item.fieldFormData?.field
       if (field) {
         formData[field] = item.fieldFormData!.default
@@ -137,7 +137,7 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
     delEmptyObject(formConfig)
 
     return {
-      columns: cloneDeep(workspaceComponentList.value).map((item) => {
+      columns: cloneDeep(widgets.value).map((item) => {
         if (
           item.schema.component === 'placeholder-block'
           && item.fieldFormData?.slot
@@ -225,9 +225,9 @@ function getSchemaData(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' 
   }
 
   if (type === 'crud') {
-    if (!workspaceComponentList.value[0])
+    if (!widgets.value[0])
       return { config: {} } as IndexType
-    const component = workspaceComponentList.value[0]
+    const component = widgets.value[0]
     const schema = component.schema
     const config: IndexType = {}
     let columns: Array<TableCol> = []

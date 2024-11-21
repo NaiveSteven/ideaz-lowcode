@@ -5,7 +5,7 @@ export default defineComponent({
   name: 'ViewPort',
   setup() {
     const { formData, formConfig } = useWorkspaceForm()
-    const { pushComponentItem, updateActiveWidget, workspaceComponentList: list, activeWidget } = useWorkspaceComponent()
+    const { pushComponentItem, updateActiveWidget, widgets: list, activeWidget } = useWorkspaceComponent()
 
     const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {
       pushComponentItem(item, index, toId)
@@ -17,7 +17,7 @@ export default defineComponent({
           {activeWidget.value.name === 'crud'
             ? (
               <WorkspaceComponent
-                workspaceComponentList={list.value}
+                widgets={list.value}
                 activeWidget={activeWidget.value}
                 formData={formData.value}
                 onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
@@ -27,7 +27,7 @@ export default defineComponent({
             : (
               <z-form class="h-full" modelValue={formData.value} {...formConfig.value}>
                 <WorkspaceComponent
-                  workspaceComponentList={list.value}
+                  widgets={list.value}
                   activeWidget={activeWidget.value}
                   formData={formData.value}
                   onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
