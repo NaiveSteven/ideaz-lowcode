@@ -15,7 +15,7 @@ import ComponentList from './ComponentList'
 export default defineComponent({
   name: 'ComponentWidget',
   setup() {
-    const { updateComponentList, pushWidget, updateActiveWidget, widgets } = useWorkspaceComponent()
+    const { updateWidgets, pushWidget, updateActiveWidget, widgets } = useWorkspaceComponent()
     const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const templateObj = {
@@ -77,7 +77,7 @@ export default defineComponent({
                 options: formOptions,
               },
             }
-            updateComponentList([
+            updateWidgets([
               i,
             ])
             updateActiveWidget(newFormItem)
@@ -97,7 +97,7 @@ export default defineComponent({
             ...expandComponentItem.schema,
           },
         }
-        updateComponentList([], '清空组件')
+        updateWidgets([], '清空组件')
         pushWidget(componentItem, index, toId)
         updateActiveWidget(componentItem)
         updateWorkspaceComponentType('crud')
@@ -106,7 +106,7 @@ export default defineComponent({
       else {
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceComponentType.value === 'crud') {
-          updateComponentList([], '清空组件')
+          updateWidgets([], '清空组件')
           updateActiveWidget({} as WorkspaceComponentItem)
         }
         updateWorkspaceComponentType('form')
@@ -131,7 +131,7 @@ export default defineComponent({
         // 模板
       }
       else if (Array.isArray(expandComponentItem.templates)) {
-        updateComponentList(cloneDeep(expandComponentItem.templates!), '添加组件')
+        updateWidgets(cloneDeep(expandComponentItem.templates!), '添加组件')
         updateActiveWidget({} as WorkspaceComponentItem)
       }
     }

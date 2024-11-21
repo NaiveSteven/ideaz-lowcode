@@ -46,7 +46,7 @@ export default defineComponent({
           const item = { ...tempData, id: uid() }
           cols.splice(obj.newIndex, 0, item)
           updateActiveWidget(item)
-          // updateComponentList(widgets.value)
+          // updateWidgets(widgets.value)
         }
         else {
           emit('click-component-item', tempData, obj.newIndex, obj.to.id)

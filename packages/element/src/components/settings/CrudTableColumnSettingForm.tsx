@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudTableColumnSettingForm',
   setup() {
-    const { activeWidget, widgets, updateComponentList, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateWidgets, updateActiveWidget } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -68,7 +68,7 @@ export default defineComponent({
 
         return item
       }) || []
-      updateComponentList([
+      updateWidgets([
         {
           ...crud,
           schema: {

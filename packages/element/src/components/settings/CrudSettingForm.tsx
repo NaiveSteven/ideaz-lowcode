@@ -6,7 +6,7 @@ import './style.scss'
 export default defineComponent({
   name: 'CrudSettingForm',
   setup() {
-    const { activeWidget, widgets, updateActiveWidget, updateComponentList } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget, updateWidgets } = useWorkspaceComponent()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -38,7 +38,7 @@ export default defineComponent({
         schema,
       }
       updateActiveWidget(data)
-      updateComponentList([data])
+      updateWidgets([data])
     }
 
     const handleTableConfigChange = (obj: FormChangeData) => {
@@ -106,7 +106,7 @@ export default defineComponent({
         },
       }
       updateActiveWidget(data)
-      updateComponentList([data])
+      updateWidgets([data])
     }
 
     return () => {

@@ -246,7 +246,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '复制组件', time: new Date() })
     },
-    updateComponentList(components: WorkspaceComponentItem[], message = '属性更改', isRecord = true) {
+    updateWidgets(components: WorkspaceComponentItem[], message = '属性更改', isRecord = true) {
       if (isRecord)
         this.addHistory(() => { this.widgets = components }, { message, time: new Date() })
 

@@ -26,7 +26,7 @@ export function useWorkspaceComponent() {
     updateWidget: workspaceStore.updateWidget,
     deleteWidget: workspaceStore.deleteWidget,
     copyWidget: workspaceStore.copyWidget,
-    updateComponentList: workspaceStore.updateComponentList,
+    updateWidgets: workspaceStore.updateWidgets,
     clearWorkspaceComponentList: workspaceStore.clearWorkspaceComponentList,
     updateActiveWidget: workspaceStore.updateActiveWidget,
     updateViewType: workspaceStore.updateViewType,

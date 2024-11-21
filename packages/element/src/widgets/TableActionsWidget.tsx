@@ -11,7 +11,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableActionsWidget',
   setup(props, { slots }) {
-    const { widgets, updateComponentList } = useWorkspaceComponent()
+    const { widgets, updateWidgets } = useWorkspaceComponent()
 
     const ACTIONS = [
       {
@@ -53,7 +53,7 @@ export default defineComponent({
               ...tableCol,
             }
           }
-          updateComponentList([
+          updateWidgets([
             {
               ...widgets.value[0],
               schema: {
@@ -89,7 +89,7 @@ export default defineComponent({
           else {
             columns[lastIndex + 1].search = newFormItem
           }
-          updateComponentList([
+          updateWidgets([
             {
               ...widgets.value[0],
               schema: {

@@ -7,10 +7,10 @@ export default defineComponent({
   name: 'Editor',
   setup() {
     const { startDriver } = useDriver()
-    const { updateComponentList, addHistory } = useWorkspaceComponent()
+    const { updateWidgets, addHistory } = useWorkspaceComponent()
 
     onMounted(() => {
-      addHistory(() => { updateComponentList([], '', false) }, { message: '缺省态', time: new Date() })
+      addHistory(() => { updateWidgets([], '', false) }, { message: '缺省态', time: new Date() })
 
       setTimeout(() => {
         startDriver()

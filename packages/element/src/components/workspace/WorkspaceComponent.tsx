@@ -34,7 +34,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { activeWidget, widgets, updateActiveWidget, updateComponentList, simulatorType } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateActiveWidget, updateWidgets, simulatorType } = useWorkspaceComponent()
     const { workspaceComponentType } = useGlobalSetting()
     const { formConfig } = useWorkspaceForm()
 
@@ -99,7 +99,7 @@ export default defineComponent({
         const cols = arrayItem.schema.fieldProps?.columns
         // list.splice(normalItemIndex, 1)
         cols.splice(draggableEvent.newIndex, 0, tempData)
-        updateComponentList(list, '排序更改')
+        updateWidgets(list, '排序更改')
         // console.log(arrayItem, cols, list, widgets.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
@@ -149,7 +149,7 @@ export default defineComponent({
         newArr[newIndex].search = newFormItem
         newArr[oldIndex].search = oldFormItem
         // cols = newArr
-        // updateComponentList([
+        // updateWidgets([
         //   {
         //     ...config,
         //     schema: {
@@ -192,7 +192,7 @@ export default defineComponent({
             filterColumns[index].search = filterFormItems[index].search
           })
         }
-        updateComponentList([
+        updateWidgets([
           {
             ...tableProConfig,
             schema: {
@@ -264,7 +264,7 @@ export default defineComponent({
         }
         const fromIndex = list.findIndex(item => item.id === fromFormItem.id)
         list.splice(fromIndex, 1, set(fromFormItem, 'schema.fieldProps.columns', fromCols))
-        updateComponentList(list, '排序更改')
+        updateWidgets(list, '排序更改')
       }
       // array from to normal form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && !Array.from(draggableEvent.to.classList).includes('array-form')) {
@@ -274,7 +274,7 @@ export default defineComponent({
         const colIndex = cols.findIndex(item => item.id === key)
         cols.splice(colIndex, 1)
         list.splice(index, 1, set(formItem, 'schema.fieldProps.columns', cols))
-        updateComponentList(list, '排序更改')
+        updateWidgets(list, '排序更改')
       }
       tableKey.value = new Date().valueOf()
     }
@@ -290,7 +290,7 @@ export default defineComponent({
           filter=".not-drag"
           ghostClass={workspaceComponentType.value !== 'crud' && 'ghost'}
           item-key="id"
-          onUpdate:modelValue={(val: any) => updateComponentList(val, '排序更改')}
+          onUpdate:modelValue={(val: any) => updateWidgets(val, '排序更改')}
           onStart={start}
           onEnd={end}
           key={tableKey.value}
