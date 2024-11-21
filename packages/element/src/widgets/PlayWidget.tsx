@@ -10,12 +10,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
     const formData = ref({})
     const columns = ref<any>([])
 
     onMounted(() => {
-      if (workspaceComponentType.value === 'form') {
+      if (workspaceWidgetType.value === 'form') {
         const { formData: data, columns: formItems } = parseElementSchema('preview')
         formData.value = { ...data }
         columns.value = [...formItems]
@@ -27,7 +27,7 @@ export default defineComponent({
     })
 
     return () => {
-      if (workspaceComponentType.value === 'form') {
+      if (workspaceWidgetType.value === 'form') {
         const { formConfig, options } = parseElementSchema('preview')
 
         return (

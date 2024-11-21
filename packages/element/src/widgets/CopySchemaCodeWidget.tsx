@@ -7,14 +7,14 @@ import beautify from 'js-beautify'
 export default defineComponent({
   name: 'CopySchemaCodeWidget',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
 
     const handleCopyJSON = () => {
-      const schema = parseElementSchema('code', workspaceComponentType.value)
+      const schema = parseElementSchema('code', workspaceWidgetType.value)
       copy(
         beautify.js_beautify(
           JSON.stringify(
-            workspaceComponentType.value === 'crud'
+            workspaceWidgetType.value === 'crud'
               ? { ...schema.config, columns: schema.columns }
               : schema,
           ),

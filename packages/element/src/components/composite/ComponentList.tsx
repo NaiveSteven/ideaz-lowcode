@@ -17,7 +17,7 @@ export default defineComponent({
   emits: ['click-component-item'],
   setup(props, { emit }) {
     const { widgets, updateActiveWidget } = useWorkspaceComponent()
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
 
     let tempData: any = null
 
@@ -82,7 +82,7 @@ export default defineComponent({
         {props.componentList.map(component => (
           <Fragment>
             <el-collapse-item title={component.collapseTitle} name={component.collapseTitle}>
-              {component.collapseTitle === '基础组件' && workspaceComponentType.value === 'crud' && <el-alert title="表单筛选暂时只支持输入框、单选框、多选框、日期范围和插槽拖拽" type="warning" />}
+              {component.collapseTitle === '基础组件' && workspaceWidgetType.value === 'crud' && <el-alert title="表单筛选暂时只支持输入框、单选框、多选框、日期范围和插槽拖拽" type="warning" />}
               <div class="content-wrapper">
                 <VueDraggable
                   class="dragArea"

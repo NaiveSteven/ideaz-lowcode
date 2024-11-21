@@ -35,7 +35,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { activeWidget, widgets, updateActiveWidget, updateWidgets, simulatorType } = useWorkspaceComponent()
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
     const { formConfig } = useWorkspaceForm()
 
     let tempData: any = null
@@ -103,7 +103,7 @@ export default defineComponent({
         // console.log(arrayItem, cols, list, widgets.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
-      if (workspaceComponentType.value === 'form')
+      if (workspaceWidgetType.value === 'form')
         emit('on-update-cur-operate', tempData)
     }
 
@@ -288,7 +288,7 @@ export default defineComponent({
           animation={200}
           group="people"
           filter=".not-drag"
-          ghostClass={workspaceComponentType.value !== 'crud' && 'ghost'}
+          ghostClass={workspaceWidgetType.value !== 'crud' && 'ghost'}
           item-key="id"
           onUpdate:modelValue={(val: any) => updateWidgets(val, '排序更改')}
           onStart={start}
@@ -307,7 +307,7 @@ export default defineComponent({
                 onMousedown={handleMouseEvent}
                 onMouseup={handleMouseEvent}
               >
-                {workspaceComponentType.value === 'crud'
+                {workspaceWidgetType.value === 'crud'
                   ? (
                     <TableActionsWidget>
                       <z-crud

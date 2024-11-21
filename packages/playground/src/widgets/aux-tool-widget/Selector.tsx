@@ -5,7 +5,7 @@ import { getPids, getTreeDataItem } from '../../utils/index'
 export default defineComponent({
   name: 'Selector',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
     const { activeWidget, widgets, updateActiveWidget } = useWorkspaceComponent()
     const { isOutside, changeBtnStatus } = useInElement('selector-btn')
 
@@ -65,7 +65,7 @@ export default defineComponent({
               <el-icon>
                 <i class={['icon-biaodan', 'iconfont']}></i>
               </el-icon>
-              <span>{workspaceComponentType.value === 'form' ? '表单' : '页面'}</span>
+              <span>{workspaceWidgetType.value === 'form' ? '表单' : '页面'}</span>
             </el-button>
           )}
         </>
@@ -77,7 +77,7 @@ export default defineComponent({
         {renderCurOperateSelector()}
         {!isOutside.value && (
           <div style={{ position: 'absolute', top: '100%', left: 0 }} class="selector-menu">
-            {workspaceComponentType.value === 'form'
+            {workspaceWidgetType.value === 'form'
               ? selectors.value
                 .slice(1, selectors.value.length)
                 .map((item: { id: string, title: string }) => {

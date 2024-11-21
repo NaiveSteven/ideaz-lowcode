@@ -9,23 +9,23 @@ import { useFormPageCode } from './useFormPageCode'
 export function usePageCode() {
   const { widgets } = useWorkspaceComponent()
   const { formConfig } = useWorkspaceForm()
-  const { workspaceComponentType } = useGlobalSetting()
+  const { workspaceWidgetType } = useGlobalSetting()
 
   const isDialog = computed(() => {
-    if (workspaceComponentType.value === 'form')
+    if (workspaceWidgetType.value === 'form')
       return formConfig.value.background === 'dialog'
 
     return widgets.value[0]?.componentFormData?.background === 'dialog'
   })
 
   const getPageCode = () => {
-    if (workspaceComponentType.value === 'form') {
+    if (workspaceWidgetType.value === 'form') {
       if (isDialog.value)
         return useFormDialogCode()
       return useFormPageCode()
     }
     const { code } = useCrudPageCode()
-    if (workspaceComponentType.value === 'crud') {
+    if (workspaceWidgetType.value === 'crud') {
       if (isDialog.value)
         return useCrudDialogCode().code
       return code

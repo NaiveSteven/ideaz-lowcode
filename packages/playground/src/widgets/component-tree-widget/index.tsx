@@ -4,13 +4,13 @@ import type { ElTree } from 'element-plus'
 export default defineComponent({
   name: 'ComponentTreeWidget',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
     const { widgets, activeWidget, updateActiveWidget } = useWorkspaceComponent()
 
     const tree = ref<InstanceType<typeof ElTree>>()
 
     const treeData = computed(() => {
-      if (workspaceComponentType.value === 'form')
+      if (workspaceWidgetType.value === 'form')
         return [{ title: '表单', id: 'form', children: widgets.value }]
 
       const formItemTree: any = []

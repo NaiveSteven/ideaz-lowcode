@@ -16,7 +16,7 @@ export default defineComponent({
   name: 'ComponentWidget',
   setup() {
     const { updateWidgets, pushWidget, updateActiveWidget, widgets } = useWorkspaceComponent()
-    const { workspaceComponentType, updateWorkspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType, updateWorkspaceComponentType } = useGlobalSetting()
 
     const templateObj = {
       输入框: getInputFormItemTemplate,
@@ -32,7 +32,7 @@ export default defineComponent({
       toId: string,
     ) => {
       // 表单表格表单项拖拽
-      if (workspaceComponentType.value === 'crud' && toId) {
+      if (workspaceWidgetType.value === 'crud' && toId) {
         if (
           expandComponentItem.title === '输入框'
           || expandComponentItem.title === '选择框'
@@ -105,7 +105,7 @@ export default defineComponent({
       }
       else {
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
-        if (workspaceComponentType.value === 'crud') {
+        if (workspaceWidgetType.value === 'crud') {
           updateWidgets([], '清空组件')
           updateActiveWidget({} as WorkspaceComponentItem)
         }

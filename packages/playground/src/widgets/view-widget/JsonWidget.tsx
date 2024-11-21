@@ -6,7 +6,7 @@ import beautify from 'js-beautify'
 export default defineComponent({
   name: 'JsonWidget',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
 
     const editor = ref()
 
@@ -29,9 +29,9 @@ export default defineComponent({
       <Codemirror
         value={beautify.js_beautify(
           JSON.stringify(
-            workspaceComponentType.value === 'crud'
-              ? { ...getSchemaData('code', workspaceComponentType.value).config, columns: getSchemaData('code', workspaceComponentType.value).columns }
-              : getSchemaData('code', workspaceComponentType.value),
+            workspaceWidgetType.value === 'crud'
+              ? { ...getSchemaData('code', workspaceWidgetType.value).config, columns: getSchemaData('code', workspaceWidgetType.value).columns }
+              : getSchemaData('code', workspaceWidgetType.value),
           ),
           {
             indent_size: 2,

@@ -11,7 +11,7 @@ interface TitleItem {
 export default defineComponent({
   name: 'DesignToolsWidget',
   setup() {
-    const { workspaceComponentType } = useGlobalSetting()
+    const { workspaceWidgetType } = useGlobalSetting()
     const { activeWidget, widgets, updateActiveWidget } = useWorkspaceComponent()
 
     const selectors = computed(() => {
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const titleList = computed<TitleItem[]>(() => {
       const formTitle: IndexType = [{ title: '表单' }]
-      if (workspaceComponentType.value === 'form') {
+      if (workspaceWidgetType.value === 'form') {
         if (activeWidget.value.id)
           return formTitle.concat(cloneDeep(selectors.value).reverse())
 
