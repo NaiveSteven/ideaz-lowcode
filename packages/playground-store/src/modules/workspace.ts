@@ -33,10 +33,10 @@ export const useWorkspaceStore = defineStore({
     simulatorType: 'pc',
   }),
   getters: {
-    getWorkspaceComponentList(): WorkspaceComponentItem[] {
+    getWidgets(): WorkspaceComponentItem[] {
       return this.widgets
     },
-    getCurOperateComponent(): WorkspaceComponentItem {
+    getActiveWidget(): WorkspaceComponentItem {
       return this.activeWidget
     },
     getViewType(): ViewType {
