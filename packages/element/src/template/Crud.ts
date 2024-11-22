@@ -323,7 +323,12 @@ export function CrudTemplate(): WorkspaceComponentItem {
         if (columns[columnIndex])
           return `schema-field${columns[columnIndex].id}`
       },
-      draggable: true,
+      draggable: {
+        group: {
+          name: 'people',
+          pull: false,
+        },
+      },
       collapsed: true,
       size: 'default',
       rowKey: 'id',
@@ -334,7 +339,12 @@ export function CrudTemplate(): WorkspaceComponentItem {
       search: {
         labelPosition: 'right',
         labelWidth: '80px',
-        draggable: true,
+        draggable: {
+          group: {
+            name: 'people',
+            pull: false,
+          },
+        },
       },
       data: [
         {

@@ -331,6 +331,7 @@ export default defineComponent({
             emit('update:columns', { columns: formatFormItems.value, dragEvent: evt })
           }
         },
+        ...props.draggable,
       })
     }
 

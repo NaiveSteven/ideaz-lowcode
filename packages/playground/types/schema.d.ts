@@ -41,7 +41,7 @@ declare interface Schema {
   collapsed?: boolean
   action?: boolean
   headerRowClassName?: string
-  draggable?: boolean
+  draggable?: any
   size?: 'default' | 'small' | 'large'
   children?: Schema[]
 }
