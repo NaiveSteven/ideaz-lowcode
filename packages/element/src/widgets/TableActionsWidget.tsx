@@ -11,7 +11,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableActionsWidget',
   setup(props, { slots }) {
-    const { widgets, updateWidgets } = useWorkspaceComponent()
+    const { widgets, updateWidgets, updateActiveWidget } = useWorkspaceComponent()
 
     const ACTIONS = [
       {
@@ -89,18 +89,18 @@ export default defineComponent({
           else {
             columns[lastIndex + 1].search = newFormItem
           }
-          updateWidgets([
-            {
-              ...widgets.value[0],
-              schema: {
-                ...widgets.value[0].schema,
-                // formModel: {
-                //   ...widgets.value[0].schema.formModel,
-                //   [prop]: '',
-                // },
-              },
+          const data = {
+            ...widgets.value[0],
+            schema: {
+              ...widgets.value[0].schema,
+              // formModel: {
+              //   ...widgets.value[0].schema.formModel,
+              //   [prop]: '',
+              // },
             },
-          ], '添加组件')
+          }
+          updateWidgets([data], '添加组件')
+          updateActiveWidget(data)
         },
       },
     ]
