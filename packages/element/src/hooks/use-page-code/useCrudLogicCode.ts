@@ -1,9 +1,7 @@
 import { parseElementSchema } from '@ideal-schema/playground-parser'
-import { useMockTableData } from './useMockTableData'
 
 export function useCrudLogicCode(type: 'dialog' | 'page' = 'page') {
   const { config, columns } = parseElementSchema('code', 'crud')
-  const { getTableData } = useMockTableData()
 
   if (config.request) {
     return `
