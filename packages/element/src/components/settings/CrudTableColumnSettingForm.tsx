@@ -18,7 +18,7 @@ export default defineComponent({
       const crud = widgets.value[0]
       const schema = crud.schema
       let columns: TableCol[] = []
-      const data: WorkspaceComponentItem = {
+      const data: CrudColumnWidget = {
         ...activeWidget.value,
         componentFormData: {
           ...activeWidget.value.componentFormData,

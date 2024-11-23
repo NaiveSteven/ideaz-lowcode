@@ -17,7 +17,7 @@ import './style.scss'
 export default defineComponent({
   name: 'TableProFormItemSettingForm',
   setup() {
-    const { activeWidget, widgets, updateWidgets, updateActiveWidget } = useWorkspaceComponent()
+    const { activeWidget, widgets, updateWidgets, updateActiveWidget } = useWorkspaceComponent<CrudColumnWidget>()
 
     const formConfig = reactive({
       labelPosition: 'left',
@@ -42,7 +42,7 @@ export default defineComponent({
           }
           return cur
         })
-        const updateWidgets = debounce(() => {
+        const update = debounce(() => {
           updateWidgets([
             {
               ...crud,
@@ -58,7 +58,7 @@ export default defineComponent({
           ])
         }, 50)
 
-        updateWidgets()
+        update()
       }
       updateActiveWidget(form)
     }

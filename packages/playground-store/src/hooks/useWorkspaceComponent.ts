@@ -1,10 +1,10 @@
 import { useWorkspaceStore } from '../modules/workspace'
 
-export function useWorkspaceComponent() {
+export function useWorkspaceComponent<T = WorkspaceComponentItem>() {
   const workspaceStore = useWorkspaceStore()
 
   const widgets = computed(() => workspaceStore.widgets)
-  const activeWidget = computed(() => workspaceStore.activeWidget)
+  const activeWidget = computed(() => workspaceStore.activeWidget) as Ref<T>
   const viewType = computed(() => workspaceStore.viewType)
   const boardHeight = computed(() => workspaceStore.boardHeight)
   const boardWidth = computed(() => workspaceStore.boardWidth)

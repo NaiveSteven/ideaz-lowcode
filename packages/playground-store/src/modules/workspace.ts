@@ -8,7 +8,7 @@ import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
   widgets: WorkspaceComponentItem[]
-  activeWidget: WorkspaceComponentItem
+  activeWidget: WorkspaceComponentItem | CrudColumnWidget
   viewType: ViewType
   boardWidth: number
   boardHeight: number
