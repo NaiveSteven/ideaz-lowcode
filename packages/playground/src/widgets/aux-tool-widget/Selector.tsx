@@ -80,7 +80,7 @@ export default defineComponent({
             {workspaceWidgetType.value === 'form'
               ? selectors.value
                 .slice(1, selectors.value.length)
-                .map((item: { id: string, title: string }) => {
+                .map((item: { id: string, title: string, icon: string }) => {
                   return (
                     <el-button
                       type="primary"
