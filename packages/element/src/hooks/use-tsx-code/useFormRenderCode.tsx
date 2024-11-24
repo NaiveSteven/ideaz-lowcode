@@ -1,7 +1,7 @@
 export function useFormRenderCode(type: 'page' | 'dialog') {
-  const getFormSlotCode = (formItemConfigs: FormItemConfigItem[]) => {
+  const getFormSlotCode = (formItemConfigs: FormItemWidget[]) => {
     const slot: IndexType = {}
-    formItemConfigs.forEach((item: FormItemConfigItem) => {
+    formItemConfigs.forEach((item: FormItemWidget) => {
       if (item.slot)
         slot[item.slot] = () => <div>占位代码</div>
     })
@@ -23,11 +23,11 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
     ]
   }
 
-  const isIncludesSlot = (columns: FormItemConfigItem[]) => {
-    return columns.some((item: FormItemConfigItem) => item.slot)
+  const isIncludesSlot = (columns: FormItemWidget[]) => {
+    return columns.some((item: FormItemWidget) => item.slot)
   }
 
-  const getRenderCode = (columns: FormItemConfigItem[]) => {
+  const getRenderCode = (columns: FormItemWidget[]) => {
     if (type === 'page') {
       return !isIncludesSlot(columns)
         ? `<z-form

@@ -3,7 +3,7 @@ export function fieldTemplateSchema(opts: { defaultComponent: string, defaultPro
   defaultProps: {},
   required: true,
 }) {
-  const arr: FormItemConfigItem[] = [
+  const arr: FormItemWidget[] = [
     {
       component: 'input',
       field: 'field',

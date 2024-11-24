@@ -1,7 +1,7 @@
 export function useFormTemplateCode(type: 'page' | 'dialog') {
-  const getFormSlotCode = (formItemConfigs: FormItemConfigItem[]) => {
+  const getFormSlotCode = (formItemConfigs: FormItemWidget[]) => {
     let str = ``
-    formItemConfigs.forEach((item: FormItemConfigItem) => {
+    formItemConfigs.forEach((item: FormItemWidget) => {
       if (item.slot) {
         str = str.length
           ? `${str
@@ -37,11 +37,11 @@ export function useFormTemplateCode(type: 'page' | 'dialog') {
     ]
   }
 
-  const isIncludesSlot = (columns: FormItemConfigItem[]) => {
-    return columns.some((item: FormItemConfigItem) => item.slot)
+  const isIncludesSlot = (columns: FormItemWidget[]) => {
+    return columns.some((item: FormItemWidget) => item.slot)
   }
 
-  const getTemplateCode = (columns: FormItemConfigItem[]) => {
+  const getTemplateCode = (columns: FormItemWidget[]) => {
     return !isIncludesSlot(columns)
       ? `
     ${getTemplateContainerCode()[0]}

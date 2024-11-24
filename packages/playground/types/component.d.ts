@@ -36,7 +36,7 @@ declare interface Layout {
   colLayout?: ColLayout
 }
 
-declare interface FormItemConfigItem extends WorkspaceComponentItem {
+declare interface FormItemWidget extends WorkspaceComponentItem {
   icon?: string
   label?: string
   title?: string
@@ -76,9 +76,8 @@ declare interface TableCol extends WorkspaceComponentItem {
   title?: string
   schema?: Schema
   type?: string
-  btnList?: BtnItem[]
   buttons?: BtnItem[]
-  attrs?: {
+  fieldProps?: {
     [propName: string]: any
   }
   on?: {
@@ -115,7 +114,7 @@ declare interface WorkspaceComponentItem {
 }
 
 declare interface CrudColumnWidget extends WorkspaceComponentItem {
-  formItemProps?: FormItemConfigItem
+  formItemProps?: FormItemWidget
   fieldProps?: IndexType
   type?: string
   btnList?: BtnItem[]

@@ -43,7 +43,7 @@ export default defineComponent({
           const tableProConfig = widgets.value[0]
           const schema = tableProConfig.schema
           let tableCols: TableCol[] = []
-          const formItems: FormItemConfigItem[] = []
+          const formItems: FormItemWidget[] = []
           const { newFormItem, prop }
             = templateObj[expandComponentItem.title as keyof typeof templateObj]()
 
