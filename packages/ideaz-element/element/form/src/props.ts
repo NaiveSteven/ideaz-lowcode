@@ -96,7 +96,7 @@ export const formProps = {
     type: [Boolean, Function] as PropType<boolean | (() => VNode)>,
   },
   draggable: {
-    type: Boolean,
+    type: [Boolean, Object],
     default: false,
   },
 }
