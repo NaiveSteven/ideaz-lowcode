@@ -1,13 +1,13 @@
 export function useCrudRenderCode() {
-  const isCrudIncludesSlot = (tableCols: TableCol[]) => {
+  const isCrudIncludesSlot = (tableCols: CrudColumnWidget[]) => {
     return (tableCols || []).some(
-      (item: TableCol) => item.slot || (item.search && item.search.slot),
+      (item: CrudColumnWidget) => item.slot || (item.search && item.search.slot),
     )
   }
 
-  const getCrudSlotCode = (tableCols: TableCol[]) => {
+  const getCrudSlotCode = (tableCols: CrudColumnWidget[]) => {
     const slots: IndexType = {};
-    (tableCols || []).forEach((item: TableCol) => {
+    (tableCols || []).forEach((item: CrudColumnWidget) => {
       const formItemSlot = item.formItemProps ? item.formItemProps.slot : ''
       if (item.slot)
         slots[item.slot] = () => <div>占位代码</div>
@@ -18,7 +18,7 @@ export function useCrudRenderCode() {
     return slots
   }
 
-  const getCrudRenderCode = (tableCols: TableCol[], config: any) => {
+  const getCrudRenderCode = (tableCols: CrudColumnWidget[], config: any) => {
     if (config.request) {
       return `<z-crud
         v-model:formData={config.searchFormData}

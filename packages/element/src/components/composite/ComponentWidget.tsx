@@ -42,19 +42,19 @@ export default defineComponent({
         ) {
           const tableProConfig = widgets.value[0]
           const schema = tableProConfig.schema
-          let tableCols: TableCol[] = []
+          let tableCols: CrudColumnWidget[] = []
           const formItems: FormItemWidget[] = []
           const { newFormItem, prop }
             = templateObj[expandComponentItem.title as keyof typeof templateObj]()
 
           if (schema.columns && schema.columns.length) {
             const newArr = cloneDeep(schema.columns)
-            newArr.forEach((item: TableCol) => {
+            newArr.forEach((item: CrudColumnWidget) => {
               if (item.search)
                 formItems.push(item.search)
             })
             formItems.splice(index, 0, newFormItem)
-            tableCols = newArr.map((item: TableCol, index: number) => {
+            tableCols = newArr.map((item: CrudColumnWidget, index: number) => {
               if (formItems[index])
                 item.search = formItems[index]
 

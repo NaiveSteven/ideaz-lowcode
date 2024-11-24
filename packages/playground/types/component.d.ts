@@ -67,27 +67,23 @@ declare interface Pagination {
   [propName: string]: any
 }
 
-declare interface TableCol extends WorkspaceComponentItem {
-  // slot?: string;
-  // headerSlot?: string;
-  id?: string
-  icon?: string
-  label?: string
-  title?: string
-  schema?: Schema
-  type?: string
-  buttons?: BtnItem[]
-  fieldProps?: {
-    [propName: string]: any
-  }
-  on?: {
-    [propName: string]: any
-  }
-  isDisabled?: any
-  disabled?: ((row: any, index: number) => boolean) | boolean
-  options?: OptionsItem[]
-  [propName: string]: any
-}
+// declare interface TableCol extends WorkspaceComponentItem {
+//   // slot?: string;
+//   // headerSlot?: string;
+//   icon?: string
+//   schema?: Schema
+//   type?: string
+//   buttons?: BtnItem[]
+//   fieldProps?: {
+//     [propName: string]: any
+//   }
+//   // on?: {
+//   //   [propName: string]: any
+//   // }
+//   disabled?: ((row: any, index: number) => boolean) | boolean
+//   options?: OptionsItem[]
+//   [propName: string]: any
+// }
 
 declare interface WorkspaceComponentItem {
   id: string
@@ -113,13 +109,15 @@ declare interface WorkspaceComponentItem {
   templates?: WorkspaceComponentItem[]
 }
 
-declare interface CrudColumnWidget extends WorkspaceComponentItem {
+declare interface CrudColumnWidget extends Partial<WorkspaceComponentItem> {
   formItemProps?: FormItemWidget
   fieldProps?: IndexType
   type?: string
-  btnList?: BtnItem[]
   buttons?: BtnItem[]
   search?: IndexType
+  disabled?: ((row: any, index: number) => boolean) | boolean
+  options?: OptionsItem[]
+  [propName: string]: any
 }
 
 declare interface ExpandTemplateItem {

@@ -11,7 +11,7 @@ declare interface Schema {
     [propName: string]: any
   }
   // crud
-  columns?: TableCol[]
+  columns?: CrudColumnWidget[]
   data?: any
   cellClassName?: string | ((obj: { columnIndex: number }) => void)
   searchFormData?: IndexType

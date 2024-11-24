@@ -31,9 +31,9 @@ export default defineComponent({
       changeData: FormChangeData,
     ) => {
       const crud = widgets.value[0]
-      let columns: TableCol[] = []
+      let columns: CrudColumnWidget[] = []
       if (schema.columns && schema.columns.length) {
-        columns = schema.columns.map((cur: TableCol, index) => {
+        columns = schema.columns.map((cur: CrudColumnWidget, index) => {
           if (cur.search && cur.search.id === form.id) {
             return {
               ...cur,

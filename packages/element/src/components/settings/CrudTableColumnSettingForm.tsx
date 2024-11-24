@@ -17,7 +17,7 @@ export default defineComponent({
     const handleColumnDataChange = (obj: FormChangeData) => {
       const crud = widgets.value[0]
       const schema = crud.schema
-      let columns: TableCol[] = []
+      let columns: CrudColumnWidget[] = []
       const data: CrudColumnWidget = {
         ...activeWidget.value,
         componentFormData: {
@@ -62,7 +62,7 @@ export default defineComponent({
         ]
         data.componentFormData!.buttons = data.buttons
       }
-      columns = schema.columns?.map((item: TableCol) => {
+      columns = schema.columns?.map((item: CrudColumnWidget) => {
         if (item.id === activeWidget.value.id)
           return data
 

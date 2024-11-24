@@ -40,7 +40,7 @@ export default defineComponent({
           }
           let lastIndex = 0
           const columns = widgets.value[0].schema.columns!
-          columns.forEach((item: TableCol, index: number) => {
+          columns.forEach((item: CrudColumnWidget, index: number) => {
             if (item.id && lastIndex < index)
               lastIndex = index
           })
@@ -77,7 +77,7 @@ export default defineComponent({
           let lastIndex = 0
           const { newFormItem } = getInputFormItemTemplate()
           const columns = widgets.value[0].schema.columns!
-          columns.forEach((item: TableCol, index: number) => {
+          columns.forEach((item: CrudColumnWidget, index: number) => {
             if (item.search && lastIndex < index)
               lastIndex = index
           })

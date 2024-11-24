@@ -1,13 +1,13 @@
 export function useCrudTemplateCode() {
-  const isCrudIncludesSlot = (tableCols: TableCol[]) => {
+  const isCrudIncludesSlot = (tableCols: CrudColumnWidget[]) => {
     return (tableCols || []).some(
-      (item: TableCol) => item.slot || (item.search && item.search.slot),
+      (item: CrudColumnWidget) => item.slot || (item.search && item.search.slot),
     )
   }
 
-  const getCrudSlotCode = (tableCols: TableCol[]) => {
+  const getCrudSlotCode = (tableCols: CrudColumnWidget[]) => {
     let str = ``;
-    (tableCols || []).forEach((item: TableCol) => {
+    (tableCols || []).forEach((item: CrudColumnWidget) => {
       const formItemSlot = item.formItemProps ? item.formItemProps.slot : ''
       if (item.slot) {
         str = str.length
@@ -39,7 +39,7 @@ export function useCrudTemplateCode() {
     return str
   }
 
-  const getCrudTemplateCode = (tableCols: TableCol[], config: any) => {
+  const getCrudTemplateCode = (tableCols: CrudColumnWidget[], config: any) => {
     if (config.request) {
       return `<z-crud
       v-bind="config"

@@ -266,7 +266,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     const component = widgets.value[0]
     const schema = component.schema
     const config: IndexType = {}
-    let columns: Array<TableCol> = []
+    let columns: Array<CrudColumnWidget> = []
     const deleteTableColKeys = [
       'name',
       'title',
@@ -334,7 +334,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
     if (isLabelWidth)
       config.search.labelWidth = componentFieldFormData?.labelWidth
 
-    const isSearch = schema.columns?.some((item: TableCol) => item.search)
+    const isSearch = schema.columns?.some((item: CrudColumnWidget) => item.search)
 
     if (isSearch) {
       if (schema.formConfig?.labelWidth !== '80px') {
@@ -344,7 +344,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
       }
       config.searchFormData = {}
       config.options = {}
-      schema.columns?.forEach((item: TableCol) => {
+      schema.columns?.forEach((item: CrudColumnWidget) => {
         if (item.search) {
           config.searchFormData[item.search.fieldFormData?.field]
             = item.search.fieldFormData?.default
@@ -367,7 +367,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         delete config.options
     }
 
-    columns = schema.columns?.map((item: TableCol) => {
+    columns = schema.columns?.map((item: CrudColumnWidget) => {
       const tableCol = cloneDeep(item)
       if (tableCol.search) {
         const searchFormItem = tableCol.search
@@ -443,7 +443,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         })
       }
       if (tableCol.type === 'slot') {
-        const col: TableCol = {
+        const col: CrudColumnWidget = {
           slot: tableCol.slot,
           label: tableCol.label,
         }
