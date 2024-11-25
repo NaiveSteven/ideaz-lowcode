@@ -1,6 +1,6 @@
 import { useWorkspaceStore } from '../modules/workspace'
 
-export function useWorkspaceComponent<T = WorkspaceComponentItem>() {
+export function useWorkspaceComponent<T = Widget>() {
   const workspaceStore = useWorkspaceStore()
 
   const widgets = computed(() => workspaceStore.widgets)

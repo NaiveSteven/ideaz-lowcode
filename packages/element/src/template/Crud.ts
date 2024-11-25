@@ -309,7 +309,7 @@ function getColumns() {
   ]
 }
 
-export function CrudTemplate(): WorkspaceComponentItem {
+export function CrudTemplate(): Widget {
   const columns = getColumns()
   return {
     id: uid(),

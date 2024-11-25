@@ -9,7 +9,7 @@ import {
   inputTemplateSchema,
 } from '../schemas'
 
-export function InputTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function InputTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-danhangshurukuang',

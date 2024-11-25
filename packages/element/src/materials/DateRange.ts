@@ -9,7 +9,7 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
-export function DateRangeTemplateComponent(): WorkspaceComponentItem {
+export function DateRangeTemplateComponent(): Widget {
   const field = uid()
   return {
     id: uid(),

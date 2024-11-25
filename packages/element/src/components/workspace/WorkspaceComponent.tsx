@@ -13,11 +13,11 @@ export default defineComponent({
   emits: ['on-add-item', 'on-update-cur-operate'],
   props: {
     widgets: {
-      type: Array as PropType<WorkspaceComponentItem[]>,
+      type: Array as PropType<Widget[]>,
       default: () => [],
     },
     activeWidget: {
-      type: Object as PropType<WorkspaceComponentItem>,
+      type: Object as PropType<Widget>,
       default: () => ({}),
     },
     formData: {
@@ -49,7 +49,7 @@ export default defineComponent({
         event?.preventDefault()
         if (props.activeWidget.id === id)
           return
-        let item: WorkspaceComponentItem = {} as WorkspaceComponentItem
+        let item: Widget = {} as Widget
         widgets.value[0]?.schema?.columns?.forEach((col) => {
           if (col.search?.formItemProps?.id === `schema-field${id}`)
             item = { ...col.search }
@@ -75,7 +75,7 @@ export default defineComponent({
         e.stopPropagation()
     }
 
-    const clickItem = (e: MouseEvent, item: WorkspaceComponentItem) => {
+    const clickItem = (e: MouseEvent, item: Widget) => {
       e.preventDefault()
       e.stopPropagation()
       if (props.activeWidget.id === item.id)
@@ -126,10 +126,10 @@ export default defineComponent({
         = widgets.value[0].schema.columns?.filter(item => item.prop)
         || []
       const tableCol = columns[columnIndex]
-      updateActiveWidget(tableCol as WorkspaceComponentItem)
+      updateActiveWidget(tableCol as Widget)
     }
 
-    const handleUpdateFormItem = ({ columns, dragEvent }: { columns: WorkspaceComponentItem[], dragEvent: any }) => {
+    const handleUpdateFormItem = ({ columns, dragEvent }: { columns: Widget[], dragEvent: any }) => {
       console.log(columns, dragEvent, 'columns')
       const oldIndex = dragEvent.oldIndex
       const newIndex = dragEvent.newIndex
@@ -163,7 +163,7 @@ export default defineComponent({
     }
 
     const handleUpdateTableColumn = (
-      data: WorkspaceComponentItem,
+      data: Widget,
       newIndex: number,
       oldIndex: number,
     ) => {
@@ -209,23 +209,23 @@ export default defineComponent({
       }
     }
 
-    const handleFormItemClick = (data: WorkspaceComponentItem) => {
+    const handleFormItemClick = (data: Widget) => {
       updateActiveWidget(data)
     }
 
-    const handleFormItemMousedown = async (data: WorkspaceComponentItem) => {
+    const handleFormItemMousedown = async (data: Widget) => {
       isUpdateKey = false
       updateActiveWidget(data)
     }
 
     function getArrayItem(key: string) {
-      let data: WorkspaceComponentItem = {} as WorkspaceComponentItem
+      let data: Widget = {} as Widget
       widgets.value.forEach((item) => {
         if (item.id === key)
           data = item
 
         if (item.schema.fieldProps?.columns?.length && !data) {
-          item.schema.fieldProps?.columns.forEach((item: WorkspaceComponentItem) => {
+          item.schema.fieldProps?.columns.forEach((item: Widget) => {
             if (item.id === key)
               data = item
           })
@@ -239,7 +239,7 @@ export default defineComponent({
       return str.split('-')[2]
     }
 
-    const handleArrayFormEnd = (formItem: WorkspaceComponentItem, draggableEvent: any) => {
+    const handleArrayFormEnd = (formItem: Widget, draggableEvent: any) => {
       const list = [...widgets.value]
       // array form to array form
       if (Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
@@ -295,7 +295,7 @@ export default defineComponent({
           onEnd={end}
           key={tableKey.value}
         >
-          {props.widgets.map((formItem: WorkspaceComponentItem) => {
+          {props.widgets.map((formItem: Widget) => {
             const { colKls, colStyle } = useCol(formConfig.value as any, formItem.schema as any)
             return (
               <div
@@ -319,7 +319,7 @@ export default defineComponent({
                         pid={formItem.children ? formItem.id : ''}
                         onUpdate:columns={handleUpdateFormItem}
                         onDrag-column-end={handleUpdateTableColumn}
-                        onOn-form-item-click={(e: MouseEvent, data: WorkspaceComponentItem) => clickItem(e, data)}
+                        onOn-form-item-click={(e: MouseEvent, data: Widget) => clickItem(e, data)}
                         onCell-click={({ }, column: any, { }, event: MouseEvent) => handleTableColClick(column, event)}
                         onHeader-click={(column: any, event: MouseEvent) => handleTableColClick(column, event)}
                       />

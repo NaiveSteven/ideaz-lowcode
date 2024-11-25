@@ -51,7 +51,7 @@ export default defineComponent({
 
     const handleClickTitle = (item: TitleItem) => {
       if (item.title === '表单') {
-        updateActiveWidget({} as WorkspaceComponentItem)
+        updateActiveWidget({} as Widget)
       }
       else {
         const cur = getTreeDataItem(widgets.value, item.id as string)

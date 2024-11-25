@@ -9,7 +9,7 @@ import {
   selectTemplateSchema,
 } from '../schemas'
 
-export function SelectTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function SelectTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-xialadanxuan',

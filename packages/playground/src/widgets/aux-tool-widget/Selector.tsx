@@ -39,7 +39,7 @@ export default defineComponent({
 
     const handleClickForm = () => {
       changeBtnStatus(true)
-      updateActiveWidget({} as WorkspaceComponentItem)
+      updateActiveWidget({} as Widget)
     }
 
     const renderCurOperateSelector = () => (

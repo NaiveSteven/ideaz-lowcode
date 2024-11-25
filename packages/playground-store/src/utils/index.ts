@@ -83,9 +83,9 @@ export function changeDataId(list: any) {
   return cloneList
 }
 
-export function getPids(list: WorkspaceComponentItem[], item: WorkspaceComponentItem) {
+export function getPids(list: Widget[], item: Widget) {
   const arr: any = []
-  const flat = (data: WorkspaceComponentItem) => {
+  const flat = (data: Widget) => {
     if (data.pid) {
       // const index = arr.findIndex(curr => curr.id === )
       // arr.push({ id: item.id, title: item.title });
@@ -102,11 +102,11 @@ export function getPids(list: WorkspaceComponentItem[], item: WorkspaceComponent
   return arr
 }
 
-export function getSchemaByComponentItem(toShm: Schema, component: WorkspaceComponentItem, toShmId?: string) {
+export function getSchemaByComponentItem(toShm: Schema, component: Widget, toShmId?: string) {
   const toSchemaClone = cloneDeep(toShm)
   const componentClone = cloneDeep(component)
 
-  const flat = (toSchema: Schema, componentItem: WorkspaceComponentItem, toSchemaId?: string) => {
+  const flat = (toSchema: Schema, componentItem: Widget, toSchemaId?: string) => {
     const schema = componentItem.schema
     if (!toSchemaId) {
       if (schema.id !== toSchema.id)
@@ -128,15 +128,15 @@ export function getSchemaByComponentItem(toShm: Schema, component: WorkspaceComp
   return toSchemaClone
 }
 
-export function getComponentListItem(key: string, list: WorkspaceComponentItem[]) {
-  let data: WorkspaceComponentItem = null
-  let parentData: WorkspaceComponentItem = null
+export function getComponentListItem(key: string, list: Widget[]) {
+  let data: Widget = null
+  let parentData: Widget = null
   list.forEach((item) => {
     if (item.id === key)
       data = item
 
     if (item.schema.fieldProps?.columns?.length && !data) {
-      item.schema.fieldProps?.columns.forEach((cur: WorkspaceComponentItem) => {
+      item.schema.fieldProps?.columns.forEach((cur: Widget) => {
         if (cur.id === key) {
           data = cur
           parentData = item

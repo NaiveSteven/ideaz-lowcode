@@ -97,7 +97,7 @@ function delEmptyObject(data: any) {
   }
 }
 
-function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form', list?: WorkspaceComponentItem[]) {
+function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'crud' = 'form', list?: Widget[]) {
   const { widgets } = useWorkspaceComponent()
   const { formConfig: workspaceFormConfig } = useWorkspaceForm()
   const formConfig = cloneDeep(workspaceFormConfig.value)
@@ -120,7 +120,7 @@ function parseElementSchema(mode: 'code' | 'preview' = 'code', type: 'form' | 'c
         if (arrayFormColumns) {
           item.fieldFormData!.default.forEach(({}, index: number) => {
             const arrayFormData: IndexType = {}
-            arrayFormColumns.forEach((cur: WorkspaceComponentItem) => {
+            arrayFormColumns.forEach((cur: Widget) => {
               arrayFormData[cur.fieldFormData?.field] = cur.fieldFormData!.default
             })
             formData[field][index] = arrayFormData

@@ -20,7 +20,7 @@ export default defineComponent({
       }
       currentIndex.value = current
       data.redo()
-      updateActiveWidget({} as WorkspaceComponentItem)
+      updateActiveWidget({} as Widget)
     }
 
     return () => (

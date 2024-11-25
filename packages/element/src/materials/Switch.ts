@@ -8,7 +8,7 @@ import {
   switchTemplateSchema,
 } from '../schemas'
 
-export function SwitchTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function SwitchTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-kaiguan',

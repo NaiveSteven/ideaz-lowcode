@@ -9,7 +9,7 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
-export function CheckboxTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function CheckboxTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-duoxuan',

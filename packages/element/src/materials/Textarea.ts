@@ -8,7 +8,7 @@ import {
   textareaTemplateSchema,
 } from '../schemas'
 
-export function TextareaTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function TextareaTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-duohangshurukuang',

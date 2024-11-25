@@ -12,7 +12,7 @@ export default defineComponent({
       copy('')
       clearWorkspaceComponentList()
       updateWorkspaceComponentType('form')
-      updateActiveWidget({} as WorkspaceComponentItem)
+      updateActiveWidget({} as Widget)
     }
 
     return () => (

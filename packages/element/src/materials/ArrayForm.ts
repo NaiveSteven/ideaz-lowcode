@@ -9,7 +9,7 @@ import {
 } from '../schemas'
 import { InputTemplateComponent } from './Input'
 
-export function ArrayFormTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function ArrayFormTemplateComponent(key = uid()): Widget {
   // const arrayFormId = uid()
   // const arrayFormId2 = uid()
   return {

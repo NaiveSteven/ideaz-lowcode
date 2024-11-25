@@ -9,7 +9,7 @@ import {
   sliderTemplateSchema,
 } from '../schemas'
 
-export function SliderTemplateComponent(): WorkspaceComponentItem {
+export function SliderTemplateComponent(): Widget {
   const field = uid()
   return {
     id: uid(),

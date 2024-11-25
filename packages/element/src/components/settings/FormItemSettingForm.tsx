@@ -19,7 +19,7 @@ export default defineComponent({
 
     const handleFormDataChange = (obj: FormChangeData) => {
       const cloneObj = cloneDeep(obj)
-      let item = {} as WorkspaceComponentItem
+      let item = {} as Widget
       if (activeWidget.value && activeWidget.value.id) {
         item = {
           ...activeWidget.value,
@@ -95,7 +95,7 @@ export default defineComponent({
 
     const handleFormItemFormDataChange = (obj: FormChangeData) => {
       const cloneObj = cloneDeep(obj)
-      let item = {} as WorkspaceComponentItem
+      let item = {} as Widget
       if (activeWidget.value && activeWidget.value.id) {
         item = {
           ...activeWidget.value,
@@ -112,7 +112,7 @@ export default defineComponent({
 
     const handleFieldFormDataChange = (obj: FormChangeData) => {
       const cloneObj = cloneDeep(obj)
-      let o = {} as WorkspaceComponentItem
+      let o = {} as Widget
       if (activeWidget.value && activeWidget.value.id) {
         o = {
           ...activeWidget.value,

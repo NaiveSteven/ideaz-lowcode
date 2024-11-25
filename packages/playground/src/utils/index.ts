@@ -81,9 +81,9 @@ export const changeDataId = (list: any) => {
   return cloneList;
 };
 
-export const getPids = (list: WorkspaceComponentItem[], item: WorkspaceComponentItem) => {
+export const getPids = (list: Widget[], item: Widget) => {
   const arr: any = [];
-  const flat = (data: WorkspaceComponentItem) => {
+  const flat = (data: Widget) => {
     if (data.pid) {
       // const index = arr.findIndex(curr => curr.id === )
       // arr.push({ id: item.id, title: item.title });
@@ -102,13 +102,13 @@ export const getPids = (list: WorkspaceComponentItem[], item: WorkspaceComponent
 
 export const getSchemaByComponentItem = (
   toShm: Schema,
-  component: WorkspaceComponentItem,
+  component: Widget,
   toShmId?: string
 ) => {
   const toSchemaClone = cloneDeep(toShm);
   const componentClone = cloneDeep(component);
 
-  const flat = (toSchema: Schema, componentItem: WorkspaceComponentItem, toSchemaId?: string) => {
+  const flat = (toSchema: Schema, componentItem: Widget, toSchemaId?: string) => {
     const schema = componentItem.schema;
     if (!toSchemaId) {
       if (schema.id !== toSchema.id) {

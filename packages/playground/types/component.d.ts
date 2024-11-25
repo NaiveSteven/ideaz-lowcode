@@ -36,7 +36,7 @@ declare interface Layout {
   colLayout?: ColLayout
 }
 
-declare interface FormItemWidget extends WorkspaceComponentItem {
+declare interface FormItemWidget extends Widget {
   icon?: string
   label?: string
   title?: string
@@ -67,7 +67,7 @@ declare interface Pagination {
   [propName: string]: any
 }
 
-// declare interface TableCol extends WorkspaceComponentItem {
+// declare interface TableCol extends Widget {
 //   // slot?: string;
 //   // headerSlot?: string;
 //   icon?: string
@@ -85,7 +85,7 @@ declare interface Pagination {
 //   [propName: string]: any
 // }
 
-declare interface WorkspaceComponentItem {
+declare interface Widget {
   id: string
   name?: string
   pid?: string
@@ -105,11 +105,11 @@ declare interface WorkspaceComponentItem {
   allowCopy?: boolean
   allowDelete?: boolean
   activeCollapseItems?: string[]
-  children?: WorkspaceComponentItem[]
-  templates?: WorkspaceComponentItem[]
+  children?: Widget[]
+  templates?: Widget[]
 }
 
-declare interface CrudColumnWidget extends Partial<WorkspaceComponentItem> {
+declare interface CrudColumnWidget extends Partial<Widget> {
   formItemProps?: FormItemWidget
   fieldProps?: IndexType
   type?: string
@@ -122,7 +122,7 @@ declare interface CrudColumnWidget extends Partial<WorkspaceComponentItem> {
 
 declare interface ExpandTemplateItem {
   collapseTitle: string
-  components: WorkspaceComponentItem[]
+  components: Widget[]
 }
 
 declare interface OptionsItem {

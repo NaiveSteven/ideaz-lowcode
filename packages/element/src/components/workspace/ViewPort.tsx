@@ -7,20 +7,20 @@ export default defineComponent({
     const { formData, formConfig } = useWorkspaceForm()
     const { pushWidget, updateActiveWidget, widgets: list, activeWidget } = useWorkspaceComponent()
 
-    const handleAddComponentItem = (item: WorkspaceComponentItem, index: number, toId: string) => {
+    const handleAddComponentItem = (item: Widget, index: number, toId: string) => {
       pushWidget(item, index, toId)
     }
 
     return () => {
       return (
-        <div id="view-port" class="view-port" onClick={() => updateActiveWidget({} as WorkspaceComponentItem)}>
+        <div id="view-port" class="view-port" onClick={() => updateActiveWidget({} as Widget)}>
           {activeWidget.value.name === 'crud'
             ? (
               <WorkspaceComponent
                 widgets={list.value}
                 activeWidget={activeWidget.value}
                 formData={formData.value}
-                onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
+                onOn-update-cur-operate={(item: Widget) => updateActiveWidget(item)}
                 onOn-add-item={handleAddComponentItem}
               />
             )
@@ -30,7 +30,7 @@ export default defineComponent({
                   widgets={list.value}
                   activeWidget={activeWidget.value}
                   formData={formData.value}
-                  onOn-update-cur-operate={(item: WorkspaceComponentItem) => updateActiveWidget(item)}
+                  onOn-update-cur-operate={(item: Widget) => updateActiveWidget(item)}
                   onOn-add-item={handleAddComponentItem}
                 />
               </z-form>

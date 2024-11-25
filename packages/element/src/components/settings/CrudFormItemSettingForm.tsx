@@ -26,7 +26,7 @@ export default defineComponent({
     })
 
     const updateData = (
-      form: WorkspaceComponentItem,
+      form: Widget,
       schema: Schema,
       changeData: FormChangeData,
     ) => {

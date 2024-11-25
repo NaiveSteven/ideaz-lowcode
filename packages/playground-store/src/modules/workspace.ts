@@ -7,8 +7,8 @@ import { changeDataId, getComponentListItem, getTreeDataItem } from '../utils/in
 import { useGlobalSettingStore } from './globalSetting'
 
 interface WorkspaceState {
-  widgets: WorkspaceComponentItem[]
-  activeWidget: WorkspaceComponentItem | CrudColumnWidget
+  widgets: Widget[]
+  activeWidget: Widget | CrudColumnWidget
   viewType: ViewType
   boardWidth: number
   boardHeight: number
@@ -24,7 +24,7 @@ export const useWorkspaceStore = defineStore({
   id: 'workspace',
   state: (): WorkspaceState => ({
     widgets: [],
-    activeWidget: {} as WorkspaceComponentItem,
+    activeWidget: {} as Widget,
     viewType: 'design',
     boardWidth: 0,
     boardHeight: 0,
@@ -33,10 +33,10 @@ export const useWorkspaceStore = defineStore({
     simulatorType: 'pc',
   }),
   getters: {
-    getWidgets(): WorkspaceComponentItem[] {
+    getWidgets(): Widget[] {
       return this.widgets
     },
-    getActiveWidget(): WorkspaceComponentItem {
+    getActiveWidget(): Widget {
       return this.activeWidget
     },
     getViewType(): ViewType {
@@ -53,7 +53,7 @@ export const useWorkspaceStore = defineStore({
     },
   },
   actions: {
-    pushWidget(componentItem: WorkspaceComponentItem, index: number, toId: string) {
+    pushWidget(componentItem: Widget, index: number, toId: string) {
       this.addHistory(() => {
         if (!toId) {
           this.widgets.splice(index, 0, componentItem)
@@ -64,7 +64,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '添加组件', time: new Date() })
     },
-    updateWidget(componentItem: WorkspaceComponentItem) {
+    updateWidget(componentItem: Widget) {
       this.addHistory(() => {
         let index = -1
         if (componentItem.pid) {
@@ -73,7 +73,7 @@ export const useWorkspaceStore = defineStore({
             componentItem.pid as string,
           )
           index = itemParent.children.findIndex(
-            (item: WorkspaceComponentItem) => item.id === componentItem.id,
+            (item: Widget) => item.id === componentItem.id,
           )
           if (index > -1)
             itemParent.children.splice(index, 1, componentItem)
@@ -96,7 +96,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '属性更改', time: new Date() })
     },
-    deleteWidget(componentItem: WorkspaceComponentItem) {
+    deleteWidget(componentItem: Widget) {
       this.addHistory(() => {
         let index = -1
         if (componentItem.pid) {
@@ -105,7 +105,7 @@ export const useWorkspaceStore = defineStore({
             componentItem.pid as string,
           )
           index = itemParent.children.findIndex(
-            (item: WorkspaceComponentItem) => item.id === componentItem.id,
+            (item: Widget) => item.id === componentItem.id,
           )
           if (index > -1)
             itemParent.children.splice(index, 1)
@@ -161,7 +161,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '删除组件', time: new Date() })
     },
-    copyWidget(componentItem: WorkspaceComponentItem) {
+    copyWidget(componentItem: Widget) {
       this.addHistory(() => {
         const newComponentItem = changeDataId([{ ...componentItem, id: uid() }])
         if (componentItem.pid) {
@@ -246,7 +246,7 @@ export const useWorkspaceStore = defineStore({
         }
       }, { message: '复制组件', time: new Date() })
     },
-    updateWidgets(components: WorkspaceComponentItem[], message = '属性更改', isRecord = true) {
+    updateWidgets(components: Widget[], message = '属性更改', isRecord = true) {
       if (isRecord)
         this.addHistory(() => { this.widgets = components }, { message, time: new Date() })
 
@@ -256,7 +256,7 @@ export const useWorkspaceStore = defineStore({
     clearWorkspaceComponentList() {
       this.addHistory(() => { this.widgets = [] }, { message: '清空组件', time: new Date() })
     },
-    updateActiveWidget(activeWidget: WorkspaceComponentItem) {
+    updateActiveWidget(activeWidget: Widget) {
       this.activeWidget = activeWidget
     },
     updateViewType(type: ViewType) {
@@ -279,8 +279,8 @@ export const useWorkspaceStore = defineStore({
       const newComponentList = cloneDeep(this.widgets)
       undoManager.add({
         ...props,
-        undo: () => { this.widgets = cloneDeep(lastComponentList); this.activeWidget = {} as WorkspaceComponentItem },
-        redo: () => { this.widgets = cloneDeep(newComponentList); this.activeWidget = {} as WorkspaceComponentItem },
+        undo: () => { this.widgets = cloneDeep(lastComponentList); this.activeWidget = {} as Widget },
+        redo: () => { this.widgets = cloneDeep(newComponentList); this.activeWidget = {} as Widget },
       })
     },
   },

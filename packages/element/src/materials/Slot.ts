@@ -5,7 +5,7 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
-export function SlotTemplateComponent(): WorkspaceComponentItem {
+export function SlotTemplateComponent(): Widget {
   return {
     id: uid(),
     icon: 'icon-rongqi',

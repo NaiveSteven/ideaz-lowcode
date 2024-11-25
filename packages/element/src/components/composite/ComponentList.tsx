@@ -55,13 +55,13 @@ export default defineComponent({
     }
 
     function getArrayItem(key: string) {
-      let data: WorkspaceComponentItem | null = null
+      let data: Widget | null = null
       widgets.value.forEach((item) => {
         if (item.id === key)
           data = item
 
         if (item.schema.fieldProps?.columns?.length && !data) {
-          item.schema.fieldProps?.columns.forEach((item: WorkspaceComponentItem) => {
+          item.schema.fieldProps?.columns.forEach((item: Widget) => {
             if (item.id === key)
               data = item
           })

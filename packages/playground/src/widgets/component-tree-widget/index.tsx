@@ -50,7 +50,7 @@ export default defineComponent({
         tree.value.setCurrentKey(activeWidget.value.id || 'form')
     })
 
-    const handleClick = (item: WorkspaceComponentItem) => {
+    const handleClick = (item: Widget) => {
       if (item.id === widgets.value[0].id) {
         updateActiveWidget(widgets.value[0])
         return
@@ -59,13 +59,13 @@ export default defineComponent({
         return
 
       if (item.id === 'form') {
-        updateActiveWidget({} as WorkspaceComponentItem)
+        updateActiveWidget({} as Widget)
         return
       }
       updateActiveWidget(item)
     }
 
-    const renderTreeDefault = ({ data }: { data: WorkspaceComponentItem }) => {
+    const renderTreeDefault = ({ data }: { data: Widget }) => {
       return (
         <div class="h-full w-full flex items-center text-xs" onClick={() => handleClick(data)}>
           {data.title}

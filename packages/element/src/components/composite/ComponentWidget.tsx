@@ -27,7 +27,7 @@ export default defineComponent({
     }
 
     const clickExpandComponentItem = (
-      expandComponentItem: WorkspaceComponentItem,
+      expandComponentItem: Widget,
       index: number,
       toId: string,
     ) => {
@@ -107,7 +107,7 @@ export default defineComponent({
         // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceWidgetType.value === 'crud') {
           updateWidgets([], '清空组件')
-          updateActiveWidget({} as WorkspaceComponentItem)
+          updateActiveWidget({} as Widget)
         }
         updateWorkspaceComponentType('form')
       }
@@ -122,7 +122,7 @@ export default defineComponent({
             ...expandComponentItem.schema,
             fieldProps: {
               ...expandComponentItem.schema?.fieldProps,
-              columns: arrayFormColumns ? arrayFormColumns.map((item: WorkspaceComponentItem) => ({ ...item, id: uid() })) : undefined,
+              columns: arrayFormColumns ? arrayFormColumns.map((item: Widget) => ({ ...item, id: uid() })) : undefined,
             },
           },
         }
@@ -132,7 +132,7 @@ export default defineComponent({
       }
       else if (Array.isArray(expandComponentItem.templates)) {
         updateWidgets(cloneDeep(expandComponentItem.templates!), '添加组件')
-        updateActiveWidget({} as WorkspaceComponentItem)
+        updateActiveWidget({} as Widget)
       }
     }
 

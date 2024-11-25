@@ -11,7 +11,7 @@ export default defineComponent({
       if (activeWidget.value.name === 'crud')
         updateWorkspaceComponentType('form')
 
-      updateActiveWidget({} as WorkspaceComponentItem)
+      updateActiveWidget({} as Widget)
     }
 
     return () => (

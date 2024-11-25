@@ -9,7 +9,7 @@ import {
   inputNumberTemplateSchema,
 } from '../schemas'
 
-export function InputNumberTemplateComponent(): WorkspaceComponentItem {
+export function InputNumberTemplateComponent(): Widget {
   const field = uid()
   return {
     id: uid(),

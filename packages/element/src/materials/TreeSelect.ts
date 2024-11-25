@@ -9,7 +9,7 @@ import {
   treeSelectTemplateSchema,
 } from '../schemas'
 
-export function TreeSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function TreeSelectTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-shuxuanzeqi',

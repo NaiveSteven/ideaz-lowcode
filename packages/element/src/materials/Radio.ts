@@ -9,7 +9,7 @@ import {
   radioTemplateSchema,
 } from '../schemas'
 
-export function RadioTemplateComponent(): WorkspaceComponentItem {
+export function RadioTemplateComponent(): Widget {
   const field = uid()
   return {
     id: uid(),

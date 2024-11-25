@@ -9,7 +9,7 @@ import {
   formItemTemplateSchema,
 } from '../schemas'
 
-export function VirtualizedSelectTemplateComponent(key = uid()): WorkspaceComponentItem {
+export function VirtualizedSelectTemplateComponent(key = uid()): Widget {
   return {
     id: uid(),
     icon: 'icon-shuxingkongjian',
