@@ -59,7 +59,7 @@ export interface FormColumn {
   contentPosition?: 'left' | 'right' | 'center'
   borderStyle?: 'none' | 'solid' | 'hidden' | 'dashed' | ''
   // Schema
-  draggable?: boolean
+  draggable?: boolean | object
   fieldOptionsConfig?: any
   fieldFormData?: any
 }

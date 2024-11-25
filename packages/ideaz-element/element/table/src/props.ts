@@ -120,7 +120,7 @@ export const tableProps = {
     default: true,
   },
   draggable: {
-    type: Boolean,
+    type: [Boolean, Object],
     default: false,
   },
   editable: {
