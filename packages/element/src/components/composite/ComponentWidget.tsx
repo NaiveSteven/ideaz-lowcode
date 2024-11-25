@@ -31,7 +31,6 @@ export default defineComponent({
       index: number,
       toId: string,
     ) => {
-      // 表单表格表单项拖拽
       if (workspaceWidgetType.value === 'crud' && toId) {
         if (
           expandComponentItem.title === '输入框'
@@ -104,14 +103,12 @@ export default defineComponent({
         return
       }
       else {
-        // workspace里面是表单表格，在其他地方拖入表单，则清空表单表格
         if (workspaceWidgetType.value === 'crud') {
           updateWidgets([], '清空组件')
           updateActiveWidget({} as Widget)
         }
         updateWorkspaceComponentType('form')
       }
-      // 表单
       if (!expandComponentItem.templates || !Array.isArray(expandComponentItem.templates)) {
         const arrayFormColumns = expandComponentItem.schema?.fieldProps?.columns
         const componentItem = {
@@ -128,7 +125,6 @@ export default defineComponent({
         }
         pushWidget(componentItem, index, toId)
         updateActiveWidget(componentItem)
-        // 模板
       }
       else if (Array.isArray(expandComponentItem.templates)) {
         updateWidgets(cloneDeep(expandComponentItem.templates!), '添加组件')

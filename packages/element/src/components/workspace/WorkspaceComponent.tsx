@@ -92,15 +92,10 @@ export default defineComponent({
       // normal form to array form
       if (!Array.from(draggableEvent.from.classList).includes('array-form') && Array.from(draggableEvent.to.classList).includes('array-form')) {
         const key = getKey(Array.from(draggableEvent.to.classList))
-        // const normalItemIndex = list.findIndex(item => item.id === tempData.id)
         const arrayItem = getArrayItem(key)
-        // console.log(widgets.value, 'widgets')
-        // debugger
         const cols = arrayItem.schema.fieldProps?.columns
-        // list.splice(normalItemIndex, 1)
         cols.splice(draggableEvent.newIndex, 0, tempData)
         updateWidgets(list, '排序更改')
-        // console.log(arrayItem, cols, list, widgets.value, 'handleArrayFormEndhandleArrayFormEnd')
         tableKey.value = new Date().valueOf()
       }
       if (workspaceWidgetType.value === 'form')
@@ -134,7 +129,6 @@ export default defineComponent({
       const oldIndex = dragEvent.oldIndex
       const newIndex = dragEvent.newIndex
       const data = columns[newIndex]
-      // console.log(columns,newIndex,'asdf')
       // if (!data.id) {
       //   emit('on-update-cur-operate', {})
       //   return
