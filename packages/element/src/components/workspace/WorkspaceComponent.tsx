@@ -125,7 +125,6 @@ export default defineComponent({
     }
 
     const handleUpdateFormItem = ({ columns, dragEvent }: { columns: Widget[], dragEvent: any }) => {
-      console.log(columns, dragEvent, 'columns')
       const oldIndex = dragEvent.oldIndex
       const newIndex = dragEvent.newIndex
       const data = columns[newIndex]

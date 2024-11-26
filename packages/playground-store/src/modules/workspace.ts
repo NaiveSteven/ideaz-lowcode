@@ -113,7 +113,6 @@ export const useWorkspaceStore = defineStore({
         else {
           const globalSettingStore = useGlobalSettingStore()
           const workspaceWidgetType = globalSettingStore.getWorkspaceWidgetType
-          // 表单部分
           if (workspaceWidgetType === 'form') {
             index = this.widgets.findIndex(item => item.id === componentItem.id)
             if (index > -1) {
@@ -131,9 +130,7 @@ export const useWorkspaceStore = defineStore({
               }
             }
           }
-          // 表单表格
           else {
-            // 表单项
             const columns = this.widgets[0].schema.columns || []
             if (componentItem.name === 'tableForm') {
               columns.forEach((item) => {
@@ -174,14 +171,12 @@ export const useWorkspaceStore = defineStore({
         else {
           const globalSettingStore = useGlobalSettingStore()
           const workspaceWidgetType = globalSettingStore.getWorkspaceWidgetType
-          // 表单部分
           if (workspaceWidgetType === 'form') {
             const index = this.widgets.findIndex((item: any) => item.id === componentItem.id)
             if (index > -1) {
               this.widgets.push(newComponentItem[0])
             }
             else {
-              // array form
               const { parentData } = getComponentListItem(componentItem.id, this.widgets)
               const cols = [...parentData.schema?.fieldProps?.columns, newComponentItem[0]]
               const colsIndex = cols.findIndex(item => item.id === componentItem.id)
@@ -191,9 +186,7 @@ export const useWorkspaceStore = defineStore({
               }
             }
           }
-          // 表单表格
           else {
-            // 表单项
             if (componentItem.name === 'tableForm') {
               let lastIndex = 0
               const formItemId = uid()
@@ -221,7 +214,6 @@ export const useWorkspaceStore = defineStore({
               }
               this.activeWidget = newFormItem
             }
-            // 表格项
             if (componentItem.name === 'tableCol') {
               const newTableCol = { ...componentItem, id: uid() }
               delete newTableCol.search
