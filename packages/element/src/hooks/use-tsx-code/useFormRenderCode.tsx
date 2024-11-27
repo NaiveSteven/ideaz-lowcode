@@ -3,7 +3,7 @@ export function useFormRenderCode(type: 'page' | 'dialog') {
     const slot: IndexType = {}
     formItemConfigs.forEach((item: FormItemWidget) => {
       if (item.slot)
-        slot[item.slot] = () => <div>占位代码</div>
+        slot[item.slot] = `<div>占位代码</div>`
     })
     return slot
   }
