@@ -62,9 +62,21 @@ export default defineComponent({
     })
 
     const selectorPosition = computed(() => {
-      const index = widgets.value.findIndex(
-        item => activeWidget.value.id === item.id,
-      )
+      let index = -1
+      widgets.value.forEach((item, i) => {
+        if (activeWidget.value.id === item.id) {
+          index = i
+        }
+        else {
+          const columns = item.schema?.fieldProps?.columns
+          if (columns?.length) {
+            columns.forEach((column: Widget, j) => {
+              if (activeWidget.value.id === column.id)
+                index = j
+            })
+          }
+        }
+      })
 
       // multiple column layout
       if (formConfig.value.column > 1 && activeWidget.value.id)
