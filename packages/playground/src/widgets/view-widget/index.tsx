@@ -1,4 +1,5 @@
 import { JSONWidget, PageWidget, PlayWidget, TsxWidget } from '@ideal-schema/playground-demi'
+import { parseElementSchema } from '@ideal-schema/playground-parser'
 import './style.scss'
 
 export default defineComponent({
@@ -26,6 +27,11 @@ export default defineComponent({
       return 'PageWidget'
     }
 
-    return () => <div class="view-widget">{h(resolveComponent(getComponent(props.viewType)))}</div>
+    const isArrayForm = computed(() => {
+      const { formConfig } = parseElementSchema('preview')
+      return formConfig.type === 'array' && props.viewType === 'play'
+    })
+
+    return () => <div class="view-widget" style={{ padding: isArrayForm.value ? '20px' : '' }}>{h(resolveComponent(getComponent(props.viewType)))}</div>
   },
 })
