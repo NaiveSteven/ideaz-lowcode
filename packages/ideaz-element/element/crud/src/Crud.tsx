@@ -282,7 +282,6 @@ export default defineComponent({
     }
 
     return () => {
-      console.log('刷新')
       return (
         <div class={ns.b('')}>
           {renderSearchForm()}

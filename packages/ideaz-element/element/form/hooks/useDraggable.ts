@@ -21,7 +21,6 @@ export function useDraggable(emit: any, columns: Ref<FormColumn[]>) {
           const { oldIndex, newIndex } = evt
           const newArr = [...columns.value]
           const objToMove = newArr[oldIndex]
-          console.log(evt, 'evtevt', objToMove)
           newArr.splice(oldIndex, 1)
           newArr.splice(newIndex, 0, objToMove)
           emit('update:columns', { columns: newArr, dragEvent: evt })
