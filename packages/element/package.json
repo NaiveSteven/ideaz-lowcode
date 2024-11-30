@@ -2,7 +2,7 @@
   "name": "@ideal-schema/element",
   "version": "0.0.1",
   "description": "> TODO: description",
-  "author": "Naive",
+  "author": "NaiveSteven",
   "main": "lib/json-schema.js",
   "directories": {
     "lib": "lib",
