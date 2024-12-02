@@ -19,6 +19,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
+  base: '/ideaz-lowcode/',
   define: {
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
   },
