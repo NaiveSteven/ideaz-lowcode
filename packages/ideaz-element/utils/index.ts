@@ -1,6 +1,6 @@
 export * from './is'
 export * from './getEventsFromCamel'
-export * from './withinstall'
+export * from './withInstall'
 export * from './runtime'
 export * from './uid'
 export * from './string'
