@@ -5,6 +5,7 @@
   "packageManager": "pnpm@7.30.0",
   "scripts": {
     "start": "pnpm -C packages/playground dev",
+    "build": "pnpm -C packages/playground build",
     "lint": "eslint .",
     "lint:style": "stylelint --cache \"**/*.{vue,scss}\""
   },
