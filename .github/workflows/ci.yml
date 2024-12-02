@@ -19,7 +19,7 @@ jobs:
       - name: Set node version to LTS
         uses: actions/setup-node@v3
         with:
-          node-version: "18.20.3"
+          node-version: 18.20.3
           cache: pnpm
 
       - name: Use npmmirror registry
@@ -36,6 +36,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           # 项目配置的打包目录名称
-          folder: docs/playground/dist
+          folder: dist/playground
           # 部署后提交到的分支
           branch: gh-pages
