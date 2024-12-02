@@ -306,6 +306,7 @@ function getColumns() {
       allowCopy: true,
       allowDelete: true,
     },
+    { ...DEFAULT_CRUD_OPERATION_COLUMN },
   ]
 }
 
@@ -317,7 +318,7 @@ export function CrudTemplate(): Widget {
     icon: 'icon-bushu',
     title: '增删改查',
     schema: {
-      action: true,
+      action: false,
       headerRowClassName: 'crudHeader',
       cellClassName: ({ columnIndex }: { columnIndex: number }) => {
         if (columns[columnIndex])
@@ -368,7 +369,7 @@ export function CrudTemplate(): Widget {
       tableDecorator: 'el-card',
       pagination: true,
       background: 'page',
-      action: true,
+      action: false,
       request: true,
     }),
     componentSchema: crudTableTemplateSchema,
