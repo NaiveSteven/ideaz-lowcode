@@ -20,9 +20,9 @@ export default defineComponent({
 
     const tableProSelectors = computed(() => {
       const pageTitle = [{ title: '页面', id: '' }]
-      const tableProTitle = pageTitle.concat([
+      const tableProTitle = [
         { title: '增删改查', id: widgets?.value[0]?.id },
-      ])
+      ]
       if (activeWidget.value.name === 'crud')
         return tableProTitle
 
@@ -54,8 +54,6 @@ export default defineComponent({
         updateActiveWidget({} as Widget)
       }
       else {
-        if (workspaceWidgetType.value === 'crud' && !item.id)
-          return
         const cur = getTreeDataItem(widgets.value, item.id as string)
         updateActiveWidget(cur)
       }
