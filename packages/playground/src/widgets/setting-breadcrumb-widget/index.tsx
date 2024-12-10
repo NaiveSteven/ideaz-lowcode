@@ -54,6 +54,8 @@ export default defineComponent({
         updateActiveWidget({} as Widget)
       }
       else {
+        if (workspaceWidgetType.value === 'crud' && !item.id)
+          return
         const cur = getTreeDataItem(widgets.value, item.id as string)
         updateActiveWidget(cur)
       }

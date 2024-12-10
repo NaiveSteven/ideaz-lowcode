@@ -13,13 +13,11 @@ export default defineComponent({
     }
 
     const handleClickViewPort = () => {
-      if (workspaceWidgetType.value !== 'crud') {
+      if (workspaceWidgetType.value !== 'crud')
         updateActiveWidget({} as Widget)
-      }
-      else {
-        const data = list.value[0]
-        updateActiveWidget(data)
-      }
+
+      else
+        updateActiveWidget(list.value[0])
     }
 
     return () => {
