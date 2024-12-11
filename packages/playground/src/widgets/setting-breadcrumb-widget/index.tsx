@@ -20,9 +20,9 @@ export default defineComponent({
 
     const tableProSelectors = computed(() => {
       const pageTitle = [{ title: '页面', id: '' }]
-      const tableProTitle = pageTitle.concat([
+      const tableProTitle = [
         { title: '增删改查', id: widgets?.value[0]?.id },
-      ])
+      ]
       if (activeWidget.value.name === 'crud')
         return tableProTitle
 

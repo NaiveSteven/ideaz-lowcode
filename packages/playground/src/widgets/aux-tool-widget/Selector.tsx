@@ -112,7 +112,7 @@ export default defineComponent({
               })}
             {renderFormSelector(
               selectors.value.length ? 'aux-button selector-menu mt-1' : 'aux-button selector-menu',
-              !!activeWidget.value.id,
+              !!activeWidget.value.id && workspaceWidgetType.value === 'form',
             )}
           </div>
         )}
