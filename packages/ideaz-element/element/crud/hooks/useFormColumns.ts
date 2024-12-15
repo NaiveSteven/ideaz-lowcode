@@ -8,7 +8,7 @@ export function useFormColumns(props: CrudProps) {
       return props.form.columns
     if (isObject(props[key]) && isArray(props[key].columns))
       return props[key].columns
-    return props.columns.filter((column: TableCol) => (column[key]) || (column.form && column[key] !== false && props[key] !== false)).map((column: TableCol) => {
+    return props.columns?.filter((column: TableCol) => (column[key]) || (column.form && column[key] !== false && props[key] !== false)).map((column: TableCol) => {
       const commonConfig = {
         field: column.prop,
         component: column.type,

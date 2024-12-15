@@ -15,7 +15,7 @@ export function useDescriptions(props: CrudProps) {
         }
       })
     }
-    return props.columns.filter((column: TableCol) => column.detail || (column.form && column.detail !== false)).map((column: TableCol) => {
+    return props.columns?.filter((column: TableCol) => column.detail || (column.form && column.detail !== false)).map((column: TableCol) => {
       return {
         label: column.detail?.label || column.form?.label || column.label,
         prop: column.detail?.prop || column.detail?.field || column.form?.field,
